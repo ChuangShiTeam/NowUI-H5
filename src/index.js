@@ -8,6 +8,7 @@ import {routerReducer} from 'react-router-redux';
 import LoginQuick from './view/login/Quick';
 import LoginPassword from './view/login/Password';
 import Register from './view/Register';
+import ForgetPassword from './view/ForgetPassword';
 import Main from './view/Main';
 
 import constant from './common/constant';
@@ -60,6 +61,9 @@ const routes = {
     }, {
         path: '/login/password',
         component: LoginPassword
+    }, {
+        path: '/forget/password',
+        component: ForgetPassword
     }, {
         path: '/register',
         component: Register

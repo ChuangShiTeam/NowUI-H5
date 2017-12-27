@@ -30,7 +30,7 @@ class Password extends Component {
 
     render() {
         return (
-            <div className="page-background text-align-center login">
+            <div className="page-background text-align-center page">
                 <img className="login-logo" src={require('../../image/logo.png')} width="150" height="37" alt=""/>
                 <div className="login-password-form">
                     <div className="login-password-form-mobile">
@@ -48,14 +48,16 @@ class Password extends Component {
                         <div className="login-password-form-password-line"></div>
                     </div>
                     <div className="login-password-form-text">
-                        <div className="login-password-form-forget">忘记密码</div>
+                        <Link to="/forget/password">
+                            <div className="login-password-form-forget">忘记密码</div>
+                        </Link>
                     </div>
                     <div className="form-button" style={{background: '#58BFCE'}}
                          onClick={this.handleSubmit.bind(this)}>登 录
                     </div>
                     <div className="login-password-form-text">
                         <Link to="/login/quick" className="login-password-form-quick">密码登录</Link>
-                        <div className="login-password-form-register">注册账号</div>
+                        <Link to="/register" className="login-password-form-register">注册账号</Link>
                     </div>
                     <div className="login-text-line">或</div>
                     <img className="login-password-form-wechat" src={require('../../image/wechat.png')} width="32"

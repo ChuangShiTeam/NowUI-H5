@@ -57,11 +57,15 @@ class Quick extends Component {
 
     handleSubmit() {
         Toast.info('This is a toast tips !!!', 1);
+        // this.props.history.push({
+        //     pathname: '/index',
+        //     query: {}
+        // });
     }
 
     render() {
         return (
-            <div className="page-background text-align-center login">
+            <div className="page-background text-align-center page">
                 <img className="login-logo" src={require('../../image/logo.png')} width="150" height="37" alt=""/>
                 <div className="login-form">
                     <div className="login-quick-form-mobile">
@@ -90,10 +94,10 @@ class Quick extends Component {
                             :
                             ''
                     }
-                    <div className="form-button" style={this.state.isSendCaptcha ? {background: '#58BFCE'} : {background: '#9DD7E3'}}>登 录</div>
+                    <div className="form-button" style={this.state.isSendCaptcha ? {background: '#58BFCE'} : {background: '#9DD7E3'}} onClick={this.handleSubmit.bind(this)}>登 录</div>
                     <div className="login-quick-form-text">
                         <Link to="/login/password" className="login-quick-form-password">密码登录</Link>
-                        <div className="login-quick-form-register">注册账号</div>
+                        <Link to="/register" className="login-quick-form-register">注册账号</Link>
                     </div>
                     <div className="login-text-line">或</div>
                     <img className="login-quick-form-wechat" src={require('../../image/wechat.png')} width="32"

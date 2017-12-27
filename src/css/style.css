@@ -51,6 +51,10 @@ input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
     color: #9b9b9b;
 }
 
+.clear-both {
+    clear: both
+}
+
 .swiper-container {
     width: 100%;
 }
@@ -225,9 +229,10 @@ input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
     position: absolute;
     width: 100%;
     top: 50%;
+    margin-top: 10px;
     text-align: center;
     color: #FFFFFF;
-    font-size: 24px;
+    font-size: 14px;
 }
 
 .index-topic-list {
@@ -304,6 +309,11 @@ input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
     font-size: 12px;
 }
 
+.index-topic-category-item-text-tag {
+    margin-top: 2px;
+    font-size: 9px;
+}
+
 .index-talent {
     padding: 16px;
     background: #F6F6F6;
@@ -321,9 +331,41 @@ input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
     width: 120px;
 }
 
-.index-talent-item-image {
+.index-talent-item-content {
     width: 110px;
     height: 148px;
+    border-radius: 4px;
+    background: #FFFFFF;
+    border: 1px solid #F0F0F0;
+    text-align: center;
+}
+
+.index-talent-item-content-image {
+    width: 53px;
+    height: 53px;
+    margin-top: 17px;
+}
+
+.index-talent-item-content-name {
+    font-size: 13px;
+    margin-top: 11px;
+}
+
+.index-talent-item-content-tag {
+    font-size: 9px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.index-talent-item-content-button {
+    margin: 0 auto;
+    width: 50px;
+    height: 17px;
+    line-height: 17px;
+    border-radius: 31px;
+    background: #47B8C0;
+    font-size: 9px;
+    color: #FFFFFF;
 }
 
 .index-topic-new {
@@ -334,7 +376,55 @@ input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
     float: left;
     width: 90px;
     font-size: 15px;
+    margin-bottom: 25px;
+}
+
+.index-topic-new-content-item {
+    position: relative;
+    margin-top: 15px;
+    height: 105px;
+    border-bottom: 1px solid #efefef;
+}
+
+.index-topic-new-content-item-title {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 100px;
+    font-size: 16px;
+    line-height: 22px;
+}
+
+.index-topic-new-content-item-summary {
+    position: absolute;
+    top: 50px;
+    left: 0px;
+    right: 100px;
+    font-size: 13px;
+    line-height: 22px;
+    color: #9A9A9A;
+}
+
+.index-topic-new-content-item-image {
+    width: 76px;
+    height: 76px;
+    float: right;
+}
+
+.index-topic-new-video {
+    margin-top: 19px;
     margin-bottom: 15px;
+}
+
+.index-topic-new-video-title {
+    font-size: 16px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.index-topic-new-video-summary {
+    font-size: 13px;
+    color: #9A9A9A;
 }
 
 .text-align-center {
@@ -350,8 +440,8 @@ input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
     background: #E9FBFF;
 }
 
-.login {
-    padding: 0px 40px 40px 40px
+.page {
+    padding: 0px 40px 40px 40px;
 }
 
 .login-logo {
@@ -382,6 +472,7 @@ input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
     left: 27px;
     right: 0px;
     font-size: 12px;
+    font-weight: lighter;
     color: #000000;
     background: #E9FBFF;
 }
@@ -412,6 +503,7 @@ input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
     left: 27px;
     width: 50%;
     font-size: 12px;
+    font-weight: lighter;
     color: #000000;
     background: #E9FBFF;
 }
@@ -554,6 +646,7 @@ input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
     left: 27px;
     right: 0px;
     font-size: 12px;
+    font-weight: lighter;
     color: #000000;
     background: #E9FBFF;
 }
@@ -584,6 +677,7 @@ input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
     left: 27px;
     right: 0px;
     font-size: 12px;
+    font-weight: lighter;
     color: #000000;
     background: #E9FBFF;
 }
@@ -620,4 +714,301 @@ input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
 
 .login-password-form-wechat {
     margin-top: 30px;
+}
+
+.forget-password-title {
+    width: 100%;
+    height: 37px;
+    font-size: 20px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.forget-password-form-mobile {
+    position: relative;
+    height: 45px;
+}
+
+.forget-password-form-mobile-icon {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+.forget-password-form-mobile-input {
+    position: absolute;
+    top: 0px;
+    left: 27px;
+    right: 0px;
+    font-size: 12px;
+    font-weight: lighter;
+    color: #000000;
+    background: #E9FBFF;
+}
+
+.forget-password-form-mobile-line {
+    position: absolute;
+    top: 22px;
+    left: 27px;
+    right: 0px;
+    opacity: 0.5;
+    border-bottom: 1px solid #DDDDDD;
+}
+
+.forget-password-form-captcha {
+    position: relative;
+    height: 50px;
+}
+
+.forget-password-form-captcha-icon {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+.forget-password-form-captcha-input {
+    position: absolute;
+    top: 0px;
+    left: 27px;
+    width: 50%;
+    font-size: 12px;
+    font-weight: lighter;
+    color: #000000;
+    background: #E9FBFF;
+}
+
+.forget-password-form-captcha-line {
+    position: absolute;
+    top: 22px;
+    left: 27px;
+    width: 50%;
+    opacity: 0.5;
+    border-bottom: 1px solid #DDDDDD;
+}
+
+.forget-password-form-captcha-time {
+    margin-left: 120px;
+    color: #46bfda;
+    z-index: 99;
+}
+
+.forget-password-form-password {
+    position: relative;
+    height: 55px;
+}
+
+.forget-password-form-password-icon {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+.forget-password-form-password-input {
+    position: absolute;
+    top: 0px;
+    left: 27px;
+    right: 0px;
+    font-size: 12px;
+    font-weight: lighter;
+    color: #000000;
+    background: #E9FBFF;
+}
+
+.forget-password-form-password-line {
+    position: absolute;
+    top: 22px;
+    left: 27px;
+    right: 0px;
+    opacity: 0.5;
+    border-bottom: 1px solid #DDDDDD;
+}
+
+.forget-password-form-confirm-password {
+    position: relative;
+    height: 45px;
+}
+
+.forget-password-form-confirm-password-icon {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+.forget-password-form-confirm-password-input {
+    position: absolute;
+    top: 0px;
+    left: 27px;
+    right: 0px;
+    font-size: 12px;
+    font-weight: lighter;
+    color: #000000;
+    background: #E9FBFF;
+}
+
+.forget-password-form-confirm-password-line {
+    position: absolute;
+    top: 22px;
+    left: 27px;
+    right: 0px;
+    opacity: 0.5;
+    border-bottom: 1px solid #DDDDDD;
+}
+
+.register-title {
+    width: 100%;
+    height: 37px;
+    font-size: 20px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.register-form-mobile {
+    position: relative;
+    height: 45px;
+}
+
+.register-form-mobile-icon {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+.register-form-mobile-input {
+    position: absolute;
+    top: 0px;
+    left: 27px;
+    right: 0px;
+    font-size: 12px;
+    font-weight: lighter;
+    color: #000000;
+    background: #E9FBFF;
+}
+
+.register-form-mobile-line {
+    position: absolute;
+    top: 22px;
+    left: 27px;
+    right: 0px;
+    opacity: 0.5;
+    border-bottom: 1px solid #DDDDDD;
+}
+
+.register-form-captcha {
+    position: relative;
+    height: 50px;
+}
+
+.register-form-captcha-icon {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+.register-form-captcha-input {
+    position: absolute;
+    top: 0px;
+    left: 27px;
+    width: 50%;
+    font-size: 12px;
+    font-weight: lighter;
+    color: #000000;
+    background: #E9FBFF;
+}
+
+.register-form-captcha-line {
+    position: absolute;
+    top: 22px;
+    left: 27px;
+    width: 50%;
+    opacity: 0.5;
+    border-bottom: 1px solid #DDDDDD;
+}
+
+.register-form-captcha-time {
+    margin-left: 120px;
+    color: #46bfda;
+    z-index: 99;
+}
+
+.register-form-password {
+    position: relative;
+    height: 55px;
+}
+
+.register-form-password-icon {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+.register-form-password-input {
+    position: absolute;
+    top: 0px;
+    left: 27px;
+    right: 0px;
+    font-size: 12px;
+    font-weight: lighter;
+    color: #000000;
+    background: #E9FBFF;
+}
+
+.register-form-password-line {
+    position: absolute;
+    top: 22px;
+    left: 27px;
+    right: 0px;
+    opacity: 0.5;
+    border-bottom: 1px solid #DDDDDD;
+}
+
+.register-form-confirm-password {
+    position: relative;
+    height: 45px;
+}
+
+.register-form-confirm-password-icon {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+.register-form-confirm-password-input {
+    position: absolute;
+    top: 0px;
+    left: 27px;
+    right: 0px;
+    font-size: 12px;
+    font-weight: lighter;
+    color: #000000;
+    background: #E9FBFF;
+}
+
+.register-form-confirm-password-line {
+    position: absolute;
+    top: 22px;
+    left: 27px;
+    right: 0px;
+    opacity: 0.5;
+    border-bottom: 1px solid #DDDDDD;
+}
+
+.form-agreement {
+    position: relative;
+    margin-top: 15px;
+    font-size: 8px;
+}
+
+.form-agreement-icon {
+    position: absolute;
+    top: -1px;
+}
+
+.form-agreement span {
+    margin-left: 13px;
+}
+
+.form-agreement a {
+    color: #58bfce;
 }
