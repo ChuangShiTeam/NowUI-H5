@@ -133,7 +133,7 @@ class Register extends Component {
                                 <input className="register-form-confirm-password-input" type="text" placeholder="再次确认密码"/>
                                 <div className="register-form-confirm-password-line"></div>
                             </div>
-                            <div className="form-button" style={this.state.isSendCaptcha ? {background: '#58BFCE'} : {background: '#9DD7E3'}} onClick={this.handleSubmit().bind(this)}>完成修改</div>
+                            <div className="form-button" style={this.state.isSendCaptcha ? {background: '#58BFCE'} : {background: '#9DD7E3'}} onClick={this.handleSubmit.bind(this)}>完成修改</div>
                         </div>
                 }
             </div>

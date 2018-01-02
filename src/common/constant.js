@@ -6,7 +6,7 @@ export default {
     platform: 'H5',
     version: '1.0.0',
     pageSize: 10,
-    name: 'wawipet哇咿宠',
+    name: 'wawipet哇咿宠物',
     shortName: '星销',
     index: '/index',
     success: '操作成功',

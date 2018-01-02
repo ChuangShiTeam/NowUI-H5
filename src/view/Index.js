@@ -12,12 +12,14 @@ class Index extends Component {
             isLoad: false,
             opacity: 0
         }
+
+        this.handleScroll = this.handleScroll.bind(this);
     }
 
     componentDidMount() {
         util.setTitle('wawipet哇咿宠');
 
-        let bannerSwiper = new window.Swiper('.index-banner', {
+        new window.Swiper('.index-banner', {
             loop: true,
             pagination: {
                 el: '.index-banner-pagination',
@@ -49,11 +51,11 @@ class Index extends Component {
             freeMode: true
         });
 
-        window.addEventListener('scroll', this.handleScroll.bind(this));
+        window.addEventListener('scroll', this.handleScroll);
     }
 
     componentWillUnmount() {
-        window.removeEventListener('scroll', this.handleScroll.bind(this));
+        window.removeEventListener('scroll', this.handleScroll);
     }
 
     handleScroll() {

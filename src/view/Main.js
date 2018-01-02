@@ -7,12 +7,44 @@ class Index extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {}
+        this.state = {
+            menu: [{
+                title: '首页',
+                url: '/index',
+                icon: 'index.png',
+                selectedIcon: 'index-active.png',
+                selected: true
+            }, {
+                title: '社区',
+                url: '/forum/index',
+                icon: 'forum.png',
+                selectedIcon: 'forum-active.png',
+                selected: false
+            }, {
+                title: '服务',
+                url: '/service/index',
+                icon: 'service.png',
+                selectedIcon: 'service-active.png',
+                selected: false
+            }, {
+                title: '精选',
+                url: '/shop/index',
+                icon: 'shop.png',
+                selectedIcon: 'shop-active.png',
+                selected: false
+            }, {
+                title: '我的',
+                url: '/my/index',
+                icon: 'my.png',
+                selectedIcon: 'my-active.png',
+                selected: false
+            }]
+        }
     }
 
 
     componentDidMount() {
-
+        this.handleMenu(this.props.routes[3].path);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -21,6 +53,30 @@ class Index extends Component {
 
     componentWillUnmount() {
 
+    }
+
+    handleMenu(path) {
+        let menu = this.state.menu;
+        for (let i = 0; i < menu.length; i++) {
+            if (path === menu[i].url) {
+                menu[i].selected = true;
+            } else {
+                menu[i].selected = false;
+            }
+        }
+
+        this.setState({
+            menu: menu
+        });
+    }
+
+    handlePress(key, url) {
+        this.handleMenu(url);
+
+        this.props.history.push({
+            pathname: url,
+            query: {}
+        });
     }
 
     render() {
@@ -32,36 +88,20 @@ class Index extends Component {
                     tintColor="#47B8C0"
                     barTintColor="white"
                 >
-                    <TabBar.Item
-                        title="首页"
-                        icon={require('../image/index.png')}
-                        selectedIcon={require('../image/index.png')}
-                        selected={true}
-                    />
-                    <TabBar.Item
-                        title="社区"
-                        icon={require('../image/community.png')}
-                        selectedIcon={require('../image/community.png')}
-                        selected={false}
-                    />
-                    <TabBar.Item
-                        title="服务"
-                        icon={require('../image/service.png')}
-                        selectedIcon={require('../image/service.png')}
-                        selected={false}
-                    />
-                    <TabBar.Item
-                        title="精选"
-                        icon={require('../image/shop.png')}
-                        selectedIcon={require('../image/shop.png')}
-                        selected={false}
-                    />
-                    <TabBar.Item
-                        title="我的"
-                        icon={require('../image/my.png')}
-                        selectedIcon={require('../image/my.png')}
-                        selected={false}
-                    />
+                    {
+                        this.state.menu.map((item, index) => {
+                            return (
+                                <TabBar.Item
+                                    key={index}
+                                    title={item.title}
+                                    icon={require('../image/' + item.icon)}
+                                    selectedIcon={require('../image/' + item.selectedIcon)}
+                                    selected={item.selected}
+                                    onPress={this.handlePress.bind(this, item.key, item.url)}
+                                />
+                            );
+                        })
+                    }
                 </TabBar>
             </div>
         );
