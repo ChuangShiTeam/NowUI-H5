@@ -44,7 +44,7 @@ class Index extends Component {
 
 
     componentDidMount() {
-        this.handleMenu(this.props.routes[3].path);
+        this.handleMenu(this.props.routes[4].path);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -72,6 +72,10 @@ class Index extends Component {
 
     handlePress(key, url) {
         this.handleMenu(url);
+
+        if (url === '/forum/index') {
+            url = '/forum/skip';
+        }
 
         this.props.history.push({
             pathname: url,

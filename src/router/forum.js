@@ -1,13 +1,33 @@
 import util from '../common/util';
+import Main from "../view/Main";
 
 export default {
     childRoutes: [{
-        path: '/forum/index',
+        component: Main,
+        childRoutes: [{
+            path: '/forum/index',
+            onEnter: util.handleEnter,
+            getComponent(location, cb) {
+                require.ensure([], (require) => {
+                    cb(null, require('../view/forum/Index').default);
+                }, 'forum.index');
+            }
+        }]
+    }, {
+        path: '/forum/skip',
         onEnter: util.handleEnter,
         getComponent(location, cb) {
             require.ensure([], (require) => {
-                cb(null, require('../view/forum/Index').default);
-            }, 'forum.index');
+                cb(null, require('../view/forum/Skip').default);
+            }, 'forum.skip');
+        }
+    }, {
+        path: '/forum/add',
+        onEnter: util.handleEnter,
+        getComponent(location, cb) {
+            require.ensure([], (require) => {
+                cb(null, require('../view/forum/Add').default);
+            }, 'forum.skip');
         }
     }]
 }

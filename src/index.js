@@ -53,7 +53,6 @@ const routes = {
         }
     },
     childRoutes: [{
-        component: Main,
         childRoutes: childRoutes
     }, {
         path: '/login/quick',

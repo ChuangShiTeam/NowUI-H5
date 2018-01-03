@@ -43,6 +43,13 @@ class Index extends Component {
 
     }
 
+    handleAdd() {
+        this.props.history.push({
+            pathname: '/forum/add',
+            query: {}
+        });
+    }
+
     handleSubmit() {
 
     }
@@ -53,7 +60,7 @@ class Index extends Component {
                 <div className="header header-bottom">
                     <div className="header-mask" style={{opacity: this.state.opacity}}></div>
                     <div className="header-left">
-                        <div className="header-left-forum-add">
+                        <div className="header-left-forum-add" onClick={this.handleAdd.bind(this)}>
                             <img src={require('../../image/forum-add.png')} alt=""/>
                         </div>
                     </div>
@@ -150,6 +157,22 @@ class Index extends Component {
                                 <img className="forum-hot-content-item-header-icon" src={require('../../image/WechatIMG1916.png')} alt=""/>
                                 <div className="forum-hot-content-item-header-name">Nami</div>
                                 <div className="forum-hot-content-item-header-time">20分钟前</div>
+                            </div>
+                            <div className="forum-hot-content-item-content"></div>
+                            <div className="forum-hot-content-item-footer">
+                                <div className="forum-hot-content-item-footer-line"></div>
+                                <div className="form-hot-content-item-footer-tag">
+                                    <div className="form-hot-content-item-footer-tag-from">来自</div>
+                                    <div className="form-hot-content-item-footer-tag-text">大爱猫咪控</div>
+                                    <div className="form-hot-content-item-footer-tag-text">大爱猫咪控</div>
+                                    <div className="form-hot-content-item-footer-tag-text">大爱猫咪控</div>
+                                    <div className="form-hot-content-item-footer-tag-text">大爱猫咪控</div>
+                                </div>
+                                <img className="form-hot-content-item-footer-like-icon" src={require('../../image/form-hot-content-item-footer-like-active.png')} alt=""/>
+                                <span className="form-hot-content-item-footer-like-number">10</span>
+                                <img className="form-hot-content-item-footer-favorite-icon" src={require('../../image/form-hot-content-item-footer-favorite-active.png')} alt=""/>
+                                <span className="form-hot-content-item-footer-favorite-number">10</span>
+                                <img className="form-hot-content-item-footer-comment-icon" src={require('../../image/form-hot-content-item-footer-comment.png')} alt=""/>
                             </div>
                         </div>
                     </div>
