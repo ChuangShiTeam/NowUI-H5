@@ -1,0 +1,87 @@
+.login-quick-form-mobile {
+    position: relative;
+    height: 45px;
+}
+
+.login-quick-form-mobile-icon {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+.login-quick-form-mobile-input {
+    position: absolute;
+    top: 0px;
+    left: 27px;
+    right: 0px;
+    font-size: 12px;
+    font-weight: lighter;
+    color: #000000;
+    background: #E9FBFF;
+}
+
+.login-quick-form-mobile-line {
+    position: absolute;
+    top: 22px;
+    left: 27px;
+    right: 0px;
+    opacity: 0.5;
+    border-bottom: 1px solid #DDDDDD;
+}
+
+.login-quick-form-captcha {
+    position: relative;
+    height: 50px;
+}
+
+.login-quick-form-captcha-icon {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+.login-quick-form-captcha-input {
+    position: absolute;
+    top: 0px;
+    left: 27px;
+    width: 50%;
+    font-size: 12px;
+    font-weight: lighter;
+    color: #000000;
+    background: #E9FBFF;
+}
+
+.login-quick-form-captcha-line {
+    position: absolute;
+    top: 22px;
+    left: 27px;
+    width: 50%;
+    opacity: 0.5;
+    border-bottom: 1px solid #DDDDDD;
+}
+
+.login-quick-form-captcha-time {
+    margin-left: 120px;
+    color: #46bfda;
+    z-index: 99;
+}
+
+.login-quick-form-text {
+    height: 50px;
+}
+
+.login-quick-form-password {
+    float: left;
+    margin-top: 11px;
+    color: #46bfda;
+}
+
+.login-quick-form-register {
+    float: right;
+    margin-top: 11px;
+    color: #46bfda;
+}
+
+.login-quick-form-wechat {
+    margin-top: 30px;
+}

@@ -5,18 +5,10 @@ import {createStore, combineReducers} from 'redux';
 import {Provider} from 'react-redux';
 import {routerReducer} from 'react-router-redux';
 
-import LoginQuick from './view/login/Quick';
-import LoginPassword from './view/login/Password';
-import Register from './view/Register';
-import ForgetPassword from './view/ForgetPassword';
-import Main from './view/Main';
-
 import constant from './common/constant';
 import util from './common/util';
 
 import './css/style.css';
-
-document.getElementById("loading").remove();
 
 util.setTitle(constant.name);
 
@@ -54,18 +46,6 @@ const routes = {
     },
     childRoutes: [{
         childRoutes: childRoutes
-    }, {
-        path: '/login/quick',
-        component: LoginQuick
-    }, {
-        path: '/login/password',
-        component: LoginPassword
-    }, {
-        path: '/forget/password',
-        component: ForgetPassword
-    }, {
-        path: '/register',
-        component: Register
     }]
 };
 
@@ -73,6 +53,8 @@ const Routers = () =>
     <Provider store={stores}>
         <Router history={browserHistory} routes={routes}/>
     </Provider>
+
+document.getElementById("loading").remove();
 
 ReactDOM.render(
     <Routers/>,

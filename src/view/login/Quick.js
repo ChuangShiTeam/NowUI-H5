@@ -5,6 +5,8 @@ import {Toast} from 'antd-mobile';
 
 import util from "../../common/util";
 
+import './Quick.css';
+
 let interval;
 
 class Quick extends Component {

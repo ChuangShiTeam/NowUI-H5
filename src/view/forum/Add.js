@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {createForm} from "rc-form";
-import {Link} from 'react-router';
-import {Toast, List, InputItem} from 'antd-mobile';
+import {List, InputItem} from 'antd-mobile';
 
 import util from "../../common/util";
+
+import './Add.css';
 
 class Add extends Component {
     constructor(props) {
@@ -24,6 +25,13 @@ class Add extends Component {
     }
 
     handleSubmit() {
+        this.props.history.push({
+            pathname: '/forum/index',
+            query: {}
+        });
+    }
+
+    handleClose() {
         this.props.history.push({
             pathname: '/forum/index',
             query: {}
@@ -69,7 +77,8 @@ class Add extends Component {
                         placeholder="请输入超过255个字符的圈子简介"
                     >圈子简介:</InputItem>
                 </List>
-                <div className="forum-add-submit">提交审核</div>
+                <div className="forum-add-submit" onClick={this.handleSubmit.bind(this)}>提交审核</div>
+                <div className="forum-add-close" onClick={this.handleClose.bind(this)}>关闭</div>
             </div>
         );
     }

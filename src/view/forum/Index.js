@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router';
-import {Toast} from 'antd-mobile';
 
 import util from "../../common/util";
+
+import './Index.css';
 
 class Index extends Component {
     constructor(props) {
@@ -17,7 +18,7 @@ class Index extends Component {
     componentDidMount() {
         util.setTitle('wawipet哇咿宠');
 
-        new window.Swiper('.forum-interested-content', {
+        new window.Swiper('.forum-index-interested-content', {
             autoplay: 3000,
             speed: 1000,
             autoplayDisableOnInteraction: false,
@@ -50,6 +51,13 @@ class Index extends Component {
         });
     }
 
+    handleSearch() {
+        this.props.history.push({
+            pathname: '/forum/search',
+            query: {}
+        });
+    }
+
     handleSubmit() {
 
     }
@@ -57,7 +65,7 @@ class Index extends Component {
     render() {
         return (
             <div>
-                <div className="header header-bottom">
+                <div className="forum-index-header">
                     <div className="header-mask" style={{opacity: this.state.opacity}}></div>
                     <div className="header-left">
                         <div className="header-left-forum-add" onClick={this.handleAdd.bind(this)}>
@@ -69,80 +77,90 @@ class Index extends Component {
                         <div className="header-center-right">动态</div>
                     </div>
                     <div className="header-right">
-                        <div className="header-right-forum-search">
+                        <div className="header-right-forum-search" onClick={this.handleSearch.bind(this)}>
                             <img src={require('../../image/search.png')} width="20" height="22" alt=""/>
                         </div>
                     </div>
                 </div>
-                <div className="forum-my">
-                    <div className="forum-my-header">
-                        <img className="forum-my-header-icon" src={require('../../image/forum-my.png')} width="22"
+                <div className="forum-index-my">
+                    <div className="forum-index-my-header">
+                        <img className="forum-index-my-header-icon" src={require('../../image/forum-index-my.png')}
+                             width="22"
                              height="16" alt=""/>
-                        <div className="forum-my-header-text">我加入的圈子</div>
+                        <div className="forum-index-my-header-text">我加入的圈子</div>
                     </div>
-                    <div className="forum-my-content">
-                        <div className="forum-my-content-item">
-                            <img className="forum-my-content-item-icon" src={require('../../image/WechatIMG2050.png')}
-                                 alt=""/>
-                            <div className="forum-my-content-item-title">魔都喵星人</div>
-                            <div className="forum-my-content-item-summary">这里是魔都喵星人的聚集地，是爱猫人士的家园，欢迎加入</div>
-                            <img className="forum-my-content-item-user-icon"
-                                 src={require('../../image/forum-my-content-item-user-icon.png')} alt=""/>
-                            <div className="forum-my-content-item-user-name">小可爱</div>
-                            <div className="forum-my-content-item-topic">今日最新话题数 <span
-                                className="forum-my-content-item-topic-number">53</span></div>
-                            <div className="forum-my-content-item-top">置顶</div>
-                        </div>
-                        <div className="forum-my-content-item">
-                            <img className="forum-my-content-item-icon" src={require('../../image/WechatIMG2050.png')}
-                                 alt=""/>
-                            <div className="forum-my-content-item-title">魔都喵星人</div>
-                            <div className="forum-my-content-item-summary">这里是魔都喵星人的聚集地，是爱猫人士的家园，欢迎加入</div>
-                            <img className="forum-my-content-item-user-icon"
-                                 src={require('../../image/forum-my-content-item-user-icon.png')} alt=""/>
-                            <div className="forum-my-content-item-user-name">小可爱</div>
-                            <div className="forum-my-content-item-topic">今日最新话题数 <span
-                                className="forum-my-content-item-topic-number">53</span></div>
-                            <div className="forum-my-content-item-top">置顶</div>
-                        </div>
-                        <div className="forum-my-content-item">
-                            <img className="forum-my-content-item-icon" src={require('../../image/WechatIMG2050.png')}
-                                 alt=""/>
-                            <div className="forum-my-content-item-title">魔都喵星人</div>
-                            <div className="forum-my-content-item-summary">这里是魔都喵星人的聚集地，是爱猫人士的家园，欢迎加入</div>
-                            <img className="forum-my-content-item-user-icon"
-                                 src={require('../../image/forum-my-content-item-user-icon.png')} alt=""/>
-                            <div className="forum-my-content-item-user-name">小可爱</div>
-                            <div className="forum-my-content-item-topic">今日最新话题数 <span
-                                className="forum-my-content-item-topic-number">53</span></div>
-                            <div className="forum-my-content-item-top">置顶</div>
-                        </div>
-                        <div className="forum-my-content-more">
-                            <div className="forum-my-content-more-text">查看更多</div>
-                            <img className="forum-my-content-more-icon"
-                                 src={require('../../image/forum-my-content-more-icon.png')} alt=""/>
+                    <div className="forum-index-my-content">
+                        <Link to="/forum/homepage">
+                            <div className="forum-index-my-content-item">
+                                <img className="forum-index-my-content-item-icon"
+                                     src={require('../../image/WechatIMG2050.png')}
+                                     alt=""/>
+                                <div className="forum-index-my-content-item-title">魔都喵星人</div>
+                                <div className="forum-index-my-content-item-summary">这里是魔都喵星人的聚集地，是爱猫人士的家园，欢迎加入</div>
+                                <img className="forum-index-my-content-item-user-icon"
+                                     src={require('../../image/forum-index-my-content-item-user-icon.png')} alt=""/>
+                                <div className="forum-index-my-content-item-user-name">小可爱</div>
+                                <div className="forum-index-my-content-item-topic">今日最新话题数 <span
+                                    className="forum-index-my-content-item-topic-number">53</span></div>
+                                <div className="forum-index-my-content-item-top">置顶</div>
+                            </div>
+                        </Link>
+                        <Link to="/forum/homepage">
+                            <div className="forum-index-my-content-item">
+                                <img className="forum-index-my-content-item-icon"
+                                     src={require('../../image/WechatIMG2050.png')}
+                                     alt=""/>
+                                <div className="forum-index-my-content-item-title">魔都喵星人</div>
+                                <div className="forum-index-my-content-item-summary">这里是魔都喵星人的聚集地，是爱猫人士的家园，欢迎加入</div>
+                                <img className="forum-index-my-content-item-user-icon"
+                                     src={require('../../image/forum-index-my-content-item-user-icon.png')} alt=""/>
+                                <div className="forum-index-my-content-item-user-name">小可爱</div>
+                                <div className="forum-index-my-content-item-topic">今日最新话题数 <span
+                                    className="forum-index-my-content-item-topic-number">53</span></div>
+                                <div className="forum-index-my-content-item-top">置顶</div>
+                            </div>
+                        </Link>
+                        <Link to="/forum/homepage">
+                            <div className="forum-index-my-content-item">
+                                <img className="forum-index-my-content-item-icon"
+                                     src={require('../../image/WechatIMG2050.png')}
+                                     alt=""/>
+                                <div className="forum-index-my-content-item-title">魔都喵星人</div>
+                                <div className="forum-index-my-content-item-summary">这里是魔都喵星人的聚集地，是爱猫人士的家园，欢迎加入</div>
+                                <img className="forum-index-my-content-item-user-icon"
+                                     src={require('../../image/forum-index-my-content-item-user-icon.png')} alt=""/>
+                                <div className="forum-index-my-content-item-user-name">小可爱</div>
+                                <div className="forum-index-my-content-item-topic">今日最新话题数 <span
+                                    className="forum-index-my-content-item-topic-number">53</span></div>
+                                <div className="forum-index-my-content-item-top">置顶</div>
+                            </div>
+                        </Link>
+                        <div className="forum-index-my-content-more">
+                            <div className="forum-index-my-content-more-text">查看更多</div>
+                            <img className="forum-index-my-content-more-icon"
+                                 src={require('../../image/forum-index-my-content-more-icon.png')} alt=""/>
                         </div>
                     </div>
                 </div>
-                <div className="forum-interested">
-                    <div className="forum-interested-header">
-                        <img className="forum-interested-header-icon" src={require('../../image/forum-interested.png')}
+                <div className="forum-index-interested">
+                    <div className="forum-index-interested-header">
+                        <img className="forum-index-interested-header-icon" src={require('../../image/forum-index-interested.png')}
                              alt=""/>
-                        <div className="forum-interested-header-text">你可能感兴趣的圈子</div>
+                        <div className="forum-index-interested-header-text">你可能感兴趣的圈子</div>
                     </div>
-                    <div className="forum-interested-content">
+                    <div className="forum-index-interested-content">
                         <div className="swiper-wrapper">
-                            <div className="swiper-slide forum-interested-content-item">
-                                <img src={require('../../image/forum-interested-item.png')} alt=""/>
+                            <div className="swiper-slide forum-index-interested-content-item">
+                                <img src={require('../../image/forum-index-interested-item.png')} alt=""/>
                             </div>
-                            <div className="swiper-slide forum-interested-content-item">
-                                <img src={require('../../image/forum-interested-item.png')} alt=""/>
+                            <div className="swiper-slide forum-index-interested-content-item">
+                                <img src={require('../../image/forum-index-interested-item.png')} alt=""/>
                             </div>
-                            <div className="swiper-slide forum-interested-content-item">
-                                <img src={require('../../image/forum-interested-item.png')} alt=""/>
+                            <div className="swiper-slide forum-index-interested-content-item">
+                                <img src={require('../../image/forum-index-interested-item.png')} alt=""/>
                             </div>
-                            <div className="swiper-slide forum-interested-content-item">
-                                <img src={require('../../image/forum-interested-item.png')} alt=""/>
+                            <div className="swiper-slide forum-index-interested-content-item">
+                                <img src={require('../../image/forum-index-interested-item.png')} alt=""/>
                             </div>
                         </div>
                     </div>
@@ -154,25 +172,30 @@ class Index extends Component {
                     <div className="forum-hot-content">
                         <div className="forum-hot-content-item">
                             <div className="forum-hot-content-item-header">
-                                <img className="forum-hot-content-item-header-icon" src={require('../../image/WechatIMG1916.png')} alt=""/>
+                                <img className="forum-hot-content-item-header-icon"
+                                     src={require('../../image/WechatIMG1916.png')} alt=""/>
                                 <div className="forum-hot-content-item-header-name">Nami</div>
                                 <div className="forum-hot-content-item-header-time">20分钟前</div>
                             </div>
                             <div className="forum-hot-content-item-content"></div>
                             <div className="forum-hot-content-item-footer">
                                 <div className="forum-hot-content-item-footer-line"></div>
-                                <div className="form-hot-content-item-footer-tag">
-                                    <div className="form-hot-content-item-footer-tag-from">来自</div>
-                                    <div className="form-hot-content-item-footer-tag-text">大爱猫咪控</div>
-                                    <div className="form-hot-content-item-footer-tag-text">大爱猫咪控</div>
-                                    <div className="form-hot-content-item-footer-tag-text">大爱猫咪控</div>
-                                    <div className="form-hot-content-item-footer-tag-text">大爱猫咪控</div>
+                                <div className="form-index-hot-content-item-footer-tag">
+                                    <div className="form-index-hot-content-item-footer-tag-from">来自</div>
+                                    <div className="form-index-hot-content-item-footer-tag-text">大爱猫咪控</div>
+                                    <div className="form-index-hot-content-item-footer-tag-text">大爱猫咪控</div>
+                                    <div className="form-index-hot-content-item-footer-tag-text">大爱猫咪控</div>
+                                    <div className="form-index-hot-content-item-footer-tag-text">大爱猫咪控</div>
                                 </div>
-                                <img className="form-hot-content-item-footer-like-icon" src={require('../../image/form-hot-content-item-footer-like-active.png')} alt=""/>
-                                <span className="form-hot-content-item-footer-like-number">10</span>
-                                <img className="form-hot-content-item-footer-favorite-icon" src={require('../../image/form-hot-content-item-footer-favorite-active.png')} alt=""/>
-                                <span className="form-hot-content-item-footer-favorite-number">10</span>
-                                <img className="form-hot-content-item-footer-comment-icon" src={require('../../image/form-hot-content-item-footer-comment.png')} alt=""/>
+                                <img className="form-index-hot-content-item-footer-like-icon"
+                                     src={require('../../image/form-index-hot-content-item-footer-like-active.png')} alt=""/>
+                                <span className="form-index-hot-content-item-footer-like-number">10</span>
+                                <img className="form-index-hot-content-item-footer-favorite-icon"
+                                     src={require('../../image/form-index-hot-content-item-footer-favorite-active.png')}
+                                     alt=""/>
+                                <span className="form-index-hot-content-item-footer-favorite-number">10</span>
+                                <img className="form-index-hot-content-item-footer-comment-icon"
+                                     src={require('../../image/form-index-hot-content-item-footer-comment.png')} alt=""/>
                             </div>
                         </div>
                     </div>

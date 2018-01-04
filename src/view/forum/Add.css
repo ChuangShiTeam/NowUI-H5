@@ -1,0 +1,71 @@
+.forum-skip-submit {
+    position: absolute;
+    left: 50%;
+    margin-left: -47px;
+    margin-top: 50px;
+    width: 94px;
+    height: 36px;
+    font-size: 14px;
+    color: #c18108;
+    background: #defafd;
+    box-shadow: 0 2px 4px 0 rgba(233, 233, 233, 0.50);
+    border-radius: 25px;
+    text-align: center;
+    line-height: 36px;
+}
+
+.forum-add-header {
+    background: #ffffff;
+    box-shadow: 0 2px 2px 0 rgba(228, 228, 228, 0.50);
+    height: 44px;
+    font-size: 16px;
+    color: #4a4a4a;
+    text-align: center;
+    line-height: 44px;
+}
+
+.forum-add-upload {
+    position: relative;
+    height: 71px;
+    line-height: 71px;
+    font-size: 14px;
+    color: #262626;
+    padding-left: 12px;
+}
+
+.forum-add-upload-icon {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    width: 57px;
+    height: 57px;
+}
+
+.forum-add-space {
+    background: #defafd;
+    height: 10px;
+}
+
+.forum-add-submit {
+    background: #defafd;
+    box-shadow: 0 2px 4px 0 rgba(216, 216, 216, 0.50);
+    border-radius: 5px;
+    height: 38px;
+    line-height: 38px;
+    margin: 150px 12px 0px 12px;
+    text-align: center;
+    color: #c18108;
+    font-size: 14px;
+}
+
+.forum-add-close {
+    background: #b5cad0;
+    box-shadow: 0 2px 4px 0 rgba(216, 216, 216, 0.50);
+    border-radius: 5px;
+    height: 38px;
+    line-height: 38px;
+    margin: 12px 12px 0px 12px;
+    text-align: center;
+    font-size: 14px;
+    color: #ffffff;
+}

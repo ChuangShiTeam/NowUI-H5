@@ -1,0 +1,77 @@
+.forum-skip-skip {
+    position: absolute;
+    top: 13px;
+    right: 18px;
+    color: #58bfce;
+}
+
+.forum-skip-title {
+    margin-top: 46px;
+    font-size: 18px;
+    color: #585858;
+    text-align: center;
+}
+
+.forum-skip-summary {
+    margin-top: 15px;
+    font-size: 12px;
+    color: #585858;
+    text-align: center;
+}
+
+.forum-skip-list {
+    margin-top: 30px;
+    padding: 0px 32px;
+}
+
+.forum-skip-list-item {
+    position: relative;
+    margin-top: 20px;
+    height: 59px;
+    border-bottom: 1px solid rgba(222, 222, 222, 0.5);
+}
+
+.forum-skip-list-item-image {
+    width: 36px;
+    height: 36px;
+}
+
+.forum-skip-list-item-title {
+    position: absolute;
+    top: 1px;
+    left: 43px;
+    font-size: 13px;
+    color: #3c3c3c;
+}
+
+.forum-skip-list-item-summary {
+    position: absolute;
+    top: 22px;
+    left: 43px;
+    font-size: 11px;
+    color: #6f6f6f;
+}
+
+.forum-skip-list-item-check {
+    position: absolute;
+    top: 15px;
+    right: 0px;
+    width: 15px;
+    height: 15px;
+}
+
+.forum-skip-submit {
+    position: absolute;
+    left: 50%;
+    margin-left: -47px;
+    margin-top: 50px;
+    width: 94px;
+    height: 36px;
+    font-size: 14px;
+    color: #c18108;
+    background: #defafd;
+    box-shadow: 0 2px 4px 0 rgba(233, 233, 233, 0.50);
+    border-radius: 25px;
+    text-align: center;
+    line-height: 36px;
+}

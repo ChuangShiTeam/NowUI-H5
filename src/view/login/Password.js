@@ -5,6 +5,8 @@ import {Toast} from 'antd-mobile';
 
 import util from "../../common/util";
 
+import './Password.css';
+
 class Password extends Component {
     constructor(props) {
         super(props);

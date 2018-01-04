@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Link} from 'react-router';
-import {Toast} from 'antd-mobile';
 
-import util from "../common/util";
+import util from "../../common/util";
+
+import './ForgetPassword.css';
 
 let interval;
 
@@ -76,7 +76,7 @@ class ForgetPassword extends Component {
                     <div className="forget-password-title">忘记密码？</div>
                     <div className="forget-password-form">
                         <div className="forget-password-form-mobile">
-                            <img className="forget-password-form-mobile-icon" src={require('../image/mobile.png')}
+                            <img className="forget-password-form-mobile-icon" src={require('../../image/mobile.png')}
                                  width="13"
                                  height="20" alt=""/>
                             <input className="forget-password-form-mobile-input" type="text" placeholder="请输入手机号码"/>
@@ -85,7 +85,7 @@ class ForgetPassword extends Component {
                         <div className="slideunlock-wrapper">
                             <input type="hidden" className="slideunlock-lockable"/>
                             <div className="slideunlock-slider">
-                                <img className="slideunlock-label" src={require('../image/paw.png')} width="46"
+                                <img className="slideunlock-label" src={require('../../image/paw.png')} width="46"
                                      height="47"
                                      alt=""/>
                                 <span className="slideunlock-lable-tip"></span>
@@ -95,7 +95,7 @@ class ForgetPassword extends Component {
                             this.state.isSendCaptcha ?
                                 <div className="forget-password-form-captcha">
                                     <img className="forget-password-form-captcha-icon"
-                                         src={require('../image/mobile.png')} width="13"
+                                         src={require('../../image/mobile.png')} width="13"
                                          height="20" alt=""/>
                                     <input className="forget-password-form-captcha-input" type="text"
                                            placeholder="请输入验证码"/>
@@ -116,7 +116,7 @@ class ForgetPassword extends Component {
                     <div className="forget-password-title">忘记密码？</div>
                     <div className="forget-password-form">
                         <div className="forget-password-form-password">
-                            <img className="forget-password-form-password-icon" src={require('../image/mobile.png')}
+                            <img className="forget-password-form-password-icon" src={require('../../image/mobile.png')}
                                  width="13"
                                  height="20" alt=""/>
                             <input className="forget-password-form-password-input" type="text" placeholder="请输入新密码"/>
@@ -124,7 +124,7 @@ class ForgetPassword extends Component {
                         </div>
                         <div className="forget-password-form-confirm-password">
                             <img className="forget-password-form-confirm-password-icon"
-                                 src={require('../image/mobile.png')} width="13"
+                                 src={require('../../image/mobile.png')} width="13"
                                  height="20" alt=""/>
                             <input className="forget-password-form-confirm-password-input" type="text"
                                    placeholder="再次确认密码"/>

@@ -27,7 +27,23 @@ export default {
         getComponent(location, cb) {
             require.ensure([], (require) => {
                 cb(null, require('../view/forum/Add').default);
-            }, 'forum.skip');
+            }, 'forum.add');
+        }
+    }, {
+        path: '/forum/search',
+        onEnter: util.handleEnter,
+        getComponent(location, cb) {
+            require.ensure([], (require) => {
+                cb(null, require('../view/forum/Search').default);
+            }, 'forum.search');
+        }
+    }, {
+        path: '/forum/homepage',
+        onEnter: util.handleEnter,
+        getComponent(location, cb) {
+            require.ensure([], (require) => {
+                cb(null, require('../view/forum/Homepage').default);
+            }, 'forum.homepage');
         }
     }]
 }
