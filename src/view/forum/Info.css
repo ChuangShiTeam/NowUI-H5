@@ -1,0 +1,117 @@
+.forum-info-header {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    background: #ffffff;
+    box-shadow: 0 2px 2px 0 rgba(228, 228, 228, 0.50);
+    height: 44px;
+    line-height: 44px;
+    font-size: 16px;
+    color: #4a4a4a;
+    text-align: center;
+    z-index: 999;
+}
+
+.forum-info-avatar {
+    margin-top: 44px;
+}
+
+.forum-info-avatar-title {
+    font-size: 14px;
+    color: #262626;
+}
+
+.forum-info-avatar-icon {
+    width: 58px !important;
+    height: 58px !important;
+}
+
+.forum-info-space {
+    background: #defafd;
+    height: 10px;
+}
+
+.forum-info-content-title {
+    font-size: 14px;
+    color: #262626;
+}
+
+.forum-info-content-extra {
+    font-size: 12px;
+    color: #8f8f8f;
+}
+
+.forum-info-content-info {
+    height: 50px;
+}
+
+.forum-info-crown {
+    position: absolute;
+    top: 37px;
+    left: 7px;
+    width: 22px !important;
+    height: 12px !important;
+}
+
+.forum-info-owner {
+    position: absolute;
+    top: 48px;
+    left: 0px;
+    width: 35px !important;
+    height: 35px !important;
+}
+
+.forum-info-name {
+    position: absolute;
+    top: 48px;
+    left: 57px;
+    font-family: PingFangSC-Light;
+    font-size: 14px;
+    color: #161616;
+}
+
+.forum-info-introduce {
+    position: absolute;
+    top: 70px;
+    left: 57px;
+    font-family: PingFangSC-Light;
+    font-size: 10px;
+    color: #9b9b9b;
+    letter-spacing: 0;
+    line-height: 11px;
+    text-align: left;
+}
+
+.forum-info-message {
+    position: absolute;
+    top: 53px;
+    right: 12px;
+    border: 1px solid #979797;
+    border-radius: 13px;
+    width: 48px;
+    height: 23px;
+    font-family: PingFangSC-Light;
+    font-size: 13px;
+    text-align: center;
+    line-height: 23px;
+}
+
+.forum-info-user {
+    margin-top: 5px;
+    margin-right: 3px;
+    width: 39px !important;
+    height: 39px !important;
+}
+
+.forum-info-delete {
+    background: #defafd;
+    box-shadow: 0 2px 4px 0 rgba(216, 216, 216, 0.50);
+    border-radius: 5px;
+    height: 38px;
+    line-height: 38px;
+    margin: 50px 12px 150px 12px;
+    text-align: center;
+    color: #c18108;
+    font-size: 14px;
+}

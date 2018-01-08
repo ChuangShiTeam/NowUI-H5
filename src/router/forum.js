@@ -45,5 +45,13 @@ export default {
                 cb(null, require('../view/forum/Homepage').default);
             }, 'forum.homepage');
         }
+    }, {
+        path: '/forum/info',
+        onEnter: util.handleEnter,
+        getComponent(location, cb) {
+            require.ensure([], (require) => {
+                cb(null, require('../view/forum/Info').default);
+            }, 'forum.info');
+        }
     }]
 }
