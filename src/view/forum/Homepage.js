@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {List} from 'antd-mobile';
+// import {List} from 'antd-mobile';
 
 import util from "../../common/util";
 
