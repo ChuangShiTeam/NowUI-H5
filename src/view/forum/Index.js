@@ -165,37 +165,37 @@ class Index extends Component {
                         </div>
                     </div>
                 </div>
-                <div className="forum-hot">
-                    <div className="forum-hot-header">
+                <div className="forum-index-hot">
+                    <div className="forum-index-hot-header">
                         热门动态
                     </div>
-                    <div className="forum-hot-content">
-                        <div className="forum-hot-content-item">
-                            <div className="forum-hot-content-item-header">
-                                <img className="forum-hot-content-item-header-icon"
+                    <div className="forum-index-hot-content">
+                        <div className="forum-index-hot-content-item">
+                            <div className="forum-index-hot-content-item-header">
+                                <img className="forum-index-hot-content-item-header-icon"
                                      src={require('../../image/WechatIMG1916.png')} alt=""/>
-                                <div className="forum-hot-content-item-header-name">Nami</div>
-                                <div className="forum-hot-content-item-header-time">20分钟前</div>
+                                <div className="forum-index-hot-content-item-header-name">Nami</div>
+                                <div className="forum-index-hot-content-item-header-time">20分钟前</div>
                             </div>
-                            <div className="forum-hot-content-item-content"></div>
-                            <div className="forum-hot-content-item-footer">
-                                <div className="forum-hot-content-item-footer-line"></div>
-                                <div className="form-index-hot-content-item-footer-tag">
-                                    <div className="form-index-hot-content-item-footer-tag-from">来自</div>
-                                    <div className="form-index-hot-content-item-footer-tag-text">大爱猫咪控</div>
-                                    <div className="form-index-hot-content-item-footer-tag-text">大爱猫咪控</div>
-                                    <div className="form-index-hot-content-item-footer-tag-text">大爱猫咪控</div>
-                                    <div className="form-index-hot-content-item-footer-tag-text">大爱猫咪控</div>
+                            <div className="forum-index-hot-content-item-content"></div>
+                            <div className="forum-index-hot-content-item-footer">
+                                <div className="forum-index-hot-content-item-footer-line"></div>
+                                <div className="forum-index-hot-content-item-footer-tag">
+                                    <div className="forum-index-hot-content-item-footer-tag-from">来自</div>
+                                    <div className="forum-index-hot-content-item-footer-tag-text">大爱猫咪控</div>
+                                    <div className="forum-index-hot-content-item-footer-tag-text">大爱猫咪控</div>
+                                    <div className="forum-index-hot-content-item-footer-tag-text">大爱猫咪控</div>
+                                    <div className="forum-index-hot-content-item-footer-tag-text">大爱猫咪控</div>
                                 </div>
-                                <img className="form-index-hot-content-item-footer-like-icon"
-                                     src={require('../../image/form-index-hot-content-item-footer-like-active.png')} alt=""/>
-                                <span className="form-index-hot-content-item-footer-like-number">10</span>
-                                <img className="form-index-hot-content-item-footer-favorite-icon"
-                                     src={require('../../image/form-index-hot-content-item-footer-favorite-active.png')}
+                                <img className="forum-index-hot-content-item-footer-like-icon"
+                                     src={require('../../image/forum-index-hot-content-item-footer-like-active.png')} alt=""/>
+                                <span className="forum-index-hot-content-item-footer-like-number">10</span>
+                                <img className="forum-index-hot-content-item-footer-favorite-icon"
+                                     src={require('../../image/forum-index-hot-content-item-footer-favorite-active.png')}
                                      alt=""/>
-                                <span className="form-index-hot-content-item-footer-favorite-number">10</span>
-                                <img className="form-index-hot-content-item-footer-comment-icon"
-                                     src={require('../../image/form-index-hot-content-item-footer-comment.png')} alt=""/>
+                                <span className="forum-index-hot-content-item-footer-favorite-number">10</span>
+                                <img className="forum-index-hot-content-item-footer-comment-icon"
+                                     src={require('../../image/forum-index-hot-content-item-footer-comment.png')} alt=""/>
                             </div>
                         </div>
                     </div>

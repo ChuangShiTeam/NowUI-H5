@@ -1,0 +1,90 @@
+.topic-index-content-item-header {
+    position: relative;
+    padding: 10px 12px;
+}
+
+.topic-index-content-item-header-icon {
+    width: 28px;
+    height: 28px;
+}
+
+.topic-index-content-item-header-name {
+    position: absolute;
+    top: 12px;
+    left: 45px;
+    color: #2c2c2c;
+}
+
+.topic-index-content-item-header-time {
+    position: absolute;
+    top: 28px;
+    left: 45px;
+    font-size: 8px;
+    color: #4a4a4a;
+}
+
+.topic-index-content-item-footer {
+    position: relative;
+    margin: 0px 12px;
+    border-top: 1px solid rgba(216, 216, 216, 0.6);
+}
+
+.topic-index-content-item-footer-tag {
+    position: absolute;
+    top: 9px;
+    left: 0px;
+    right: 150px;
+    font-size: 9px;
+}
+
+.topic-index-content-item-footer-tag-from {
+    float: left;
+    margin-top: 5px;
+    padding: 5px 0px;
+}
+
+.topic-index-content-item-footer-tag-text {
+    float: left;
+    margin-top: 5px;
+    margin-left: 5px;
+    padding: 5px;
+    color: #c18108;
+    border-radius: 10px;
+    background: #DEFAFD;
+}
+
+.topic-index-content-item-footer-like-icon {
+    position: absolute;
+    top: 17px;
+    right: 119px;
+    width: 18px;
+    height: 16px;
+}
+
+.topic-index-content-item-footer-like-number {
+    position: absolute;
+    top: 18px;
+    right: 101px;
+}
+
+.topic-index-content-item-footer-favorite-icon {
+    position: absolute;
+    top: 14px;
+    right: 78px;
+    width: 18px;
+    height: 18px;
+}
+
+.topic-index-content-item-footer-favorite-number {
+    position: absolute;
+    top: 18px;
+    right: 53px;
+}
+
+.topic-index-content-item-footer-comment-icon {
+    position: absolute;
+    top: 15px;
+    right: 18px;
+    width: 18px;
+    height: 18px;
+}

@@ -180,30 +180,30 @@
     -o-transition: none;
 }
 
-.forum-hot-header {
+.forum-index-hot-header {
     padding-left: 12px;
     font-size: 10px;
     color: #c18108;
 }
 
-.forum-hot-content-item-header {
+.forum-index-hot-content-item-header {
     position: relative;
     padding: 10px 12px;
 }
 
-.forum-hot-content-item-header-icon {
+.forum-index-hot-content-item-header-icon {
     width: 28px;
     height: 28px;
 }
 
-.forum-hot-content-item-header-name {
+.forum-index-hot-content-item-header-name {
     position: absolute;
     top: 12px;
     left: 45px;
     color: #2c2c2c;
 }
 
-.forum-hot-content-item-header-time {
+.forum-index-hot-content-item-header-time {
     position: absolute;
     top: 28px;
     left: 45px;
@@ -211,13 +211,13 @@
     color: #4a4a4a;
 }
 
-.forum-hot-content-item-footer {
+.forum-index-hot-content-item-footer {
     position: relative;
     margin: 0px 12px;
     border-top: 1px solid rgba(216, 216, 216, 0.6);
 }
 
-.form-index-hot-content-item-footer-tag {
+.forum-index-hot-content-item-footer-tag {
     position: absolute;
     top: 9px;
     left: 0px;
@@ -225,13 +225,13 @@
     font-size: 9px;
 }
 
-.form-index-hot-content-item-footer-tag-from {
+.forum-index-hot-content-item-footer-tag-from {
     float: left;
     margin-top: 5px;
     padding: 5px 0px;
 }
 
-.form-index-hot-content-item-footer-tag-text {
+.forum-index-hot-content-item-footer-tag-text {
     float: left;
     margin-top: 5px;
     margin-left: 5px;
@@ -241,7 +241,7 @@
     background: #DEFAFD;
 }
 
-.form-index-hot-content-item-footer-like-icon {
+.forum-index-hot-content-item-footer-like-icon {
     position: absolute;
     top: 17px;
     right: 119px;
@@ -249,13 +249,13 @@
     height: 16px;
 }
 
-.form-index-hot-content-item-footer-like-number {
+.forum-index-hot-content-item-footer-like-number {
     position: absolute;
     top: 18px;
     right: 101px;
 }
 
-.form-index-hot-content-item-footer-favorite-icon {
+.forum-index-hot-content-item-footer-favorite-icon {
     position: absolute;
     top: 14px;
     right: 78px;
@@ -263,13 +263,13 @@
     height: 18px;
 }
 
-.form-index-hot-content-item-footer-favorite-number {
+.forum-index-hot-content-item-footer-favorite-number {
     position: absolute;
     top: 18px;
     right: 53px;
 }
 
-.form-index-hot-content-item-footer-comment-icon {
+.forum-index-hot-content-item-footer-comment-icon {
     position: absolute;
     top: 15px;
     right: 18px;
