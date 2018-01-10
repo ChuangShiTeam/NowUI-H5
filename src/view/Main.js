@@ -44,7 +44,15 @@ class Index extends Component {
 
 
     componentDidMount() {
-        this.handleMenu(this.props.routes[4].path);
+        let path = this.props.routes[4].path;
+
+        console.log(path);
+
+        if (path === '/topic/index') {
+            path = '/forum/index';
+        }
+
+        this.handleMenu(path);
     }
 
     componentWillReceiveProps(nextProps) {

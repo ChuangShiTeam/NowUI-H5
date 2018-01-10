@@ -66,18 +66,18 @@ class Index extends Component {
         return (
             <div>
                 <div className="forum-index-header">
-                    <div className="header-mask" style={{opacity: this.state.opacity}}></div>
-                    <div className="header-left">
-                        <div className="header-left-forum-add" onClick={this.handleAdd.bind(this)}>
+                    <div className="forum-index-header-mask" style={{opacity: this.state.opacity}}></div>
+                    <div className="forum-index-header-left">
+                        <div className="forum-index-header-left-add" onClick={this.handleAdd.bind(this)}>
                             <img src={require('../../image/forum-add.png')} alt=""/>
                         </div>
                     </div>
-                    <div className="header-center">
-                        <div className="header-center-left">圈子</div>
-                        <div className="header-center-right">动态</div>
+                    <div className="forum-index-header-center">
+                        <div className="forum-index-header-center-left">圈子</div>
+                        <Link to="/topic/index" className="forum-index-header-center-right">动态</Link>
                     </div>
-                    <div className="header-right">
-                        <div className="header-right-forum-search" onClick={this.handleSearch.bind(this)}>
+                    <div className="forum-index-header-right">
+                        <div className="forum-index-header-right-search" onClick={this.handleSearch.bind(this)}>
                             <img src={require('../../image/search.png')} width="20" height="22" alt=""/>
                         </div>
                     </div>

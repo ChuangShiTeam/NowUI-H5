@@ -4,6 +4,8 @@ import {Link} from 'react-router';
 
 import util from '../common/util';
 
+import './Index.css';
+
 class Index extends Component {
     constructor(props) {
         super(props);
@@ -69,23 +71,23 @@ class Index extends Component {
     render() {
         return (
             <div>
-                <div className="header">
-                    <div className="header-mask" style={{opacity: this.state.opacity}}></div>
-                    <div className="header-left">
-                        <div className="header-left-language">
+                <div className="index-header">
+                    <div className="index-header-mask" style={{opacity: this.state.opacity}}></div>
+                    <div className="index-header-left">
+                        <div className="index-header-left-language">
                             <img src={require('../image/ch.png')} width="31" height="27" alt=""/>
                         </div>
                     </div>
-                    <div className="header-center">
-                        <div className="header-center-logo">
+                    <div className="index-header-center">
+                        <div className="index-header-center-logo">
                             <img src={require('../image/logo.png')} width="100" height="24" alt=""/>
                         </div>
                     </div>
-                    <div className="header-right">
-                        <Link to="/login/quick" className="header-right-user">
+                    <div className="index-header-right">
+                        <Link to="/login/quick" className="index-header-right-user">
                             <img src={require('../image/user.png')} width="20" height="22" alt=""/>
                         </Link>
-                        <div className="header-right-search">
+                        <div className="index-header-right-search">
                             <img src={require('../image/search.png')} width="20" height="22" alt=""/>
                         </div>
                     </div>
