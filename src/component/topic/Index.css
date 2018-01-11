@@ -1,9 +1,13 @@
 .topic-index-content-item-header {
     position: relative;
     padding: 10px 12px;
+    height: 30px;
 }
 
 .topic-index-content-item-header-icon {
+    position: absolute;
+    top: 9px;
+    left: 12px;
     width: 28px;
     height: 28px;
 }

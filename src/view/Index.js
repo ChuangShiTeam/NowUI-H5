@@ -4,6 +4,8 @@ import {Link} from 'react-router';
 
 import util from '../common/util';
 
+import Topic from "../component/topic/Index";
+
 import './Index.css';
 
 class Index extends Component {
@@ -74,21 +76,18 @@ class Index extends Component {
                 <div className="index-header">
                     <div className="index-header-mask" style={{opacity: this.state.opacity}}></div>
                     <div className="index-header-left">
-                        <div className="index-header-left-language">
-                            <img src={require('../image/ch.png')} width="31" height="27" alt=""/>
+                        <div className="index-header-left-user">
+                            <img src={require('../image/index-user.png')} alt=""/>
                         </div>
                     </div>
                     <div className="index-header-center">
                         <div className="index-header-center-logo">
-                            <img src={require('../image/logo.png')} width="100" height="24" alt=""/>
+                            <img src={require('../image/index-logo.png')} alt=""/>
                         </div>
                     </div>
                     <div className="index-header-right">
-                        <Link to="/login/quick" className="index-header-right-user">
-                            <img src={require('../image/user.png')} width="20" height="22" alt=""/>
-                        </Link>
                         <div className="index-header-right-search">
-                            <img src={require('../image/search.png')} width="20" height="22" alt=""/>
+                            <img src={require('../image/index-search.png')} alt=""/>
                         </div>
                     </div>
                 </div>
@@ -97,20 +96,14 @@ class Index extends Component {
                         <div className="swiper-slide"
                              style={{height: (document.documentElement.clientWidth / 320 * 380) + 'px'}}>
                             <img className="index-banner-image" src={require('../image/banner.png')} alt=""/>
-                            <div className='swiper-mask'></div>
-                            <div className='swiper-text'>为你搜罗沪上top10可接待宠物的咖啡厅！</div>
                         </div>
                         <div className="swiper-slide"
                              style={{height: (document.documentElement.clientWidth / 320 * 380) + 'px'}}>
                             <img className="index-banner-image" src={require('../image/banner.png')} alt=""/>
-                            <div className='swiper-mask'></div>
-                            <div className='swiper-text'>为你搜罗沪上top10可接待宠物的咖啡厅！</div>
                         </div>
                         <div className="swiper-slide"
                              style={{height: (document.documentElement.clientWidth / 320 * 380) + 'px'}}>
                             <img className="index-banner-image" src={require('../image/banner.png')} alt=""/>
-                            <div className='swiper-mask'></div>
-                            <div className='swiper-text'>为你搜罗沪上top10可接待宠物的咖啡厅！</div>
                         </div>
                     </div>
                     <div className="swiper-pagination index-banner-pagination"></div>
@@ -118,48 +111,47 @@ class Index extends Component {
                 <div className="swiper-container index-category">
                     <div className="swiper-wrapper">
                         <div className="swiper-slide index-category-item">
-                            <img className="index-category-item-image" width="44" height="43" src={require('../image/category-0.png')} alt=""/>
-                            <div className="index-category-item-text">保健卡</div>
+                            <img className="index-category-item-image" src={require('../image/category-0.png')} alt=""/>
+                            <div className="index-category-item-name">保健卡</div>
                         </div>
                         <div className="swiper-slide index-category-item">
-                            <img className="index-category-item-image" width="44" height="43" src={require('../image/category-1.png')} alt=""/>
-                            <div className="index-category-item-text">健康知识</div>
+                            <img className="index-category-item-image" src={require('../image/category-1.png')} alt=""/>
+                            <div className="index-category-item-name">健康知识</div>
                         </div>
                         <div className="swiper-slide index-category-item">
-                            <img className="index-category-item-image" width="44" height="43" src={require('../image/category-2.png')} alt=""/>
-                            <div className="index-category-item-text">饮食</div>
+                            <img className="index-category-item-image" src={require('../image/category-2.png')} alt=""/>
+                            <div className="index-category-item-name">饮食</div>
                         </div>
                         <div className="swiper-slide index-category-item">
-                            <img className="index-category-item-image" width="44" height="43" src={require('../image/category-3.png')} alt=""/>
-                            <div className="index-category-item-text">品种</div>
+                            <img className="index-category-item-image" src={require('../image/category-3.png')} alt=""/>
+                            <div className="index-category-item-name">品种</div>
                         </div>
                         <div className="swiper-slide index-category-item">
-                            <img className="index-category-item-image" width="44" height="43" src={require('../image/category-4.png')} alt=""/>
-                            <div className="index-category-item-text">丧事</div>
+                            <img className="index-category-item-image" src={require('../image/category-4.png')} alt=""/>
+                            <div className="index-category-item-name">丧事</div>
                         </div>
                         <div className="swiper-slide index-category-item">
-                            <img className="index-category-item-image" width="44" height="43" src={require('../image/category-5.png')} alt=""/>
-                            <div className="index-category-item-text">美容时尚</div>
+                            <img className="index-category-item-image" src={require('../image/category-5.png')} alt=""/>
+                            <div className="index-category-item-name">美容时尚</div>
                         </div>
                         <div className="swiper-slide index-category-item">
-                            <img className="index-category-item-image" width="44" height="43" src={require('../image/category-6.png')} alt=""/>
-                            <div className="index-category-item-text">家居</div>
+                            <img className="index-category-item-image" src={require('../image/category-6.png')} alt=""/>
+                            <div className="index-category-item-name">家居</div>
                         </div>
                         <div className="swiper-slide index-category-item">
-                            <img className="index-category-item-image" width="44" height="43" src={require('../image/category-7.png')} alt=""/>
-                            <div className="index-category-item-text">寄养出行</div>
+                            <img className="index-category-item-image" src={require('../image/category-7.png')} alt=""/>
+                            <div className="index-category-item-name">寄养出行</div>
                         </div>
                         <div className="swiper-slide index-category-item">
-                            <img className="index-category-item-image" width="44" height="43" src={require('../image/category-8.png')} alt=""/>
-                            <div className="index-category-item-text">领养</div>
+                            <img className="index-category-item-image" src={require('../image/category-8.png')} alt=""/>
+                            <div className="index-category-item-name">领养</div>
                         </div>
                     </div>
                 </div>
                 <div className="index-topic-top">
-                    <div className="index-topic-top-title index-text-line">热卖商品</div>
+                    <div className="index-topic-top-title index-text-line">热门话题</div>
                     <div className="index-topic-top-item">
-                        <img className="index-topic-top-item-image" src={require('../image/topic-top.png')} alt=""/>
-                        <div className="index-topic-top-item-text">#十大最适合和爱宠在家做的事#</div>
+                        <img className="index-topic-top-item-image" src={require('../image/index-top-image.png')} alt=""/>
                     </div>
                 </div>
                 <div className="index-topic-list">
@@ -167,52 +159,52 @@ class Index extends Component {
                         <div className="swiper-wrapper index-topic-list-wrapper">
                             <div className="swiper-slide index-topic-list-content-item">
                                 <img className="index-topic-list-content-item-image" width="34" height="36" src={require('../image/topic-list.png')} alt=""/>
-                                <div className="index-topic-list-content-item-text">全世界的明星们都在养什么，看完我不禁感叹 贫穷限制了我的想象力
+                                <div className="index-topic-list-content-item-title">全世界的明星们都在养什么，看完我不禁感叹 贫穷限制了我的想象力
                                 </div>
                             </div>
                             <div className="swiper-slide index-topic-list-content-item">
                                 <img className="index-topic-list-content-item-image" width="34" height="36" src={require('../image/topic-list.png')} alt=""/>
-                                <div className="index-topic-list-content-item-text">全世界的明星们都在养什么，看完我不禁感叹 贫穷限制了我的想象力
+                                <div className="index-topic-list-content-item-title">全世界的明星们都在养什么，看完我不禁感叹 贫穷限制了我的想象力
                                 </div>
                             </div>
                             <div className="swiper-slide index-topic-list-content-item">
                                 <img className="index-topic-list-content-item-image" width="34" height="36" src={require('../image/topic-list.png')} alt=""/>
-                                <div className="index-topic-list-content-item-text">全世界的明星们都在养什么，看完我不禁感叹 贫穷限制了我的想象力
+                                <div className="index-topic-list-content-item-title">全世界的明星们都在养什么，看完我不禁感叹 贫穷限制了我的想象力
                                 </div>
                             </div>
                             <div className="swiper-slide index-topic-list-content-item">
                                 <img className="index-topic-list-content-item-image" width="34" height="36" src={require('../image/topic-list.png')} alt=""/>
-                                <div className="index-topic-list-content-item-text">全世界的明星们都在养什么，看完我不禁感叹 贫穷限制了我的想象力
+                                <div className="index-topic-list-content-item-title">全世界的明星们都在养什么，看完我不禁感叹 贫穷限制了我的想象力
                                 </div>
                             </div>
                             <div className="swiper-slide index-topic-list-content-item">
                                 <img className="index-topic-list-content-item-image" width="34" height="36" src={require('../image/topic-list.png')} alt=""/>
-                                <div className="index-topic-list-content-item-text">全世界的明星们都在养什么，看完我不禁感叹 贫穷限制了我的想象力
+                                <div className="index-topic-list-content-item-title">全世界的明星们都在养什么，看完我不禁感叹 贫穷限制了我的想象力
                                 </div>
                             </div>
                             <div className="swiper-slide index-topic-list-content-item">
                                 <img className="index-topic-list-content-item-image" width="34" height="36" src={require('../image/topic-list.png')} alt=""/>
-                                <div className="index-topic-list-content-item-text">全世界的明星们都在养什么，看完我不禁感叹 贫穷限制了我的想象力
+                                <div className="index-topic-list-content-item-title">全世界的明星们都在养什么，看完我不禁感叹 贫穷限制了我的想象力
                                 </div>
                             </div>
                             <div className="swiper-slide index-topic-list-content-item">
                                 <img className="index-topic-list-content-item-image" width="34" height="36" src={require('../image/topic-list.png')} alt=""/>
-                                <div className="index-topic-list-content-item-text">全世界的明星们都在养什么，看完我不禁感叹 贫穷限制了我的想象力
+                                <div className="index-topic-list-content-item-title">全世界的明星们都在养什么，看完我不禁感叹 贫穷限制了我的想象力
                                 </div>
                             </div>
                             <div className="swiper-slide index-topic-list-content-item">
                                 <img className="index-topic-list-content-item-image" width="34" height="36" src={require('../image/topic-list.png')} alt=""/>
-                                <div className="index-topic-list-content-item-text">全世界的明星们都在养什么，看完我不禁感叹 贫穷限制了我的想象力
+                                <div className="index-topic-list-content-item-title">全世界的明星们都在养什么，看完我不禁感叹 贫穷限制了我的想象力
                                 </div>
                             </div>
                             <div className="swiper-slide index-topic-list-content-item">
                                 <img className="index-topic-list-content-item-image" width="34" height="36" src={require('../image/topic-list.png')} alt=""/>
-                                <div className="index-topic-list-content-item-text">全世界的明星们都在养什么，看完我不禁感叹 贫穷限制了我的想象力
+                                <div className="index-topic-list-content-item-title">全世界的明星们都在养什么，看完我不禁感叹 贫穷限制了我的想象力
                                 </div>
                             </div>
                             <div className="swiper-slide index-topic-list-content-item">
                                 <img className="index-topic-list-content-item-image" width="34" height="36" src={require('../image/topic-list.png')} alt=""/>
-                                <div className="index-topic-list-content-item-text">全世界的明星们都在养什么，看完我不禁感叹 贫穷限制了我的想象力
+                                <div className="index-topic-list-content-item-title">全世界的明星们都在养什么，看完我不禁感叹 贫穷限制了我的想象力
                                 </div>
                             </div>
                         </div>
@@ -322,24 +314,8 @@ class Index extends Component {
                 </div>
                 <div className="index-topic-new">
                     <div className="index-topic-new-title index-text-line">最新话题</div>
-                    <div className="swiper-container index-topic-new-content">
-                        <div className="index-topic-new-content-item">
-                            <div className="index-topic-new-content-item-title">为工作而生的汪星人，拉布拉多安慰犬</div>
-                            <div className="index-topic-new-content-item-summary">拉布拉多寻回猎犬并不像它的名字那样来自拉布拉……</div>
-                            <img className="index-topic-new-content-item-image" src={require('../image/0b55b319ebc4b745ad648affc8fc1e178b821562.png')} alt=""/>
-                        </div>
-                        <div className="index-topic-new-content-item">
-                            <div className="index-topic-new-content-item-title">为工作而生的汪星人，拉布拉多安慰犬</div>
-                            <div className="index-topic-new-content-item-summary">拉布拉多寻回猎犬并不像它的名字那样来自拉布拉……</div>
-                            <img className="index-topic-new-content-item-image" src={require('../image/0b55b319ebc4b745ad648affc8fc1e178b821562.png')} alt=""/>
-                        </div>
-                    </div>
-                    <div className="index-topic-new-video">
-                        <img className="index-topic-new-video-image" src={require('../image/640.png')} alt=""/>
-                        <div className="index-topic-new-video-title">带你走进卷毛猫的世界</div>
-                        <div className="index-topic-new-video-summary">近些年，随着犬展在国内兴起，赛犬开始进入大众……</div>
-                    </div>
                 </div>
+                <Topic/>
                 <br/>
                 <br/>
                 <br/>
