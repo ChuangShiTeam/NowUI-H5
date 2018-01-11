@@ -33,32 +33,36 @@ class Homepage extends Component {
 
     render() {
         return (
-            <div>
-                {/*<div className="forum-homepage-background" style={{backgroundImage: 'url(' + require('../../image/forum-homepage-background.png') + ')'}}></div>*/}
-                <div className="forum-homepage-background">
-                    <img src={require('../../image/forum-homepage-background.png')} alt=""/>
-                    <div className="forum-homepage-avatar"><img src={require('../../image/forum-info-avatar.png')} alt=""/></div>
+            <div className="forum-homepage-wrapper">
+                <div className="forum-homepage-wrapper-background">
+                    <img src={require('../../image/2.png')} alt=""/>
+                    <img className="forum-homepage-wrapper-avatar" src={require('../../image/3.png')}
+                         alt=""/>
                 </div>
-                <div className="forum-homepage-name">
+                <div className="forum-homepage-wrapper-name">
                     世界萌宠大搜罗
                 </div>
-                <div className="forum-homepage-summary">
+                <div className="forum-homepage-wrapper-summary">
                     本圈为你搜罗全世界的有趣动物资讯
                 </div>
-                <div className="forum-homepage-join">
+                <div className="forum-homepage-wrapper-join">
                     加入圈子
                 </div>
-                <div className="forum-homepage-moderator">
-                    <img className="forum-homepage-moderator-crown" src={require('../../image/forum-info-crown.png')} alt=""/>
-                    <img className="forum-homepage-moderator-avatar" src={require('../../image/forum-info-owner.png')} alt=""/>
-                    <div className="forum-homepage-moderator-name">
-                        小野
+                <div className="forum-homepage-wrapper-moderator">
+                    <div className="forum-homepage-wrapper-moderator-left">
+                        <img className="forum-homepage-wrapper-moderator-left-crown"
+                             src={require('../../image/crown.png')} alt=""/>
+                        <img className="forum-homepage-wrapper-moderator-left-avatar"
+                             src={require('../../image/forum-info-owner.png')} alt=""/>
                     </div>
-                    <div className="forum-homepage-moderator-summary">
-                        资深遛狗师一枚，对宠物行为有很深的造诣。
+                    <div className="forum-homepage-wrapper-moderator-right">
+                        <p className="forum-homepage-wrapper-moderator-right-name">小野</p>
+                        <p className="forum-homepage-wrapper-moderator-right-summary">资深遛狗师一枚，对宠物行为有很深的造诣。</p>
                     </div>
                 </div>
-                <div className="forum-homepage-moderator-space"></div>
+                <div className="forum-homepage-wrapper-space"></div>
+                <Topic/>
+                <Topic/>
                 <Topic/>
             </div>
         );

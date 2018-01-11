@@ -72,25 +72,37 @@ class Index extends Component {
 
     render() {
         return (
-            <div>
-                <div className="index-header">
-                    <div className="index-header-mask" style={{opacity: this.state.opacity}}></div>
-                    <div className="index-header-left">
-                        <div className="index-header-left-user">
-                            <img src={require('../image/index-user.png')} alt=""/>
-                        </div>
+            <div className="index-wrapper">
+                <div className="index-wrapper-header-mask" style={{opacity: this.state.opacity}}></div>
+                <div className="index-wrapper-header">
+                    <div className="index-wrapper-header-left">
+                        <img className="index-wrapper-header-left-user" src={require('../image/index-user.png')} alt=""/>
                     </div>
-                    <div className="index-header-center">
-                        <div className="index-header-center-logo">
-                            <img src={require('../image/index-logo.png')} alt=""/>
-                        </div>
+                    <div className="index-wrapper-header-center">
+                        <img className="index-wrapper-header-center-logo" src={require('../image/index-logo.png')} alt=""/>
                     </div>
-                    <div className="index-header-right">
-                        <div className="index-header-right-search">
-                            <img src={require('../image/index-search.png')} alt=""/>
-                        </div>
+                    <div className="index-wrapper-header-right">
+                        <img className="index-wrapper-header-right-search" src={require('../image/index-search.png')} alt=""/>
                     </div>
                 </div>
+                {/*<div className="index-header">*/}
+                    {/*<div className="index-header-mask" style={{opacity: this.state.opacity}}></div>*/}
+                    {/*<div className="index-header-left">*/}
+                        {/*<div className="index-header-left-user">*/}
+                            {/*<img src={require('../image/index-user.png')} alt=""/>*/}
+                        {/*</div>*/}
+                    {/*</div>*/}
+                    {/*<div className="index-header-center">*/}
+                        {/*<div className="index-header-center-logo">*/}
+                            {/*<img src={require('../image/index-logo.png')} alt=""/>*/}
+                        {/*</div>*/}
+                    {/*</div>*/}
+                    {/*<div className="index-header-right">*/}
+                        {/*<div className="index-header-right-search">*/}
+                            {/*<img src={require('../image/index-search.png')} alt=""/>*/}
+                        {/*</div>*/}
+                    {/*</div>*/}
+                {/*</div>*/}
                 <div className="swiper-container index-banner">
                     <div className="swiper-wrapper">
                         <div className="swiper-slide"
@@ -313,9 +325,14 @@ class Index extends Component {
                     </div>
                 </div>
                 <div className="index-topic-new">
-                    <div className="index-topic-new-title index-text-line">最新话题</div>
+                    <div className="index-topic-new-header">
+                        <div className="index-topic-new-title index-text-line">最新话题</div>
+                    </div>
                 </div>
                 <Topic/>
+                <Topic/>
+                <Topic/>
+                <div className="index-topic-new-footer">ddd</div>
                 <br/>
                 <br/>
                 <br/>

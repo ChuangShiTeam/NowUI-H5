@@ -1,94 +1,137 @@
-.topic-index-content-item-header {
-    position: relative;
-    padding: 10px 12px;
-    height: 30px;
+.topic-index-wrapper {
+
 }
 
-.topic-index-content-item-header-icon {
-    position: absolute;
-    top: 9px;
-    left: 12px;
+.topic-index-wrapper-header {
+    height: 40px;
+    padding-top: 12px;
+}
+
+.topic-index-wrapper-header-left {
+    float: left;
+    width: 48px;
+}
+
+.topic-index-wrapper-header-left-image {
+    margin-left: 12px;
     width: 28px;
     height: 28px;
 }
 
-.topic-index-content-item-header-name {
-    position: absolute;
-    top: 12px;
-    left: 45px;
-    color: #2c2c2c;
+.topic-index-wrapper-header-right {
+    margin-top: 3px;
+    margin-left: 48px;
 }
 
-.topic-index-content-item-header-time {
-    position: absolute;
-    top: 28px;
-    left: 45px;
+.topic-index-wrapper-header-right-name {
+    font-family: PingFangSC-Light;
+    font-size: 12px;
+    color: #000000;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.topic-index-wrapper-header-right-time {
+    margin-top: 3px;
+    font-family: PingFangSC-Light;
     font-size: 8px;
-    color: #4a4a4a;
+    color: #000000;
 }
 
-.topic-index-content-item-footer {
-    position: relative;
+.topic-index-wrapper-container {
+    font-family: PingFangSC-Light;
+    font-size: 12px;
+    color: #2c2c2c;
+    line-height: 18px;
+    text-align: left;
+}
+
+.topic-index-wrapper-container-content {
+    margin: 10px 12px;
+}
+
+.topic-index-wrapper-footer {
     margin: 0px 12px;
-    border-top: 1px solid rgba(216, 216, 216, 0.6);
+    padding: 12px 0px;
+    border-top: 1px solid rgba(221, 221, 221, 0.50);
 }
 
-.topic-index-content-item-footer-tag {
-    position: absolute;
-    top: 9px;
-    left: 0px;
-    right: 150px;
+.topic-index-wrapper-footer-left {
+    margin-right: 160px;
+}
+
+.topic-index-wrapper-footer-from {
+    font-family: PingFangSC-Light;
     font-size: 9px;
-}
-
-.topic-index-content-item-footer-tag-from {
-    float: left;
-    margin-top: 5px;
+    color: #000000;
+    margin-top: -2px;
+    margin-bottom: 10px;
     padding: 5px 0px;
 }
 
-.topic-index-content-item-footer-tag-text {
-    float: left;
-    margin-top: 5px;
+.topic-index-wrapper-footer-tag {
+    font-family: PingFangSC-Light;
+    font-size: 9px;
+    color: #000000;
+    background: #DEFAFD;
+    border-radius: 9px;
+    margin-top: -2px;
+    margin-bottom: 10px;
     margin-left: 5px;
     padding: 5px;
-    color: #c18108;
-    border-radius: 10px;
-    background: #DEFAFD;
+    white-space: nowrap;
+    display: inline-block;
 }
 
-.topic-index-content-item-footer-like-icon {
-    position: absolute;
-    top: 17px;
-    right: 119px;
+.topic-index-wrapper-footer-right {
+    float: right;
+    width: 160px;
+    height: 20px;
+}
+
+.topic-index-wrapper-footer-right-like-icon {
+    float: left;
     width: 18px;
     height: 16px;
 }
 
-.topic-index-content-item-footer-like-number {
-    position: absolute;
-    top: 18px;
-    right: 101px;
+.topic-index-wrapper-footer-right-like-number {
+    float: left;
+    width: 28px;
+    font-family: PingFangSC-Regular;
+    font-size: 12px;
+    color: #000000;
+    margin-left: 6px;
 }
 
-.topic-index-content-item-footer-favorite-icon {
-    position: absolute;
-    top: 14px;
-    right: 78px;
+.topic-index-wrapper-footer-right-bookmark-icon {
+    float: left;
     width: 18px;
-    height: 18px;
+    height: 16px;
+    margin-top: -1px;
 }
 
-.topic-index-content-item-footer-favorite-number {
-    position: absolute;
-    top: 18px;
-    right: 53px;
+.topic-index-wrapper-footer-right-bookmark-number {
+    float: left;
+    width: 28px;
+    font-family: PingFangSC-Regular;
+    font-size: 12px;
+    color: #000000;
+    margin-left: 6px;
 }
 
-.topic-index-content-item-footer-comment-icon {
-    position: absolute;
-    top: 15px;
-    right: 18px;
+.topic-index-wrapper-footer-right-comment-icon {
+    float: left;
     width: 18px;
-    height: 18px;
+    height: 16px;
+}
+
+.topic-index-wrapper-footer-right-comment-number {
+    float: left;
+    width: 28px;
+    font-family: PingFangSC-Regular;
+    font-size: 12px;
+    color: #000000;
+    margin-left: 6px;
 }

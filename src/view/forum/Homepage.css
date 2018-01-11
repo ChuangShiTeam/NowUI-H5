@@ -1,10 +1,8 @@
-.forum-homepage-background {
+.forum-homepage-wrapper-background {
     position: relative;
-    background: #393939;
-    background-size: cover;
 }
 
-.forum-homepage-avatar {
+.forum-homepage-wrapper-avatar {
     position: absolute;
     bottom: -29px;
     left: 50%;
@@ -14,7 +12,7 @@
     border: 1px solid #FFFFFF;
 }
 
-.forum-homepage-name {
+.forum-homepage-wrapper-name {
     margin-top: 40px;
     font-family: PingFangSC-Light;
     font-size: 16px;
@@ -22,7 +20,7 @@
     text-align: center;
 }
 
-.forum-homepage-summary {
+.forum-homepage-wrapper-summary {
     margin-top: 10px;
     font-family: PingFangSC-Light;
     font-size: 12px;
@@ -30,7 +28,7 @@
     text-align: center;
 }
 
-.forum-homepage-join {
+.forum-homepage-wrapper-join {
     position: absolute;
     margin-top: 13px;
     left: 50%;
@@ -47,14 +45,19 @@
     text-align: center;
 }
 
-.forum-homepage-moderator {
+.forum-homepage-wrapper-moderator {
     position: relative;
     margin: 51px 12px 0px 12px;
     border-top: 1px solid rgba(221, 221, 221, 0.50);
     height: 52px;
 }
 
-.forum-homepage-moderator-avatar {
+.forum-homepage-wrapper-moderator-left {
+    float: left;
+    width: 40px;
+}
+
+.forum-homepage-wrapper-moderator-left-avatar {
     position: absolute;
     top: 12px;
     left: 0px;
@@ -62,33 +65,33 @@
     height: 32px;
 }
 
-.forum-homepage-moderator-crown {
+.forum-homepage-wrapper-moderator-left-crown {
     position: absolute;
     top: 6px;
     left: 11px;
-    width: 10px !important;
-    height: 6px !important;
+    width: 10px;
+    height: 6px;
 }
 
-.forum-homepage-moderator-name {
-    position: absolute;
-    top: 14px;
-    left: 39px;
-    font-family:PingFangSC-Light;
-    font-size:12px;
-    color:#323232;
+.forum-homepage-wrapper-moderator-right {
+    margin-left: 40px;
+    padding-top: 15px;
 }
 
-.forum-homepage-moderator-summary {
-    position: absolute;
-    top: 31px;
-    left: 39px;
-    font-family:PingFangSC-Light;
-    font-size:9px;
-    color:#9b9b9b;
+.forum-homepage-wrapper-moderator-right-name {
+    font-family: PingFangSC-Light;
+    font-size: 12px;
+    color: #323232;
 }
 
-.forum-homepage-moderator-space {
+.forum-homepage-wrapper-moderator-right-summary {
+    margin-top: 3px;
+    font-family: PingFangSC-Light;
+    font-size: 9px;
+    color: #9b9b9b;
+}
+
+.forum-homepage-wrapper-space {
     background: #defafd;
     height: 10px;
 }
