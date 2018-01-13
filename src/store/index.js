@@ -1,9 +1,6 @@
 const initialState = {
-    total: 0,
-    pageIndex: 1,
-    pageSize: 10,
-    list: []
-};
+    article_list: []
+}
 
 function product(state = initialState, action) {
     switch (action.type) {

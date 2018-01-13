@@ -1,12 +1,3 @@
-@import '~antd-mobile/dist/antd-mobile.css';
-
-body {
-    font-family: "PingFangSC-Light", "PingFangSC-Regular", "Microsoft YaHei", "Helvetica Neue For Number", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 12px;
-    color: #000000;
-    background-color: #ffffff;
-}
-
 div, form, img, ul, ol, li, dl, dt, dd, p, tr, td, body, strong, span, pre, input {
     margin: 0;
     padding: 0;
@@ -34,8 +25,8 @@ em {
 
 a {
     text-decoration: none;
+    color: #333;
     outline: none;
-    color: #000000;
 }
 
 a:hover {
@@ -44,212 +35,16 @@ a:hover {
 }
 
 a, area {
-    blr: expression(this.onFocus=this.blur())
+    blr: expression(this.onFocus=this.blur());
 }
 
-input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
-    color: #9b9b9b;
-}
-
-.clearfix:after {
-    content: "";
-    display: table;
-    clear: both;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.am-list-item .am-input-label {
-    font-size: 14px;
-    color: #262626;
-}
-
-.am-list-item .am-input-control input {
-    font-size: 12px;
-    color: #8f8f8f;
-}
-
-.swiper-container {
-    width: 100%;
-}
-
-.swiper-slide {
-    overflow: hidden;
-}
-
-.index-banner-image {
-    width: 100%;
-}
-
-.swiper-mask {
-    position: absolute;
-    left: 0px;
-    right: 0px;
-    bottom: 0px;
-    height: 85px;
-    background-color: rgba(0, 0, 0, 0.5);
-}
-
-.swiper-text {
-    position: absolute;
-    left: 0px;
-    right: 0px;
-    bottom: 0px;
-    height: 60px;
-    color: #ffffff;
-    font-size: 16px;
-    text-align: center;
-}
-
-.swiper-pagination-bullet {
-    background: #ffffff !important;
-}
-
-.swiper-pagination-bullet-active {
-    background: #ffffff !important;
-}
-
-.am-tab-bar {
-    position: fixed;
-    width: 100%;
-    height: auto;
-    bottom: 0;
-    z-index: 999999;
-}
-
-
-
-.text-align-center {
-    text-align: center;
-}
-
-.page-background {
-    position: absolute;
-    top: 0px;
-    bottom: 0px;
-    left: 0px;
-    right: 0px;
-    background: #E9FBFF;
+body {
+    background-color: #EEE;
 }
 
 .page {
-    padding: 0px 40px 40px 40px;
+    max-width: 555px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.login-logo {
-    width: 150px;
-    height: 37px;
-    margin-top: 40px;
-    margin-bottom: 40px;
-}
-
-.login-form {
-
-}
-
-.login-text-line {
-    width: 200px;
-    margin: 40px auto 0px;
-    position: relative;
-    text-align: center
-}
-
-.login-text-line:before {
-    content: "";
-    border-top: 1px solid rgba(221, 221, 221, 0.5);
-    display: block;
-    position: absolute;
-    width: 73px;
-    top: 6px;
-    left: 0;
-}
-
-.login-text-line:after {
-    content: "";
-    border-top: 1px solid rgba(221, 221, 221, 0.5);
-    display: block;
-    position: absolute;
-    width: 73px;
-    top: 6px;
-    right: 0
-}
-
-.form-button {
-    height: 40px;
-    line-height: 40px;
-    border-radius: 4px;
-    font-size: 14px;
-    color: #FFFFFF;
-}
-
-.slideunlock-wrapper {
-    position: relative;
-    height: 60px;
-}
-
-.slideunlock-slider {
-    position: relative;
-    border-radius: 28px;
-    height: 36px;
-    line-height: 36px;
-    font-size: 12px;
-    color: #000000;
-    background: #FFFFFF;
-    border: 1px solid rgba(157, 215, 227, 0.5);
-}
-
-.slideunlock-slider.success {
-    border: 3px solid #9DD7E3;
-    height: 32px;
-    line-height: 32px;
-    background-color: #58BFCE;
-    pointer-events: none;
-    color: #FFFFFF;
-}
-
-.slideunlock-label {
-    position: absolute;
-    left: 0;
-    top: -5px;
-    z-index: 999;
-    border-radius: 2px;
-    cursor: pointer;
-}
-
-.slideunlock-slider.success .slideunlock-label {
-    top: -7px;
-}
-
-.slideunlock-label-tip {
-    z-index: 9;
-}

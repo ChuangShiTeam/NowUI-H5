@@ -1,0 +1,166 @@
+/*内容居中*/
+.container {
+    height: 500px;
+    -js-display: flex;
+    display: flex;
+    justify-content:center;
+    align-items:center;
+}
+
+/*从左到右布局*/
+.container {
+    -js-display: flex;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.container div {
+    width: 50px;
+    height: 50px;
+    background: red;
+    margin: 2px;
+    text-align: center;
+}
+
+/*等分布局 div居中*/
+.container {
+    -js-display: flex;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items:center;
+}
+
+.container div {
+    width: 20px;
+    margin-left: auto;margin-right: auto;
+    background: red;
+    text-align: center;
+}
+
+/*等分布局 div占满*/
+.container {
+    -js-display: flex;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items:center;
+}
+
+.container div {
+    flex-grow: 1;
+    background: red;
+}
+
+/*!*左列定宽，右列自适应*!*/
+.container {
+    -js-display: flex;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items:center;
+}
+
+.left {
+    width: 100px;
+    background: red;
+}
+
+.right {
+    flex-grow: 1;
+    background: blue;
+}
+
+/*右列定宽，左列自适应*/
+.container {
+    -js-display: flex;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items:center;
+}
+
+.left {
+    flex-grow: 1;
+    background: red;
+}
+
+.right {
+    width: 100px;
+    background: blue;
+}
+
+/*一列不定宽，一列自适应*/
+.container {
+    -js-display: flex;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items:center;
+}
+
+.left {
+    flex-grow: 1;
+    background: red;
+}
+
+.right {
+    background: blue;
+}
+
+/*两列定宽，一列自适应*/
+.container {
+    -js-display: flex;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items:center;
+}
+
+.left {
+    width: 100px;
+    background: blue;
+}
+
+.center {
+    width: 100px;
+    background: black;
+}
+
+.right {
+    flex-grow: 1;
+    background: red;
+}
+
+/*两侧定宽，中栏自适应*/
+.container {
+    -js-display: flex;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items:center;
+}
+
+.left {
+    width: 100px;
+    background: blue;
+}
+
+.center {
+    flex-grow: 1;
+    background: black;
+}
+
+.right {
+    width: 100px;
+    background: red;
+}

@@ -1,0 +1,22 @@
+.index-header {
+    -js-display: flex;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items:center;
+    text-align: center;
+    height: 49px;
+}
+
+.index-header-left {
+    width: 100px;
+}
+
+.index-header-center {
+    flex-grow: 1;
+}
+
+.index-header-right {
+    width: 100px;
+}

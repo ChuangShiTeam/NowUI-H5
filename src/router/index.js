@@ -1,5 +1,5 @@
 import util from '../common/util';
-import Main from "../view/Main";
+import Main from "../view/main/Index";
 
 export default {
     childRoutes: [{
@@ -9,7 +9,7 @@ export default {
             onEnter: util.handleEnter,
             getComponent(location, cb) {
                 require.ensure([], (require) => {
-                    cb(null, require('../view/Index').default);
+                    cb(null, require('../view/index/Index').default);
                 }, 'index');
             }
         }]
