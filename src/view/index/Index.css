@@ -1,4 +1,6 @@
 .index-header {
+    position: fixed;
+    top: 0;
     -js-display: flex;
     display: flex;
     flex-direction: row;

@@ -50,6 +50,10 @@ body {
     background-color: #FFFFFF;
 }
 
+.top-line {
+    position: relative;
+}
+
 .top-line:before {
     content: '';
     position: absolute;
@@ -61,6 +65,10 @@ body {
     transform: scaleY(0.5);
     -webkit-transform-origin: 0 0;
     transform-origin: 0 0;
+}
+
+.bottom-line {
+    position: relative;
 }
 
 .bottom-line:before {

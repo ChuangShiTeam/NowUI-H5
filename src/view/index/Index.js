@@ -44,7 +44,14 @@ class Index extends Component {
                     <div>1</div>
                     <div>1</div>
                 </div>
-                <div className="sss">ddd</div>
+                <div className="bottom-line">1</div>
+                <div className="bottom-line">1</div>
+                <div className="bottom-line">1</div>
+                <div className="bottom-line">1</div>
+                <div className="bottom-line">1</div>
+                <div className="bottom-line">1</div>
+                <div className="bottom-line">1</div>
+                <div className="bottom-line">1</div>
                 <br/>
                 <br/>
                 <br/>
