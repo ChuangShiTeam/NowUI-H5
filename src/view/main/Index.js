@@ -48,8 +48,6 @@ class Index extends Component {
     componentDidMount() {
         let path = this.props.routes[4].path;
 
-        console.log(path);
-
         if (path === '/topic/index') {
             path = '/forum/index';
         }

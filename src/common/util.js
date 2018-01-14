@@ -11,7 +11,7 @@ function scrollToFixed(className, height) {
 
 function getElementsByClassName(className, element) {
     var children = (element || document).getElementsByTagName('*');
-    var elements = new Array();
+    var elements = [];
     for (var i = 0; i < children.length; i++) {
         var child = children[i];
         var classNames = child.className.split(' ');
