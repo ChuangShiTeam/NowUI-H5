@@ -180,7 +180,6 @@
     background: red;
 }
 
-
 /*一行超出显示省略号*/
 text-overflow: ellipsis;
 white-space: nowrap;
