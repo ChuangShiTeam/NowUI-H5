@@ -5,7 +5,6 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items:center;
-    text-align: center;
     height: 49px;
 }
 
@@ -13,10 +12,40 @@
     width: 100px;
 }
 
+.index-header-left-user {
+    width: 20px;
+    height: 22px;
+}
+
 .index-header-center {
     flex-grow: 1;
+    text-align: center;
+}
+
+.index-header-center-logo {
+    width: 134px;
+    height: 31px;
 }
 
 .index-header-right {
     width: 100px;
+    text-align: right;
+}
+
+.index-header-right-search {
+    width: 18px;
+    height: 18px;
+}
+
+.container {
+    -js-display: flex;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.container div {
+    width: 20px;
+    background: red;
+    text-align: center;
 }

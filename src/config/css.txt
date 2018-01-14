@@ -24,6 +24,20 @@
     text-align: center;
 }
 
+/*等分布局 第一个div在开始位置，最后一个div在终点位置*/
+.container {
+    -js-display: flex;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.container div {
+    width: 20px;
+    background: red;
+    text-align: center;
+}
+
 /*等分布局 div居中*/
 .container {
     -js-display: flex;
@@ -36,7 +50,8 @@
 
 .container div {
     width: 20px;
-    margin-left: auto;margin-right: auto;
+    margin-left: auto;
+    margin-right: auto;
     background: red;
     text-align: center;
 }

@@ -35,9 +35,13 @@
 
 .main-index-footer-item-name {
     font-family: PingFangSC-Regular;
-    -webkit-transform: scale(0.8);
+    -webkit-transform: scale(0.83);
     font-size: 10px;
     line-height: 8px;
     color: #000000;
     letter-spacing: 0;
+}
+
+.main-index-footer-item-name-active {
+    color: #B59768 !important;
 }

@@ -10,7 +10,7 @@ class Index extends Component {
         super(props);
 
         this.state = {
-            menu: [{
+            menuList: [{
                 title: '首页',
                 url: '/index',
                 icon: 'index.png',
@@ -46,15 +46,15 @@ class Index extends Component {
 
 
     componentDidMount() {
-        // let path = this.props.routes[4].path;
-        //
-        // console.log(path);
-        //
-        // if (path === '/topic/index') {
-        //     path = '/forum/index';
-        // }
+        let path = this.props.routes[4].path;
 
-        // this.handleMenu(path);
+        console.log(path);
+
+        if (path === '/topic/index') {
+            path = '/forum/index';
+        }
+
+        this.handleMenu(path);
 
 
         if (util.isIE8()) {
@@ -79,25 +79,25 @@ class Index extends Component {
     }
 
     handleMenu(path) {
-        // let menu = this.state.menu;
-        // for (let i = 0; i < menu.length; i++) {
-        //     if (path === menu[i].url) {
-        //         menu[i].selected = true;
-        //     } else {
-        //         menu[i].selected = false;
-        //     }
-        // }
-        //
-        // this.setState({
-        //     menu: menu
-        // });
+        let menuList = this.state.menuList;
+        for (let i = 0; i < menuList.length; i++) {
+            if (path === menuList[i].url) {
+                menuList[i].selected = true;
+            } else {
+                menuList[i].selected = false;
+            }
+        }
+
+        this.setState({
+            menuList: menuList
+        });
     }
 
-    handlePress(key, url) {
+    handleClick(url) {
         this.handleMenu(url);
 
         if (url === '/forum/index') {
-            url = '/forum/skip';
+            //url = '/forum/skip';
         }
 
         this.props.history.push({
@@ -111,26 +111,16 @@ class Index extends Component {
             <div className="page">
                 {this.props.children}
                 <div className="main-index-footer">
-                    <div className="main-index-footer-item">
-                        <img className="main-index-footer-item-icon" src={require('../../image/index-active.png')} alt=""/>
-                        <div className="main-index-footer-item-name">首页</div>
-                    </div>
-                    <div className="main-index-footer-item">
-                        <img className="main-index-footer-item-icon" src={require('../../image/forum.png')} alt=""/>
-                        <div className="main-index-footer-item-name">社区</div>
-                    </div>
-                    <div className="main-index-footer-item">
-                        <img className="main-index-footer-item-icon" src={require('../../image/service.png')} alt=""/>
-                        <div className="main-index-footer-item-name">服务</div>
-                    </div>
-                    <div className="main-index-footer-item">
-                        <img className="main-index-footer-item-icon" src={require('../../image/shop.png')} alt=""/>
-                        <div className="main-index-footer-item-name">精选</div>
-                    </div>
-                    <div className="main-index-footer-item">
-                        <img className="main-index-footer-item-icon" src={require('../../image/my.png')} alt=""/>
-                        <div className="main-index-footer-item-name">我的</div>
-                    </div>
+                    {
+                        this.state.menuList.map((menu, index) => {
+                            return (
+                                <div key={index} className="main-index-footer-item" onClick={this.handleClick.bind(this, menu.url)}>
+                                    <img className="main-index-footer-item-icon" src={require('../../image/' + (menu.selected ? menu.selectedIcon : menu.icon))} alt=""/>
+                                    <div className={'main-index-footer-item-name ' + (menu.selected ? 'main-index-footer-item-name-active' : '')}>首页</div>
+                                </div>
+                            );
+                        })
+                    }
                 </div>
             </div>
         );
