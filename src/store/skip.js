@@ -1,10 +1,10 @@
 const initialState = {
-    article_list: []
+    forumList: []
 }
 
-function index(state = initialState, action) {
+function skip(state = initialState, action) {
     switch (action.type) {
-        case 'index':
+        case 'skip':
             return Object.assign({}, state, action.data);
 
         default :
@@ -12,4 +12,4 @@ function index(state = initialState, action) {
     }
 }
 
-export default index;
+export default skip;

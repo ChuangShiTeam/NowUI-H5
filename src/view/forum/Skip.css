@@ -1,0 +1,86 @@
+body{
+    background-color: #fff !important;
+}
+.text-right{
+    text-align: right;
+}
+.text-center{
+    text-align: center;
+}
+
+.skip-header{
+    padding: 11px 18px 0px 0px;
+    font-family: PingFangSC-Light;
+    font-size: 12px;
+    color: #000000;
+}
+.skip-conten{
+    padding:10px;
+}
+.skip-conten-title{
+    font-size: 18px;
+    margin-bottom: 8px;
+    word-wrap: normal;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.skip-conten-subtitle{
+    font-size: 12px;
+    word-wrap: normal;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.skip-conten-info{
+    padding: 0px 10px;
+}
+.skip-conten-info li{
+    -js-display: flex;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items:center;
+    padding: 16px 0px;
+}
+.skip-conten-info li .skip-conten-user-img{
+    width: 36px;
+    height: 36px;
+}
+.skip-conten-info li .skip-conten-user-img img{
+    width: 100%;
+    border-radius: 50%;
+}
+.skip-conten-info li .skip-conten-user-info{
+    padding-left: 7px;
+    flex: 1;
+}
+.skip-conten-user-name{
+    height: 15px;
+    font-size: 13px;
+    margin-bottom: 3px;
+    overflow: hidden;
+    flex: 1;
+    word-wrap: normal;
+}
+.skip-conten-user-centen{
+    height: 15px;
+    font-size: 11px;
+    overflow: hidden;
+    flex: 1;
+    word-wrap: normal;
+}
+.skip-conten-info li .skip-conten-hook{
+    width: 15px;
+    height: 15px;
+}
+.skip-go-circle{
+    margin-top: 60px;
+}
+.skip-go-circle span{
+    padding:10px 23px 14px 23px;
+    background-color: #DEFAFD;
+    font-size: 14px;
+    border-radius: 38px;
+}
