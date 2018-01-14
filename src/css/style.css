@@ -51,7 +51,7 @@ body {
 }
 
 .top-line {
-    position: relative;
+    _position: relative;
 }
 
 .top-line:before {
@@ -68,7 +68,7 @@ body {
 }
 
 .bottom-line {
-    position: relative;
+    _position: relative;
 }
 
 .bottom-line:before {

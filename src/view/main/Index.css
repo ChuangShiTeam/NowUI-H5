@@ -2,13 +2,13 @@
     position: fixed;
     bottom: 0;
     width: 100%;
+    max-width: 555px;
     height: 41px;
     z-index: 999;
     background: #FFFFFF;
     -js-display: flex;
     display: flex;
     flex-flow: row wrap;
-    max-width: 555px;
 }
 
 .main-index-footer-item {
