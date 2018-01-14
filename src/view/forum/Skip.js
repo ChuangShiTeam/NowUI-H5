@@ -93,8 +93,8 @@ class Index extends Component {
                     <ul className="skip-conten-info">
                         {
                             this.props.skip.forumList.map((forum, index) =>
-                                <li key={index} id={forum.itemId} className="top-line" onClick={this.handleCancelSelect.bind(this, index)}>
-                                    <div className="skip-conten-user-img">
+                                <li key={index} id={forum.itemId} className="bottom-line" onClick={this.handleCancelSelect.bind(this, index)}>
+                                    <div className="skip-conten-user-img">      
                                         <img className="index-header-right-search" src={forum.itemImgUrl} alt=""/>
                                     </div>
                                     <div className="skip-conten-user-info">
