@@ -6,6 +6,7 @@ function scrollToTop(number) {
 function scrollToFixed(className, height) {
     let scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
 
+    getElementsByClassName(className)[0].style.position = 'absolute';
     getElementsByClassName(className)[0].style.top = (scrollTop + height).toString();
 }
 

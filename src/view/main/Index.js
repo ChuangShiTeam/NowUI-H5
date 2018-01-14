@@ -56,7 +56,9 @@ class Index extends Component {
 
 
         if (util.isIE8()) {
-            this.handleFooter();
+            setTimeout(function () {
+                this.handleFooter();
+            }.bind(this), 10);
 
             window.addEventListener('scroll', this.handleScroll.bind(this));
         }
@@ -73,7 +75,7 @@ class Index extends Component {
     }
 
     handleFooter() {
-        util.scrollToFixed('main-index-footer', document.documentElement.clientHeight - 100);
+        util.scrollToFixed('main-index-footer', document.documentElement.clientHeight - 41);
     }
 
     handleMenu(path) {
@@ -108,7 +110,7 @@ class Index extends Component {
         return (
             <div className="page">
                 {this.props.children}
-                <div className="main-index-footer">
+                <div className="main-index-footer top-line">
                     {
                         this.state.menuList.map((menu, index) => {
                             return (
