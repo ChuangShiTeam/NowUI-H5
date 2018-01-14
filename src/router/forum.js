@@ -13,5 +13,21 @@ export default {
                 }, 'forum.index');
             }
         }]
+    }, {
+        path: '/forum/skip',
+        onEnter: util.handleEnter,
+        getComponent(location, cb) {
+            require.ensure([], (require) => {
+                cb(null, require('../view/forum/Skip').default);
+            }, 'forum.skip');
+        }
+    }, {
+        path: '/forum/info',
+        onEnter: util.handleEnter,
+        getComponent(location, cb) {
+            require.ensure([], (require) => {
+                cb(null, require('../view/forum/Info').default);
+            }, 'forum.info');
+        }
     }]
 }

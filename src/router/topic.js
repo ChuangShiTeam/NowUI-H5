@@ -13,5 +13,13 @@ export default {
                 }, 'topic.index');
             }
         }]
+    }, {
+        path: '/topic/like',
+        onEnter: util.handleEnter,
+        getComponent(location, cb) {
+            require.ensure([], (require) => {
+                cb(null, require('../view/topic/Like').default);
+            }, 'forum.like');
+        }
     }]
 }
