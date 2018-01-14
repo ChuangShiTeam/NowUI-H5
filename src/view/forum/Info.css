@@ -1,0 +1,205 @@
+.forum-info-header {
+    -js-display: flex;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items:center;
+    height: 49px;
+    background: #FFFFFF;
+    box-shadow: 0 2px 2px 0 rgba(228,228,228,0.50);
+    font-size: 16px;
+    color: #000000;
+}
+
+.forum-info-avatar {
+    -js-display: flex;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    padding: 12px;
+    background-color: #fff;
+    margin-top: 20px;
+}
+
+.forum-info-title {
+    font-size: 14px;
+    color: #000;
+}
+
+.forum-info-avatar .forum-info-title {
+    height: 58px;
+    line-height: 58px;
+}
+
+.forum-info-upload {
+    flex-grow: 1;
+    text-align: right;
+}
+
+.forum-info-upload img {
+    width: 58px;
+    height: 58px;
+    border-radius: 3px;
+}
+
+.forum-info-right {
+    width: 14px;
+    margin-left: 10px;
+    -js-display: flex;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items:center;
+}
+
+.forum-info-avatar .forum-info-right {
+    height: 58px;
+}
+
+.forum-info-right div {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-top: 2px solid #C7C7CB;;
+    border-right: 2px solid #C7C7CB;;
+    transform: rotate(45deg);
+}
+
+.forum-info-box {
+    -js-display: flex;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    padding: 0 12px;
+    background-color: #fff;
+    margin-top: 20px;
+}
+
+.forum-info-item {
+    -js-display: flex;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items:center;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    border-bottom: 1px solid #dedede;
+}
+
+.forum-info-text {
+    flex-grow: 1;
+    text-align: right;
+    font-size: 12px;
+    color: #000;
+}
+
+.forum-info-panel {
+    width: 100%;
+    border-bottom: 1px solid #dedede;
+    padding-bottom: 20px;
+}
+
+.forum-info-panel .forum-info-title {
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+}
+
+.forum-info-owner-box {
+    -js-display: flex;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items:center;
+    margin-top: 10px;
+}
+
+.forum-info-owner-box .forum-info-owner-avatar {
+    width: 35px;
+    height: 35px;
+    position: relative;
+    margin-right: 20px;
+}
+
+.forum-info-owner-box .forum-info-owner-avatar > img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50px;
+}
+
+.forum-info-owner-box .forum-info-owner-crown {
+    width: 20px;
+    height: 12px;
+    line-height: 12px;
+    position: absolute;
+    top: -11px;
+    left: 7px;
+}
+
+.forum-info-owner-box .forum-info-owner-crown img {
+    width: 20px;
+    height: 12px;
+}
+
+.forum-info-owner-box .forum-info-owner-info {
+    flex: 1;
+}
+
+.forum-info-owner-box .forum-info-owner-info .forum-info-owner-name {
+    font-size: 14px;
+    color: #000;
+}
+
+.forum-info-owner-box .forum-info-owner-info .forum-info-owner-des {
+    font-size: 12px;
+    color: #000;
+    margin-top: 2px;
+}
+
+.forum-info-list ul {
+    -js-display: flex;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.forum-info-list ul +  ul {
+    margin-top: 5px;
+}
+
+.forum-info-list ul li {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #9DD7E3;
+    padding: 1px;
+    border-radius: 50px;
+}
+
+.forum-info-list ul li img {
+    width: 38px;
+    height: 38px;
+    border-radius: 50px;
+    margin-top: 1px;
+    margin-left: 1px;
+}
+
+.forum-info-delete-btn {
+    width: 100%;
+    padding: 20px 0;
+}
+
+.forum-info-delete-btn button {
+    background: #DEFAFD;
+    border: 1px solid #DEFAFD;
+    box-shadow: 0 2px 4px 0 rgba(216,216,216,0.50);
+    border-radius: 5px;
+    width: 100%;
+    height: 50px;
+}
