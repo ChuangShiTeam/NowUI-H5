@@ -12,7 +12,11 @@ const storeKeys = storeContext.keys().filter(function (item) {
     return item;
 });
 for (let i = 0; i < storeKeys.length; i++) {
-    reducers[storeContext(storeKeys[i]).default.name] = storeContext(storeKeys[i]).default;
+    let name = storeKeys[i];
+    name = name.replace('./', '');
+    name = name.replace('.js', '');
+
+    reducers[name] = storeContext(storeKeys[i]).default;
 }
 
 const childRoutes = [];

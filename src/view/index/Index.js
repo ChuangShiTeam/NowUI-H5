@@ -23,10 +23,6 @@ class Index extends Component {
 
         window.addEventListener('scroll', this.handleScroll);
 
-
-
-
-
         this.props.dispatch({
             type: 'index',
             data: {
