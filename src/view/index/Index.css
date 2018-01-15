@@ -2,7 +2,7 @@
     position: fixed;
     top: 0;
     width: 100%;
-    max-width: 555px;
+    max-width: 600px;
     height: 49px;
     background: #defafd;
     z-index: 98;
@@ -11,60 +11,314 @@
 .index-header {
     position: fixed;
     top: 0;
+    height: 49px;
+    z-index: 99;
+    width: 100%;
+    max-width: 600px;
+}
+
+.index-header-content {
     -js-display: flex;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    align-items:center;
+    align-items: center;
     width: 100%;
-    height: 49px;
-    z-index: 99;
 }
 
-.index-header-left {
+.index-header-content-left {
     width: 100px;
 }
 
-.index-header-left-user {
+.index-header-content-left-user {
     margin-top: 5px;
     margin-left: 18px;
     width: 20px;
     height: 22px;
 }
 
-.index-header-center {
+.index-header-content-center {
     margin-top: 7px;
     flex-grow: 1;
     text-align: center;
 }
 
-.index-header-center-logo {
+.index-header-content-center-logo {
     width: 134px;
     height: 31px;
 }
 
-.index-header-right {
+.index-header-content-right {
     margin-right: 18px;
     width: 100px;
     text-align: right;
 }
 
-.index-header-right-search {
+.index-header-content-right-search {
     margin-top: 5px;
     width: 18px;
     height: 18px;
 }
 
-.container {
+.index-category {
+    height: 100px;
+    background: #ffffff;
+    border-bottom: 4px solid #f6f6f6;
+}
+
+.index-category-content {
+    padding-top: 20px;
+}
+
+.index-category-content-item {
+    width: 94px;
+    text-align: center;
+}
+
+.index-category-content-item-image {
+    width: 43px;
+    height: 43px;
+}
+
+.index-category-content-item-name {
+    font-family: PingFangSC-Light;
+    font-size: 10px;
+    -webkit-transform: scale(0.83);
+    color: #000000;
+    line-height: 6px;
+}
+
+.index-hot-article-header {
+    margin: 16px 16px 0px 16px;
+    font-family: PingFangSC-Light;
+    font-size: 15px;
+    color: #000000;
+    letter-spacing: 0;
+}
+
+.index-hot-article-content {
+
+}
+
+.index-hot-article-content-top {
+    position: relative;
+    margin: 13px 16px;
+}
+
+.index-hot-article-content-top-image {
+
+}
+
+.index-hot-article-content-top-name {
+    position: absolute;
+    top: 50%;
+    left: 0px;
+    width: 100%;
+    text-align: center;
+    font-family: PingFangSC;
+    font-size: 12px;
+    color: #FFFFFF;
+}
+
+.index-hot-article-content-list {
+    padding: 12px 16px;
+    background: #F6F6F6;
+}
+
+.index-hot-article-content-list-container {
+    height: 125px;
+}
+
+.index-hot-article-content-list-container-wrapper {
+
+}
+
+.index-hot-article-content-list-container-wrapper-item {
     -js-display: flex;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    background: #FFFFFF;
 }
 
-.container div {
-    width: 20px;
-    background: red;
+.index-hot-article-content-list-container-wrapper-item-left {
+    width: 54px;
+    -js-display: flex;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.index-hot-article-content-list-container-wrapper-item-left-image {
+    width: 34px;
+    height: 34px;
+}
+
+.index-hot-article-content-list-container-wrapper-item-right {
+    flex-grow: 1;
+    width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.index-animal-category {
+    height: 135px;
+}
+
+.index-animal-category-header {
+    margin: 30px 16px 0px 16px;
+    font-family: PingFangSC-Light;
+    font-size: 15px;
+    color: #000000;
+    letter-spacing: 0;
+}
+
+.index-animal-category-content {
+    margin-top: 21px;
+    padding-left: 16px;
+}
+
+.index-animal-category-content-wrapper {
+    width: 100%;
+    height: 75px !important;
+}
+
+.index-animal-category-content-wrapper-item {
+    position: relative;
+    width: 81px;
+    height: 75px;
+}
+
+.index-animal-category-content-wrapper-item-image {
+    width: 75px;
+    height: 75px;
+}
+
+.index-animal-category-content-wrapper-item-name {
+    position: absolute;
+    top: 23px;
+    width: 100%;
     text-align: center;
+    font-family: PingFangSC-Regular;
+    font-size: 12px;
+    color: #FFFFFF;
+    letter-spacing: 0;
+}
+
+.index-animal-category-content-wrapper-item-description {
+    position: absolute;
+    top: 38px;
+    width: 100%;
+    text-align: center;
+    font-family: PingFangSC-Regular;
+    font-size: 11px;
+    color: #FFFFFF;
+    letter-spacing: 0;
+}
+
+.index-guess {
+    background: #F6F6F6;
+    padding-bottom: 16px;
+}
+
+.index-guess-header {
+    padding: 16px 16px 10px 16px;
+    -js-display: flex;
+    display: flex;
+    flex-direction: row;
+}
+
+.index-guess-header-title {
+    flex-grow: 1;
+    font-family: PingFangSC-Light;
+    font-size: 15px;
+    color: #000000;
+    letter-spacing: 0;
+}
+
+.index-guess-header-more-text {
+    width: 29px;
+    font-family: PingFangSC-Regular;
+    font-size: 12px;
+    color: #000000;
+    letter-spacing: 0;
+}
+
+.index-guess-header-more-icon {
+    margin-top: 3px;
+    width: 12px;
+    height: 12px;
+}
+
+.index-guess-content {
+    padding-left: 16px;
+    height: 148px;
+}
+
+.index-guess-content-wrapper-item {
+    width: 120px;
+}
+
+.index-guess-content-wrapper-item-card {
+    position: relative;
+    background: #FFFFFF;
+    border: 1px solid #F0F0F0;
+    border-radius: 4px;
+    width: 110px;
+    height: 148px;
+    text-align: center;
+}
+
+.index-guess-content-wrapper-item-card-image {
+    width: 52px;
+    height: 52px;
+    margin-top: 15px;
+}
+
+.index-guess-content-wrapper-item-card-name {
+    font-family: PingFangSC-Regular;
+    font-size: 13px;
+    color: #4A4A4A;
+    letter-spacing: 0;
+    margin-top: 12px;
+}
+
+.index-guess-content-wrapper-item-card-description {
+    font-family: PingFangSC-Regular;
+    font-size: 9px;
+    -webkit-transform: scale(0.75);
+    color: #4A4A4A;
+    letter-spacing: 0;
+    margin-top: 5px;
+}
+
+.index-guess-content-wrapper-item-card-button {
+    position: absolute;
+    left: 50%;
+    margin-left: -25px;
+    background: #DEFAFD;
+    border-radius: 31px;
+    font-family: PingFangSC-Regular;
+    font-size: 9px;
+    -webkit-transform: scale(0.75);
+    color: #000000;
+    letter-spacing: 0;
+    width: 50px;
+    height: 17px;
+    line-height: 17px;
+    margin-top: 5px;
+}
+
+.index-new-topic-header {
+    margin: 16px 16px 0px 16px;
+    font-family: PingFangSC-Light;
+    font-size: 15px;
+    color: #000000;
+    letter-spacing: 0;
 }

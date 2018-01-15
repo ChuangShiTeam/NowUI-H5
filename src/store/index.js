@@ -1,5 +1,8 @@
 const initialState = {
-    article_list: []
+    bannerList: [],
+    articleCategoryList: [],
+    topArticleList: [],
+    animalList: []
 }
 
 function index(state = initialState, action) {

@@ -14,7 +14,9 @@
     "redux": "3.3.1",
     "reqwest": "^2.0.5"
   },
-  "devDependencies": {},
+  "devDependencies": {
+
+  },
   "scripts": {
     "start": "react-scripts-ie8 start",
     "build": "react-scripts-ie8 build",

@@ -2,34 +2,39 @@
     position: fixed;
     bottom: 0;
     width: 100%;
-    max-width: 555px;
+    max-width: 600px;
     height: 41px;
     z-index: 999;
     background: #FFFFFF;
+}
+
+.main-index-footer-content {
     -js-display: flex;
     display: flex;
     flex-flow: row wrap;
+    padding-top: 5px;
 }
 
-.main-index-footer-item {
+.main-index-footer-content-item {
     text-align: center;
     margin: auto;
 }
 
-.main-index-footer-item-icon {
+.main-index-footer-content-item-icon {
     width: 16px;
     height: 18px;
     margin-top: 2px;
 }
 
-.main-index-footer-item-name {
+.main-index-footer-content-item-name {
     font-family: PingFangSC-Regular;
     -webkit-transform: scale(0.83);
     font-size: 10px;
-    line-height: 8px;
+    line-height: 6px;
     color: #000000;
     letter-spacing: 0;
 }
 
-.main-index-footer-item-name .active {
+.main-index-footer-content-item-name-active {
+    color: #b59768;
 }

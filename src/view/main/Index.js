@@ -11,31 +11,31 @@ class Index extends Component {
 
         this.state = {
             menuList: [{
-                title: '首页',
+                name: '首页',
                 url: '/index',
                 icon: 'index.png',
                 selectedIcon: 'index-active.png',
                 selected: true
             }, {
-                title: '社区',
+                name: '社区',
                 url: '/forum/index',
                 icon: 'forum.png',
                 selectedIcon: 'forum-active.png',
                 selected: false
             }, {
-                title: '服务',
+                name: '服务',
                 url: '/service/index',
                 icon: 'service.png',
                 selectedIcon: 'service-active.png',
                 selected: false
             }, {
-                title: '精选',
+                name: '精选',
                 url: '/shop/index',
                 icon: 'shop.png',
                 selectedIcon: 'shop-active.png',
                 selected: false
             }, {
-                title: '我的',
+                name: '我的',
                 url: '/my/index',
                 icon: 'my.png',
                 selectedIcon: 'my-active.png',
@@ -53,29 +53,10 @@ class Index extends Component {
         }
 
         this.handleMenu(path);
-
-
-        if (util.isIE8()) {
-            setTimeout(function () {
-                this.handleFooter();
-            }.bind(this), 10);
-
-            window.addEventListener('scroll', this.handleScroll.bind(this));
-        }
     }
 
     componentWillUnmount() {
-        if (util.isIE8()) {
-            window.removeEventListener('scroll', this.handleScroll.bind(this));
-        }
-    }
 
-    handleScroll() {
-        this.handleFooter();
-    }
-
-    handleFooter() {
-        util.scrollToFixed('main-index-footer', document.documentElement.clientHeight - 41);
     }
 
     handleMenu(path) {
@@ -110,17 +91,19 @@ class Index extends Component {
         return (
             <div className="page">
                 {this.props.children}
-                <div className="main-index-footer top-line">
-                    {
-                        this.state.menuList.map((menu, index) => {
-                            return (
-                                <div key={index} className="main-index-footer-item" onClick={this.handleClick.bind(this, menu.url)}>
-                                    <img className="main-index-footer-item-icon" src={require('../../image/' + (menu.selected ? menu.selectedIcon : menu.icon))} alt=""/>
-                                    <div className={'main-index-footer-item-name ' + (menu.selected ? 'main-index-footer-item-name-active' : '')}>首页</div>
-                                </div>
-                            );
-                        })
-                    }
+                <div className="main-index-footer">
+                    <div className="main-index-footer-content top-line">
+                        {
+                            this.state.menuList.map((menu, index) => {
+                                return (
+                                    <div key={index} className="main-index-footer-content-item" onClick={this.handleClick.bind(this, menu.url)}>
+                                        <img className="main-index-footer-content-item-icon" src={require('../../image/' + (menu.selected ? menu.selectedIcon : menu.icon))} alt=""/>
+                                        <div className={'main-index-footer-content-item-name ' + (menu.selected ? 'main-index-footer-content-item-name-active' : '')}>{menu.name}</div>
+                                    </div>
+                                );
+                            })
+                        }
+                    </div>
                 </div>
             </div>
         );

@@ -63,8 +63,8 @@
     content: '';
     width: 8px;
     height: 8px;
-    border-top: 2px solid #C7C7CB;;
-    border-right: 2px solid #C7C7CB;;
+    border-top: 2px solid #C7C7CB;
+    border-right: 2px solid #C7C7CB;
     transform: rotate(45deg);
 }
 
