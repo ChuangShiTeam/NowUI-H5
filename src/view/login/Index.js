@@ -117,7 +117,7 @@ class Index extends Component {
                     <div className="slideunlock-wrapper">
                         <input type="hidden" className="slideunlock-lockable"/>
                         <div className="slideunlock-slider">
-                            <div className="slideunlock-label"  alt=""/>
+                            <img className="slideunlock-label" src={require('../../image/paw.png')} alt=""/>
                             <span className="slideunlock-lable-tip"></span>
                         </div>
                     </div>
