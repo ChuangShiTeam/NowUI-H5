@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import classNames from 'classnames';
 
-import style from './Index.css';
-import baseStyle from '../../css/Base.css';
+import style from './Index.scss';
+import baseStyle from '../../css/Base.scss';
 
 class Index extends Component {
     constructor(props) {

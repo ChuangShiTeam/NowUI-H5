@@ -1,8 +1,11 @@
 /*内容居中*/
 .container {
+    height: 500px;
     -js-display: flex;
     display: flex;
-}
+    justify-content:center;
+    align-items:center;
+}}
 
 /*一行省略号*/
 .container {

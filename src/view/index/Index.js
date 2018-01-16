@@ -1,13 +1,14 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {Link} from 'react-router';
 import classNames from 'classnames';
 
 import TopicIndex from "../../component/topic/Index";
 
 import util from '../../common/util';
 
-import style from './Index.css';
-import baseStyle from '../../css/Base.css';
+import style from './Index.scss';
+import baseStyle from '../../css/Base.scss';
 
 class Index extends Component {
     constructor(props) {
@@ -196,11 +197,11 @@ class Index extends Component {
                 }}></div>
                 <div className={style.header}>
                     <div className={style.headerContent}>
-                        <div className={style.headerContentLeft}>
+                        <Link to="/login/index" className={style.headerContentLeft}>
                             <img className={style.headerContentLeftUser}
                                  src={require('../../image/index-user.png')}
                                  alt=""/>
-                        </div>
+                        </Link>
                         <div className={style.headerContentCenter}>
                             <img className={style.headerContentCenterLogo}
                                  src={require('../../image/index-logo.png')} alt=""/>

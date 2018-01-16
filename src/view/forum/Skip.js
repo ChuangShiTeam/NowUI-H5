@@ -5,7 +5,7 @@ import {Link} from 'react-router';
 import util from '../../common/util';
 
 import style from './Skip.css';
-import baseStyle from '../../css/Base.css';
+import baseStyle from '../../css/Base.scss';
 
 class Index extends Component {
     constructor(props) {
