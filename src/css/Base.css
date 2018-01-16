@@ -31,11 +31,11 @@
     transform-origin: 0 0;
 }
 
-.bottom-line {
+.bottomLine {
     position: relative;
 }
 
-.bottom-line:after {
+.bottomLine:after {
     content: '';
     position: absolute;
     left: 0;
@@ -47,28 +47,5 @@
     transform: scaleY(0.5);
     -webkit-transform-origin: 0 0;
     transform-origin: 0 0;
-}
-
-.pagination {
-    position: absolute;
-    bottom: 16px;
-    left: 0;
-    text-align: center;
-    width: 100%;
-    z-index: 99999;
-}
-
-.swiper-pagination-switch {
-    display: inline-block;
-    width: 10px;
-    height: 10px;
-    border-radius: 10px;
-    border: 1px solid #FFFFFF;
-    margin: 0 3px;
-    cursor: pointer;
-}
-
-.swiper-active-switch {
-    background: #fff;
 }
 

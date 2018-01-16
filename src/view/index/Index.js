@@ -1,9 +1,13 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import classNames from 'classnames';
 
 import TopicIndex from "../../component/topic/Index";
 
 import util from '../../common/util';
+
+import style from './Index.css';
+import baseStyle from '../../css/Base.css';
 
 import './Index.css';
 
@@ -12,7 +16,8 @@ class Index extends Component {
         super(props);
 
         this.state = {
-            opacity: 0
+            opacity: 0,
+            ieOpacity: 0
         }
 
         this.handleScroll = this.handleScroll.bind(this);
@@ -123,19 +128,19 @@ class Index extends Component {
         });
 
         setTimeout(function () {
-            new window.Swiper('.index-banner', {
-                pagination: '.pagination',
+            new window.Swiper('.' + style.banner, {
+                pagination: '.' + style.bannerPagination,
                 loop: true
             });
 
-            new window.Swiper('.index-category', {
+            new window.Swiper('.' + style.category, {
                 slidesPerView: 'auto',
                 freeMode: true,
                 freeModeFluid: true,
                 spaceBetween: 0
             });
 
-            new window.Swiper('.index-hot-article-content-list-container', {
+            new window.Swiper('.' + style.hotArticleContentListContainer, {
                 mode: 'vertical',
                 slidesPerView: 'auto',
                 freeMode: true,
@@ -143,14 +148,14 @@ class Index extends Component {
                 spaceBetween: 0
             });
 
-            new window.Swiper('.index-animal-category-content', {
+            new window.Swiper('.' + style.animalCategoryContent, {
                 slidesPerView: 'auto',
                 freeMode: true,
                 freeModeFluid: true,
                 spaceBetween: 0
             });
 
-            new window.Swiper('.index-guess-content', {
+            new window.Swiper('.' + style.guessContent, {
                 slidesPerView: 'auto',
                 freeMode: true,
                 freeModeFluid: true,
@@ -166,93 +171,106 @@ class Index extends Component {
     handleScroll() {
         let scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
 
-        this.setState({
-            opacity: scrollTop / 300
-        });
+        let opacity = scrollTop / 300;
+        let ieOpacity = opacity * 100;
+
+        if (opacity <= 1) {
+            this.setState({
+                opacity: opacity,
+                ieOpacity: ieOpacity
+            });
+        } else {
+            if (this.state.opacity != 1) {
+                this.setState({
+                    opacity: 1,
+                    ieOpacity: 100
+                });
+            }
+        }
     }
 
     render() {
         return (
-            <div className="page tabbarPage">
-                <div className="index-header-mask" style={{
+            <div className={classNames(baseStyle.page, baseStyle.tabbarPage)}>
+                <div className={style.headerMask} style={{
                     opacity: this.state.opacity,
-                    filter: 'progid:DXImageTransform.Microsoft.Alpha(opacity=100)'
+                    filter: 'progid:DXImageTransform.Microsoft.Alpha(opacity=' + this.state.ieOpacity + ')'
                 }}></div>
-                <div className="index-header">
-                    <div className="index-header-content">
-                        <div className="index-header-content-left">
-                            <img className="index-header-content-left-user"
-                                 src={require('../../image/index-header-content-left-user.png')}
+                <div className={style.header}>
+                    <div className={style.headerContent}>
+                        <div className={style.headerContentLeft}>
+                            <img className={style.headerContentLeftUser}
+                                 src={require('../../image/index-user.png')}
                                  alt=""/>
                         </div>
-                        <div className="index-header-content-center">
-                            <img className="index-header-content-center-logo"
-                                 src={require('../../image/index-header-content-center-logo.png')} alt=""/>
+                        <div className={style.headerContentCenter}>
+                            <img className={style.headerContentCenterLogo}
+                                 src={require('../../image/index-logo.png')} alt=""/>
                         </div>
-                        <div className="index-header-content-right">
-                            <img className="index-header-content-right-search"
-                                 src={require('../../image/index-header-content-right-search.png')} alt=""/>
+                        <div className={style.headerContentContentRight}>
+                            <img className={style.headerContentContentRightSearch}
+                                 src={require('../../image/index-search.png')} alt=""/>
                         </div>
                     </div>
                 </div>
-                <div className="index-banner swiper-container"
+                <div className={classNames(style.banner, 'swiper-container')}
                      style={{
                          height: ((document.documentElement.clientWidth > 600 ? 600 : document.documentElement.clientWidth) / 320 * 380) + 'px'
                      }}
                 >
-                    <div className="index-banner-content swiper-wrapper">
+                    <div className="swiper-wrapper">
                         {
                             this.props.index.bannerList.map(function (banner) {
                                 return (
                                     <div key={banner.bannerId} className="swiper-slide">
-                                        <img className="index-banner-content-image" src={require('../../image/0.png')}
-                                             alt=""/>
+                                        <img src={require('../../image/0.png')} alt=""/>
                                     </div>
                                 )
                             })
                         }
                     </div>
-                    <div className="pagination"></div>
+                    <div className={classNames(style.bannerPagination)}></div>
                 </div>
-                <div className="index-category swiper-container">
-                    <div className="index-category-content swiper-wrapper">
+                <div className={classNames(style.category, 'swiper-container')}>
+                    <div className={classNames(style.categoryContent, 'swiper-wrapper')}>
                         {
                             this.props.index.articleCategoryList.map(function (articleCategory) {
                                 return (
-                                    <div key={articleCategory.articleCategoryId} className="index-category-content-item swiper-slide">
-                                        <img className="index-category-content-item-image"
+                                    <div key={articleCategory.articleCategoryId}
+                                         className={classNames(style.categoryContentItem, 'swiper-slide')}>
+                                        <img className={style.categoryContentItemImage}
                                              src={require('../../image/category-1.png')} alt=""/>
-                                        <div className="index-category-content-item-name">{articleCategory.articleCategoryName}</div>
+                                        <div className={style.categoryContentItemItemName}>{articleCategory.articleCategoryName}</div>
                                     </div>
                                 )
                             })
                         }
                     </div>
                 </div>
-                <div className="index-hot-article">
-                    <div className="index-hot-article-header">
+                <div className={style.hotArticle}>
+                    <div className={style.hotArticleHeader}>
                         - 热门话题 -
                     </div>
-                    <div className="index-hot-article-content">
-                        <div className="index-hot-article-content-top">
-                            <img className="index-hot-article-content-top-image" src={require('../../image/1.png')}
+                    <div className={style.hotArticleContent}>
+                        <div className={style.hotArticleContentTop}>
+                            <img className={style.hotArticleContentTopImage} src={require('../../image/1.png')}
                                  alt=""/>
-                            <span className="index-hot-article-content-top-name">#盘点十大最适合狗狗吃的零食#</span>
+                            <span className={style.hotArticleContentTopName}>#盘点十大最适合狗狗吃的零食#</span>
                         </div>
-                        <div className="index-hot-article-content-list ">
-                            <div className="index-hot-article-content-list-container swiper-container">
-                                <div className="index-hot-article-content-list-container-wrapper swiper-wrapper">
+                        <div className={style.hotArticleContentList}>
+                            <div className={classNames(style.hotArticleContentListContainer, 'swiper-container')}>
+                                <div className={classNames(style.hotArticleContentListContainerWrapper, 'swiper-wrapper')}>
                                     {
-                                        this.props.index.topArticleList.map(function (article) {
+                                        this.props.index.topArticleList.map(function (article, index) {
                                             return (
-                                                <div key={article.articleId} className="index-hot-article-content-list-container-wrapper-item top-line bottom-line swiper-slide">
-                                                    <div className="index-hot-article-content-list-container-wrapper-item-left">
-                                                        <img
-                                                            className="index-hot-article-content-list-container-wrapper-item-left-image"
+                                                <div key={article.articleId}
+                                                     className={classNames(style.hotArticleContentListContainerWrapperItem, index == 0 ? baseStyle.topLine : '', baseStyle.bottomLine, 'swiper-slide')}>
+                                                    <div className={style.hotArticleContentListContainerWrapperItemLeft}>
+                                                        <img className={style.hotArticleContentListContainerWrapperItemLeftImage}
                                                             src={require('../../image/2.png')}
                                                             alt=""/>
                                                     </div>
-                                                    <div className="index-hot-article-content-list-container-wrapper-item-right">
+                                                    <div className={style.hotArticleContentListContainerWrapperItemRight}>
                                                         {article.articleTitle}
                                                     </div>
                                                 </div>
@@ -264,20 +282,22 @@ class Index extends Component {
                         </div>
                     </div>
                 </div>
-                <div className="index-animal-category">
-                    <div className="index-animal-category-header">
+                <div className={style.animalCategory}>
+                    <div className={style.animalCategoryHeader}>
                         - 宠物分类 -
                     </div>
-                    <div className="index-animal-category-content swiper-container">
-                        <div className="index-animal-category-content-wrapper swiper-wrapper">
+                    <div className={classNames(style.animalCategoryContent, 'swiper-container')}>
+                        <div className={classNames(style.animalCategoryContentWrapper, 'swiper-wrapper')}>
                             {
                                 this.props.index.animalList.map(function (category) {
                                     return (
-                                        <div key={category.categoryId} className="index-animal-category-content-wrapper-item swiper-slide">
-                                            <img className="index-animal-category-content-wrapper-item-image"
-                                                 src={require('../../image/3.png')} alt=""/>
-                                            <div className="index-animal-category-content-wrapper-item-name">{category.categoryName}</div>
-                                            <div className="index-animal-category-content-wrapper-item-description">{category.categoryDescription}</div>
+                                        <div key={category.categoryId}
+                                             className={classNames(style.animalCategoryContentWrapperItem, 'swiper-slide')}>
+                                            <img className={style.animalCategoryContentWrapperItemImage} src={require('../../image/3.png')} alt=""/>
+                                            <div
+                                                className={style.animalCategoryContentWrapperItemName}>{category.categoryName}</div>
+                                            <div
+                                                className={style.animalCategoryContentWrapperItemDescription}>{category.categoryDescription}</div>
                                         </div>
                                     )
                                 })
@@ -285,69 +305,77 @@ class Index extends Component {
                         </div>
                     </div>
                 </div>
-                <div className="index-guess">
-                    <div className="index-guess-header">
-                        <div className="index-guess-header-title">
+                <div className={style.guess}>
+                    <div className={style.guessHeader}>
+                        <div className={style.guessHeaderTitle}>
                             - 猜你喜欢 -
                         </div>
-                        <div className="index-guess-header-more-text">
+                        <div className={style.guessHeaderMoreText}>
                             更多
                         </div>
-                        <img className="index-guess-header-more-icon"
-                             src={require('../../image/index-guess-more.png')} alt=""/>
+                        <img className={style.guessHeaderMoreIcon} src={require('../../image/index-more.png')} alt=""/>
                     </div>
-                    <div className="index-guess-content swiper-container">
-                        <div className="index-guess-content-wrapper swiper-wrapper">
-                            <div className="index-guess-content-wrapper-item swiper-slide">
-                                <div className="index-guess-content-wrapper-item-card">
-                                    <img className="index-guess-content-wrapper-item-card-image"
-                                         src={require('../../image/header-demo.png')} alt=""/>
-                                    <p className="index-guess-content-wrapper-item-card-name">准主人须知</p>
-                                    <p className="index-guess-content-wrapper-item-card-description">编辑推荐</p>
-                                    <p className="index-guess-content-wrapper-item-card-button">去看看</p>
+                    <div className={classNames(style.guessContent, 'swiper-container')}>
+                        <div className={classNames(style.guessContentWrapper, 'swiper-wrapper')}>
+                            <div className={classNames(style.guessContentWrapperItem, 'swiper-slide')}>
+                                <div className={style.guessContentWrapperItemCard}>
+                                    <img className={style.guessContentWrapperItemCardImage}
+                                         src={require('../../image/4.png')} alt=""/>
+                                    <p className={style.guessContentWrapperItemCardName}>准主人须知</p>
+                                    <p className={style.guessContentWrapperItemCardDescription}>编辑推荐</p>
+                                    <p className={style.guessContentWrapperItemCardButton}>去看看</p>
                                 </div>
                             </div>
-                            <div className="index-guess-content-wrapper-item swiper-slide">
-                                <div className="index-guess-content-wrapper-item-card">
-                                    <img className="index-guess-content-wrapper-item-card-image"
-                                         src={require('../../image/header-demo.png')} alt=""/>
-                                    <p className="index-guess-content-wrapper-item-card-name">准主人须知</p>
-                                    <p className="index-guess-content-wrapper-item-card-description">编辑推荐</p>
-                                    <p className="index-guess-content-wrapper-item-card-button">去看看</p>
+                            <div className={classNames(style.guessContentWrapperItem, 'swiper-slide')}>
+                                <div className={style.guessContentWrapperItemCard}>
+                                    <img className={style.guessContentWrapperItemCardImage}
+                                         src={require('../../image/4.png')} alt=""/>
+                                    <p className={style.guessContentWrapperItemCardName}>准主人须知</p>
+                                    <p className={style.guessContentWrapperItemCardDescription}>编辑推荐</p>
+                                    <p className={style.guessContentWrapperItemCardButton}>去看看</p>
                                 </div>
                             </div>
-                            <div className="index-guess-content-wrapper-item swiper-slide">
-                                <div className="index-guess-content-wrapper-item-card">
-                                    <img className="index-guess-content-wrapper-item-card-image"
-                                         src={require('../../image/header-demo.png')} alt=""/>
-                                    <p className="index-guess-content-wrapper-item-card-name">准主人须知</p>
-                                    <p className="index-guess-content-wrapper-item-card-description">编辑推荐</p>
-                                    <p className="index-guess-content-wrapper-item-card-button">去看看</p>
+                            <div className={classNames(style.guessContentWrapperItem, 'swiper-slide')}>
+                                <div className={style.guessContentWrapperItemCard}>
+                                    <img className={style.guessContentWrapperItemCardImage}
+                                         src={require('../../image/4.png')} alt=""/>
+                                    <p className={style.guessContentWrapperItemCardName}>准主人须知</p>
+                                    <p className={style.guessContentWrapperItemCardDescription}>编辑推荐</p>
+                                    <p className={style.guessContentWrapperItemCardButton}>去看看</p>
                                 </div>
                             </div>
-                            <div className="index-guess-content-wrapper-item swiper-slide">
-                                <div className="index-guess-content-wrapper-item-card">
-                                    <img className="index-guess-content-wrapper-item-card-image"
-                                         src={require('../../image/header-demo.png')} alt=""/>
-                                    <p className="index-guess-content-wrapper-item-card-name">准主人须知</p>
-                                    <p className="index-guess-content-wrapper-item-card-description">编辑推荐</p>
-                                    <p className="index-guess-content-wrapper-item-card-button">去看看</p>
+                            <div className={classNames(style.guessContentWrapperItem, 'swiper-slide')}>
+                                <div className={style.guessContentWrapperItemCard}>
+                                    <img className={style.guessContentWrapperItemCardImage}
+                                         src={require('../../image/4.png')} alt=""/>
+                                    <p className={style.guessContentWrapperItemCardName}>准主人须知</p>
+                                    <p className={style.guessContentWrapperItemCardDescription}>编辑推荐</p>
+                                    <p className={style.guessContentWrapperItemCardButton}>去看看</p>
                                 </div>
                             </div>
-                            <div className="index-guess-content-wrapper-item swiper-slide">
-                                <div className="index-guess-content-wrapper-item-card">
-                                    <img className="index-guess-content-wrapper-item-card-image"
-                                         src={require('../../image/header-demo.png')} alt=""/>
-                                    <p className="index-guess-content-wrapper-item-card-name">准主人须知</p>
-                                    <p className="index-guess-content-wrapper-item-card-description">编辑推荐</p>
-                                    <p className="index-guess-content-wrapper-item-card-button">去看看</p>
+                            <div className={classNames(style.guessContentWrapperItem, 'swiper-slide')}>
+                                <div className={style.guessContentWrapperItemCard}>
+                                    <img className={style.guessContentWrapperItemCardImage}
+                                         src={require('../../image/4.png')} alt=""/>
+                                    <p className={style.guessContentWrapperItemCardName}>准主人须知</p>
+                                    <p className={style.guessContentWrapperItemCardDescription}>编辑推荐</p>
+                                    <p className={style.guessContentWrapperItemCardButton}>去看看</p>
+                                </div>
+                            </div>
+                            <div className={classNames(style.guessContentWrapperItem, 'swiper-slide')}>
+                                <div className={style.guessContentWrapperItemCard}>
+                                    <img className={style.guessContentWrapperItemCardImage}
+                                         src={require('../../image/4.png')} alt=""/>
+                                    <p className={style.guessContentWrapperItemCardName}>准主人须知</p>
+                                    <p className={style.guessContentWrapperItemCardDescription}>编辑推荐</p>
+                                    <p className={style.guessContentWrapperItemCardButton}>去看看</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div className="index-new-topic">
-                    <div className="index-new-topic-header">
+                    <div>
                         - 热门话题 -
                     </div>
                     <TopicIndex/>

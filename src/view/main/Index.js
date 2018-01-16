@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import classNames from 'classnames';
 
-import util from '../../common/util';
-
-import './Index.css';
+import style from './Index.css';
+import baseStyle from '../../css/Base.css';
 
 class Index extends Component {
     constructor(props) {
@@ -89,16 +89,20 @@ class Index extends Component {
 
     render() {
         return (
-            <div className="page">
+            <div className={baseStyle.page}>
                 {this.props.children}
-                <div className="main-index-footer">
-                    <div className="main-index-footer-content top-line">
+                <div className={style.footer}>
+                    <div className={classNames(style.footerContent, baseStyle.topLine)}>
                         {
                             this.state.menuList.map((menu, index) => {
                                 return (
-                                    <div key={index} className="main-index-footer-content-item" onClick={this.handleClick.bind(this, menu.url)}>
-                                        <img className="main-index-footer-content-item-icon" src={require('../../image/' + (menu.selected ? menu.selectedIcon : menu.icon))} alt=""/>
-                                        <div className={'main-index-footer-content-item-name ' + (menu.selected ? 'main-index-footer-content-item-name-active' : '')}>{menu.name}</div>
+                                    <div key={index} className={style.footerContentItem}
+                                         onClick={this.handleClick.bind(this, menu.url)}>
+                                        <img className={style.footerContentItemIcon}
+                                             src={require('../../image/' + (menu.selected ? menu.selectedIcon : menu.icon))}
+                                             alt=""/>
+                                        <div
+                                            className={classNames(style.footerContentItemName, menu.selected ? style.footerContentItemNameActive : '')}>{menu.name}</div>
                                     </div>
                                 );
                             })

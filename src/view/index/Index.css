@@ -1,4 +1,4 @@
-.index-header-mask {
+.headerMask {
     position: fixed;
     top: 0;
     width: 100%;
@@ -8,7 +8,7 @@
     z-index: 98;
 }
 
-.index-header {
+.header {
     position: fixed;
     top: 0;
     height: 49px;
@@ -17,7 +17,7 @@
     max-width: 600px;
 }
 
-.index-header-content {
+.headerContent {
     -js-display: flex;
     display: flex;
     flex-direction: row;
@@ -27,61 +27,74 @@
     width: 100%;
 }
 
-.index-header-content-left {
+.headerContentLeft {
     width: 100px;
 }
 
-.index-header-content-left-user {
+.headerContentLeftUser {
     margin-top: 5px;
     margin-left: 18px;
     width: 20px;
     height: 22px;
 }
 
-.index-header-content-center {
+.headerContentCenter {
     margin-top: 7px;
     flex-grow: 1;
     text-align: center;
 }
 
-.index-header-content-center-logo {
+.headerContentCenterLogo {
     width: 134px;
     height: 31px;
 }
 
-.index-header-content-right {
+.headerContentContentRight {
     margin-right: 18px;
     width: 100px;
     text-align: right;
 }
 
-.index-header-content-right-search {
+.headerContentContentRightSearch {
     margin-top: 5px;
     width: 18px;
     height: 18px;
 }
 
-.index-category {
+.banner {
+
+}
+
+.bannerPagination {
+    position: absolute;
+    bottom: 16px;
+    left: 0;
+    text-align: center;
+    width: 100%;
+    z-index: 99999;
+}
+
+.category {
     height: 100px;
     background: #ffffff;
     border-bottom: 4px solid #f6f6f6;
 }
 
-.index-category-content {
+.categoryContent {
     padding-top: 20px;
 }
 
-.index-category-content-item {
+.categoryContentItem {
     width: 94px;
     text-align: center;
 }
 
-.index-category-content-item-image {
+.categoryContentItemImage {
     width: 43px;
     height: 43px;
 }
 
-.index-category-content-item-name {
+.categoryContentItemItemName {
     font-family: PingFangSC-Light;
     font-size: 10px;
     -webkit-transform: scale(0.83);
@@ -89,7 +102,11 @@
     line-height: 6px;
 }
 
-.index-hot-article-header {
+.hotArticle {
+
+}
+
+.hotArticleHeader {
     margin: 16px 16px 0px 16px;
     font-family: PingFangSC-Light;
     font-size: 15px;
@@ -97,20 +114,20 @@
     letter-spacing: 0;
 }
 
-.index-hot-article-content {
+.hotArticleContent {
 
 }
 
-.index-hot-article-content-top {
+.hotArticleContentTop {
     position: relative;
     margin: 13px 16px;
 }
 
-.index-hot-article-content-top-image {
+.hotArticleContentTopImage {
 
 }
 
-.index-hot-article-content-top-name {
+.hotArticleContentTopName {
     position: absolute;
     top: 50%;
     left: 0px;
@@ -121,20 +138,20 @@
     color: #FFFFFF;
 }
 
-.index-hot-article-content-list {
+.hotArticleContentList {
     padding: 12px 16px;
     background: #F6F6F6;
 }
 
-.index-hot-article-content-list-container {
+.hotArticleContentListContainer {
     height: 125px;
 }
 
-.index-hot-article-content-list-container-wrapper {
+.hotArticleContentListContainerWrapper {
 
 }
 
-.index-hot-article-content-list-container-wrapper-item {
+.hotArticleContentListContainerWrapperItem {
     -js-display: flex;
     display: flex;
     flex-direction: row;
@@ -146,7 +163,7 @@
     background: #FFFFFF;
 }
 
-.index-hot-article-content-list-container-wrapper-item-left {
+.hotArticleContentListContainerWrapperItemLeft {
     width: 54px;
     -js-display: flex;
     display: flex;
@@ -154,12 +171,12 @@
     align-items: center;
 }
 
-.index-hot-article-content-list-container-wrapper-item-left-image {
+.hotArticleContentListContainerWrapperItemLeftImage {
     width: 34px;
     height: 34px;
 }
 
-.index-hot-article-content-list-container-wrapper-item-right {
+.hotArticleContentListContainerWrapperItemRight {
     flex-grow: 1;
     width: 0;
     white-space: nowrap;
@@ -167,11 +184,11 @@
     text-overflow: ellipsis;
 }
 
-.index-animal-category {
+.animalCategory {
     height: 135px;
 }
 
-.index-animal-category-header {
+.animalCategoryHeader {
     margin: 30px 16px 0px 16px;
     font-family: PingFangSC-Light;
     font-size: 15px;
@@ -179,28 +196,28 @@
     letter-spacing: 0;
 }
 
-.index-animal-category-content {
+.animalCategoryContent {
     margin-top: 21px;
     padding-left: 16px;
 }
 
-.index-animal-category-content-wrapper {
+.animalCategoryContentWrapper {
     width: 100%;
     height: 75px !important;
 }
 
-.index-animal-category-content-wrapper-item {
+.animalCategoryContentWrapperItem {
     position: relative;
     width: 81px;
     height: 75px;
 }
 
-.index-animal-category-content-wrapper-item-image {
+.animalCategoryContentWrapperItemImage {
     width: 75px;
     height: 75px;
 }
 
-.index-animal-category-content-wrapper-item-name {
+.animalCategoryContentWrapperItemName {
     position: absolute;
     top: 23px;
     width: 100%;
@@ -211,7 +228,7 @@
     letter-spacing: 0;
 }
 
-.index-animal-category-content-wrapper-item-description {
+.animalCategoryContentWrapperItemDescription {
     position: absolute;
     top: 38px;
     width: 100%;
@@ -222,19 +239,19 @@
     letter-spacing: 0;
 }
 
-.index-guess {
+.guess {
     background: #F6F6F6;
     padding-bottom: 16px;
 }
 
-.index-guess-header {
+.guessHeader {
     padding: 16px 16px 10px 16px;
     -js-display: flex;
     display: flex;
     flex-direction: row;
 }
 
-.index-guess-header-title {
+.guessHeaderTitle {
     flex-grow: 1;
     font-family: PingFangSC-Light;
     font-size: 15px;
@@ -242,7 +259,7 @@
     letter-spacing: 0;
 }
 
-.index-guess-header-more-text {
+.guessHeaderMoreText {
     width: 29px;
     font-family: PingFangSC-Regular;
     font-size: 12px;
@@ -250,22 +267,26 @@
     letter-spacing: 0;
 }
 
-.index-guess-header-more-icon {
+.guessHeaderMoreIcon {
     margin-top: 3px;
     width: 12px;
     height: 12px;
 }
 
-.index-guess-content {
+.guessContent {
     padding-left: 16px;
     height: 148px;
 }
 
-.index-guess-content-wrapper-item {
+.guessContentWrapper {
+
+}
+
+.guessContentWrapperItem {
     width: 120px;
 }
 
-.index-guess-content-wrapper-item-card {
+.guessContentWrapperItemCard {
     position: relative;
     background: #FFFFFF;
     border: 1px solid #F0F0F0;
@@ -275,13 +296,13 @@
     text-align: center;
 }
 
-.index-guess-content-wrapper-item-card-image {
+.guessContentWrapperItemCardImage {
     width: 52px;
     height: 52px;
     margin-top: 15px;
 }
 
-.index-guess-content-wrapper-item-card-name {
+.guessContentWrapperItemCardName {
     font-family: PingFangSC-Regular;
     font-size: 13px;
     color: #4A4A4A;
@@ -289,7 +310,7 @@
     margin-top: 12px;
 }
 
-.index-guess-content-wrapper-item-card-description {
+.guessContentWrapperItemCardDescription {
     font-family: PingFangSC-Regular;
     font-size: 9px;
     -webkit-transform: scale(0.75);
@@ -298,7 +319,7 @@
     margin-top: 5px;
 }
 
-.index-guess-content-wrapper-item-card-button {
+.guessContentWrapperItemCardButton {
     position: absolute;
     left: 50%;
     margin-left: -25px;
@@ -315,7 +336,7 @@
     margin-top: 5px;
 }
 
-.index-new-topic-header {
+.newTopicHeader {
     margin: 16px 16px 0px 16px;
     font-family: PingFangSC-Light;
     font-size: 15px;

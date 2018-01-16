@@ -1,4 +1,4 @@
-.main-index-footer {
+.footer {
     position: fixed;
     bottom: 0;
     width: 100%;
@@ -8,25 +8,25 @@
     background: #FFFFFF;
 }
 
-.main-index-footer-content {
+.footerContent {
     -js-display: flex;
     display: flex;
     flex-flow: row wrap;
     padding-top: 5px;
 }
 
-.main-index-footer-content-item {
+.footerContentItem {
     text-align: center;
     margin: auto;
 }
 
-.main-index-footer-content-item-icon {
+.footerContentItemIcon {
     width: 16px;
     height: 18px;
     margin-top: 2px;
 }
 
-.main-index-footer-content-item-name {
+.footerContentItemName {
     font-family: PingFangSC-Regular;
     -webkit-transform: scale(0.83);
     font-size: 10px;
@@ -35,6 +35,6 @@
     letter-spacing: 0;
 }
 
-.main-index-footer-content-item-name-active {
+.footerContentItemNameActive {
     color: #b59768;
 }
