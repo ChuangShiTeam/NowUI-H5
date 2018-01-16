@@ -9,8 +9,6 @@ import util from '../../common/util';
 import style from './Index.css';
 import baseStyle from '../../css/Base.css';
 
-import './Index.css';
-
 class Index extends Component {
     constructor(props) {
         super(props);
