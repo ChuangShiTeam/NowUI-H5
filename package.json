@@ -22,8 +22,8 @@
     "style-loader": "^0.19.1"
   },
   "scripts": {
-    "start": "node script/start start",
-    "build": "node script/start build",
+    "start": "PORT=3002 PUBLIC_URL=./ node script/start start",
+    "build": "PUBLIC_URL=./ node script/start build",
     "test": "react-scripts-ie8 test --env=jsdom",
     "eject": "react-scripts-ie8 eject"
   }

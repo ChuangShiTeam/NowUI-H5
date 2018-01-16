@@ -178,7 +178,7 @@ class Index extends Component {
                 ieOpacity: ieOpacity
             });
         } else {
-            if (this.state.opacity != 1) {
+            if (this.state.opacity !== 1) {
                 this.setState({
                     opacity: 1,
                     ieOpacity: 100
@@ -262,7 +262,7 @@ class Index extends Component {
                                         this.props.index.topArticleList.map(function (article, index) {
                                             return (
                                                 <div key={article.articleId}
-                                                     className={classNames(style.hotArticleContentListContainerWrapperItem, index == 0 ? baseStyle.topLine : '', baseStyle.bottomLine, 'swiper-slide')}>
+                                                     className={classNames(style.hotArticleContentListContainerWrapperItem, index === 0 ? baseStyle.topLine : '', baseStyle.bottomLine, 'swiper-slide')}>
                                                     <div className={style.hotArticleContentListContainerWrapperItemLeft}>
                                                         <img className={style.hotArticleContentListContainerWrapperItemLeftImage}
                                                             src={require('../../image/2.png')}

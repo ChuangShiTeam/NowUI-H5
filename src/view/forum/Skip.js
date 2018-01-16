@@ -4,7 +4,8 @@ import {Link} from 'react-router';
 
 import util from '../../common/util';
 
-import './Skip.css';
+import style from './Skip.css';
+import baseStyle from '../../css/Base.css';
 
 class Index extends Component {
     constructor(props) {
@@ -18,38 +19,36 @@ class Index extends Component {
     componentDidMount() {
         util.setTitle('wawipet哇咿宠');
 
-        if (this.props.skip.forumList && this.props.skip.forumList.length === 0) {
-            //TODO 从后台获取数据
-            //本地测试静态数据
-            this.props.dispatch({
-                type: 'skip',
-                data: {
-                    forumList: [
-                        {
-                            itemId: '12345678',
-                            selected: false,
-                            itemImgUrl: 'http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/120/h/120',
-                            itemName: '大爱金毛圈',
-                            itemSubtitle: '金毛最可爱了，大暖汪星人的代表'
-                        },
-                        {
-                            itemId: '123458',
-                            selected: true,
-                            itemImgUrl: 'http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/120/h/120',
-                            itemName: '软萌布偶圈',
-                            itemSubtitle: '布偶猫可以说是最最软萌的生物了！'
-                        },
-                        {
-                            itemId: '128',
-                            selected: false,
-                            itemImgUrl: 'http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/120/h/120',
-                            itemName: '起司猫的日常',
-                            itemSubtitle: '家有小起，如有一宝'
-                        }
-                    ]
-                }
-            });
-        }
+        //TODO 从后台获取数据
+        //本地测试静态数据
+        this.props.dispatch({
+            type: 'skip',
+            data: {
+                forumList: [
+                    {
+                        itemId: '12345678',
+                        selected: false,
+                        itemImgUrl: 'http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/120/h/120',
+                        itemName: '大爱金毛圈',
+                        itemSubtitle: '金毛最可爱了，大暖汪星人的代表'
+                    },
+                    {
+                        itemId: '123458',
+                        selected: true,
+                        itemImgUrl: 'http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/120/h/120',
+                        itemName: '软萌布偶圈',
+                        itemSubtitle: '布偶猫可以说是最最软萌的生物了！'
+                    },
+                    {
+                        itemId: '128',
+                        selected: false,
+                        itemImgUrl: 'http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/120/h/120',
+                        itemName: '起司猫的日常',
+                        itemSubtitle: '家有小起，如有一宝'
+                    }
+                ]
+            }
+        });
 
     }
 
@@ -58,12 +57,6 @@ class Index extends Component {
     }
 
     handleCancelSelect(index) {
-        // for(let i = 0; i < this.props.skip.forumList.length; i++) {
-        //     if (this.props.skip.forumList[i].itemId === itemId) {
-        //         this.props.skip.forumList[i].selected = !this.props.skip.forumList[i].selected;
-        //     }
-        // }
-
         this.props.skip.forumList[index].selected = !this.props.skip.forumList[index].selected;
 
         this.props.dispatch({
@@ -72,15 +65,6 @@ class Index extends Component {
                 forumList: this.props.skip.forumList
             }
         });
- 
-        //t itemId = this.props.skip.itemId
-        // console.log(forum);
-        // console.log(itemId);
-        // this.setState({
-        //     isSele : !this.state.isSele
-        // }, function () {
-        //     console.log(this.state.isSele)
-        // })
     }
 
     render() {
