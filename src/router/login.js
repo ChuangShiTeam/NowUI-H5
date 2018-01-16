@@ -9,5 +9,13 @@ export default {
                 cb(null, require('../view/login/Index').default);
             }, 'login.index');
         }
+    }, {
+        path: '/register',
+        onEnter: util.handleEnter,
+        getComponent(location, cb) {
+            require.ensure([], (require) => {
+                cb(null, require('../view/login/Register').default);
+            }, 'login.register');
+        }
     }]
 }
