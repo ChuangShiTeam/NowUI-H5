@@ -62,13 +62,13 @@ class Password extends Component {
         return (
             <div className={style.page} style={{height: document.documentElement.clientHeight}}>
                 <div className={style.header}>
-                    <img className={style.logo} src={require('../../image/login-logo.png')} alt=""/>
+                    <img className={style.logo} src={require('../../image/login-logo.png')} alt=''/>
                 </div>
                 <div className={style.content}>
                     <div className={style.mobile}>
                         <div className={style.mobileLeft}>
                             <img className={style.mobileLeftIcon}
-                                 src={require('../../image/mobile.png')} alt=""/>
+                                 src={require('../../image/mobile.png')} alt=''/>
                         </div>
                         <div className={classNames(style.mobileRight, baseStyle.bottomLine)}>
                             <input {...getFieldProps('memberMobile', {
@@ -83,7 +83,7 @@ class Password extends Component {
                     <div className={style.password}>
                         <div className={style.passwordLeft}>
                             <img className={style.passwordLeftIcon}
-                                 src={require('../../image/password.png')} alt=""/>
+                                 src={require('../../image/password.png')} alt=''/>
                         </div>
                         <div className={classNames(style.passwordRight, baseStyle.bottomLine)}>
                             <input {...getFieldProps('memberPassword', {
@@ -101,8 +101,8 @@ class Password extends Component {
                          onClick={this.handleSubmit.bind(this)}>登 录
                     </div>
                     <div className={style.link}>
-                        <Link to="/login/password" className={style.linkLeft}>
-                            密码登录
+                        <Link to="/login/index" className={style.linkLeft}>
+                            快捷登录
                         </Link>
                         <Link to="/register" className={style.linkRight}>
                             注册账号

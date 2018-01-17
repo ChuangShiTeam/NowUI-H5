@@ -142,7 +142,7 @@ class ForgetPassword extends Component {
                         <div className={style.mobile}>
                             <div className={style.mobileLeft}>
                                 <img className={style.mobileLeftIcon}
-                                     src={require('../../image/mobile.png')} alt=""/>
+                                     src={require('../../image/mobile.png')} alt=''/>
                             </div>
                             <div className={classNames(style.mobileRight, baseStyle.bottomLine)}>
                                 <input {...getFieldProps('memberMobile', {
@@ -157,7 +157,7 @@ class ForgetPassword extends Component {
                         <div className="slideunlock-wrapper">
                             <input type="hidden" className="slideunlock-lockable"/>
                             <div className="slideunlock-slider">
-                                <img className="slideunlock-label" src={require('../../image/paw.png')} alt=""/>
+                                <img className="slideunlock-label" src={require('../../image/paw.png')} alt=''/>
                                 <span className="slideunlock-lable-tip"></span>
                             </div>
                         </div>
@@ -166,7 +166,7 @@ class ForgetPassword extends Component {
                                 <div className={style.captcha}>
                                     <div className={style.captchaLeft}>
                                         <img className={style.captchaLeftIcon} src={require('../../image/captcha.png')}
-                                             alt=""/>
+                                             alt=''/>
                                     </div>
                                     <div className={classNames(style.captchaCenter, baseStyle.bottomLine)}>
                                         <input {...getFieldProps('memberCaptcha', {
@@ -200,7 +200,7 @@ class ForgetPassword extends Component {
                         <div className={style.password}>
                             <div className={style.passwordLeft}>
                                 <img className={style.passwordLeftIcon}
-                                     src={require('../../image/password.png')} alt=""/>
+                                     src={require('../../image/password.png')} alt=''/>
                             </div>
                             <div className={classNames(style.passwordRight, baseStyle.bottomLine)}>
                                 <input {...getFieldProps('memberPassword', {
@@ -215,7 +215,7 @@ class ForgetPassword extends Component {
                         <div className={style.confirmPassword}>
                             <div className={style.confirmPasswordLeft}>
                                 <img className={style.confirmPasswordLeftIcon}
-                                     src={require('../../image/confirmPassword.png')} alt=""/>
+                                     src={require('../../image/confirmPassword.png')} alt=''/>
                             </div>
                             <div className={classNames(style.confirmPasswordRight, baseStyle.bottomLine)}>
                                 <input {...getFieldProps('memberConfirmPassword', {

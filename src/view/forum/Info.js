@@ -33,7 +33,7 @@ class Index extends Component {
                         圈子头像
                     </div>
                     <div className="forum-info-upload">
-                        <img src={require('../../image/avatar-demo.png')} alt=""/>
+                        <img src={require('../../image/avatar-demo.png')} alt=''/>
                     </div>
                     <div className="forum-info-right">
                         <div></div>
@@ -68,9 +68,9 @@ class Index extends Component {
                         </div>
                         <div className="forum-info-owner-box">
                             <div className="forum-info-owner-avatar">
-                                <img src={require('../../image/header-demo.png')} alt=""/>
+                                <img src={require('../../image/header-demo.png')} alt=''/>
                                 <div className="forum-info-owner-crown">
-                                    <img src={require('../../image/icon-crown.png')} alt=""/>
+                                    <img src={require('../../image/crown.png')} alt=''/>
                                 </div>
                             </div>
                             <div className="forum-info-owner-info">
@@ -90,48 +90,48 @@ class Index extends Component {
                         <div className="forum-info-list">
                             <ul>
                                 <li>
-                                    <img src={require('../../image/header-demo.png')} alt=""/>
+                                    <img src={require('../../image/header-demo.png')} alt=''/>
                                 </li>
                                 <li>
-                                    <img src={require('../../image/header-demo.png')} alt=""/>
+                                    <img src={require('../../image/header-demo.png')} alt=''/>
                                 </li>
                                 <li>
-                                    <img src={require('../../image/header-demo.png')} alt=""/>
+                                    <img src={require('../../image/header-demo.png')} alt=''/>
                                 </li>
                                 <li>
-                                    <img src={require('../../image/header-demo.png')} alt=""/>
+                                    <img src={require('../../image/header-demo.png')} alt=''/>
                                 </li>
                                 <li>
-                                    <img src={require('../../image/header-demo.png')} alt=""/>
+                                    <img src={require('../../image/header-demo.png')} alt=''/>
                                 </li>
                                 <li>
-                                    <img src={require('../../image/header-demo.png')} alt=""/>
+                                    <img src={require('../../image/header-demo.png')} alt=''/>
                                 </li>
                                 <li>
-                                    <img src={require('../../image/header-demo.png')} alt=""/>
+                                    <img src={require('../../image/header-demo.png')} alt=''/>
                                 </li>
                             </ul>
                             <ul>
                                 <li>
-                                    <img src={require('../../image/header-demo.png')} alt=""/>
+                                    <img src={require('../../image/header-demo.png')} alt=''/>
                                 </li>
                                 <li>
-                                    <img src={require('../../image/header-demo.png')} alt=""/>
+                                    <img src={require('../../image/header-demo.png')} alt=''/>
                                 </li>
                                 <li>
-                                    <img src={require('../../image/header-demo.png')} alt=""/>
+                                    <img src={require('../../image/header-demo.png')} alt=''/>
                                 </li>
                                 <li>
-                                    <img src={require('../../image/header-demo.png')} alt=""/>
+                                    <img src={require('../../image/header-demo.png')} alt=''/>
                                 </li>
                                 <li>
-                                    <img src={require('../../image/header-demo.png')} alt=""/>
+                                    <img src={require('../../image/header-demo.png')} alt=''/>
                                 </li>
                                 <li>
-                                    <img src={require('../../image/header-demo.png')} alt=""/>
+                                    <img src={require('../../image/header-demo.png')} alt=''/>
                                 </li>
                                 <li>
-                                    <img src={require('../../image/header-demo.png')} alt=""/>
+                                    <img src={require('../../image/header-demo.png')} alt=''/>
                                 </li>
                             </ul>
                         </div>

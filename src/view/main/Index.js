@@ -79,7 +79,7 @@ class Index extends Component {
         this.handleToolbar(url);
 
         if (url === '/forum/index') {
-            //url = '/forum/skip';
+            url = '/forum/skip';
         }
 
         this.props.history.push({
@@ -99,9 +99,12 @@ class Index extends Component {
                                 return (
                                     <div key={index} className={style.footerContentItem}
                                          onClick={this.handleClick.bind(this, toolbar.toolbarUrl)}>
+                                        {/*<img className={style.footerContentItemIcon}*/}
+                                             {/*src={constant.image_host + (toolbar.selected  ? toolbar.toolbarImage.filePath : toolbar.toolbarActiveImage.filePath)}*/}
+                                             {/*alt=''/>*/}
                                         <img className={style.footerContentItemIcon}
-                                             src={constant.image_host + (toolbar.selected  ? toolbar.toolbarImage.filePath : toolbar.toolbarActiveImage.filePath)}
-                                             alt=""/>
+                                             src={require('../../image/' + (toolbar.selected ? toolbar.selectedIcon : toolbar.icon))}
+                                             alt=''/>
                                         <div className={classNames(style.footerContentItemName, toolbar.selected ? style.footerContentItemNameActive : '')}>{toolbar.toolbarName}</div>
                                     </div>
                                 );
@@ -114,8 +117,6 @@ class Index extends Component {
     }
 }
 
-export default connect((state) => {
-    return {
-        main: state.main
-    }
-})(Index);
+export default connect((store) => ({
+    main: store.main
+}))(Index);

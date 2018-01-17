@@ -121,7 +121,7 @@ class Index extends Component {
 
     render() {
         return (
-            <div className={classNames(baseStyle.page, baseStyle.tabbarPage)}>  
+            <div className={classNames(baseStyle.page, baseStyle.tabbarPage)}>
                 <div className={style.headerMask} style={{
                     opacity: this.state.opacity,
                     filter: 'progid:DXImageTransform.Microsoft.Alpha(opacity=' + this.state.ieOpacity + ')'
@@ -131,15 +131,15 @@ class Index extends Component {
                         <Link to="/login/index" className={style.headerContentLeft}>
                             <img className={style.headerContentLeftUser}
                                  src={require('../../image/index-user.png')}
-                                 alt=""/>
+                                 alt=''/>
                         </Link>
                         <div className={style.headerContentCenter}>
                             <img className={style.headerContentCenterLogo}
-                                 src={require('../../image/index-logo.png')} alt=""/>
+                                 src={require('../../image/index-logo.png')} alt=''/>
                         </div>
                         <div className={style.headerContentContentRight}>
                             <img className={style.headerContentContentRightSearch}
-                                 src={require('../../image/index-search.png')} alt=""/>
+                                 src={require('../../image/index-search.png')} alt=''/>
                         </div>
                     </div>
                 </div>
@@ -153,7 +153,7 @@ class Index extends Component {
                             this.props.index.indexBannerList.map(function (indexBanner) {
                                 return (
                                     <div key={indexBanner.advertisementId} className="swiper-slide">
-                                        <img src={constant.image_host + indexBanner.filePath} alt=""/>
+                                        <img src={constant.image_host + indexBanner.filePath} alt=''/>
                                     </div>
                                 )
                             })
@@ -169,7 +169,7 @@ class Index extends Component {
                                     <div key={index}
                                          className={classNames(style.categoryContentItem, 'swiper-slide')}>
                                         <img className={style.categoryContentItemImage}
-                                             src={constant.image_host + indexNavigation.filePath} alt=""/>
+                                             src={constant.image_host + indexNavigation.filePath} alt=''/>
                                         <div className={style.categoryContentItemItemName}>{indexNavigation.navigationName}</div>
                                     </div>
                                 )
@@ -184,7 +184,7 @@ class Index extends Component {
                     <div className={style.hotArticleContent}>
                         <div className={style.hotArticleContentTop}>
                             <img className={style.hotArticleContentTopImage} src={require('../../image/1.png')}
-                                 alt=""/>
+                                 alt=''/>
                             <span className={style.hotArticleContentTopName}>#盘点十大最适合狗狗吃的零食#</span>
                         </div>
                         <div className={style.hotArticleContentList}>
@@ -198,7 +198,7 @@ class Index extends Component {
                                                     <div className={style.hotArticleContentListContainerWrapperItemLeft}>
                                                         <img className={style.hotArticleContentListContainerWrapperItemLeftImage}
                                                              src={require('../../image/2.png')}
-                                                             alt=""/>
+                                                             alt=''/>
                                                     </div>
                                                     <div className={style.hotArticleContentListContainerWrapperItemRight}>
                                                         {article.articleTitle}
@@ -223,7 +223,7 @@ class Index extends Component {
                                     return (
                                         <div key={index}
                                              className={classNames(style.animalCategoryContentWrapperItem, 'swiper-slide')}>
-                                            <img className={style.animalCategoryContentWrapperItemImage} src={constant.image_host + petCategoryArticle.filePath} alt=""/>
+                                            <img className={style.animalCategoryContentWrapperItemImage} src={constant.image_host + petCategoryArticle.filePath} alt=''/>
                                             <div className={style.animalCategoryContentWrapperItemName}>{petCategoryArticle.articleTitle}</div>
                                             <div className={style.animalCategoryContentWrapperItemDescription}>{petCategoryArticle.articleSummary}</div>
                                         </div>
@@ -241,14 +241,14 @@ class Index extends Component {
                         <div className={style.guessHeaderMoreText}>
                             更多
                         </div>
-                        <img className={style.guessHeaderMoreIcon} src={require('../../image/index-more.png')} alt=""/>
+                        <img className={style.guessHeaderMoreIcon} src={require('../../image/index-more.png')} alt=''/>
                     </div>
                     <div className={classNames(style.guessContent, 'swiper-container')}>
                         <div className={classNames(style.guessContentWrapper, 'swiper-wrapper')}>
                             <div className={classNames(style.guessContentWrapperItem, 'swiper-slide')}>
                                 <div className={style.guessContentWrapperItemCard}>
                                     <img className={style.guessContentWrapperItemCardImage}
-                                         src={require('../../image/4.png')} alt=""/>
+                                         src={require('../../image/4.png')} alt=''/>
                                     <p className={style.guessContentWrapperItemCardName}>准主人须知</p>
                                     <p className={style.guessContentWrapperItemCardDescription}>编辑推荐</p>
                                     <p className={style.guessContentWrapperItemCardButton}>去看看</p>
@@ -257,7 +257,7 @@ class Index extends Component {
                             <div className={classNames(style.guessContentWrapperItem, 'swiper-slide')}>
                                 <div className={style.guessContentWrapperItemCard}>
                                     <img className={style.guessContentWrapperItemCardImage}
-                                         src={require('../../image/4.png')} alt=""/>
+                                         src={require('../../image/4.png')} alt=''/>
                                     <p className={style.guessContentWrapperItemCardName}>准主人须知</p>
                                     <p className={style.guessContentWrapperItemCardDescription}>编辑推荐</p>
                                     <p className={style.guessContentWrapperItemCardButton}>去看看</p>
@@ -266,7 +266,7 @@ class Index extends Component {
                             <div className={classNames(style.guessContentWrapperItem, 'swiper-slide')}>
                                 <div className={style.guessContentWrapperItemCard}>
                                     <img className={style.guessContentWrapperItemCardImage}
-                                         src={require('../../image/4.png')} alt=""/>
+                                         src={require('../../image/4.png')} alt=''/>
                                     <p className={style.guessContentWrapperItemCardName}>准主人须知</p>
                                     <p className={style.guessContentWrapperItemCardDescription}>编辑推荐</p>
                                     <p className={style.guessContentWrapperItemCardButton}>去看看</p>
@@ -275,7 +275,7 @@ class Index extends Component {
                             <div className={classNames(style.guessContentWrapperItem, 'swiper-slide')}>
                                 <div className={style.guessContentWrapperItemCard}>
                                     <img className={style.guessContentWrapperItemCardImage}
-                                         src={require('../../image/4.png')} alt=""/>
+                                         src={require('../../image/4.png')} alt=''/>
                                     <p className={style.guessContentWrapperItemCardName}>准主人须知</p>
                                     <p className={style.guessContentWrapperItemCardDescription}>编辑推荐</p>
                                     <p className={style.guessContentWrapperItemCardButton}>去看看</p>
@@ -284,7 +284,7 @@ class Index extends Component {
                             <div className={classNames(style.guessContentWrapperItem, 'swiper-slide')}>
                                 <div className={style.guessContentWrapperItemCard}>
                                     <img className={style.guessContentWrapperItemCardImage}
-                                         src={require('../../image/4.png')} alt=""/>
+                                         src={require('../../image/4.png')} alt=''/>
                                     <p className={style.guessContentWrapperItemCardName}>准主人须知</p>
                                     <p className={style.guessContentWrapperItemCardDescription}>编辑推荐</p>
                                     <p className={style.guessContentWrapperItemCardButton}>去看看</p>
@@ -293,7 +293,7 @@ class Index extends Component {
                             <div className={classNames(style.guessContentWrapperItem, 'swiper-slide')}>
                                 <div className={style.guessContentWrapperItemCard}>
                                     <img className={style.guessContentWrapperItemCardImage}
-                                         src={require('../../image/4.png')} alt=""/>
+                                         src={require('../../image/4.png')} alt=''/>
                                     <p className={style.guessContentWrapperItemCardName}>准主人须知</p>
                                     <p className={style.guessContentWrapperItemCardDescription}>编辑推荐</p>
                                     <p className={style.guessContentWrapperItemCardButton}>去看看</p>
@@ -318,6 +318,6 @@ class Index extends Component {
     }
 }
 
-export default connect((state) => ({
-    index: state.index
+export default connect((store) => ({
+    index: store.index
 }))(Index);

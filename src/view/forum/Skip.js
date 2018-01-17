@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router';
+import classNames from 'classnames';
 
 import util from '../../common/util';
 
-import style from './Skip.css';
+import style from './Skip.scss';
 import baseStyle from '../../css/Base.scss';
 
 class Index extends Component {
@@ -26,25 +27,25 @@ class Index extends Component {
             data: {
                 forumList: [
                     {
-                        itemId: '12345678',
+                        id: '0',
                         selected: false,
-                        itemImgUrl: 'http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/120/h/120',
-                        itemName: '大爱金毛圈',
-                        itemSubtitle: '金毛最可爱了，大暖汪星人的代表'
+                        url: 'http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/120/h/120',
+                        name: '大爱金毛圈',
+                        summary: '金毛最可爱了，大暖汪星人的代表'
                     },
                     {
-                        itemId: '123458',
-                        selected: true,
-                        itemImgUrl: 'http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/120/h/120',
-                        itemName: '软萌布偶圈',
-                        itemSubtitle: '布偶猫可以说是最最软萌的生物了！'
+                        id: '1',
+                        selected: false,
+                        url: 'http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/120/h/120',
+                        name: '软萌布偶圈',
+                        summary: '布偶猫可以说是最最软萌的生物了！'
                     },
                     {
-                        itemId: '128',
+                        id: '2',
                         selected: false,
-                        itemImgUrl: 'http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/120/h/120',
-                        itemName: '起司猫的日常',
-                        itemSubtitle: '家有小起，如有一宝'
+                        url: 'http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/120/h/120',
+                        name: '起司猫的日常',
+                        summary: '家有小起，如有一宝'
                     }
                 ]
             }
@@ -67,39 +68,42 @@ class Index extends Component {
         });
     }
 
+    handleSubmit() {
+        this.props.history.push({
+            pathname: '/forum/index',
+            query: {}
+        });
+    }
+
     render() {
         return (
-            <div>
-                <div className="skip-header text-right">跳过</div>
-                <div className="skip-conten">
-                    <div className="skip-conten-title text-center">选择加入你也许感兴趣的圈子</div>
-                    <div className="skip-conten-subtitle text-center">为你私人定制你的宠物部落</div>
-                    <ul className="skip-conten-info">
-                        {
-                            this.props.skip.forumList.map((forum, index) =>
-                                <li key={index} id={forum.itemId} className="bottom-line" onClick={this.handleCancelSelect.bind(this, index)}>
-                                    <div className="skip-conten-user-img">      
-                                        <img className="index-header-right-search" src={forum.itemImgUrl} alt=""/>
-                                    </div>
-                                    <div className="skip-conten-user-info">
-                                        <div className="skip-conten-user-name">{forum.itemName}</div>
-                                        <div className="skip-conten-user-centen">{forum.itemSubtitle}</div>
-                                    </div>
-                                    <div className="skip-conten-hook">    
-                                        {
-                                            forum.selected ?
-                                                <img className="index-header-right-search" src={require('../../image/skip-hook-icon.png')} alt=""/>
-                                                :
-                                                <img className="index-header-right-search" src={require('../../image/skip-hook-false-icon.png')} alt=""/>
-                                        }
-                                    </div>
-                                </li>
-                            )
-                        }
-                    </ul>
-                    <div className="skip-go-circle text-center">
-                        <span>进入圈子</span>
-                    </div>
+            <div className={style.page} style={{height: document.documentElement.clientHeight}}>
+                <div className={style.skip}><Link to="/forum/index">跳过</Link></div>
+                <div className={style.title}>选择加入你也许感兴趣的圈子</div>
+                <div className={style.summary}>为你私人定制你的宠物部落</div>
+                <div className={style.list}>
+                    {
+                        this.props.skip.forumList.map((forum, index) =>
+                            <div key={index} id={forum.id} className={classNames(style.listItem, baseStyle.bottomLine)}
+                                 onClick={this.handleCancelSelect.bind(this, index)}>
+                                <div className={style.listItemLeft}>
+                                    <img className={style.listItemLeftIcon} src={forum.url} alt=''/>
+                                </div>
+                                <div className={style.listItemCenter}>
+                                    <div className={style.listItemCenterName}>{forum.name}</div>
+                                    <div className={style.listItemCenterSummary}>{forum.summary}</div>
+                                </div>
+                                <div className={style.listItemRight}>
+                                    <img className={style.listItemRightSelect}
+                                         src={forum.selected ? require('../../image/skip-hook-icon.png') : require('../../image/skip-hook-false-icon.png')}
+                                         alt=''/>
+                                </div>
+                            </div>
+                        )
+                    }
+                </div>
+                <div className={style.footer}>
+                    <div className={style.submit} onClick={this.handleSubmit.bind(this)}>进入圈子</div>
                 </div>
             </div>
         );
@@ -109,6 +113,6 @@ class Index extends Component {
 Index.propTypes = {};
 
 
-export default connect((state) => ({
-    skip: state.skip
+export default connect((store) => ({
+    skip: store.skip
 }))(Index);

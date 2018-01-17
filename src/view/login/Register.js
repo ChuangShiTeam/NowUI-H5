@@ -149,7 +149,7 @@ class Register extends Component {
                         <div className={style.mobile}>
                             <div className={style.mobileLeft}>
                                 <img className={style.mobileLeftIcon}
-                                     src={require('../../image/mobile.png')} alt=""/>
+                                     src={require('../../image/mobile.png')} alt=''/>
                             </div>
                             <div className={classNames(style.mobileRight, baseStyle.bottomLine)}>
                                 <input {...getFieldProps('memberMobile', {
@@ -164,7 +164,7 @@ class Register extends Component {
                         <div className="slideunlock-wrapper">
                             <input type="hidden" className="slideunlock-lockable"/>
                             <div className="slideunlock-slider">
-                                <img className="slideunlock-label" src={require('../../image/paw.png')} alt=""/>
+                                <img className="slideunlock-label" src={require('../../image/paw.png')} alt=''/>
                                 <span className="slideunlock-lable-tip"></span>
                             </div>
                         </div>
@@ -173,7 +173,7 @@ class Register extends Component {
                                 <div className={style.captcha}>
                                     <div className={style.captchaLeft}>
                                         <img className={style.captchaLeftIcon} src={require('../../image/captcha.png')}
-                                             alt=""/>
+                                             alt=''/>
                                     </div>
                                     <div className={classNames(style.captchaCenter, baseStyle.bottomLine)}>
                                         <input {...getFieldProps('memberCaptcha', {
@@ -197,7 +197,7 @@ class Register extends Component {
                              onClick={this.handleNext.bind(this)}>下一步
                         </div>
                         <div className={style.link}>
-                            <img className={style.linkAgreementIcon} src={this.state.isAgreement ? require('../../image/agreement-active.png') : require('../../image/agreement.png')} width="10" height="10" alt="" onClick={this.handleAgreement.bind(this)}/>
+                            <img className={style.linkAgreementIcon} src={this.state.isAgreement ? require('../../image/agreement-active.png') : require('../../image/agreement.png')} width="10" height="10" alt='' onClick={this.handleAgreement.bind(this)}/>
                             <span className={style.linkAgreementText} onClick={this.handleAgreement.bind(this)}>我已阅读并接受</span><span className={style.linkRegisterText}>注册协议</span><span className={style.linkAgreementText}>和</span><span className={style.linkPrivateText}>隐私条款</span>
                         </div>
                     </div>
@@ -211,7 +211,7 @@ class Register extends Component {
                         <div className={style.password}>
                             <div className={style.passwordLeft}>
                                 <img className={style.passwordLeftIcon}
-                                     src={require('../../image/password.png')} alt=""/>
+                                     src={require('../../image/password.png')} alt=''/>
                             </div>
                             <div className={classNames(style.passwordRight, baseStyle.bottomLine)}>
                                 <input {...getFieldProps('memberPassword', {
@@ -226,7 +226,7 @@ class Register extends Component {
                         <div className={style.confirmPassword}>
                             <div className={style.confirmPasswordLeft}>
                                 <img className={style.confirmPasswordLeftIcon}
-                                     src={require('../../image/confirmPassword.png')} alt=""/>
+                                     src={require('../../image/confirmPassword.png')} alt=''/>
                             </div>
                             <div className={classNames(style.confirmPasswordRight, baseStyle.bottomLine)}>
                                 <input {...getFieldProps('memberConfirmPassword', {

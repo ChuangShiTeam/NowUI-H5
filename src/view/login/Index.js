@@ -99,7 +99,6 @@ class Index extends Component {
     }
 
     handleSubmit() {
-
         this.props.form.validateFields((errors, value) => {
             if (!!errors) {
                 var message = '';
@@ -115,24 +114,22 @@ class Index extends Component {
 
                 return;
             }
-
-            console.log(value)
         });
     }
 
     render() {
-        const {getFieldProps, getFieldError, getFieldValue} = this.props.form;
+        const {getFieldProps} = this.props.form;
 
         return (
             <div className={style.page} style={{height: document.documentElement.clientHeight}}>
                 <div className={style.header}>
-                    <img className={style.logo} src={require('../../image/login-logo.png')} alt=""/>
+                    <img className={style.logo} src={require('../../image/login-logo.png')} alt=''/>
                 </div>
                 <div className={style.content}>
                     <div className={style.mobile}>
                         <div className={style.mobileLeft}>
                             <img className={style.mobileLeftIcon}
-                                 src={require('../../image/mobile.png')} alt=""/>
+                                 src={require('../../image/mobile.png')} alt=''/>
                         </div>
                         <div className={classNames(style.mobileRight, baseStyle.bottomLine)}>
                             <input {...getFieldProps('memberMobile', {
@@ -147,7 +144,7 @@ class Index extends Component {
                     <div className="slideunlock-wrapper">
                         <input type="hidden" className="slideunlock-lockable"/>
                         <div className="slideunlock-slider">
-                            <img className="slideunlock-label" src={require('../../image/paw.png')} alt=""/>
+                            <img className="slideunlock-label" src={require('../../image/paw.png')} alt=''/>
                             <span className="slideunlock-lable-tip"></span>
                         </div>
                     </div>
@@ -156,7 +153,7 @@ class Index extends Component {
                             <div className={style.captcha}>
                                 <div className={style.captchaLeft}>
                                     <img className={style.captchaLeftIcon} src={require('../../image/captcha.png')}
-                                         alt=""/>
+                                         alt=''/>
                                 </div>
                                 <div className={classNames(style.captchaCenter, baseStyle.bottomLine)}>
                                     <input {...getFieldProps('memberCaptcha', {

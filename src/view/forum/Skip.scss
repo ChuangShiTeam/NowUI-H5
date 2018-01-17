@@ -1,0 +1,112 @@
+.page {
+	max-width: 600px;
+	margin-left: auto;
+	margin-right: auto;
+	background: #FFFFFF;
+}
+
+.skip {
+	text-align: right;
+	padding-top: 10px;
+	margin-right: 18px;
+	margin-bottom: 15px;
+}
+
+.skip a {
+	font-family: PingFangSC-Light;
+	font-size: 12px;
+	color: #58bfce;
+}
+
+.title {
+	font-family: PingFangSC-Regular;
+	font-size: 18px;
+	color: #585858;
+	letter-spacing: 0.22px;
+	text-align: center;
+}
+
+.summary {
+	font-family: PingFangSC-Light;
+	font-size: 12px;
+	color: #585858;
+	letter-spacing: 0.14px;
+	text-align: center;
+	margin-top: 8px;
+}
+
+.list {
+	margin-top: 22px;
+	padding: 0px 33px 0px 33px;
+}
+
+.listItem {
+	-js-display: flex;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	height: 70px;
+}
+
+.listItemLeft {
+	width: 44px;
+}
+
+.listItemLeftIcon {
+	width: 36px;
+	height: 36px;
+	border-radius: 100%;
+}
+
+.listItemCenter {
+	flex-grow: 1;
+}
+
+.listItemCenterName {
+	font-family: PingFangSC-Regular;
+	font-size: 13px;
+	color: #3c3c3c;
+	letter-spacing: 0.16px;
+}
+
+.listItemCenterSummary {
+	font-family: PingFangSC-Regular;
+	font-size: 11px;
+	color: #6f6f6f;
+	letter-spacing: 0.13px;
+}
+
+.listItemRight {
+	width: 29px;
+}
+
+.listItemRightSelect {
+	width: 15px;
+	height: 15px;
+}
+
+.footer {
+	-js-display: flex;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	margin-top: 58px;
+}
+
+.submit {
+	background: #defafd;
+	box-shadow: 0 2px 4px 0 rgba(233, 233, 233, 0.50);
+	border-radius: 25px;
+	width: 94px;
+	height: 36px;
+	line-height: 36px;
+	text-align: center;
+	font-family: PingFangSC-Regular;
+	font-size: 14px;
+	color: #c18108;
+	letter-spacing: 0;
+}
