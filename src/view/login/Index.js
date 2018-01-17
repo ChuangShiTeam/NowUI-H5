@@ -27,6 +27,7 @@ class Index extends Component {
 
     componentDidMount() {
         util.setTitle('wawipet哇咿宠');
+        util.hancleComponentDidMount();
 
         let slider = new window.SliderUnlock(".slideunlock-slider", {
             labelTip: '向右滑动获取验证码',
@@ -94,6 +95,10 @@ class Index extends Component {
         }
     }
 
+    componentDidUpdate() {
+        util.hancleComponentDidUpdate();
+    }
+
     componentWillUnmount() {
         clearInterval(interval);
     }
@@ -144,7 +149,15 @@ class Index extends Component {
                     <div className="slideunlock-wrapper">
                         <input type="hidden" className="slideunlock-lockable"/>
                         <div className="slideunlock-slider">
-                            <img className="slideunlock-label" src={require('../../image/paw.png')} alt=''/>
+                            <div className="slideunlock-label" style={
+                                util.isIE8() ?
+                                    {
+                                        filter: 'progid:DXImageTransform.Microsoft.AlphaImageLoader(src=' + require('../../image/paw.png') + ',  sizingMethod=scale)'
+                                    }
+                                    :
+                                    {
+                                        backgroundImage: 'url(' + require('../../image/paw.png') + ')'
+                                    }} alt=''></div>
                             <span className="slideunlock-lable-tip"></span>
                         </div>
                     </div>

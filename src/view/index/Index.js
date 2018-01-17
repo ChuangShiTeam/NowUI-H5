@@ -26,8 +26,13 @@ class Index extends Component {
 
     componentDidMount() {
         util.setTitle('wawipet哇咿宠');
+        util.hancleComponentDidMount();
 
-        window.addEventListener('scroll', this.handleScroll);
+        if (window.addEventListener) {
+            window.addEventListener('scroll', this.handleScroll);
+        } else {
+            window.attachEvent('onscroll', this.handleScroll);
+        }
 
         if (this.props.index.indexBannerList.length === 0) {
             http.request({
@@ -94,8 +99,17 @@ class Index extends Component {
         }, 100);
     }
 
+    componentDidUpdate() {
+        util.hancleComponentDidUpdate();
+    }
+
     componentWillUnmount() {
-        window.removeEventListener('scroll', this.handleScroll);
+
+        if (window.addEventListener) {
+            window.removeEventListener('scroll', this.handleScroll);
+        } else {
+            window.detachEvent('onscroll', this.handleScroll);
+        }
     }
 
     handleScroll() {
@@ -318,6 +332,6 @@ class Index extends Component {
     }
 }
 
-export default connect((store) => ({
-    index: store.index
+export default connect((state) => ({
+    index: state.index
 }))(Index);

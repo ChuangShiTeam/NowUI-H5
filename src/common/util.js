@@ -40,6 +40,18 @@ function handleEnter(next, replace, callback) {
     callback();
 }
 
+function hancleComponentDidMount() {
+    if (window.flexibility) {
+        window.flexibility(document.body);
+    }
+}
+
+function hancleComponentDidUpdate() {
+    if (window.flexibility) {
+        window.flexibility(document.body);
+    }
+}
+
 function isMobile(str) {
     const re = /^1\d{10}$/;
     if (re.test(str)) {
@@ -64,6 +76,8 @@ export default {
     isIE8: isIE8,
     setTitle: setTitle,
     handleEnter: handleEnter,
+    hancleComponentDidMount: hancleComponentDidMount,
+    hancleComponentDidUpdate: hancleComponentDidUpdate,
     isMobile: isMobile,
     isEmail: isEmail
 };

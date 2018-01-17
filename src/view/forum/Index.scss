@@ -285,13 +285,17 @@
 }
 
 .interestContent {
-	padding: 12px;
+	padding: 12px 0px;
 }
 
-.interestContentList {
+.interestContentwrapper {
+	height: 50px;
+
+}
+
+.interestContentwrapperList {
 	background: #ffffff;
 	box-shadow: 0 -2px 4px 0 rgba(220, 220, 220, 0.50);
 	border-radius: 2px;
 	width: 232px;
-	height: 226px;
 }

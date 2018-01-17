@@ -27,6 +27,7 @@ class ForgetPassword extends Component {
 
     componentDidMount() {
         util.setTitle('wawipet哇咿宠');
+        util.hancleComponentDidMount();
 
         let slider = new window.SliderUnlock(".slideunlock-slider", {
             labelTip: '向右滑动获取验证码',
@@ -92,6 +93,10 @@ class ForgetPassword extends Component {
         } finally {
 
         }
+    }
+
+    componentDidUpdate() {
+        util.hancleComponentDidUpdate();
     }
 
     componentWillUnmount() {

@@ -28,6 +28,7 @@ class Register extends Component {
 
     componentDidMount() {
         util.setTitle('wawipet哇咿宠');
+        util.hancleComponentDidMount();
 
         let slider = new window.SliderUnlock(".slideunlock-slider", {
             labelTip: '向右滑动获取验证码',
@@ -95,6 +96,10 @@ class Register extends Component {
         }
     }
 
+    componentDidUpdate() {
+        util.hancleComponentDidUpdate();
+    }
+
     componentWillUnmount() {
         clearInterval(interval);
     }
@@ -132,6 +137,8 @@ class Register extends Component {
                 });
 
                 return;
+            } else {
+
             }
         });
     }

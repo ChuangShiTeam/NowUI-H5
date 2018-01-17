@@ -19,6 +19,7 @@ class Index extends Component {
 
     componentDidMount() {
         util.setTitle('wawipet哇咿宠');
+        util.hancleComponentDidMount();
 
         //TODO 从后台获取数据
         //本地测试静态数据
@@ -51,6 +52,10 @@ class Index extends Component {
             }
         });
 
+    }
+
+    componentDidUpdate() {
+        util.hancleComponentDidUpdate();
     }
 
     componentWillUnmount() {

@@ -7,7 +7,6 @@ import util from '../../common/util';
 
 import style from './Index.scss';
 import baseStyle from '../../css/Base.scss';
-import constant from "../../common/constant";
 
 class Index extends Component {
     constructor(props) {
@@ -20,6 +19,7 @@ class Index extends Component {
 
     componentDidMount() {
         util.setTitle('wawipet哇咿宠');
+        util.hancleComponentDidMount();
 
         this.props.dispatch({
             type: 'forumIndex',
@@ -36,10 +36,20 @@ class Index extends Component {
 
         new window.Swiper('.' + style.interestContent, {
             slidesPerView: 3,
-            loop: true,
+            loop:true,
             //Enable 3D Flow
-            tdFlow: {}
+            tdFlow: {
+                rotate : 0,
+                stretch :-30,
+                depth: 200,
+                modifier : 1,
+                shadows : false
+            }
         })
+    }
+
+    componentDidUpdate() {
+        util.hancleComponentDidUpdate();
     }
 
     componentWillUnmount() {
@@ -147,15 +157,15 @@ class Index extends Component {
                         </div>
                     </div>
                     <div className={classNames(style.interestContent, 'swiper-container')}>
-                        <div className={classNames('swiper-wrapper')}>
-                            <div className={style.interestContentList}>
-
+                        <div className={classNames(style.interestContentwrapper, 'swiper-wrapper')}>
+                            <div className={classNames(style.interestContentwrapperList, 'swiper-slide')}>
+s
                             </div>
-                            <div className={style.interestContentList}>
-
+                            <div className={classNames(style.interestContentwrapperList, 'swiper-slide')}>
+s
                             </div>
-                            <div className={style.interestContentList}>
-
+                            <div className={classNames(style.interestContentwrapperList, 'swiper-slide')}>
+s
                             </div>
                         </div>
                     </div>

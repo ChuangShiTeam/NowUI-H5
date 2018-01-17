@@ -16,6 +16,11 @@ class Index extends Component {
 
     componentDidMount() {
         util.setTitle('wawipet哇咿宠');
+        util.hancleComponentDidMount();
+    }
+
+    componentDidUpdate() {
+        util.hancleComponentDidUpdate();
     }
 
     componentWillUnmount() {

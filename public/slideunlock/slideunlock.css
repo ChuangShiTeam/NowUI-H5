@@ -34,6 +34,7 @@
     cursor: pointer;
     width: 46px;
     height: 47px;
+    background-size: contain;
 }
 
 .slideunlock-slider.success .slideunlock-label {
