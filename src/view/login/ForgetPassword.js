@@ -5,6 +5,7 @@ import Notification from 'rc-notification';
 import classNames from 'classnames';
 
 import util from '../../common/util';
+import http from '../../common/http';
 
 import style from './Register.scss';
 import baseStyle from '../../css/Base.scss';
@@ -21,6 +22,7 @@ class ForgetPassword extends Component {
             isLoad: false,
             isSendCaptcha: false,
             countdown: 0,
+            userId: '',
             step: 0
         }
     }
@@ -32,7 +34,7 @@ class ForgetPassword extends Component {
             labelTip: '向右滑动获取验证码',
             successLabelTip: '已经成功发送'
         }, function () {
-            this.props.form.validateFields((errors, value) => {
+            this.props.form.validateFields((errors, values) => {
                 if (!!errors) {
                     var message = '';
                     for (var error in errors) {
@@ -49,7 +51,7 @@ class ForgetPassword extends Component {
 
                     return;
                 } else {
-                    if (!util.isMobile(value.memberMobile)) {
+                    if (!util.isMobile(values.memberMobile)) {
                         notification.notice({
                             content: '手机号码格式不正确'
                         });
@@ -59,26 +61,50 @@ class ForgetPassword extends Component {
                         return;
                     }
 
-                    this.setState({
-                        isSendCaptcha: true,
-                        countdown: 60
-                    });
+                    http.request({
+                        url: '/member/mobile/v1/forget/password/sms/captcha/send',
+                        data: {
+                            userAccount: values.memberMobile
+                        },
+                        success: function (data) {
+                            if (data) {
+                                this.setState({
+                                    isSendCaptcha: true,
+                                    countdown: 60
+                                });
 
-                    interval = setInterval(function () {
-                        if (this.state.countdown === 1) {
-                            this.setState({
-                                isSendCaptcha: false
+                                interval = setInterval(function () {
+                                    if (this.state.countdown === 1) {
+                                        this.setState({
+                                            isSendCaptcha: false
+                                        });
+                                        slider.reset();
+                                        clearInterval(interval);
+                                    } else {
+                                        this.setState({
+                                            countdown: this.state.countdown - 1
+                                        });
+                                    }
+                                }.bind(this), 1000);
+                            } else {
+                                notification.notice({
+                                    content: '网络异常，请重新发送'
+                                });
+
+                                slider.reset();
+                            }
+                        }.bind(this),
+                        error: function(message) {
+                            notification.notice({
+                                content: '网络异常，请重新发送'
                             });
 
                             slider.reset();
+                        }.bind(this),
+                        complete: function () {
 
-                            clearInterval(interval);
-                        } else {
-                            this.setState({
-                                countdown: this.state.countdown - 1
-                            });
                         }
-                    }.bind(this), 1000);
+                    });
                 }
             });
         }.bind(this), function () {
@@ -100,9 +126,43 @@ class ForgetPassword extends Component {
 
     handleNext() {
         if (this.state.isSendCaptcha) {
-            this.setState({
-                step: 1
+            this.props.form.validateFields((errors, values) => {
+                if (!!errors) {
+                    var message = '';
+                    for (var error in errors) {
+                        message += '<p>';
+                        message += errors[error].errors[0].message;
+                        message += '</p>';
+                    }
+
+                    notification.notice({
+                        content: <div dangerouslySetInnerHTML={{__html: message}}></div>
+                    });
+
+                    return;
+                }
+
+                http.request({
+                    url: '/member/mobile/v1/forget/password/check',
+                    data: {
+                        userAccount: values.memberMobile,
+                        smsCaptchaCode: values.memberCaptcha
+                    },
+                    success: function (data) {
+                        if (data.userId) {
+                            this.setState({
+                                userId: data.userId,
+                                step: 1
+                            });
+                        }
+                    }.bind(this),
+                    complete: function () {
+
+                    }
+                });
+
             });
+
         } else {
             notification.notice({
                 content: '请先获取验证码'
@@ -111,7 +171,7 @@ class ForgetPassword extends Component {
     }
 
     handleSubmit() {
-        this.props.form.validateFields((errors, value) => {
+        this.props.form.validateFields((errors, values) => {
             if (!!errors) {
                 var message = '';
                 for (var error in errors) {
@@ -126,6 +186,32 @@ class ForgetPassword extends Component {
 
                 return;
             }
+
+            let userId = this.state.userId;
+            if (!userId) {
+                return;
+            }
+            http.request({
+                url: '/member/mobile/v1/forget/password/find',
+                data: {
+                    userId: userId,
+                    userPassword: values.memberPassword
+                },
+                success: function (data) {
+                    if (data) {
+                        notification.notice({
+                            content: '设置密码成功'
+                        });
+                        this.props.history.push({
+                            pathname: '/login/password',
+                            query: {}
+                        });
+                    }
+                }.bind(this),
+                complete: function () {
+
+                }
+            });
         });
     }
 

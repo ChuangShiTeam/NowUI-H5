@@ -6,6 +6,8 @@ import Notification from 'rc-notification';
 import classNames from 'classnames';
 
 import util from '../../common/util';
+import http from '../../common/http';
+import storage from '../../common/storage';
 
 import style from './Index.scss';
 import baseStyle from '../../css/Base.scss';
@@ -32,7 +34,7 @@ class Index extends Component {
             labelTip: '向右滑动获取验证码',
             successLabelTip: '已经成功发送'
         }, function () {
-            this.props.form.validateFields((errors, value) => {
+            this.props.form.validateFields((errors, values) => {
                 if (!!errors) {
                     var message = '';
                     for (var error in errors) {
@@ -49,7 +51,7 @@ class Index extends Component {
 
                     return;
                 } else {
-                    if (!util.isMobile(value.memberMobile)) {
+                    if (!util.isMobile(values.memberMobile)) {
                         notification.notice({
                             content: '手机号码格式不正确'
                         });
@@ -59,26 +61,50 @@ class Index extends Component {
                         return;
                     }
 
-                    this.setState({
-                        isSendCaptcha: true,
-                        countdown: 60
-                    });
+                    http.request({
+                        url: '/member/mobile/v1/register/sms/captcha/send',
+                        data: {
+                            userAccount: values.memberMobile
+                        },
+                        success: function (data) {
+                            if (data) {
+                                this.setState({
+                                    isSendCaptcha: true,
+                                    countdown: 60
+                                });
 
-                    interval = setInterval(function () {
-                        if (this.state.countdown === 1) {
-                            this.setState({
-                                isSendCaptcha: false
+                                interval = setInterval(function () {
+                                    if (this.state.countdown === 1) {
+                                        this.setState({
+                                            isSendCaptcha: false
+                                        });
+                                        slider.reset();
+                                        clearInterval(interval);
+                                    } else {
+                                        this.setState({
+                                            countdown: this.state.countdown - 1
+                                        });
+                                    }
+                                }.bind(this), 1000);
+                            } else {
+                                notification.notice({
+                                    content: '网络异常，请重新发送'
+                                });
+
+                                slider.reset();
+                            }
+                        }.bind(this),
+                        error: function(message) {
+                            notification.notice({
+                                content: '网络异常，请重新发送'
                             });
 
                             slider.reset();
+                        }.bind(this),
+                        complete: function () {
 
-                            clearInterval(interval);
-                        } else {
-                            this.setState({
-                                countdown: this.state.countdown - 1
-                            });
                         }
-                    }.bind(this), 1000);
+                    });
                 }
             });
         }.bind(this), function () {
@@ -99,7 +125,8 @@ class Index extends Component {
     }
 
     handleSubmit() {
-        this.props.form.validateFields((errors, value) => {
+
+        this.props.form.validateFields((errors, values) => {
             if (!!errors) {
                 var message = '';
                 for (var error in errors) {
@@ -114,6 +141,27 @@ class Index extends Component {
 
                 return;
             }
+
+            http.request({
+                url: '/member/mobile/v1/sms/captcha/login',
+                data: {
+                    userAccount: values.memberMobile,
+                    smsCaptchaCode: values.memberCaptcha
+                },
+                success: function (data) {
+                    if (data.token) {
+                        storage.setToken(data.token);
+                    }
+                    this.props.history.push({
+                        pathname: '/index',
+                        query: {}
+                    });
+                }.bind(this),
+                complete: function () {
+
+                }
+            });
+
         });
     }
 

@@ -6,6 +6,8 @@ import Notification from 'rc-notification';
 import classNames from 'classnames';
 
 import util from '../../common/util';
+import http from '../../common/http';
+import storage from '../../common/storage';
 
 import style from './Password.scss';
 import baseStyle from '../../css/Base.scss';
@@ -36,7 +38,7 @@ class Password extends Component {
 
     handleSubmit() {
 
-        this.props.form.validateFields((errors, value) => {
+        this.props.form.validateFields((errors, values) => {
             if (!!errors) {
                 var message = '';
                 for (var error in errors) {
@@ -52,7 +54,25 @@ class Password extends Component {
                 return;
             }
 
-            console.log(value)
+            http.request({
+                url: '/member/mobile/v1/password/login',
+                data: {
+                    userAccount: values.memberMobile,
+                    userPassword: values.memberPassword
+                },
+                success: function (data) {
+                    if (data.token) {
+                        storage.setToken(data.token);
+                    }
+                    this.props.history.push({
+                        pathname: '/index',
+                        query: {}
+                    });
+                }.bind(this),
+                complete: function () {
+
+                }
+            });
         });
     }
 
