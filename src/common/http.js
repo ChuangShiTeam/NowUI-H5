@@ -1,8 +1,12 @@
 import reqwest from 'reqwest';
 import md5 from 'blueimp-md5';
+import Notification from 'rc-notification';
 
 import constant from './constant';
 import storage from './storage';
+
+let notification = null;
+Notification.newInstance({}, (n) => notification = n);
 
 function request(config) {
     config.data.appId = constant.appId;
@@ -33,11 +37,24 @@ function request(config) {
             if (response.code === 200) {
                 config.success(response.data);
             } else {
-                console.log(response.message);
+                if (config.error) {
+                    config.error(response.message);
+                } else {
+                    notification.notice({
+                        content: '网络异常，请重试'
+                    });
+                }
+                console.log('接口异常信息：', response.message);
             }
         },
         error: function () {
-
+            if (config.error) {
+                config.error();
+            } else {
+                notification.notice({
+                    content: '网络异常，请重试'
+                });
+            }
         },
         complete: function () {
             config.complete();
