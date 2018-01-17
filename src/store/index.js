@@ -1,9 +1,11 @@
 const initialState = {
-    bannerList: [],
-    articleCategoryList: [],
-    topArticleList: [],
-    animalList: []
-}
+    indexBannerList: [],
+    indexNavigationList: [],
+    hotArticleList: [],
+    petCategoryArticleList: [],
+    recommendArticleList: [],
+    latestArticleList: []
+};
 
 function index(state = initialState, action) {
     switch (action.type) {
