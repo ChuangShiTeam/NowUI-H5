@@ -12,6 +12,12 @@ import constant from '../../common/constant';
 import style from './Index.scss';
 import baseStyle from '../../css/Base.scss';
 
+let bannerSwiper;
+let categorySwiper;
+let hotSwiper;
+let animalSwiper;
+let guessSwiper;
+
 class Index extends Component {
     constructor(props) {
         super(props);
@@ -63,7 +69,7 @@ class Index extends Component {
 
     handleSwiper() {
         setTimeout(function () {
-            new window.Swiper('.' + style.banner, {
+            bannerSwiper = new window.Swiper('.' + style.banner, {
                 pagination: '.' + style.bannerPagination,
                 loop: true
             });
@@ -104,6 +110,11 @@ class Index extends Component {
     }
 
     componentWillUnmount() {
+        bannerSwiper.destroy();
+        categorySwiper.destroy();
+        hotSwiper.destroy();
+        animalSwiper.destroy();
+        guessSwiper.destroy();
 
         if (window.addEventListener) {
             window.removeEventListener('scroll', this.handleScroll);

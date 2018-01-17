@@ -8,6 +8,8 @@ import util from '../../common/util';
 import style from './Index.scss';
 import baseStyle from '../../css/Base.scss';
 
+let interestSwiper;
+
 class Index extends Component {
     constructor(props) {
         super(props);
@@ -34,10 +36,9 @@ class Index extends Component {
             }
         });
 
-        new window.Swiper('.' + style.interestContent, {
+        interestSwiper = new window.Swiper('.' + style.interestContent, {
             slidesPerView: 3,
             loop:true,
-            //Enable 3D Flow
             tdFlow: {
                 rotate : 0,
                 stretch :-30,
@@ -45,7 +46,7 @@ class Index extends Component {
                 modifier : 1,
                 shadows : false
             }
-        })
+        });
     }
 
     componentDidUpdate() {
@@ -53,7 +54,7 @@ class Index extends Component {
     }
 
     componentWillUnmount() {
-
+        interestSwiper.destroy();
     }
 
     render() {
