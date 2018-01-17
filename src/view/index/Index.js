@@ -6,6 +6,8 @@ import classNames from 'classnames';
 import TopicIndex from "../../component/topic/Index";
 
 import util from '../../common/util';
+import http from '../../common/http';
+import constant from '../../common/constant';
 
 import style from './Index.scss';
 import baseStyle from '../../css/Base.scss';
@@ -17,7 +19,7 @@ class Index extends Component {
         this.state = {
             opacity: 0,
             ieOpacity: 0
-        }
+        };
 
         this.handleScroll = this.handleScroll.bind(this);
     }
@@ -27,105 +29,34 @@ class Index extends Component {
 
         window.addEventListener('scroll', this.handleScroll);
 
-        this.props.dispatch({
-            type: 'index',
-            data: {
-                bannerList: [{
-                    bannerId: 0
-                }, {
-                    bannerId: 1
-                }, {
-                    bannerId: 2
-                }, {
-                    bannerId: 3
-                }, {
-                    bannerId: 4
-                }],
-                articleCategoryList: [{
-                    articleCategoryId: 0,
-                    articleCategoryName: '保健卡',
-                    articleCategoryImage: '../../image/category-0.png'
-                }, {
-                    articleCategoryId: 1,
-                    articleCategoryName: '健康知识',
-                    articleCategoryImage: '../../image/category-1.png'
-                }, {
-                    articleCategoryId: 2,
-                    articleCategoryName: '饮食',
-                    articleCategoryImage: '../../image/category-2.png'
-                }, {
-                    articleCategoryId: 3,
-                    articleCategoryName: '品种',
-                    articleCategoryImage: '../../image/category-3.png'
-                }, {
-                    articleCategoryId: 4,
-                    articleCategoryName: '丧事',
-                    articleCategoryImage: '../../image/category-4.png'
-                }, {
-                    articleCategoryId: 5,
-                    articleCategoryName: '美容时尚',
-                    articleCategoryImage: '../../image/category-5.png'
-                }, {
-                    articleCategoryId: 6,
-                    articleCategoryName: '家居',
-                    articleCategoryImage: '../../image/category-6.png'
-                }, {
-                    articleCategoryId: 7,
-                    articleCategoryName: '寄养出行',
-                    articleCategoryImage: '../../image/category-7.png'
-                }, {
-                    articleCategoryId: 8,
-                    articleCategoryName: '领养',
-                    articleCategoryImage: '../../image/category-8.png'
-                }],
-                topArticleList: [{
-                    articleId: 0,
-                    articleTitle: '英国女王的挚爱——威尔士柯基，传说中的蜜桃臀英国女王的挚爱——威尔士柯基，传说中的蜜桃臀英国女王的挚爱——威尔士柯基，传说中的蜜桃臀'
-                }, {
-                    articleId: 1,
-                    articleTitle: '英国女王的挚爱——威尔士柯基，传说中的蜜桃臀英国女王的挚爱——威尔士柯基，传说中的蜜桃臀英国女王的挚爱——威尔士柯基，传说中的蜜桃臀'
-                }, {
-                    articleId: 2,
-                    articleTitle: '英国女王的挚爱——威尔士柯基，传说中的蜜桃臀英国女王的挚爱——威尔士柯基，传说中的蜜桃臀英国女王的挚爱——威尔士柯基，传说中的蜜桃臀'
-                }, {
-                    articleId: 3,
-                    articleTitle: '英国女王的挚爱——威尔士柯基，传说中的蜜桃臀英国女王的挚爱——威尔士柯基，传说中的蜜桃臀英国女王的挚爱——威尔士柯基，传说中的蜜桃臀'
-                }, {
-                    articleId: 4,
-                    articleTitle: '英国女王的挚爱——威尔士柯基，传说中的蜜桃臀英国女王的挚爱——威尔士柯基，传说中的蜜桃臀英国女王的挚爱——威尔士柯基，传说中的蜜桃臀'
-                }],
-                animalList: [{
-                    categoryId: 0,
-                    categoryName: '食物',
-                    categoryDescription: 'Dog'
-                }, {
-                    categoryId: 1,
-                    categoryName: '食物',
-                    categoryDescription: 'Dog'
-                }, {
-                    categoryId: 2,
-                    categoryName: '食物',
-                    categoryDescription: 'Dog'
-                }, {
-                    categoryId: 3,
-                    categoryName: '食物',
-                    categoryDescription: 'Dog'
-                }, {
-                    categoryId: 4,
-                    categoryName: '食物',
-                    categoryDescription: 'Dog'
-                }, {
-                    categoryId: 5,
-                    categoryName: '食物',
-                    categoryDescription: 'Dog'
-                }, {
-                    categoryId: 6,
-                    categoryName: '食物',
-                    categoryDescription: 'Dog'
-                }]
-            }
-        });
+        if (this.props.index.indexBannerList.length === 0) {
+            http.request({
+                url: '/wawi/mobile/v1/index/init',
+                data: {},
+                success: function (data) {
+                    this.props.dispatch({
+                        type: 'index',
+                        data: {
+                            indexBannerList: data.indexBannerList,
+                            indexNavigationList: data.indexNavigationList,
+                            hotArticleList: data.hotArticleList,
+                            petCategoryArticleList: data.petCategoryArticleList,
+                            recommendArticleList: data.recommendArticleList,
+                            latestArticleList: data.latestArticleList
+                        }
+                    });
+                    this.handleSwiper();
+                }.bind(this),
+                complete: function () {
 
+                }
+            });
+        } else {
+            this.handleSwiper();
+        }
+    }
+
+    handleSwiper() {
         setTimeout(function () {
             new window.Swiper('.' + style.banner, {
                 pagination: '.' + style.bannerPagination,
@@ -190,7 +121,7 @@ class Index extends Component {
 
     render() {
         return (
-            <div className={classNames(baseStyle.page, baseStyle.tabbarPage)}>
+            <div className={classNames(baseStyle.page, baseStyle.tabbarPage)}>  
                 <div className={style.headerMask} style={{
                     opacity: this.state.opacity,
                     filter: 'progid:DXImageTransform.Microsoft.Alpha(opacity=' + this.state.ieOpacity + ')'
@@ -219,10 +150,10 @@ class Index extends Component {
                 >
                     <div className="swiper-wrapper">
                         {
-                            this.props.index.bannerList.map(function (banner) {
+                            this.props.index.indexBannerList.map(function (indexBanner) {
                                 return (
-                                    <div key={banner.bannerId} className="swiper-slide">
-                                        <img src={require('../../image/0.png')} alt=""/>
+                                    <div key={indexBanner.advertisementId} className="swiper-slide">
+                                        <img src={constant.image_host + indexBanner.filePath} alt=""/>
                                     </div>
                                 )
                             })
@@ -233,13 +164,13 @@ class Index extends Component {
                 <div className={classNames(style.category, 'swiper-container')}>
                     <div className={classNames(style.categoryContent, 'swiper-wrapper')}>
                         {
-                            this.props.index.articleCategoryList.map(function (articleCategory) {
+                            this.props.index.indexNavigationList.map(function (indexNavigation, index) {
                                 return (
-                                    <div key={articleCategory.articleCategoryId}
+                                    <div key={index}
                                          className={classNames(style.categoryContentItem, 'swiper-slide')}>
                                         <img className={style.categoryContentItemImage}
-                                             src={require('../../image/category-1.png')} alt=""/>
-                                        <div className={style.categoryContentItemItemName}>{articleCategory.articleCategoryName}</div>
+                                             src={constant.image_host + indexNavigation.filePath} alt=""/>
+                                        <div className={style.categoryContentItemItemName}>{indexNavigation.navigationName}</div>
                                     </div>
                                 )
                             })
@@ -260,14 +191,14 @@ class Index extends Component {
                             <div className={classNames(style.hotArticleContentListContainer, 'swiper-container')}>
                                 <div className={classNames(style.hotArticleContentListContainerWrapper, 'swiper-wrapper')}>
                                     {
-                                        this.props.index.topArticleList.map(function (article, index) {
+                                        this.props.index.hotArticleList.map(function (article, index) {
                                             return (
                                                 <div key={article.articleId}
                                                      className={classNames(style.hotArticleContentListContainerWrapperItem, index === 0 ? baseStyle.topLine : '', baseStyle.bottomLine, 'swiper-slide')}>
                                                     <div className={style.hotArticleContentListContainerWrapperItemLeft}>
                                                         <img className={style.hotArticleContentListContainerWrapperItemLeftImage}
-                                                            src={require('../../image/2.png')}
-                                                            alt=""/>
+                                                             src={require('../../image/2.png')}
+                                                             alt=""/>
                                                     </div>
                                                     <div className={style.hotArticleContentListContainerWrapperItemRight}>
                                                         {article.articleTitle}
@@ -288,15 +219,13 @@ class Index extends Component {
                     <div className={classNames(style.animalCategoryContent, 'swiper-container')}>
                         <div className={classNames(style.animalCategoryContentWrapper, 'swiper-wrapper')}>
                             {
-                                this.props.index.animalList.map(function (category) {
+                                this.props.index.petCategoryArticleList.map(function (petCategoryArticle, index) {
                                     return (
-                                        <div key={category.categoryId}
+                                        <div key={index}
                                              className={classNames(style.animalCategoryContentWrapperItem, 'swiper-slide')}>
-                                            <img className={style.animalCategoryContentWrapperItemImage} src={require('../../image/3.png')} alt=""/>
-                                            <div
-                                                className={style.animalCategoryContentWrapperItemName}>{category.categoryName}</div>
-                                            <div
-                                                className={style.animalCategoryContentWrapperItemDescription}>{category.categoryDescription}</div>
+                                            <img className={style.animalCategoryContentWrapperItemImage} src={constant.image_host + petCategoryArticle.filePath} alt=""/>
+                                            <div className={style.animalCategoryContentWrapperItemName}>{petCategoryArticle.articleTitle}</div>
+                                            <div className={style.animalCategoryContentWrapperItemDescription}>{petCategoryArticle.articleSummary}</div>
                                         </div>
                                     )
                                 })

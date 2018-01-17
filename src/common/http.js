@@ -1,5 +1,4 @@
 import reqwest from 'reqwest';
-import {message} from 'antd';
 import md5 from 'blueimp-md5';
 
 import constant from './constant';
@@ -34,7 +33,7 @@ function request(config) {
             if (response.code === 200) {
                 config.success(response.data);
             } else {
-                message.error(response.message);
+                console.log(response.message);
             }
         },
         error: function () {

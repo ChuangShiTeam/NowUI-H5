@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import classNames from 'classnames';
 
+import http from '../../common/http';
+import constant from '../../common/constant';
 import style from './Index.scss';
 import baseStyle from '../../css/Base.scss';
 
@@ -10,37 +12,7 @@ class Index extends Component {
         super(props);
 
         this.state = {
-            menuList: [{
-                name: '首页',
-                url: '/index',
-                icon: 'index.png',
-                selectedIcon: 'index-active.png',
-                selected: true
-            }, {
-                name: '社区',
-                url: '/forum/index',
-                icon: 'forum.png',
-                selectedIcon: 'forum-active.png',
-                selected: false
-            }, {
-                name: '服务',
-                url: '/service/index',
-                icon: 'service.png',
-                selectedIcon: 'service-active.png',
-                selected: false
-            }, {
-                name: '精选',
-                url: '/shop/index',
-                icon: 'shop.png',
-                selectedIcon: 'shop-active.png',
-                selected: false
-            }, {
-                name: '我的',
-                url: '/my/index',
-                icon: 'my.png',
-                selectedIcon: 'my-active.png',
-                selected: false
-            }]
+
         }
     }
 
@@ -52,30 +24,59 @@ class Index extends Component {
             path = '/forum/index';
         }
 
-        this.handleMenu(path);
+        if (this.props.main.toolbarList.length === 0) {
+            http.request({
+                url: '/wawi/mobile/v1/toolbar/list',
+                data: {},
+                success: function (data) {
+                    let toolbarList = data;
+                    for (let i = 0; i < toolbarList.length; i++) {
+                        if (toolbarList[i].toolbarUrl && path === toolbarList[i].toolbarUrl) {
+                            toolbarList[i].selected = true;
+                        } else {
+                            toolbarList[i].selected = false;
+                        }
+                    }
+                    this.props.dispatch({
+                        type: 'main',
+                        data: {
+                            toolbarList: toolbarList
+                        }
+                    });
+                }.bind(this),
+                complete: function () {
+
+                }
+            });
+        } else {
+            this.handleToolbar(path);
+        }
     }
 
     componentWillUnmount() {
 
     }
 
-    handleMenu(path) {
-        let menuList = this.state.menuList;
-        for (let i = 0; i < menuList.length; i++) {
-            if (path === menuList[i].url) {
-                menuList[i].selected = true;
+    handleToolbar(path) {
+        let toolbarList = this.props.main.toolbarList;
+        for (let i = 0; i < toolbarList.length; i++) {
+            if (path === toolbarList[i].toolbarUrl) {
+                toolbarList[i].selected = true;
             } else {
-                menuList[i].selected = false;
+                toolbarList[i].selected = false;
             }
         }
 
-        this.setState({
-            menuList: menuList
+        this.props.dispatch({
+            type: 'main',
+            data: {
+                toolbarList: toolbarList
+            }
         });
     }
 
     handleClick(url) {
-        this.handleMenu(url);
+        this.handleToolbar(url);
 
         if (url === '/forum/index') {
             //url = '/forum/skip';
@@ -94,15 +95,14 @@ class Index extends Component {
                 <div className={style.footer}>
                     <div className={classNames(style.footerContent, baseStyle.topLine)}>
                         {
-                            this.state.menuList.map((menu, index) => {
+                            this.props.main.toolbarList.map((toolbar, index) => {
                                 return (
                                     <div key={index} className={style.footerContentItem}
-                                         onClick={this.handleClick.bind(this, menu.url)}>
+                                         onClick={this.handleClick.bind(this, toolbar.toolbarUrl)}>
                                         <img className={style.footerContentItemIcon}
-                                             src={require('../../image/' + (menu.selected ? menu.selectedIcon : menu.icon))}
+                                             src={constant.image_host + (toolbar.selected  ? toolbar.toolbarImage.filePath : toolbar.toolbarActiveImage.filePath)}
                                              alt=""/>
-                                        <div
-                                            className={classNames(style.footerContentItemName, menu.selected ? style.footerContentItemNameActive : '')}>{menu.name}</div>
+                                        <div className={classNames(style.footerContentItemName, toolbar.selected ? style.footerContentItemNameActive : '')}>{toolbar.toolbarName}</div>
                                     </div>
                                 );
                             })
@@ -116,6 +116,6 @@ class Index extends Component {
 
 export default connect((state) => {
     return {
-        index: state.index
+        main: state.main
     }
 })(Index);
