@@ -70,6 +70,12 @@ class Register extends Component {
         clearInterval(interval);
     }
 
+    handleAgreement() {
+        this.setState({
+            isAgreement: !this.state.isAgreement
+        });
+    }
+
     handleNext() {
         if (this.state.isAgreement) {
             this.setState({
@@ -159,6 +165,10 @@ class Register extends Component {
                         <div className={style.submit}
                              style={this.state.isSendCaptcha ? {background: '#58BFCE'} : {background: '#9DD7E3'}}
                              onClick={this.handleNext.bind(this)}>下一步
+                        </div>
+                        <div className={style.link}>
+                            <img className={style.linkAgreementIcon} src={this.state.isAgreement ? require('../../image/agreement-active.png') : require('../../image/agreement.png')} width="10" height="10" alt="" onClick={this.handleAgreement.bind(this)}/>
+                            <span className={style.linkAgreementText} onClick={this.handleAgreement.bind(this)}>我已阅读并接受</span><span className={style.linkRegisterText}>注册协议</span><span className={style.linkAgreementText}>和</span><span className={style.linkPrivateText}>隐私条款</span>
                         </div>
                     </div>
                 </div>

@@ -113,6 +113,42 @@
     margin-top: 24px;
 }
 
+.link {
+    -js-display: flex;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    height: 34px;
+    margin-top: 5px;
+}
+
+.linkAgreementIcon {
+    margin-right: 3px;
+}
+
+.linkAgreementText {
+    font-family:PingFangSC-Light;
+    font-size:8px;
+    color:#212121;
+    letter-spacing:0;
+}
+
+.linkRegisterText {
+    font-family:PingFangSC-Light;
+    font-size:8px;
+    color:#58bfce;
+    letter-spacing:0;
+}
+
+.linkPrivateText {
+    font-family:PingFangSC-Light;
+    font-size:8px;
+    color:#58bfce;
+    letter-spacing:0;
+}
+
 .password {
     -js-display: flex;
     display: flex;
@@ -129,8 +165,8 @@
 }
 
 .passwordLeftIcon {
-    width: 13px;
-    height: 20px;
+    width: 12px;
+    height: 15px;
 }
 
 .passwordRight {
@@ -166,8 +202,8 @@
 }
 
 .confirmPasswordLeftIcon {
-    width: 13px;
-    height: 20px;
+    width: 12px;
+    height: 15px;
 }
 
 .confirmPasswordRight {
