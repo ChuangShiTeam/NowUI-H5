@@ -63,7 +63,7 @@ class Index extends Component {
                 <div className={style.header}>
                     <div className={style.headerContent}>
                         <div className={style.headerContentLeft}>
-                            <Link to="/forum/index" className={style.headerContentLeft}>
+                            <Link to="/forum/add" className={style.headerContentLeft}>
                                 <img className={style.headerContentLeftAdd}
                                      src={require('../../image/forum-add.png')}
                                      alt=''/>

@@ -3,7 +3,8 @@ import {connect} from 'react-redux';
 
 import util from '../../common/util';
 
-import './Index.css';
+import style from './Add.scss';
+import baseStyle from '../../css/Base.scss';
 
 class Index extends Component {
     constructor(props) {
@@ -30,7 +31,15 @@ class Index extends Component {
     render() {
         return (
             <div>
-
+                <div className={style.header}>
+                    <div className={style.headerContent}>
+                        创建圈子
+                    </div>
+                </div>
+                <div className={style.upload}>
+                    <div className={style.uploadLeft}>上传圈子照片</div>
+                    <div className={style.uploadRight}></div>
+                </div>
             </div>
         );
     }

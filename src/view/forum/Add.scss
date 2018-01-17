@@ -1,0 +1,47 @@
+.header {
+	position: fixed;
+	top: 0;
+	height: 45px;
+	z-index: 99;
+	width: 100%;
+	max-width: 600px;
+	background: #ffffff;
+	box-shadow: 0 2px 2px 0 rgba(228, 228, 228, 0.50);
+}
+
+.headerContent {
+	-js-display: flex;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 45px;
+	font-family:PingFangSC-Regular;
+	font-size:16px;
+	color:#4a4a4a;
+}
+
+.upload {
+	-js-display: flex;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	margin-top: 45px;
+	height: 73px;
+	background: #ffffff;
+	border-bottom: 10px solid #defafd;
+}
+
+.uploadLeft {
+	flex-grow: 1;
+	font-family:PingFangSC-Regular;
+	font-size:14px;
+	color:#262626;
+	padding-left: 12px;
+}
+
+.uploadRight {
+	width: 70px;
+}

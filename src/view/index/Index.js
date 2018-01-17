@@ -110,11 +110,25 @@ class Index extends Component {
     }
 
     componentWillUnmount() {
-        bannerSwiper.destroy();
-        categorySwiper.destroy();
-        hotSwiper.destroy();
-        animalSwiper.destroy();
-        guessSwiper.destroy();
+        if (bannerSwiper) {
+            bannerSwiper.destroy();
+        }
+
+        if (categorySwiper) {
+            categorySwiper.destroy();
+        }
+
+        if (hotSwiper) {
+            hotSwiper.destroy();
+        }
+
+        if (animalSwiper) {
+            animalSwiper.destroy();
+        }
+
+        if (guessSwiper) {
+            guessSwiper.destroy();
+        }
 
         if (window.addEventListener) {
             window.removeEventListener('scroll', this.handleScroll);

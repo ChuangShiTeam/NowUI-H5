@@ -53,6 +53,14 @@ export default {
             }, 'forum.skip');
         }
     }, {
+        path: '/forum/add',
+        onEnter: util.handleEnter,
+        getComponent(location, cb) {
+            require.ensure([], (require) => {
+                cb(null, require('../view/forum/Add').default);
+            }, 'forum.add');
+        }
+    }, {
         path: '/forum/info',
         onEnter: util.handleEnter,
         getComponent(location, cb) {
