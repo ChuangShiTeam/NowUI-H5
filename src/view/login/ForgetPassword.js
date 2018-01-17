@@ -13,7 +13,7 @@ let interval;
 let notification = null;
 Notification.newInstance({}, (n) => notification = n);
 
-class Register extends Component {
+class ForgetPassword extends Component {
     constructor(props) {
         super(props);
 
@@ -21,7 +21,6 @@ class Register extends Component {
             isLoad: false,
             isSendCaptcha: false,
             countdown: 0,
-            isAgreement: true,
             step: 0
         }
     }
@@ -99,20 +98,14 @@ class Register extends Component {
         clearInterval(interval);
     }
 
-    handleAgreement() {
-        this.setState({
-            isAgreement: !this.state.isAgreement
-        });
-    }
-
     handleNext() {
-        if (this.state.isAgreement) {
+        if (this.state.isSendCaptcha) {
             this.setState({
                 step: 1
             });
         } else {
             notification.notice({
-                content: '请先接受注册协议和隐私条款'
+                content: '请先获取验证码'
             });
         }
     }
@@ -143,7 +136,7 @@ class Register extends Component {
             this.state.step == 0 ?
                 <div className={style.page} style={{height: document.documentElement.clientHeight}}>
                     <div className={style.header}>
-                        注册账号
+                        忘记密码？
                     </div>
                     <div className={style.content}>
                         <div className={style.mobile}>
@@ -196,10 +189,6 @@ class Register extends Component {
                              style={this.state.isSendCaptcha ? {background: '#58BFCE'} : {background: '#9DD7E3'}}
                              onClick={this.handleNext.bind(this)}>下一步
                         </div>
-                        <div className={style.link}>
-                            <img className={style.linkAgreementIcon} src={this.state.isAgreement ? require('../../image/agreement-active.png') : require('../../image/agreement.png')} width="10" height="10" alt="" onClick={this.handleAgreement.bind(this)}/>
-                            <span className={style.linkAgreementText} onClick={this.handleAgreement.bind(this)}>我已阅读并接受</span><span className={style.linkRegisterText}>注册协议</span><span className={style.linkAgreementText}>和</span><span className={style.linkPrivateText}>隐私条款</span>
-                        </div>
                     </div>
                 </div>
                 :
@@ -248,6 +237,6 @@ class Register extends Component {
     }
 }
 
-Register = createForm({})(Register);
+ForgetPassword = createForm({})(ForgetPassword);
 
-export default connect(() => ({}))(Register);
+export default connect(() => ({}))(ForgetPassword);

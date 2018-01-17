@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Router from './Router';
 
+import './css/Style.css';
 import 'rc-notification/assets/index.css';
 
 // if (typeof String.prototype.startsWith !== 'function') {

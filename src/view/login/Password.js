@@ -57,7 +57,7 @@ class Password extends Component {
     }
 
     render() {
-        const {getFieldProps, getFieldError, getFieldValue} = this.props.form;
+        const {getFieldProps} = this.props.form;
 
         return (
             <div className={style.page} style={{height: document.documentElement.clientHeight}}>
@@ -95,6 +95,7 @@ class Password extends Component {
                             })} className={style.passwordRightInput} type="text" placeholder="请输入密码"/>
                         </div>
                     </div>
+                    <div className={style.forget}><Link to="/forget/password">忘记密码</Link></div>
                     <div className={style.submit}
                          style={this.state.isSendCaptcha ? {background: '#58BFCE'} : {background: '#9DD7E3'}}
                          onClick={this.handleSubmit.bind(this)}>登 录
