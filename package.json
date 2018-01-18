@@ -8,6 +8,7 @@
     "history": "^1.17.0",
     "rc-form": "^1.5.0",
     "rc-notification": "^3.0.1",
+    "rc-upload": "^2.4.4",
     "react": "^0.14.8",
     "react-dom": "^0.14.8",
     "react-redux": "^4.4.1",
@@ -18,10 +19,8 @@
     "reqwest": "^2.0.5"
   },
   "devDependencies": {
-    "css-loader": "^0.28.8",
     "proxyquire": "^1.8.0",
-    "rewire": "^3.0.2",
-    "style-loader": "^0.19.1"
+    "rewire": "^3.0.2"
   },
   "scripts": {
     "macStart": "PORT=3002 PUBLIC_URL=./ node script/start start",

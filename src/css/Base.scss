@@ -1,51 +1,62 @@
 .page {
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-    background-color: #FFFFFF;
+	max-width: 600px;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #FFFFFF;
 }
 
 .navbarPage {
-    margin-top: 42px;
+	margin-top: 42px;
 }
 
 .tabbarPage {
-    margin-bottom: 41px;
+	margin-bottom: 41px;
 }
 
 .topLine {
-    position: relative;
+	position: relative;
 }
 
 .topLine:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    background: #DFDFDF;
-    width: 100%;
-    height: 1px;
-    -webkit-transform: scaleY(0.5);
-    transform: scaleY(0.5);
-    -webkit-transform-origin: 0 0;
-    transform-origin: 0 0;
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: #DFDFDF;
+	width: 100%;
+	height: 1px;
+	-webkit-transform: scaleY(0.5);
+	transform: scaleY(0.5);
+	-webkit-transform-origin: 0 0;
+	transform-origin: 0 0;
 }
 
 .bottomLine {
-    position: relative;
+	position: relative;
 }
 
 .bottomLine:after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    background: #DFDFDF;
-    width: 100%;
-    height: 1px;
-    -webkit-transform: scaleY(0.5);
-    transform: scaleY(0.5);
-    -webkit-transform-origin: 0 0;
-    transform-origin: 0 0;
+	content: '';
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	background: #DFDFDF;
+	width: 100%;
+	height: 1px;
+	-webkit-transform: scaleY(0.5);
+	transform: scaleY(0.5);
+	-webkit-transform-origin: 0 0;
+	transform-origin: 0 0;
+}
+
+.rightArrow {
+	display: inline-block;
+	border-right: 1px solid #c7c7cb;
+	border-bottom: 1px solid #c7c7cb;
+	width: 8px;
+	height: 8px;
+	transform: rotate(-45deg);
+	-ms-filter: "progid:DXImageTransform.Microsoft.Matrix(M11=0.70710678, M12=0.70710678, M21=-0.70710678, M22=0.70710678,sizingMethod='auto expand')";
+	filter: progid:DXImageTransform.Microsoft.Matrix(M11=0.70710678, M12=0.70710678, M21=-0.70710678, M22=0.70710678, sizingMethod='auto expand');
 }
 

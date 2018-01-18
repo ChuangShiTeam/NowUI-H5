@@ -209,7 +209,8 @@ class Index extends Component {
                                          className={classNames(style.categoryContentItem, 'swiper-slide')}>
                                         <img className={style.categoryContentItemImage}
                                              src={constant.image_host + indexNavigation.filePath} alt=''/>
-                                        <div className={style.categoryContentItemItemName}>{indexNavigation.navigationName}</div>
+                                        <div
+                                            className={style.categoryContentItemItemName}>{indexNavigation.navigationName}</div>
                                     </div>
                                 )
                             })
@@ -228,18 +229,22 @@ class Index extends Component {
                         </div>
                         <div className={style.hotArticleContentList}>
                             <div className={classNames(style.hotArticleContentListContainer, 'swiper-container')}>
-                                <div className={classNames(style.hotArticleContentListContainerWrapper, 'swiper-wrapper')}>
+                                <div
+                                    className={classNames(style.hotArticleContentListContainerWrapper, 'swiper-wrapper')}>
                                     {
                                         this.props.index.hotArticleList.map(function (article, index) {
                                             return (
                                                 <div key={article.articleId}
                                                      className={classNames(style.hotArticleContentListContainerWrapperItem, index === 0 ? baseStyle.topLine : '', baseStyle.bottomLine, 'swiper-slide')}>
-                                                    <div className={style.hotArticleContentListContainerWrapperItemLeft}>
-                                                        <img className={style.hotArticleContentListContainerWrapperItemLeftImage}
-                                                             src={require('../../image/2.png')}
-                                                             alt=''/>
+                                                    <div
+                                                        className={style.hotArticleContentListContainerWrapperItemLeft}>
+                                                        <img
+                                                            className={style.hotArticleContentListContainerWrapperItemLeftImage}
+                                                            src={require('../../image/2.png')}
+                                                            alt=''/>
                                                     </div>
-                                                    <div className={style.hotArticleContentListContainerWrapperItemRight}>
+                                                    <div
+                                                        className={style.hotArticleContentListContainerWrapperItemRight}>
                                                         {article.articleTitle}
                                                     </div>
                                                 </div>
@@ -262,9 +267,12 @@ class Index extends Component {
                                     return (
                                         <div key={index}
                                              className={classNames(style.animalCategoryContentWrapperItem, 'swiper-slide')}>
-                                            <img className={style.animalCategoryContentWrapperItemImage} src={constant.image_host + petCategoryArticle.filePath} alt=''/>
-                                            <div className={style.animalCategoryContentWrapperItemName}>{petCategoryArticle.articleTitle}</div>
-                                            <div className={style.animalCategoryContentWrapperItemDescription}>{petCategoryArticle.articleSummary}</div>
+                                            <img className={style.animalCategoryContentWrapperItemImage}
+                                                 src={constant.image_host + petCategoryArticle.filePath} alt=''/>
+                                            <div
+                                                className={style.animalCategoryContentWrapperItemName}>{petCategoryArticle.articleTitle}</div>
+                                            <div
+                                                className={style.animalCategoryContentWrapperItemDescription}>{petCategoryArticle.articleSummary}</div>
                                         </div>
                                     )
                                 })
