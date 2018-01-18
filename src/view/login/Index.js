@@ -63,7 +63,7 @@ class Index extends Component {
                     }
 
                     http.request({
-                        url: '/member/mobile/v1/register/sms/captcha/send',
+                        url: '/member/mobile/v1/login/sms/captcha/send',
                         data: {
                             userAccount: values.memberMobile
                         },

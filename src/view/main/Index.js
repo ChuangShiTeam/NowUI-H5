@@ -78,9 +78,9 @@ class Index extends Component {
     handleClick(url) {
         this.handleToolbar(url);
 
-        if (url === '/forum/index') {
+        /*if (url === '/forum/index') {
             url = '/forum/skip';
-        }
+        }*/
 
         this.props.history.push({
             pathname: url,

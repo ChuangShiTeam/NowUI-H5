@@ -4,6 +4,8 @@ import {Link} from 'react-router';
 import classNames from 'classnames';
 
 import util from '../../common/util';
+import http from '../../common/http';
+import storage from '../../common/storage';
 
 import style from './Index.scss';
 import baseStyle from '../../css/Base.scss';
@@ -23,6 +25,38 @@ class Index extends Component {
         util.setTitle('wawipet哇咿宠');
         util.hancleComponentDidMount();
 
+        let memberVisitForum = storage.getMemberVisitForum();
+
+        if (memberVisitForum === null || memberVisitForum === 'undefined') {
+            http.request({
+                url: '/wawi/member/visit/forum/mobile/v1/find',
+                data: {},
+                success: function (data) {
+                    if (data.isVisit) {
+                        storage.setMemberVisitForum(data.isVisit);
+                        if (data.isVisit === 'false') {
+                            this.props.history.push({
+                                pathname: '/forum/skip',
+                                query: {}
+                            });
+                        } else {
+                            this.handleLoad();
+                        }
+                    } else {
+                        this.handleLoad();
+                    }
+                }.bind(this),
+                complete: function () {
+
+                }
+            });
+        } else {
+            this.handleLoad();
+        }
+
+    }
+
+    handleLoad() {
         this.props.dispatch({
             type: 'forumIndex',
             data: {
@@ -54,7 +88,9 @@ class Index extends Component {
     }
 
     componentWillUnmount() {
-        interestSwiper.destroy();
+        if (interestSwiper) {
+            interestSwiper.destroy();
+        }
     }
 
     render() {
