@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {createForm} from "rc-form";
 import Notification from 'rc-notification';
 
 import util from '../../common/util';
 
 import style from './Search.scss';
-import {createForm} from "rc-form";
 
 let notification = null;
 Notification.newInstance({}, (n) => notification = n);

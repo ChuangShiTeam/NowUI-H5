@@ -21,5 +21,13 @@ export default {
                 cb(null, require('../view/topic/Like').default);
             }, 'forum.like');
         }
+    }, {
+        path: '/topic/follow',
+        onEnter: util.handleEnter,
+        getComponent(location, cb) {
+            require.ensure([], (require) => {
+                cb(null, require('../view/topic/Follow').default);
+            }, 'forum.follow');
+        }
     }]
 }

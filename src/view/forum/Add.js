@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {createForm} from "rc-form";
 import Upload from 'rc-upload';
 import classNames from 'classnames';
 
@@ -7,7 +8,6 @@ import util from '../../common/util';
 
 import style from './Add.scss';
 import baseStyle from '../../css/Base.scss';
-import {createForm} from "rc-form";
 
 class Add extends Component {
     constructor(props) {
