@@ -115,7 +115,7 @@ class Password extends Component {
                                     message: '密码不能为空'
                                 }],
                                 initialValue: ''
-                            })} className={style.passwordRightInput} type="text" placeholder="请输入密码"/>
+                            })} className={style.passwordRightInput} type="password" placeholder="请输入密码"/>
                         </div>
                     </div>
                     <div className={style.forget}><Link to="/forget/password">忘记密码</Link></div>

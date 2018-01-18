@@ -300,7 +300,7 @@ class ForgetPassword extends Component {
                                         message: '密码不能为空'
                                     }],
                                     initialValue: ''
-                                })} className={style.passwordRightInput} type="text" placeholder="请输入密码"/>
+                                })} className={style.passwordRightInput} type="password" placeholder="请输入密码"/>
                             </div>
                         </div>
                         <div className={style.confirmPassword}>
@@ -315,7 +315,7 @@ class ForgetPassword extends Component {
                                         message: '确认密码不能为空'
                                     }],
                                     initialValue: ''
-                                })} className={style.confirmPasswordRightInput} type="text" placeholder="再次确认密码"/>
+                                })} className={style.confirmPasswordRightInput} type="password" placeholder="再次确认密码"/>
                             </div>
                         </div>
                         <div className={style.submit}

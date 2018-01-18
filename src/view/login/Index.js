@@ -95,11 +95,7 @@ class Index extends Component {
                                 slider.reset();
                             }
                         }.bind(this),
-                        error: function(message) {
-                            notification.notice({
-                                content: '网络异常，请重新发送'
-                            });
-
+                        error: function() {
                             slider.reset();
                         }.bind(this),
                         complete: function () {

@@ -1,14 +1,18 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import Upload from 'rc-upload';
+import Notification from 'rc-notification';
 import classNames from 'classnames';
 
 import util from '../../common/util';
+import http from '../../common/http';
+import ImageUpload from '../../component/upload/ImageUpload';
 
 import style from './Add.scss';
 import baseStyle from '../../css/Base.scss';
 import {createForm} from "rc-form";
 
+let notification = null;
+Notification.newInstance({}, (n) => notification = n);
 class Add extends Component {
     constructor(props) {
         super(props);
@@ -31,32 +35,59 @@ class Add extends Component {
 
     }
 
+    handleSubmit() {
+        this.props.form.validateFields((errors, values) => {
+            if (!!errors) {
+                var message = '';
+                for (var error in errors) {
+                    message += '<p>';
+                    message += errors[error].errors[0].message;
+                    message += '</p>';
+                }
+
+                notification.notice({
+                    content: <div dangerouslySetInnerHTML={{__html: message}}></div>
+                });
+
+                return;
+            }
+
+            values.forumMediaId = '';
+            values.forumMediaType = 'IMAGE';
+            let forumMedia = this.refs.forumMedia.handleGetValue();
+            if (forumMedia.length > 0) {
+                values.forumMediaId = forumMedia[0].fileId
+            }
+
+            http.request({
+                url: '/forum/mobile/v1/save',
+                data: values,
+                success: function (data) {
+                    notification.notice({
+                        content: '创建成功'
+                    });
+                    this.props.history.push({
+                        pathname: '/forum/index',
+                        query: {}
+                    });
+                }.bind(this),
+                complete: function () {
+
+                }
+            });
+
+        });
+    }
+
+    handClose() {
+        this.props.history.push({
+            pathname: '/forum/index',
+            query: {}
+        });
+    }
+
     render() {
         const {getFieldProps} = this.props.form;
-
-        const uploaderProps = {
-            action: '/upload.do',
-            data: {a: 1, b: 2},
-            headers: {
-                Authorization: 'xxxxxxx',
-            },
-            multiple: true,
-            beforeUpload(file) {
-                console.log('beforeUpload', file.name);
-            },
-            onStart: (file) => {
-                console.log('onStart', file.name);
-            },
-            onSuccess(file) {
-                console.log('onSuccess', file);
-            },
-            onProgress(step, file) {
-                console.log('onProgress', Math.round(step.percent), file.name);
-            },
-            onError(err) {
-                console.log('onError', err);
-            }
-        }
 
         return (
             <div className={style.page} style={{height: document.documentElement.clientHeight}}>
@@ -67,11 +98,7 @@ class Add extends Component {
                 </div>
                 <div className={style.upload}>
                     <div className={style.uploadLeft}>上传圈子照片</div>
-                    <div className={style.uploadRight}>
-                        <Upload className={style.uploadRightIcon} {...uploaderProps} component="div" style={{display: 'inline-block'}}>
-                            <img src={require('../../image/upload.png')} alt=''/>
-                        </Upload>
-                    </div>
+                    <ImageUpload name="forumMedia" ref="forumMedia" limit={1}/>
                 </div>
                 <div className={style.line}></div>
                 <div className={style.list}>
@@ -84,7 +111,7 @@ class Add extends Component {
                                     message: '圈子名称不能为空'
                                 }],
                                 initialValue: ''
-                            })}type="text" placeholder="输入不超过25个字符的圈子名称"/>
+                            })} type="text" placeholder="输入不超过25个字符的圈子名称"/>
                         </div>
                     </div>
                     <div className={classNames(style.listItem, baseStyle.bottomLine)}>
@@ -96,12 +123,12 @@ class Add extends Component {
                                     message: '圈子简介不能为空'
                                 }],
                                 initialValue: ''
-                            })}type="text" placeholder="请输入超过255个字符的圈子简介"/>
+                            })} type="text" placeholder="请输入超过255个字符的圈子简介"/>
                         </div>
                     </div>
                 </div>
-                <div className={style.review}>提交审核</div>
-                <div className={style.close}>关闭</div>
+                <div className={style.review} onClick={this.handleSubmit.bind(this)}>提交审核</div>
+                <div className={style.close} onClick={this.handClose.bind(this)}>关闭</div>
             </div>
         );
     }

@@ -36,14 +36,21 @@ function request(config) {
         success: function (response) {
             if (response.code === 200) {
                 config.success(response.data);
+            } else if (response.code === 400) {
+                if (config.error) {
+                    config.error();
+                }
+                notification.notice({
+                    content: response.message
+                });
             } else {
                 if (config.error) {
-                    config.error(response.message);
-                } else {
-                    notification.notice({
-                        content: '网络异常，请重试'
-                    });
+                    config.error();
                 }
+                notification.notice({
+                    content: '网络异常，请重试'
+                });
+                
                 console.log('接口异常信息：', response.message);
             }
         },
