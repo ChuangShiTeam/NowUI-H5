@@ -105,11 +105,10 @@ class Index extends Component {
                             </Link>
                         </div>
                         <div className={style.headerContentCenter}>
-                            <span className={style.headerContentCenterForum}>圈子</span><span
-                            className={style.headerContentCenterTopic}>动态</span>
+                            <span className={style.headerContentCenterForum}>圈子</span><Link to="/topic/index" className={style.headerContentCenterTopic}>动态</Link>
                         </div>
                         <div className={style.headerContentRight}>
-                            <Link to="/forum/search" className={style.headerContentLeft}>
+                            <Link to="/forum/search" className={style.headerContentRight}>
                                 <img className={style.headerContentLeftSearch}
                                      src={require('../../image/forum-search.png')}
                                      alt=''/>
@@ -132,7 +131,7 @@ class Index extends Component {
                         {
                             this.props.forumIndex.joinList.map(function (forum, index) {
                                 return (
-                                    <div key={index} style={index == 0 ? {} : {marginTop: '12px'}}
+                                    <Link to="/forum/info" key={index} style={index == 0 ? {} : {marginTop: '12px'}}
                                          className={style.joinContentList}>
                                         <div className={style.joinContentListLeft}>
                                             <img className={style.joinContentListLeftIcon}
@@ -169,7 +168,7 @@ class Index extends Component {
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </Link>
                                 )
                             })
                         }

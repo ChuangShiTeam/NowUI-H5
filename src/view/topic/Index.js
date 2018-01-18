@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {Link} from 'react-router';
 
 import util from '../../common/util';
 
-import './Index.css';
+import style from './Index.scss';
 
 class Index extends Component {
     constructor(props) {
@@ -29,7 +30,28 @@ class Index extends Component {
 
     render() {
         return (
-            <div>
+            <div className={style.page}>
+                <div className={style.header}>
+                    <div className={style.headerContent}>
+                        <div className={style.headerContentLeft}>
+                            <Link to="/forum/add" className={style.headerContentLeft}>
+                                <img className={style.headerContentLeftUser}
+                                     src={require('../../image/topic-user.png')}
+                                     alt=''/>
+                            </Link>
+                        </div>
+                        <div className={style.headerContentCenter}>
+                            <Link to="/forum/index" className={style.headerContentCenterForum}>圈子</Link><span className={style.headerContentCenterTopic}>动态</span>
+                        </div>
+                        <div className={style.headerContentRight}>
+                            <Link to="/forum/search" className={style.headerContentRight}>
+                                <img className={style.headerContentLeftSearch}
+                                     src={require('../../image/forum-search.png')}
+                                     alt=''/>
+                            </Link>
+                        </div>
+                    </div>
+                </div>
 
             </div>
         );
