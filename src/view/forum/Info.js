@@ -71,6 +71,9 @@ class Info extends Component {
                     </div>
                     <div className={style.info}>
                         <div className={style.infoLeft}>
+                            <img className={style.infoLeftCrown}
+                                 src={require('../../image/crown.png')}
+                                 alt=''/>
                             <img className={style.infoLeftImage} src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/35/h/35' alt=''/>
                         </div>
                         <div className={style.infoRight}>
@@ -78,6 +81,55 @@ class Info extends Component {
                             <div className={style.infoRightDescription}>资深遛狗师一枚，对宠物行为有很深的造诣。资深遛狗师一枚，对宠物行为有很深的造诣。资深遛狗师一枚，对宠物行为有很深的造诣。</div>
                         </div>
                     </div>
+                </div>
+                <div className={baseStyle.list}>
+                    <div className={style.memberTitle}>
+                        全部圈友
+                    </div>
+                    <div className={style.member}>
+                        <div className={style.memberAvatar}>
+                            <img className={style.memberAvatarImage} src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/35/h/35' alt=''/>
+                        </div>
+                        <div className={style.memberAvatar}>
+                            <img className={style.memberAvatarImage} src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/35/h/35' alt=''/>
+                        </div>
+                        <div className={style.memberAvatar}>
+                            <img className={style.memberAvatarImage} src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/35/h/35' alt=''/>
+                        </div>
+                        <div className={style.memberAvatar}>
+                            <img className={style.memberAvatarImage} src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/35/h/35' alt=''/>
+                        </div>
+                        <div className={style.memberAvatar}>
+                            <img className={style.memberAvatarImage} src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/35/h/35' alt=''/>
+                        </div>
+                        <div className={style.memberAvatar}>
+                            <img className={style.memberAvatarImage} src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/35/h/35' alt=''/>
+                        </div>
+                        <div className={style.memberAvatar}>
+                            <img className={style.memberAvatarImage} src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/35/h/35' alt=''/>
+                        </div>
+                        <div className={style.memberAvatar}>
+                            <img className={style.memberAvatarImage} src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/35/h/35' alt=''/>
+                        </div>
+                        <div className={style.memberAvatar}>
+                            <img className={style.memberAvatarImage} src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/35/h/35' alt=''/>
+                        </div>
+                        <div className={style.memberAvatar}>
+                            <img className={style.memberAvatarImage} src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/35/h/35' alt=''/>
+                        </div>
+                        <div className={style.memberAvatar}>
+                            <img className={style.memberAvatarImage} src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/35/h/35' alt=''/>
+                        </div>
+                        <div className={style.memberAvatar}>
+                            <img className={style.memberAvatarImage} src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/35/h/35' alt=''/>
+                        </div>
+                        <div className={style.memberAvatar}>
+                            <img className={style.memberAvatarImage} src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/35/h/35' alt=''/>
+                        </div>
+                    </div>
+                </div>
+                <div className={style.delete}>
+                    <div className={style.deleteButton}>删除圈子</div>
                 </div>
             </div>
         );
