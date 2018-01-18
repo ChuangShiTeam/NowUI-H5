@@ -30,6 +30,14 @@ export default {
             }, 'forum.add');
         }
     }, {
+        path: '/forum/search',
+        onEnter: util.handleEnter,
+        getComponent(location, cb) {
+            require.ensure([], (require) => {
+                cb(null, require('../view/forum/Search').default);
+            }, 'forum.search');
+        }
+    }, {
         path: '/forum/info',
         onEnter: util.handleEnter,
         getComponent(location, cb) {

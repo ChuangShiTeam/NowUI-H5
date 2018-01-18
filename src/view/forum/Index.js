@@ -8,7 +8,6 @@ import http from '../../common/http';
 import storage from '../../common/storage';
 
 import style from './Index.scss';
-import baseStyle from '../../css/Base.scss';
 
 let interestSwiper;
 
@@ -95,7 +94,7 @@ class Index extends Component {
 
     render() {
         return (
-            <div>
+            <div className={style.page}>
                 <div className={style.header}>
                     <div className={style.headerContent}>
                         <div className={style.headerContentLeft}>
@@ -110,7 +109,7 @@ class Index extends Component {
                             className={style.headerContentCenterTopic}>动态</span>
                         </div>
                         <div className={style.headerContentRight}>
-                            <Link to="/forum/index" className={style.headerContentLeft}>
+                            <Link to="/forum/search" className={style.headerContentLeft}>
                                 <img className={style.headerContentLeftSearch}
                                      src={require('../../image/forum-search.png')}
                                      alt=''/>
