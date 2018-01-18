@@ -50,8 +50,6 @@
 	align-items: center;
 	height: 73px;
 	background: #ffffff;
-	margin-left: 12px;
-	margin-right: 12px;
 }
 
 .imageLeft {
@@ -94,6 +92,11 @@
 .line {
 	height: 10px;
 	background: #defafd;
+}
+
+.content {
+	margin-left: 12px;
+	margin-right: 12px;
 }
 
 .infoTitle {
@@ -208,10 +211,6 @@
 }
 
 .delete {
-	padding: 0px 12px;
-}
-
-.deleteButton {
 	-js-display: flex;
 	display: flex;
 	justify-content: center;

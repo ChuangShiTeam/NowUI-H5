@@ -98,14 +98,16 @@
 }
 
 .submit {
+	-js-display: flex;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	background: #defafd;
 	box-shadow: 0 2px 4px 0 rgba(233, 233, 233, 0.50);
 	filter: progid:DXImageTransform.Microsoft.Shadow(color='#DFDFDF', Direction=180, Strength=1);
 	border-radius: 25px;
 	width: 94px;
 	height: 36px;
-	line-height: 36px;
-	text-align: center;
 	font-family: PingFangSC-Regular;
 	font-size: 14px;
 	color: #c18108;

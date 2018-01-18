@@ -105,6 +105,10 @@
 }
 
 .review {
+	-js-display: flex;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	position: absolute;
 	left: 50%;
 	bottom: 112px;
@@ -115,8 +119,6 @@
 	border-radius: 5px;
 	width: 296px;
 	height: 38px;
-	line-height: 38px;
-	text-align: center;
 	font-family: PingFangSC-Light;
 	font-size: 14px;
 	color: #c18108;
@@ -124,6 +126,10 @@
 }
 
 .close {
+	-js-display: flex;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	position: absolute;
 	left: 50%;
 	bottom: 64px;
@@ -134,8 +140,6 @@
 	border-radius: 5px;
 	width: 296px;
 	height: 38px;
-	line-height: 38px;
-	text-align: center;
 	font-family: PingFangSC-Light;
 	font-size: 14px;
 	color: #ffffff;
