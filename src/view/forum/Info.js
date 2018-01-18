@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import classNames from 'classnames';
 
 import util from '../../common/util';
 
-import './Info.css';
+import style from './Info.scss';
+import baseStyle from '../../css/Base.scss';
 
-class Index extends Component {
+class Info extends Component {
     constructor(props) {
         super(props);
 
@@ -29,122 +31,52 @@ class Index extends Component {
 
     render() {
         return (
-            <div>
-                <div className="forum-info-header">
-                    圈子信息
-                </div>
-                <div className="forum-info-avatar">
-                    <div className="forum-info-title">
-                        圈子头像
-                    </div>
-                    <div className="forum-info-upload">
-                        <img src={require('../../image/avatar-demo.png')} alt=''/>
-                    </div>
-                    <div className="forum-info-right">
-                        <div></div>
+            <div className={style.page} style={{height: document.documentElement.clientHeight}}>
+                <div className={style.header}>
+                    <div className={style.headerContent}>
+                        圈子信息
                     </div>
                 </div>
-                <div className="forum-info-box">
-                    <div className="forum-info-item">
-                        <div className="forum-info-title">
-                            圈子名称
-                        </div>
-                        <div className="forum-info-text">
-                            魔都喵星人
-                        </div>
-                        <div className="forum-info-right">
-                            <div></div>
-                        </div>
+                <div className={style.image}>
+                    <div className={style.imageLeft}>上传圈子照片</div>
+                    <div className={style.imageCenter}>
+                        <img className={style.imageCenterImage} src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/58/h/58' alt=''/>
                     </div>
-                    <div className="forum-info-item">
-                        <div className="forum-info-title">
-                            圈子简介
-                        </div>
-                        <div className="forum-info-text">
-                            这里是魔都喵星人的聚集地
-                        </div>
-                        <div className="forum-info-right">
-                            <div></div>
-                        </div>
+                    <div className={style.imageRight}>
+                        <div className={baseStyle.rightArrow}></div>
                     </div>
-                    <div className="forum-info-panel">
-                        <div className="forum-info-title">
-                            圈子简介
-                        </div>
-                        <div className="forum-info-owner-box">
-                            <div className="forum-info-owner-avatar">
-                                <img src={require('../../image/header-demo.png')} alt=''/>
-                                <div className="forum-info-owner-crown">
-                                    <img src={require('../../image/crown.png')} alt=''/>
-                                </div>
-                            </div>
-                            <div className="forum-info-owner-info">
-                                <div className="forum-info-owner-name">
-                                    小野
-                                </div>
-                                <div className="forum-info-owner-des">
-                                    资深遛狗师一枚，对宠物行为有很深的造诣。
-                                </div>
-                            </div>
-                        </div>
+                </div>
+                <div className={style.line}></div>
+                <div className={classNames(baseStyle.list, baseStyle.bottomLine)}>
+                    <div className={baseStyle.listLeft}>圈子名称</div>
+                    <div className={classNames(style.listCenter, baseStyle.listCenter)}>
+                        魔都喵星人
                     </div>
-                    <div className="forum-info-panel">
-                        <div className="forum-info-title">
-                            全部圈友
-                        </div>
-                        <div className="forum-info-list">
-                            <ul>
-                                <li>
-                                    <img src={require('../../image/header-demo.png')} alt=''/>
-                                </li>
-                                <li>
-                                    <img src={require('../../image/header-demo.png')} alt=''/>
-                                </li>
-                                <li>
-                                    <img src={require('../../image/header-demo.png')} alt=''/>
-                                </li>
-                                <li>
-                                    <img src={require('../../image/header-demo.png')} alt=''/>
-                                </li>
-                                <li>
-                                    <img src={require('../../image/header-demo.png')} alt=''/>
-                                </li>
-                                <li>
-                                    <img src={require('../../image/header-demo.png')} alt=''/>
-                                </li>
-                                <li>
-                                    <img src={require('../../image/header-demo.png')} alt=''/>
-                                </li>
-                            </ul>
-                            <ul>
-                                <li>
-                                    <img src={require('../../image/header-demo.png')} alt=''/>
-                                </li>
-                                <li>
-                                    <img src={require('../../image/header-demo.png')} alt=''/>
-                                </li>
-                                <li>
-                                    <img src={require('../../image/header-demo.png')} alt=''/>
-                                </li>
-                                <li>
-                                    <img src={require('../../image/header-demo.png')} alt=''/>
-                                </li>
-                                <li>
-                                    <img src={require('../../image/header-demo.png')} alt=''/>
-                                </li>
-                                <li>
-                                    <img src={require('../../image/header-demo.png')} alt=''/>
-                                </li>
-                                <li>
-                                    <img src={require('../../image/header-demo.png')} alt=''/>
-                                </li>
-                            </ul>
-                        </div>
+                    <div className={baseStyle.listRight}>
+                        <div className={baseStyle.rightArrow}></div>
                     </div>
-                    <div className="forum-info-delete-btn">
-                        <button>
-                            删除圈子
-                        </button>
+                </div>
+                <div className={classNames(baseStyle.list, baseStyle.bottomLine)}>
+                    <div className={baseStyle.listLeft}>圈子简介</div>
+                    <div className={classNames(style.listCenter, baseStyle.listCenter)}>
+                        这里是魔都喵星人的聚集这里是魔都喵星人的聚集这里是魔都喵星人的聚集
+                    </div>
+                    <div className={baseStyle.listRight}>
+                        <div className={baseStyle.rightArrow}></div>
+                    </div>
+                </div>
+                <div className={classNames(baseStyle.list, baseStyle.bottomLine)}>
+                    <div className={style.infoTitle}>
+                        圈子信息
+                    </div>
+                    <div className={style.info}>
+                        <div className={style.infoLeft}>
+                            <img className={style.infoLeftImage} src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/35/h/35' alt=''/>
+                        </div>
+                        <div className={style.infoRight}>
+                            <div className={style.infoRightName}>小野</div>
+                            <div className={style.infoRightDescription}>资深遛狗师一枚，对宠物行为有很深的造诣。资深遛狗师一枚，对宠物行为有很深的造诣。资深遛狗师一枚，对宠物行为有很深的造诣。</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -152,6 +84,4 @@ class Index extends Component {
     }
 }
 
-Index.propTypes = {};
-
-export default connect(() => ({}))(Index);
+export default connect(() => ({}))(Info);

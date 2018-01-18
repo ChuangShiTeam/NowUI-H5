@@ -60,3 +60,36 @@
 	filter: progid:DXImageTransform.Microsoft.Matrix(M11=0.70710678, M12=0.70710678, M21=-0.70710678, M22=0.70710678, sizingMethod='auto expand');
 }
 
+.list {
+	-js-display: flex;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-items: center;
+	min-height: 40px;
+	background: #ffffff;
+	margin-left: 12px;
+	margin-right: 12px;
+}
+
+.listLeft {
+	font-family: PingFangSC-Regular;
+	font-size: 14px;
+	color: #262626;
+	text-align: left;
+	width: 100px;
+	min-height: 40px;
+	-js-display: flex;
+	display: flex;
+	align-items: center;
+}
+
+.listCenter {
+	flex-grow: 1;
+}
+
+.listRight {
+	width: 32px;
+	text-align: center;
+}
+

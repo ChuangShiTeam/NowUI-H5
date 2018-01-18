@@ -6,7 +6,6 @@ import util from '../../common/util';
 
 import style from './Search.scss';
 import {createForm} from "rc-form";
-import http from "../../common/http";
 
 let notification = null;
 Notification.newInstance({}, (n) => notification = n);
