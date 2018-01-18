@@ -3,9 +3,10 @@ import {connect} from 'react-redux';
 
 import util from '../../common/util';
 
-import './Index.css';
+import style from './Like.scss';
+import baseStyle from '../../css/Base.scss';
 
-class Index extends Component {
+class Like extends Component {
     constructor(props) {
         super(props);
 
@@ -16,6 +17,11 @@ class Index extends Component {
 
     componentDidMount() {
         util.setTitle('wawipet哇咿宠');
+        util.hancleComponentDidMount();
+    }
+
+    componentDidUpdate() {
+        util.hancleComponentDidUpdate();
     }
 
     componentWillUnmount() {
@@ -31,6 +37,4 @@ class Index extends Component {
     }
 }
 
-Index.propTypes = {};
-
-export default connect(() => ({}))(Index);
+export default connect(() => ({}))(Like);

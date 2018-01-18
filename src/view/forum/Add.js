@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {createForm} from "rc-form";
 import Notification from 'rc-notification';
 import classNames from 'classnames';
 
@@ -9,7 +10,6 @@ import ImageUpload from '../../component/upload/ImageUpload';
 
 import style from './Add.scss';
 import baseStyle from '../../css/Base.scss';
-import {createForm} from "rc-form";
 
 let notification = null;
 Notification.newInstance({}, (n) => notification = n);

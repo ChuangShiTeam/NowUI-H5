@@ -68,24 +68,31 @@
 	align-items: center;
 	min-height: 40px;
 	background: #ffffff;
-	margin-left: 12px;
-	margin-right: 12px;
 }
 
 .listLeft {
 	font-family: PingFangSC-Regular;
 	font-size: 14px;
 	color: #262626;
-	text-align: left;
 	width: 100px;
-	min-height: 40px;
-	-js-display: flex;
-	display: flex;
-	align-items: center;
+}
+
+.listLeftContent {
+	flex-grow: 1;
+	width: 0;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .listCenter {
 	flex-grow: 1;
+}
+
+.listCenterContent {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .listRight {
@@ -93,3 +100,6 @@
 	text-align: center;
 }
 
+.member {
+
+}
