@@ -1,6 +1,5 @@
 import util from '../common/util';
 import Main from "../view/main/Index";
-
 export default {
     childRoutes: [{
         component: Main,
@@ -48,8 +47,8 @@ export default {
     }, {
         path: '/forum/homepage',
         onEnter: util.handleEnter,
-        getComponent(location, cb) {
-            require.ensure([], (require) => {
+        getComponent(location, cb){
+            require.ensure([],(require) =>{
                 cb(null, require('../view/forum/Homepage').default);
             }, 'forum.homepage');
         }

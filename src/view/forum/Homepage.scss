@@ -67,18 +67,26 @@
 	width: 91%;
 	height: 20px;
 }
-
 .headerContentLeftSearchLeftIcon {
 	width: 18px;
 	height: 18px;
 }
-
 .headerContentRight {
 	width: 32px;
 }
-
 .headerContentRightClose {
 	width: 15px;
 	height: 15px;
 	margin-top: 7px;
+}
+.homePageHeaderTopBackground{
+	top:0px;
+	background: #9dd7e3;
+	height:117px ;
+	width: 100%;
+}
+.homePageHeaderMiddleMessage{
+	background: #46bfda;
+	height:125px ;
+	width: 100%;
 }

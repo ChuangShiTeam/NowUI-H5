@@ -16,7 +16,7 @@ class HotTopic extends Component {
         util.hancleComponentDidMount();
     }
 
-    componentDidUpdate() {
+    componentDidUpdate(){
         util.hancleComponentDidUpdate();
     }
 
