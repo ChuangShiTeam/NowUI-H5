@@ -24,7 +24,7 @@ class Index extends Component {
         //TODO 从后台获取数据
         //本地测试静态数据
         this.props.dispatch({
-            type: 'skip',
+            type: 'forumSkip',
             data: {
                 forumList: [
                     {
@@ -63,12 +63,12 @@ class Index extends Component {
     }
 
     handleCancelSelect(index) {
-        this.props.skip.forumList[index].selected = !this.props.skip.forumList[index].selected;
+        this.props.forumSkip.forumList[index].selected = !this.props.forumSkip.forumList[index].selected;
 
         this.props.dispatch({
             type: 'skip',
             data: {
-                forumList: this.props.skip.forumList
+                forumList: this.props.forumSkip.forumList
             }
         });
     }
@@ -88,8 +88,8 @@ class Index extends Component {
                 <div className={style.summary}>为你私人定制你的宠物部落</div>
                 <div className={style.list}>
                     {
-                        this.props.skip.forumList.map((forum, index) =>
-                            <div key={index} id={forum.id} className={classNames(style.listItem, baseStyle.bottomLine)}
+                        this.props.forumSkip.forumList.map((forum, index) =>
+                            <div key={index} className={classNames(style.listItem, baseStyle.bottomLine)}
                                  onClick={this.handleCancelSelect.bind(this, index)}>
                                 <div className={style.listItemLeft}>
                                     <img className={style.listItemLeftIcon} src={forum.url} alt=''/>
@@ -119,5 +119,5 @@ Index.propTypes = {};
 
 
 export default connect((store) => ({
-    skip: store.skip
+    forumSkip: store.forumSkip
 }))(Index);

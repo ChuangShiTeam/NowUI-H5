@@ -37,5 +37,13 @@ export default {
                 cb(null, require('../view/topic/Follow').default);
             }, 'forum.follow');
         }
+    }, {
+        path: '/topic/remind',
+        onEnter: util.handleEnter,
+        getComponent(location, cb) {
+            require.ensure([], (require) => {
+                cb(null, require('../view/topic/Remind').default);
+            }, 'forum.remind');
+        }
     }]
 }
