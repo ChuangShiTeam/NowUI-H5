@@ -45,5 +45,13 @@ export default {
                 cb(null, require('../view/topic/HotTopic').default);
             }, 'forum.hotTopic');
         }
+    }, {
+        path: '/topic/remind',
+        onEnter: util.handleEnter,
+        getComponent(location, cb) {
+            require.ensure([], (require) => {
+                cb(null, require('../view/topic/Remind').default);
+            }, 'forum.remind');
+        }
     }]
 }

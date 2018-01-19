@@ -1,10 +1,11 @@
 const initialState = {
-    forumList: []
+    memberName: '',
+    memberList: []
 }
 
-function skip(state = initialState, action) {
+function forumRemind(state = initialState, action) {
     switch (action.type) {
-        case 'skip':
+        case 'forumRemind':
             return Object.assign({}, state, action.data);
 
         default :
@@ -12,4 +13,4 @@ function skip(state = initialState, action) {
     }
 }
 
-export default skip;
+export default forumRemind;

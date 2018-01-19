@@ -87,11 +87,7 @@ ansi-escapes@^1.1.0, ansi-escapes@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/ansi-escapes/-/ansi-escapes-1.4.0.tgz#d3a8a83b319aa67793662b13e761c7911422306e"
 
-ansi-html@0.0.5:
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/ansi-html/-/ansi-html-0.0.5.tgz#0dcaa5a081206866bc240a3b773a184ea3b88b64"
-
-"ansi-html@git+https://github.com/iineva/ansi-html.git":
+ansi-html@0.0.5, "ansi-html@git+https://github.com/iineva/ansi-html.git":
   version "0.0.5"
   resolved "git+https://github.com/iineva/ansi-html.git#13e44332b9eac0a003e5a9828a389436f7587ad8"
 
@@ -1211,7 +1207,7 @@ clap@^1.0.9:
   dependencies:
     chalk "^1.1.3"
 
-classnames@2.x, classnames@^2.2.5:
+classnames@2.x, classnames@^2.2.5, classnames@~2.2.3:
   version "2.2.5"
   resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.5.tgz#fb3801d453467649ef3603c7d61a02bd129bde6d"
 
@@ -5019,6 +5015,13 @@ rimraf@2, rimraf@^2.2.8, rimraf@^2.5.1, rimraf@^2.6.1:
 ripemd160@0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/ripemd160/-/ripemd160-0.2.0.tgz#2bf198bde167cacfa51c0a928e84b68bbe171fce"
+
+rmc-select-list@^0.4.2:
+  version "0.4.2"
+  resolved "http://registry.npm.taobao.org/rmc-select-list/download/rmc-select-list-0.4.2.tgz#5ac028396c99fa762e6f37a47f5174d57a93eb8a"
+  dependencies:
+    classnames "~2.2.3"
+    object-assign "^4.0.1"
 
 run-async@^0.1.0:
   version "0.1.0"

@@ -55,6 +55,10 @@ body {
     cursor: pointer;
 }
 
+.rmc-select-list-playground .rmc-select-list-search, .rmc-select-list-playground {
+    height: 100%;
+}
+
 .swiper-active-switch {
     background: #fff;
 }

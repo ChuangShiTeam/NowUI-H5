@@ -4,6 +4,7 @@ import Router from './Router';
 
 import './css/Style.css';
 import 'rc-notification/assets/index.css';
+import 'rmc-select-list/assets/index.css';
 
 // if (typeof String.prototype.startsWith !== 'function') {
 //     String.prototype.startsWith = function (prefix) {
