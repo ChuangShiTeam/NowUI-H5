@@ -52,11 +52,11 @@ class Add extends Component {
                 return;
             }
 
-            values.forumMediaId = '';
+            values.forumMedia = '';
             values.forumMediaType = 'IMAGE';
             let forumMedia = this.refs.forumMedia.handleGetValue();
             if (forumMedia.length > 0) {
-                values.forumMediaId = forumMedia[0].fileId
+                values.forumMedia = forumMedia[0].fileId
             }
 
             http.request({

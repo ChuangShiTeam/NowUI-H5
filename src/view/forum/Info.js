@@ -19,6 +19,8 @@ class Info extends Component {
     componentDidMount() {
         util.setTitle('wawipet哇咿宠');
         util.hancleComponentDidMount();
+
+        this.handleLoad();
     }
 
     componentDidUpdate() {
@@ -27,6 +29,10 @@ class Info extends Component {
 
     componentWillUnmount() {
 
+    }
+
+    handleLoad() {
+        let forumId = this.props.params.forumId;
     }
 
     render() {
