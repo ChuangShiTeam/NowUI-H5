@@ -6,6 +6,7 @@ import classNames from 'classnames';
 import util from '../../common/util';
 import http from '../../common/http';
 import storage from '../../common/storage';
+import constant from '../../common/constant';
 
 import style from './Index.scss';
 
@@ -16,7 +17,13 @@ class Index extends Component {
         super(props);
 
         this.state = {
-            isLoad: false
+            isLoad: false,
+            forumJoinPageIndex: 1,
+            forumJoinPageSize: 3,
+            forumJoinTotal: 0,
+            forumJoinList: [],
+            forumRecommendList: [],
+            hotTopicList: []
         }
     }
 
@@ -52,23 +59,10 @@ class Index extends Component {
         } else {
             this.handleLoad();
         }
-
     }
 
     handleLoad() {
-        this.props.dispatch({
-            type: 'forumIndex',
-            data: {
-                joinList: [{
-                    id: 0
-                }, {
-                    id: 1
-                }, {
-                    id: 2
-                }]
-            }
-        });
-
+        this.handleLoadJoinList();
         interestSwiper = new window.Swiper('.' + style.interestContent, {
             slidesPerView: 3,
             loop:true,
@@ -80,6 +74,26 @@ class Index extends Component {
                 shadows : false
             }
         });
+    }
+
+    handleLoadJoinList() {
+        http.request({
+            url: '/forum/user/follow/mobile/v1/list',
+            data: {
+                pageIndex: this.state.forumJoinPageIndex,
+                pageSize: this.state.forumJoinPageSize
+            },
+            success: function (data) {
+                this.setState({
+                    forumJoinTotal: data.total,
+                    forumJoinList: data.list
+                });
+            }.bind(this),
+            complete: function () {
+
+            }
+        });
+
     }
 
     componentDidUpdate() {
@@ -129,26 +143,26 @@ class Index extends Component {
                     </div>
                     <div className={style.joinContent}>
                         {
-                            this.props.forumIndex.joinList.map(function (forum, index) {
+                            this.state.forumJoinList.map(function (forum, index) {
                                 return (
-                                    <Link to="/forum/info" key={index} style={index == 0 ? {} : {marginTop: '12px'}}
+                                    <Link to={'/forum/info/' + forum.forumId} key={index} style={index == 0 ? {} : {marginTop: '12px'}}
                                          className={style.joinContentList}>
                                         <div className={style.joinContentListLeft}>
                                             <img className={style.joinContentListLeftIcon}
-                                                 src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/77/h/77'
+                                                 src={constant.image_host + forum.forumMedia.filePath}
                                                  alt=''/>
                                         </div>
                                         <div className={style.joinContentListCenter}>
                                             <div className={style.joinContentListCenterHeader}>
                                                 <div className={style.joinContentListCenterHeaderName}>
-                                                    魔都喵星人魔都喵星人魔都喵星人魔都喵星人
+                                                    {forum.forumName}
                                                 </div>
                                                 <div className={style.joinContentListCenterHeaderTop}>
-                                                    置顶
+                                                    {forum.forumIsTop ? '置顶': ''}
                                                 </div>
                                             </div>
                                             <div className={style.joinContentListCenterSummary}>
-                                                这里是魔都喵星人的聚集地
+                                                {forum.forumDescription}
                                             </div>
                                             <div className={style.joinContentListCenterFooter}>
                                                 <div className={style.joinContentListCenterFooterLeft}>
@@ -156,15 +170,15 @@ class Index extends Component {
                                                          src={require('../../image/crown.png')}
                                                          alt=''/>
                                                     <img className={style.joinContentListCenterFooterLeftAvatar}
-                                                         src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/15/h/15'
+                                                         src={constant.image_host + forum.forumModerator.userAvatar}
                                                          alt=''/>
                                                 </div>
                                                 <div className={style.joinContentListCenterFooterCenter}>
-                                                    饲猫少女
+                                                    {forum.forumModerator.userNickName}
                                                 </div>
                                                 <div className={style.joinContentListCenterFooterRight}>
-                                                    今日最新话题数<span
-                                                    className={style.joinContentListCenterFooterRightNumber}>19</span>
+                                                    今日最新话题数
+                                                    <span className={style.joinContentListCenterFooterRightNumber}>{forum.forumTodayTopicCount}</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -188,7 +202,7 @@ class Index extends Component {
                                  alt=''/>
                         </div>
                         <div className={style.interestHeaderCenter}>
-                            我加入的圈子
+                            你可能感兴趣的圈子
                         </div>
                     </div>
                     <div className={classNames(style.interestContent, 'swiper-container')}>
