@@ -1,0 +1,56 @@
+.hotTopicTopContainer {
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+}
+
+.hotTopicTopSearch {
+  height: 44px;
+  background-color: #FFFFFF;
+}
+
+.hotTopicTopHotSearchText {
+  margin-top: 7px;
+  margin-left: 12px;
+  width: 80%;
+  height: 31px;
+  border-radius: 10px;
+  background-color: #F1F1F3;
+}
+
+.hotTopicTopHotCancelLabel {
+  margin-left: 15px;
+  color: black;
+  font-size: 14px;
+}
+
+.hotTopicTopHotTopicTitle {
+  background: #DEFAFD;
+  padding-left: 12px;
+  font-size: 14px;
+  color: #a98726;
+  height: 27px;
+  line-height: 27px;
+}
+.hotTopicTopHotTopicListContainer {
+  background-color: #ffffff;
+}
+.hotTopicTopHotTopicList {
+  list-style: none;
+  width: 96%;
+  height: 71px;
+  border-bottom: 1px solid #dfdfdf;
+  margin: 8px;
+}
+.hotTopicTopHotTopicListLeft {
+  width: 50px;
+  height: 50px;
+  background-color: #9dd7e3;
+  margin-top: 7px;
+  float: left;
+}
+.hotTopicTopHotTopicListRight {
+  margin-top: 15px;
+  float: left;
+  margin-left: 10px;
+}

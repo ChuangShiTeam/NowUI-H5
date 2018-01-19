@@ -24,7 +24,7 @@
   },
   "scripts": {
     "macStart": "PORT=3002 PUBLIC_URL=./ node script/start start",
-    "winStart": "set PORT=3002 && set PUBLIC_URL=./ && node script/start start",
+    "start": "set PORT=3002 && set PUBLIC_URL=./ && node script/start start",
     "build": "PUBLIC_URL=./ node script/start build",
     "test": "react-scripts-ie8 test --env=jsdom",
     "eject": "react-scripts-ie8 eject"

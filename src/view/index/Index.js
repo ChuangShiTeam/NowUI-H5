@@ -2,13 +2,10 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router';
 import classNames from 'classnames';
-
 import TopicIndex from "../../component/topic/Index";
-
 import util from '../../common/util';
 import http from '../../common/http';
 import constant from '../../common/constant';
-
 import style from './Index.scss';
 import baseStyle from '../../css/Base.scss';
 
