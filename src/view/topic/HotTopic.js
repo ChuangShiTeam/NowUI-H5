@@ -5,11 +5,12 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import util from '../../common/util';
 import hotTopicStyle from './HotTopic.scss';
+import Search from './Search';
+
 class HotTopic extends Component {
     constructor(props) {
         super(props);
     }
-
     componentDidMount() {
         util.setTitle('wawipet哇咿宠');
         util.hancleComponentDidMount();
@@ -19,17 +20,13 @@ class HotTopic extends Component {
         util.hancleComponentDidUpdate();
     }
 
-    componentWillUnmount() {
-
+    componentWillUnmount(){
     }
+
     render() {
         return (
             <div className={hotTopicStyle.hotTopicTopContainer}>
-                <div className={hotTopicStyle.hotTopicTopSearch}>
-                    <input placeholder=" # 搜索话题、商品" type="text" name="search"
-                           className={hotTopicStyle.hotTopicTopHotSearchText}/>
-                    <label className={hotTopicStyle.hotTopicTopHotCancelLabel}> 取 消 </label>
-                </div>
+                <Search/>
                 <div className={hotTopicStyle.hotTopicTopHotTopicTitle}>
                     热门话题
                 </div>

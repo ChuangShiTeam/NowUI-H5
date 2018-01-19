@@ -1,20 +1,17 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-
 import util from '../../common/util';
-
-import './Index.css';
+import searchStyle from './Search.scss';
 
 class Index extends Component {
     constructor(props) {
         super(props);
-
         this.state = {
             isLoad: false
         }
     }
 
-    componentDidMount() {
+    componentDidMount(){
         util.setTitle('wawipet哇咿宠');
         util.hancleComponentDidMount();
     }
@@ -24,14 +21,15 @@ class Index extends Component {
     }
 
     componentWillUnmount() {
-
     }
 
     render() {
         return (
-            <div>
-
-            </div>
+                <div className={searchStyle.Search}>
+                    <input placeholder=" # 搜索话题、商品" type="text" name="search"
+                           className={searchStyle.SearchText}/>
+                    <label className={searchStyle.SearchAction}> 搜 索 </label>
+                </div>
         );
     }
 }

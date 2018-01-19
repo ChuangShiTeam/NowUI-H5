@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import MSelectList from 'rmc-select-list';
-
 import util from '../../common/util';
-
 import style from './Remind.scss';
 import baseStyle from '../../css/Base.scss';
 import classNames from "classnames";
@@ -11,7 +9,6 @@ import classNames from "classnames";
 class Remind extends Component {
     constructor(props) {
         super(props);
-
         this.state = {
             isLoad: false,
             selectList: []
