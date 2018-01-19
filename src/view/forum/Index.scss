@@ -299,16 +299,89 @@
 
 .interestContent {
 	padding: 12px 0px;
+	height: 226px;
 }
 
 .interestContentwrapper {
-	height: 50px;
 
 }
 
-.interestContentwrapperList {
+.interestContentwrapperCard {
 	background: #ffffff;
 	box-shadow: 0 -2px 4px 0 rgba(220, 220, 220, 0.50);
 	border-radius: 2px;
 	width: 232px;
+	height: 226px;
+}
+
+.interestContentwrapperCardAvatar {
+	-js-display: flex;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	margin-top: 8px;
+	border-radius: 100%;
+}
+
+.interestContentwrapperCardAvatarImage {
+	width: 44px;
+	height: 44px;
+}
+
+.interestContentwrapperCardName {
+	font-family: PingFangSC-Regular;
+	font-size: 12px;
+	color: #4a4a4a;
+	letter-spacing: 0;
+	text-align: center;
+	margin-top: 5px;
+}
+
+.interestContentwrapperCardSummary {
+	font-family:PingFangSC-Regular;
+	font-size:10px;
+	color:#bababa;
+	letter-spacing:-0.1px;
+	text-align: center;
+	margin-top: 5px;
+}
+
+.interestContentwrapperCardImage {
+	-js-display: flex;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: 5px;
+}
+
+.interestContentwrapperCardImageItem {
+	width: 76px;
+	height: 76px;
+}
+
+.interestContentwrapperCardButton {
+	-js-display: flex;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 8px;
+}
+
+.interestContentwrapperCardButtonJoin {
+	background: #defafd;
+	border-radius: 15px;
+	width: 60px;
+	height: 26px;
+	font-family: PingFangSC-Regular;
+	font-size: 12px;
+	color: #c18108;
+	letter-spacing: 0;
+	-js-display: flex;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
