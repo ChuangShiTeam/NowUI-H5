@@ -224,7 +224,7 @@ class ForgetPassword extends Component {
         const {getFieldProps} = this.props.form;
 
         return (
-            this.state.step == 0 ?
+            this.state.step === 0 ?
                 <div className={style.page} style={{height: document.documentElement.clientHeight}}>
                     <div className={style.header}>
                         忘记密码？

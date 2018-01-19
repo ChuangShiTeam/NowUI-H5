@@ -30,7 +30,7 @@ class Index extends Component {
 
     render() {
         return (
-            <div className={style.page}>
+            <div className={style.page} style={{height: document.documentElement.clientHeight}}>
                 <div className={style.header}>
                     <div className={style.headerContent}>
                         <div className={style.headerContentLeft}>
@@ -52,7 +52,11 @@ class Index extends Component {
                         </div>
                     </div>
                 </div>
-
+                <Link to="/topic/add" className={style.add}>
+                    <img className={style.addImage}
+                         src={require('../../image/forum-add.png')}
+                         alt=''/>
+                </Link>
             </div>
         );
     }
