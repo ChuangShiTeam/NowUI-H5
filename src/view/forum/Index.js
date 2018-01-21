@@ -200,7 +200,7 @@ class Index extends Component {
                     <div className={style.interestHeader}>
                         <div className={style.interestHeaderLeft}>
                             <img className={style.interestHeaderLeftIcon}
-                                 src={require('../../image/forum-join.png')}
+                                 src={require('../../image/interest.png')}
                                  alt=''/>
                         </div>
                         <div className={style.interestHeaderCenter}>

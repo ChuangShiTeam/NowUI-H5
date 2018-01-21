@@ -96,14 +96,16 @@ class Add extends Component {
                         创建圈子
                     </div>
                 </div>
-                <div className={style.upload}>
-                    <div className={style.uploadLeft}>上传圈子照片</div>
-                    <ImageUpload name="forumMedia" ref="forumMedia" limit={1}/>
+                <div className={style.content}>
+                    <div className={style.upload}>
+                        <div className={style.uploadLeft}>上传圈子照片</div>
+                        <ImageUpload name="forumMedia" ref="forumMedia" limit={1}/>
+                    </div>
                 </div>
                 <div className={style.line}></div>
-                <div className={style.list}>
-                    <div className={classNames(style.listItem, baseStyle.bottomLine)}>
-                        <div className={style.listItemLeft}>圈子名称</div>
+                <div className={style.content}>
+                    <div className={classNames(baseStyle.list, baseStyle.bottomLine)}>
+                        <div className={baseStyle.listLeft}>圈子名称</div>
                         <div className={style.listItemCenter}>
                             <input className={style.listItemCenterInput} {...getFieldProps('forumName', {
                                 rules: [{
@@ -114,8 +116,8 @@ class Add extends Component {
                             })} type="text" placeholder="输入不超过25个字符的圈子名称"/>
                         </div>
                     </div>
-                    <div className={classNames(style.listItem, baseStyle.bottomLine)}>
-                        <div className={style.listItemLeft}>圈子简介</div>
+                    <div className={classNames(baseStyle.list, baseStyle.bottomLine)}>
+                        <div className={baseStyle.listLeft}>圈子简介</div>
                         <div className={style.listItemCenter}>
                             <input className={style.listItemCenterInput} {...getFieldProps('forumDescription', {
                                 rules: [{
@@ -127,8 +129,10 @@ class Add extends Component {
                         </div>
                     </div>
                 </div>
-                <div className={style.review} onClick={this.handleSubmit.bind(this)}>提交审核</div>
-                <div className={style.close} onClick={this.handClose.bind(this)}>关闭</div>
+                <div className={classNames(style.content, style.footer)}>
+                    <div className={style.review} onClick={this.handleSubmit.bind(this)}>提交审核</div>
+                    <div className={style.close} onClick={this.handClose.bind(this)}>关闭</div>
+                </div>
             </div>
         );
     }

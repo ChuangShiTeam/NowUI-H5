@@ -65,6 +65,7 @@ class Remind extends Component {
         });
     }
 
+
     handleChange(value) {
         let member;
         for (let i = 0; i < this.props.forumRemind.memberList.length; i++) {
