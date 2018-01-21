@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Link} from 'react-router';
 import classNames from 'classnames';
 
 import style from './Index.scss';
@@ -34,9 +35,9 @@ class Index extends Component {
                     </div>
                     <div className={style.headerRight}></div>
                 </div>
-                <div className={style.content}>
+                <Link to="/topic/detail" className={style.content}>
                     <img className={style.contentImage} src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/320/h/255' alt=''/>
-                </div>
+                </Link>
                 <div className={style.footer}>
                     <div className={classNames(style.footerText, baseStyle.bottomLine)}>
                         奶糖和福禄娃给你过圣诞啦～
