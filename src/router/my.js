@@ -13,5 +13,29 @@ export default {
                 }, 'my.index');
             }
         }]
-    }]
+    },{
+        path: '/forum/info',
+        onEnter: util.handleEnter,
+        getComponent(location, cb) {
+            require.ensure([], (require) => {
+                cb(null, require('../view/forum/Info').default);
+            }, 'forum.info');
+        }
+    },{
+        path: '/forum/location',
+        onEnter: util.handleEnter,
+        getComponent(location, cb) {
+            require.ensure([], (require) => {
+                cb(null, require('../view/forum/Location').default);
+            }, 'forum.location');
+        }
+    },{
+        path: '/forum/message',
+        onEnter: util.handleEnter,
+        getComponent(location, cb) {
+            require.ensure([], (require) => {
+                cb(null, require('../view/forum/Message').default);
+            }, 'forum.message');
+        }
+    }],
 }
