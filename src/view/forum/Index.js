@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router';
 import classNames from 'classnames';
+import Notification from 'rc-notification';
 
 import util from '../../common/util';
 import http from '../../common/http';
@@ -11,6 +12,8 @@ import constant from '../../common/constant';
 import style from './Index.scss';
 
 let interestSwiper;
+let notification = null;
+Notification.newInstance({}, (n) => notification = n);
 
 class Index extends Component {
     constructor(props) {
@@ -88,7 +91,7 @@ class Index extends Component {
                                 shadows : false
                             }
                         });
-                    }.bind(this));
+                    });
                 }
             }.bind(this),
             complete: function () {
@@ -120,9 +123,37 @@ class Index extends Component {
     }
 
     componentWillUnmount() {
+        this.handleDestroySwiper();
+    }
+
+    handleDestroySwiper() {
         if (interestSwiper) {
             interestSwiper.destroy();
         }
+    }
+
+    handleJoin(forumId) {
+        http.request({
+            url: '/forum/user/follow/mobile/v1/save',
+            data: {
+                forumId: forumId
+            },
+            success: function (data) {
+                if (data) {
+                    notification.notice({
+                        content: '加入成功'
+                    });
+                    this.handleLoad();
+                } else {
+                    notification.notice({
+                        content: '加入失败'
+                    });
+                }
+            }.bind(this),
+            complete: function () {
+
+            }
+        });
     }
 
     render() {
@@ -164,7 +195,7 @@ class Index extends Component {
                         {
                             this.state.forumJoinList.map(function (forum, index) {
                                 return (
-                                    <Link to={'/forum/info/' + forum.forumId} key={index} style={index == 0 ? {} : {marginTop: '12px'}}
+                                    <Link to={'/forum/homepage/' + forum.forumId} key={forum.forumId} style={index === 0 ? {} : {marginTop: '12px'}}
                                          className={style.joinContentList}>
                                         <div className={style.joinContentListLeft}>
                                             <img className={style.joinContentListLeftIcon}
@@ -231,14 +262,14 @@ class Index extends Component {
                                     {
                                         this.state.forumRecommendList.map((forum, index) => {
                                             return (
-                                                <div className={classNames(style.interestContentwrapperCard, 'swiper-slide')} key={index}>
+                                                <div className={classNames(style.interestContentwrapperCard, 'swiper-slide')} key={forum.forumId}>
                                                     <div className={style.interestContentwrapperCardAvatar}>
                                                         <img className={style.interestContentwrapperCardAvatar}
-                                                             src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/44/h/44'
+                                                             src={constant.image_host + forum.forumMedia.filePath}
                                                              alt=''/>
                                                     </div>
-                                                    <div className={style.interestContentwrapperCardName}>大爱猫咪控</div>
-                                                    <div className={style.interestContentwrapperCardSummary}>猫咪超级萌的，温暖的大宝贝</div>
+                                                    <div className={style.interestContentwrapperCardName}>{forum.forumName}</div>
+                                                    <div className={style.interestContentwrapperCardSummary}>{forum.forumDescription}</div>
                                                     <div className={style.interestContentwrapperCardImage}>
                                                         <img className={style.interestContentwrapperCardImageItem}
                                                              src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/44/h/44'
@@ -251,7 +282,7 @@ class Index extends Component {
                                                              alt=''/>
                                                     </div>
                                                     <div className={style.interestContentwrapperCardButton}>
-                                                        <div className={style.interestContentwrapperCardButtonJoin}>加入</div>
+                                                        <div className={style.interestContentwrapperCardButtonJoin} onClick={this.handleJoin.bind(this, forum.forumId)}>加入</div>
                                                     </div>
                                                 </div>
                                             )

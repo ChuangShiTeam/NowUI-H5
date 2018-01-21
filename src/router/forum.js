@@ -45,7 +45,7 @@ export default {
             }, 'forum.info');
         }
     }, {
-        path: '/forum/homepage',
+        path: '/forum/homepage/:forumId',
         onEnter: util.handleEnter,
         getComponent(location, cb){
             require.ensure([],(require) =>{
