@@ -173,12 +173,14 @@ class Info extends Component {
                             this.state.isEdit?
                                 ''
                                 :<div className={classNames(baseStyle.list, baseStyle.bottomLine)}>
-                                    <div className={baseStyle.listLeft}>设置密码</div>
-                                    <div className={classNames(style.listCenter, baseStyle.listCenter)}>
-                                    </div>
-                                    <div className={baseStyle.listRight}>
-                                        <div className={baseStyle.rightArrow}></div>
-                                    </div>
+                                    <Link to="/forget/password" className={style.listModule}>
+                                        <div className={baseStyle.listLeft}>设置密码</div>
+                                        <div className={classNames(style.listCenter, baseStyle.listCenter)}>
+                                        </div>
+                                        <div className={baseStyle.listRight}>
+                                            <div className={baseStyle.rightArrow}></div>
+                                        </div>
+                                    </Link>
                                 </div>
                         }
                     </div>
