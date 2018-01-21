@@ -101,7 +101,7 @@ class Index extends Component {
 
     render() {
         return (
-            <div className={style.page} style={{height: document.documentElement.clientHeight}}>
+            <div className={style.page} style={{minHeight: document.documentElement.clientHeight}}>
                 <div className={style.skip}><Link to="/forum/index">跳过</Link></div>
                 <div className={style.title}>选择加入你也许感兴趣的圈子</div>
                 <div className={style.summary}>为你私人定制你的宠物部落</div>

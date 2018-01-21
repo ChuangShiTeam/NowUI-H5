@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {Link} from 'react-router';
 
 import util from '../../common/util';
 
@@ -60,7 +61,7 @@ class Index extends Component {
                     </div>
                     <div className={style.nullDiv}></div>
                     <div className={style.newsList}>
-                        <div className={style.listModule}>
+                        <Link to="/my/info" className={style.listModule}>
                             <div className={style.moreLeft}>
                                 <div  className={style.picture}>
                                     <img src={require('../../image/my-user.png')}  alt=""/>
@@ -70,7 +71,7 @@ class Index extends Component {
                             <div className={style.more}>
                                 <div className={style.moreImg}></div>
                             </div>
-                        </div>
+                        </Link>
                         <div className={style.nullDiv1}></div>
                         <div className={style.listModule}>
                             <div className={style.moreLeft}>
