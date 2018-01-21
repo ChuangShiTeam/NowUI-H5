@@ -4,19 +4,23 @@ import {connect} from 'react-redux';
 import util from '../../common/util';
 
 import style from './Homepage.scss';
+import http from "../../common/http";
 
 class Homepage extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            isLoad: false
+            isLoad: false ,
+            member: {}
         }
     }
 
     componentDidMount() {
-        util.setTitle('wawipet哇咿宠');
+        util.setTitle('个人主页');
         util.hancleComponentDidMount();
+
+        this.handleLoad();
     }
 
     componentDidUpdate() {
@@ -24,6 +28,27 @@ class Homepage extends Component {
     }
 
     componentWillUnmount() {
+
+    }
+
+    handleLoad() {
+        let userId = this.props.params.userId;
+        if (userId) {
+            http.request({
+                url: '/forum/mobile/v1/home',
+                data: {
+                    userId: userId
+                },
+                success: function (data) {
+                    this.setState({
+                        member: data
+                    });
+                }.bind(this),
+                complete: function () {
+
+                }
+            });
+        }
 
     }
 

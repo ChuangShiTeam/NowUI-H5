@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {Link} from 'react-router';
 
 import util from '../../common/util';
 import http from "../../common/http";
@@ -66,7 +67,7 @@ class Homepage extends Component {
                      <p style={{textAlign:"center",marginTop:"10px"}}>
                          {
                              this.state.forum.memberIsFollowForum ?
-                                 '已加入此圈子'
+                                 '已加入圈子'
                                  :
                                  <input style={{borderRadius:"34px",backgroundColor:"#DEFAFD",width:"86px",height:"27px",boxShadow:" 0px 0px 6px #888888"}} type="button" value="加入圈子"/>
                          }
@@ -78,10 +79,20 @@ class Homepage extends Component {
                      <dl>
                          <dt className={style.homePageHeaderMessageLeft}>
                              {
-                                 this.state.forum && this.state.forum.forumModerator && this.state.forum.forumModerator.userAvatar ?
-                                     <img src={constant.image_host + this.state.forum.forumModerator.userAvatar} alt=''/>
+                                 this.state.forum && this.state.forum.forumModerator && this.state.forum.forumModerator.userId ?
+                                     <Link to={'/member/homepage/' +  this.state.forum.forumModerator.userId} key={this.state.forum.forumModerator.userId} >
+                                         {
+                                             this.state.forum.forumModerator.userAvatar ?
+                                                 <img src={constant.image_host + this.state.forum.forumModerator.userAvatar} alt=''/>
+                                                 :
+                                                 <img src={require('../../image/topicItem.png')} alt='' />
+                                         }
+                                     </Link>
                                      :
-                                     <img src={require('../../image/topicItem.png')} alt=''/>
+                                     null
+
+
+
                              }
 
                          </dt>
@@ -91,13 +102,13 @@ class Homepage extends Component {
                                      this.state.forum.forumModerator && this.state.forum.forumModerator.userNickName ?
                                          this.state.forum.forumModerator.userNickName
                                          :
-                                         '默认用户昵称'
+                                         '用户没有昵称'
                                  }
                              </p>
                              <p style={{color:"#000000",fontSize:"9px",marginTop:"2px"}}>
                                  {
-                                     this.state.forum && this.state.forum.forumDescription ?
-                                         this.state.forum.forumDescription
+                                     this.state.forum && this.state.forum.forumModerator && this.state.forum.forumModerator.forumDescription ?
+                                         this.state.forum.forumModerator.forumDescription
                                          :
                                          '用户没有个性签名哦'
                                  }
