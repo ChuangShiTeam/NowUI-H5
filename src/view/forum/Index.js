@@ -63,21 +63,39 @@ class Index extends Component {
 
     handleLoad() {
         this.handleLoadJoinList();
-        interestSwiper = new window.Swiper('.' + style.interestContent, {
-            slidesPerView:'auto',
-            centeredSlides: true,
-            loop:true,
-            initialSlide:1,
-            tdFlow: {
-                rotate : 0,
-                stretch :-30,
-                depth: 200,
-                modifier : 1,
-                shadows : false
+        this.handleLoadRecommendList();
+    }
+
+    handleLoadRecommendList() {
+        http.request({
+            url: '/forum/mobile/v1/recommend/list',
+            data: {
+                pageSize: 8
+            },
+            success: function (data) {
+                if (data && data.length > 0) {
+                    this.setState({
+                        forumRecommendList: data
+                    }, function () {
+                        interestSwiper = new window.Swiper('.' + style.interestContent, {
+                            slidesPerView: 3,
+                            loop:true,
+                            tdFlow: {
+                                rotate : 0,
+                                stretch :-30,
+                                depth: 200,
+                                modifier : 1,
+                                shadows : false
+                            }
+                        });
+                    }.bind(this));
+                }
+            }.bind(this),
+            complete: function () {
+
             }
         });
     }
-
     handleLoadJoinList() {
         http.request({
             url: '/forum/user/follow/mobile/v1/list',
@@ -95,7 +113,6 @@ class Index extends Component {
 
             }
         });
-
     }
 
     componentDidUpdate() {
@@ -207,102 +224,44 @@ class Index extends Component {
                             你可能感兴趣的圈子
                         </div>
                     </div>
-                    <div className={classNames(style.interestContent, 'swiper-container')}>
-                        <div className={classNames(style.interestContentwrapper, 'swiper-wrapper')}>
-                            <div className={classNames(style.interestContentwrapperCard, 'swiper-slide')}>
-                                <div className={style.interestContentwrapperCardAvatar}>
-                                    <img className={style.interestContentwrapperCardAvatar}
-                                         src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/44/h/44'
-                                         alt=''/>
-                                </div>
-                                <div className={style.interestContentwrapperCardName}>大爱猫咪控</div>
-                                <div className={style.interestContentwrapperCardSummary}>猫咪超级萌的，温暖的大宝贝</div>
-                                <div className={style.interestContentwrapperCardImage}>
-                                    <img className={style.interestContentwrapperCardImageItem}
-                                         src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/44/h/44'
-                                         alt=''/>
-                                    <img className={style.interestContentwrapperCardImageItem}
-                                         src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/44/h/44'
-                                         alt=''/>
-                                    <img className={style.interestContentwrapperCardImageItem}
-                                         src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/44/h/44'
-                                         alt=''/>
-                                </div>
-                                <div className={style.interestContentwrapperCardButton}>
-                                    <div className={style.interestContentwrapperCardButtonJoin}>加入</div>
-                                </div>
-                            </div>
-                            <div className={classNames(style.interestContentwrapperCard, 'swiper-slide')}>
-                                <div className={style.interestContentwrapperCardAvatar}>
-                                    <img className={style.interestContentwrapperCardAvatar}
-                                         src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/44/h/44'
-                                         alt=''/>
-                                </div>
-                                <div className={style.interestContentwrapperCardName}>大爱猫咪控</div>
-                                <div className={style.interestContentwrapperCardSummary}>猫咪超级萌的，温暖的大宝贝</div>
-                                <div className={style.interestContentwrapperCardImage}>
-                                    <img className={style.interestContentwrapperCardImageItem}
-                                         src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/44/h/44'
-                                         alt=''/>
-                                    <img className={style.interestContentwrapperCardImageItem}
-                                         src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/44/h/44'
-                                         alt=''/>
-                                    <img className={style.interestContentwrapperCardImageItem}
-                                         src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/44/h/44'
-                                         alt=''/>
-                                </div>
-                                <div className={style.interestContentwrapperCardButton}>
-                                    <div className={style.interestContentwrapperCardButtonJoin}>加入</div>
+                    {
+                        this.state.forumRecommendList.length > 0 ?
+                            <div className={classNames(style.interestContent, 'swiper-container')}>
+                                <div className={classNames(style.interestContentwrapper, 'swiper-wrapper')}>
+                                    {
+                                        this.state.forumRecommendList.map((forum, index) => {
+                                            return (
+                                                <div className={classNames(style.interestContentwrapperCard, 'swiper-slide')} key={index}>
+                                                    <div className={style.interestContentwrapperCardAvatar}>
+                                                        <img className={style.interestContentwrapperCardAvatar}
+                                                             src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/44/h/44'
+                                                             alt=''/>
+                                                    </div>
+                                                    <div className={style.interestContentwrapperCardName}>大爱猫咪控</div>
+                                                    <div className={style.interestContentwrapperCardSummary}>猫咪超级萌的，温暖的大宝贝</div>
+                                                    <div className={style.interestContentwrapperCardImage}>
+                                                        <img className={style.interestContentwrapperCardImageItem}
+                                                             src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/44/h/44'
+                                                             alt=''/>
+                                                        <img className={style.interestContentwrapperCardImageItem}
+                                                             src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/44/h/44'
+                                                             alt=''/>
+                                                        <img className={style.interestContentwrapperCardImageItem}
+                                                             src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/44/h/44'
+                                                             alt=''/>
+                                                    </div>
+                                                    <div className={style.interestContentwrapperCardButton}>
+                                                        <div className={style.interestContentwrapperCardButtonJoin}>加入</div>
+                                                    </div>
+                                                </div>
+                                            )
+                                        })
+                                    }
                                 </div>
                             </div>
-                            <div className={classNames(style.interestContentwrapperCard, 'swiper-slide')}>
-                                <div className={style.interestContentwrapperCardAvatar}>
-                                    <img className={style.interestContentwrapperCardAvatar}
-                                         src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/44/h/44'
-                                         alt=''/>
-                                </div>
-                                <div className={style.interestContentwrapperCardName}>大爱猫咪控</div>
-                                <div className={style.interestContentwrapperCardSummary}>猫咪超级萌的，温暖的大宝贝</div>
-                                <div className={style.interestContentwrapperCardImage}>
-                                    <img className={style.interestContentwrapperCardImageItem}
-                                         src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/44/h/44'
-                                         alt=''/>
-                                    <img className={style.interestContentwrapperCardImageItem}
-                                         src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/44/h/44'
-                                         alt=''/>
-                                    <img className={style.interestContentwrapperCardImageItem}
-                                         src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/44/h/44'
-                                         alt=''/>
-                                </div>
-                                <div className={style.interestContentwrapperCardButton}>
-                                    <div className={style.interestContentwrapperCardButtonJoin}>加入</div>
-                                </div>
-                            </div>
-                            <div className={classNames(style.interestContentwrapperCard, 'swiper-slide')}>
-                                <div className={style.interestContentwrapperCardAvatar}>
-                                    <img className={style.interestContentwrapperCardAvatar}
-                                         src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/44/h/44'
-                                         alt=''/>
-                                </div>
-                                <div className={style.interestContentwrapperCardName}>大爱猫咪控</div>
-                                <div className={style.interestContentwrapperCardSummary}>猫咪超级萌的，温暖的大宝贝</div>
-                                <div className={style.interestContentwrapperCardImage}>
-                                    <img className={style.interestContentwrapperCardImageItem}
-                                         src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/44/h/44'
-                                         alt=''/>
-                                    <img className={style.interestContentwrapperCardImageItem}
-                                         src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/44/h/44'
-                                         alt=''/>
-                                    <img className={style.interestContentwrapperCardImageItem}
-                                         src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/44/h/44'
-                                         alt=''/>
-                                </div>
-                                <div className={style.interestContentwrapperCardButton}>
-                                    <div className={style.interestContentwrapperCardButtonJoin}>加入</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                            :
+                            null
+                    }
                 </div>
                 <br/>
                 <br/>

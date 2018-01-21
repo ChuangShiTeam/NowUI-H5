@@ -1,6 +1,6 @@
 const initialState = {
-    forumList: []
-}
+
+};
 
 function forumSkip(state = initialState, action) {
     switch (action.type) {
