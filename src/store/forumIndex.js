@@ -1,5 +1,4 @@
 const initialState = {
-    joinList: []
 }
 
 function forumIndex(state = initialState, action) {
