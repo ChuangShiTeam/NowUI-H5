@@ -7,7 +7,7 @@ import util from '../../common/util';
 import style from './Location.scss';
 import baseStyle from '../../css/Base.scss';
 
-class Info extends Component {
+class Location extends Component {
     constructor(props) {
         super(props);
 
@@ -105,4 +105,4 @@ class Info extends Component {
     }
 }
 
-export default connect(() => ({}))(Info);
+export default connect(() => ({}))(Location);

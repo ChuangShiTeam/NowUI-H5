@@ -225,3 +225,10 @@
 	color: #000000;
 	letter-spacing: 0.6px;
 }
+.listModule{
+	display: flex;
+	-js-display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+}

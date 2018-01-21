@@ -7,7 +7,7 @@ import util from '../../common/util';
 import style from './Message.scss';
 import baseStyle from '../../css/Base.scss';
 
-class Info extends Component {
+class Message extends Component {
     constructor(props) {
         super(props);
 
@@ -45,6 +45,8 @@ class Info extends Component {
                         <div className={style.headerContentCenter}>
                             消息
                         </div>
+                        <div className={style.headerContentRight}>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -52,4 +54,4 @@ class Info extends Component {
     }
 }
 
-export default connect(() => ({}))(Info);
+export default connect(() => ({}))(Message);

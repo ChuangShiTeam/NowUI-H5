@@ -15,7 +15,7 @@ class Info extends Component {
 
         this.state = {
             isLoad: false,
-            isEdit: true,
+            isEdit: false,
         }
     }
 
@@ -187,13 +187,15 @@ class Info extends Component {
                             this.state.isEdit?
                                 ''
                                 :<div className={classNames(baseStyle.list, baseStyle.bottomLine)}>
-                                    <div className={baseStyle.listLeft}>偏好语言</div>
-                                    <div className={classNames(style.listCenter, baseStyle.listCenter)}>
-                                        简体中文
-                                    </div>
-                                    <div className={baseStyle.listRight}>
-                                        <div className={baseStyle.rightArrow}></div>
-                                    </div>
+                                    <Link to="/my/language" className={style.listModule}>
+                                        <div className={baseStyle.listLeft}>偏好语言</div>
+                                        <div className={classNames(style.listCenter, baseStyle.listCenter)}>
+                                            简体中文
+                                        </div>
+                                        <div className={baseStyle.listRight}>
+                                            <div className={baseStyle.rightArrow}></div>
+                                        </div>
+                                    </Link>
                                 </div>
                         }
 

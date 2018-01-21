@@ -37,5 +37,13 @@ export default {
                 cb(null, require('../view/my/Message').default);
             }, 'my.message');
         }
+    },{
+        path: '/my/language',
+        onEnter: util.handleEnter,
+        getComponent(location, cb) {
+            require.ensure([], (require) => {
+                cb(null, require('../view/my/Language').default);
+            }, 'my.language');
+        }
     }],
 }
