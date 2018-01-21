@@ -4,6 +4,8 @@ import {Link} from 'react-router';
 import classNames from 'classnames';
 
 import util from '../../common/util';
+import http from '../../common/http';
+import constant from '../../common/constant';
 
 import style from './Skip.scss';
 import baseStyle from '../../css/Base.scss';
@@ -13,7 +15,8 @@ class Index extends Component {
         super(props);
 
         this.state = {
-            isLoad: false
+            isLoad: false,
+            forumList: []
         }
     }
 
@@ -21,37 +24,27 @@ class Index extends Component {
         util.setTitle('wawipet哇咿宠');
         util.hancleComponentDidMount();
 
-        //TODO 从后台获取数据
-        //本地测试静态数据
-        this.props.dispatch({
-            type: 'forumSkip',
+        http.request({
+            url: '/forum/mobile/v1/recommend/list',
             data: {
-                forumList: [
-                    {
-                        id: '0',
-                        selected: false,
-                        url: 'http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/120/h/120',
-                        name: '大爱金毛圈',
-                        summary: '金毛最可爱了，大暖汪星人的代表'
-                    },
-                    {
-                        id: '1',
-                        selected: false,
-                        url: 'http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/120/h/120',
-                        name: '软萌布偶圈',
-                        summary: '布偶猫可以说是最最软萌的生物了！'
-                    },
-                    {
-                        id: '2',
-                        selected: false,
-                        url: 'http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/120/h/120',
-                        name: '起司猫的日常',
-                        summary: '家有小起，如有一宝'
-                    }
-                ]
+                pageSize: 3
+            },
+            success: function (data) {
+                let forumList = data;
+                if (forumList && forumList.length > 0) {
+                    forumList = forumList.map(forum => {
+                        forum.selected = false;
+                        return forum;
+                    });
+                    this.setState({
+                        forumList: forumList
+                    })
+                }
+            }.bind(this),
+            complete: function () {
+
             }
         });
-
     }
 
     componentDidUpdate() {
@@ -62,22 +55,48 @@ class Index extends Component {
 
     }
 
-    handleCancelSelect(index) {
-        this.props.forumSkip.forumList[index].selected = !this.props.forumSkip.forumList[index].selected;
-
-        this.props.dispatch({
-            type: 'skip',
-            data: {
-                forumList: this.props.forumSkip.forumList
-            }
+    handleSelect(index) {
+        let forumList = this.state.forumList;
+        let forum = forumList[index];
+        forum.selected = !forum.selected;
+        forumList[index] = forum;
+        this.setState({
+            forumList: forumList
         });
     }
 
     handleSubmit() {
-        this.props.history.push({
-            pathname: '/forum/index',
-            query: {}
-        });
+        let forumList = this.state.forumList;
+        if (forumList && forumList.length > 0) {
+            let forumIdList = forumList.filter(forum => forum.selected).map(forum => forum.forumId);
+            if (forumIdList && forumIdList.length > 0) {
+                http.request({
+                    url: '/forum/user/follow/mobile/v1/batch/save',
+                    data: {
+                        forumIdList: forumIdList
+                    },
+                    success: function (data) {
+                        this.props.history.push({
+                            pathname: '/forum/index',
+                            query: {}
+                        });
+                    }.bind(this),
+                    complete: function () {
+
+                    }
+                });
+            } else {
+                this.props.history.push({
+                    pathname: '/forum/index',
+                    query: {}
+                });
+            }
+        } else {
+            this.props.history.push({
+                pathname: '/forum/index',
+                query: {}
+            });
+        }
     }
 
     render() {
@@ -88,15 +107,16 @@ class Index extends Component {
                 <div className={style.summary}>为你私人定制你的宠物部落</div>
                 <div className={style.list}>
                     {
-                        this.props.forumSkip.forumList.map((forum, index) =>
-                            <div key={index} className={classNames(style.listItem, baseStyle.bottomLine)}
-                                 onClick={this.handleCancelSelect.bind(this, index)}>
+                        this.state.forumList.length > 0 ?
+                        this.state.forumList.map((forum, index) =>
+                            <div key={index} id={forum.id} className={classNames(style.listItem, baseStyle.bottomLine)}
+                                 onClick={this.handleSelect.bind(this, index)}>
                                 <div className={style.listItemLeft}>
-                                    <img className={style.listItemLeftIcon} src={forum.url} alt=''/>
+                                    <img className={style.listItemLeftIcon} src={constant.image_host + forum.forumMedia.filePath } alt=''/>
                                 </div>
                                 <div className={style.listItemCenter}>
-                                    <div className={style.listItemCenterName}>{forum.name}</div>
-                                    <div className={style.listItemCenterSummary}>{forum.summary}</div>
+                                    <div className={style.listItemCenterName}>{forum.forumName}</div>
+                                    <div className={style.listItemCenterSummary}>{forum.forumDescription}</div>
                                 </div>
                                 <div className={style.listItemRight}>
                                     <img className={style.listItemRightSelect}
@@ -105,6 +125,8 @@ class Index extends Component {
                                 </div>
                             </div>
                         )
+                        :
+                        null
                     }
                 </div>
                 <div className={style.footer}>
