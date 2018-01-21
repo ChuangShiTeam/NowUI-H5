@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import util from '../../common/util';
 
 import style from './Follow.scss';
-//import baseStyle from '../../css/Base.scss';
+
 
 class Follow extends Component {
     constructor(props) {
