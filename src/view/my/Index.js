@@ -51,7 +51,7 @@ class Index extends Component {
                         <div className={style.middleRight}>
                             <div>
                                 <div className={style.loveImg}>
-                                    <img src={require('../../image/my -collect.png')} alt=""/>
+                                    <img src={require('../../image/my-collect.png')} alt=""/>
                                 </div>
                                 <div className={style.news}>收藏</div>
                             </div>
@@ -61,7 +61,9 @@ class Index extends Component {
                     <div className={style.newsList}>
                         <div className={style.listModule}>
                             <div className={style.moreLeft}>
-                                <div  className={style.picture}></div>
+                                <div  className={style.picture}>
+                                    <img src={require('../../image/my-user.png')}  alt=""/>
+                                </div>
                                 <div className={style.pictureRight}>个人资料</div>
                             </div>
                             <div className={style.more}>
@@ -71,7 +73,9 @@ class Index extends Component {
                         <div className={style.nullDiv1}></div>
                         <div className={style.listModule}>
                             <div className={style.moreLeft}>
-                                <div  className={style.picture}></div>
+                                <div  className={style.picture}>
+                                    <img src={require('../../image/my-pet.png')}  alt=""/>
+                                </div>
                                 <div className={style.pictureRight}>我的爱宠</div>
                             </div>
                             <div className={style.more}>
@@ -81,7 +85,9 @@ class Index extends Component {
                         <div className={style.nullDiv1}></div>
                         <div className={style.listModule}>
                             <div className={style.moreLeft}>
-                                <div  className={style.picture}></div>
+                                <div  className={style.pictureFollow}>
+                                    <img  src={require('../../image/my-follow.png')}  alt=""/>
+                                </div>
                                 <div className={style.pictureRight}>我的关注</div>
                             </div>
                             <div className={style.more}>
@@ -91,7 +97,9 @@ class Index extends Component {
                         <div className={style.nullDiv1}></div>
                         <div className={style.listModule}>
                             <div className={style.moreLeft}>
-                                <div  className={style.picture}></div>
+                                <div  className={style.pictureQrcode}>
+                                    <img src={require('../../image/my-qrcode.png')}  alt=""/>
+                                </div>
                                 <div className={style.pictureRight}>我的二维码</div>
                             </div>
                             <div className={style.more}>
