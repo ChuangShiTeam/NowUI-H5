@@ -83,7 +83,7 @@ class Password extends Component {
         const {getFieldProps} = this.props.form;
 
         return (
-            <div className={style.page} style={{height: document.documentElement.clientHeight}}>
+            <div className={style.page} style={{minHeight: document.documentElement.clientHeight}}>
                 <div className={style.header}>
                     <img className={style.logo} src={require('../../image/login-logo.png')} alt=''/>
                 </div>

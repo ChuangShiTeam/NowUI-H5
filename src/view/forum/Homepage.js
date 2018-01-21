@@ -52,7 +52,7 @@ class Homepage extends Component {
 
     render() {
         return (
-            <div className={style.page} style={{height: document.documentElement.clientHeight}}>
+            <div className={style.page} style={{minHeight: document.documentElement.clientHeight}}>
                  <div className={style.homePageHeaderIco}></div>
                  <div className={style.homePageHeaderTopBackground}>
                      <span style={{paddingTop:"97px",display:"block",paddingLeft:"10px",fontSize:"10px"}}>

@@ -29,7 +29,7 @@ class Homepage extends Component {
 
     render() {
         return (
-            <div className={style.page} style={{height: document.documentElement.clientHeight}}>
+            <div className={style.page} style={{minHeight: document.documentElement.clientHeight}}>
                 <div className={style.headerContentTopBackground}>
                     <div className={style.headerContentMemberIcon}>
                         <img src={require('../../image/topicItem.png')} alt=''/>
