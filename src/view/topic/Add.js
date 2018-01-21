@@ -107,7 +107,7 @@ class Add extends Component {
         const {getFieldProps} = this.props.form;
 
         return (
-            <div className={baseStyle.page} style={{height: document.documentElement.clientHeight}}>
+            <div className={baseStyle.page} style={{minHeight: document.documentElement.clientHeight}}>
                 <div className={style.content}>
                     <div className={style.upload}>
                         <ImageUpload name="topicMedia" ref="topicMedia" limit={9}/>

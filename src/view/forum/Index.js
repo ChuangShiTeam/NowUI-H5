@@ -159,7 +159,7 @@ class Index extends Component {
 
     render() {
         return (
-            <div className={style.page} style={{height: document.documentElement.clientHeight}}>
+            <div className={style.page} style={{minHeight: document.documentElement.clientHeight}}>
                 <div className={style.header}>
                     <div className={style.headerContent}>
                         <div className={style.headerContentLeft}>
