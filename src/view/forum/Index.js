@@ -149,6 +149,7 @@ class Index extends Component {
                         content: '加入失败'
                     });
                 }
+
             }.bind(this),
             complete: function () {
 
