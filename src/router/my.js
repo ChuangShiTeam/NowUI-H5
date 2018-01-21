@@ -14,28 +14,28 @@ export default {
             }
         }]
     },{
-        path: '/forum/info',
+        path: '/my/info',
         onEnter: util.handleEnter,
         getComponent(location, cb) {
             require.ensure([], (require) => {
-                cb(null, require('../view/forum/Info').default);
-            }, 'forum.info');
+                cb(null, require('../view/my/Info').default);
+            }, 'my.info');
         }
     },{
-        path: '/forum/location',
+        path: '/my/location',
         onEnter: util.handleEnter,
         getComponent(location, cb) {
             require.ensure([], (require) => {
-                cb(null, require('../view/forum/Location').default);
-            }, 'forum.location');
+                cb(null, require('../view/my/Location').default);
+            }, 'my.location');
         }
     },{
-        path: '/forum/message',
+        path: '/my/message',
         onEnter: util.handleEnter,
         getComponent(location, cb) {
             require.ensure([], (require) => {
-                cb(null, require('../view/forum/Message').default);
-            }, 'forum.message');
+                cb(null, require('../view/my/Message').default);
+            }, 'my.message');
         }
     }],
 }

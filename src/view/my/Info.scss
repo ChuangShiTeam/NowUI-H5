@@ -1,0 +1,227 @@
+.page {
+	position: relative;
+	max-width: 600px;
+	margin-left: auto;
+	margin-right: auto;
+	background: #ffffff;
+	padding-top: 46px;
+}
+
+.header {
+	position: fixed;
+	top: 0;
+	height: 45px;
+	z-index: 99;
+	width: 100%;
+	max-width: 600px;
+	background: #ffffff;
+	box-shadow: 0 2px 2px 0 rgba(228, 228, 228, 0.50);
+	filter: progid:DXImageTransform.Microsoft.Shadow(color='#DFDFDF', Direction=180, Strength=1);
+}
+
+.headerContent {
+	-js-display: flex;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 45px;
+	font-family: PingFangSC-Regular;
+	font-size: 16px;
+	color: #4a4a4a;
+}
+
+.headerContentLeft {
+	width: 100px;
+	height: 45px;
+	-js-display: flex;
+	display: flex;
+	align-items: center;
+}
+
+.headerContentLeftNull {
+	margin-left: 12px;
+	width: 26px;
+	height: 26px;
+}
+
+.headerContentCenter {
+	flex-grow: 1;
+	text-align: center;
+}
+
+.headerContentRight {
+	width: 100px;
+	-js-display: flex;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	style:"background:#000;
+	color:#FFF";
+}
+
+.headerContentRightEdit {
+	margin-right: 12px;
+	width: 18px;
+	height: 18px;
+}
+
+.listItemCenterInput {
+	width: 100%;
+	height: 25px;
+	text-align: right;
+	font-family: PingFangSC-Light;
+	font-size: 12px;
+	color: #000000;
+}
+
+.listItemRight {
+	width: 100px;
+	-js-display: flex;
+	display: flex;
+	justify-content: flex-end;
+	align-items: right;
+}
+
+.listItemRightGenderText{
+	font-family: PingFangSC-Light;
+	font-size: 12px;
+	color: #000000;
+	justify-content: center;
+	align-items: center;
+}
+.listItemRightGenderImage {
+	margin-right: 5px;
+	width: 20px;
+	height: 20px;
+	border-radius: 100%;
+}
+
+.listItemRightContent {
+	-js-display: flex;
+	display: flex;
+	justify-content:center;
+	align-items:center;
+}
+
+.listItemRightContentGender {
+	margin-right: 20px;
+	-js-display: flex;
+	display: flex;
+	justify-content:center;
+	align-items:center;
+}
+
+.listItemRightGenderContent {
+	width: 100px;
+	-js-display: flex;
+	display: flex;
+	justify-content: flex-end;
+	align-items: right;
+	margin-right: 32px;
+}
+
+.listCenter {
+	font-family: PingFangSC-Light;
+	font-size: 12px;
+	color: #8f8f8f;
+	text-align: right;
+	width: 0;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.listItemRightLocatinImage {
+	margin-left: 10px;
+	width: 13px;
+	height: 17px;
+}
+
+.listItemRightLocationInput {
+	width: 100%;
+	height: 25px;
+	text-align: right;
+	font-family: PingFangSC-Light;
+	font-size: 12px;
+	color: #000000;
+	border: 0 solid #979797;
+	border-radius: 5px;
+
+}
+
+.image {
+	height: 73px;
+}
+
+.imageLeft {
+	font-family: PingFangSC-Regular;
+	font-size: 14px;
+	color: #262626;
+	text-align: left;
+	width: 100px;
+	height: 73px;
+	-js-display: flex;
+	display: flex;
+	align-items: center;
+}
+
+.imageCenter {
+	flex-grow: 1;
+	-js-display: flex;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	height: 73px;
+}
+
+.imageCenterImage {
+	border-radius: 10%;
+	width: 58px;
+	height: 58px;
+	margin-top: 5px;
+}
+
+.imageRight {
+	width: 32px;
+	text-align: center;
+}
+
+.imageRightIcon {
+	width: 57px;
+	margin-top: 5px;
+}
+
+.line {
+	height: 10px;
+	background: #defafd;
+}
+
+.content {
+	margin-left: 12px;
+	margin-right: 12px;
+}
+
+.footer {
+	position: absolute;
+	left: 0px;
+	right: 0px;
+	bottom: 112px;
+}
+
+.review {
+	-js-display: flex;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: #defafd;
+	box-shadow: 0 2px 4px 0 rgba(216, 216, 216, 0.50);
+	filter: progid:DXImageTransform.Microsoft.Shadow(color='#DFDFDF', Direction=180, Strength=1);
+	border-radius: 5px;
+	width: 100%;
+	height: 50px;
+	font-family: PingFangSC-Light;
+	font-size: 16px;
+	color: #000000;
+	letter-spacing: 0.6px;
+}
