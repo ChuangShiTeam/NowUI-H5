@@ -7,6 +7,8 @@ import util from '../../common/util';
 import style from './Detail.scss';
 import baseStyle from '../../css/Base.scss';
 import classNames from "classnames";
+import http from "../../common/http";
+import constant from "../../common/constant";
 
 
 let notification = null;
@@ -17,13 +19,16 @@ class Detail extends Component {
         super(props);
 
         this.state = {
-            isLoad: false
+            isLoad: false,
+            topic: {}
         }
     }
 
     componentDidMount() {
         util.setTitle('wawipet哇咿宠');
         util.hancleComponentDidMount();
+
+        this.handleLoad();
     }
 
     componentDidUpdate() {
@@ -34,22 +39,63 @@ class Detail extends Component {
 
     }
 
+    handleLoad() {
+        //假数据start
+        let topicId = '029b48ea1edc4138b9875c63606e24e7';
+        //假数据end
+        // let topicId = this.props.params.topicId;
+
+        if (topicId) {
+            http.request({
+                url: '/topic/mobile/v1/find',
+                data: {
+                    topicId: topicId
+                },
+                success: function (data) {
+                    this.setState({
+                        topic: data
+                    });
+                    console.log(this.state.topic)
+                }.bind(this),
+                complete: function () {
+
+                }
+            });
+        }
+    }
+
     render() {
         return (
             <div className={baseStyle.page} style={{minHeight: document.documentElement.clientHeight}}>
                 <div className={style.header}>
                     <div className={style.headerLeft}>
-                        <img className={style.headerLeftImage} src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/28/h/28' alt=''/>
+                        {
+                            this.state.topic.userId && this.state.topic.userId.userAvatar ?
+                                <img src={constant.image_host + this.state.topic.userId.userAvatar} alt=''/>
+                                :
+                                <img className={style.headerLeftImage} src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/28/h/28' alt=''/>
+                        }
+
                     </div>
                     <div className={style.headerCenter}>
-                        <p className={style.headerCenterName}>Nami</p>
-                        <p className={style.headerCenterTime}>20分钟前</p>
+                        <p className={style.headerCenterName}>{this.state.topic.userId && this.state.topic.userId.userNickName ?this.state.topic.userId.userNickName : '用户昵称为null'}</p>
+                        <p className={style.headerCenterTime}>{this.state.topic ?this.state.topic.systemCreateTime : '未知发布时间'}</p>
                     </div>
                     <div className={style.headerRight}></div>
                 </div>
                 <div className={style.line}></div>
                 <div className={style.content}>
-                    <img className={style.contentImage} src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/320/h/255' alt=''/>
+                    {
+                        this.state.topic && this.state.topic.topicMediaList ?
+                            this.state.topic.topicMediaList.map(function (media,index){
+                                return (
+                                    <img src={constant.image_host + this.state.topic.userId.userAvatar} alt=''/>
+                                )
+                            })
+                            :
+                            <img className={style.contentImage} src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/320/h/255' alt=''/>
+                    }
+
                 </div>
                 <div className={style.footer}>
                     <div className={classNames(style.footerText, baseStyle.bottomLine)}>

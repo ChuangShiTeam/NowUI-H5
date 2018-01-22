@@ -6,6 +6,10 @@ import util from '../../common/util';
 import http from "../../common/http";
 import style from './Homepage.scss';
 import constant from "../../common/constant";
+import Notification from "rc-notification";
+
+let notification = null;
+Notification.newInstance({}, (n) => notification = n);
 
 class Homepage extends Component {
     constructor(props) {
@@ -49,13 +53,40 @@ class Homepage extends Component {
                 }
             });
         }
+    }
 
+    handleJoin(forumId) {
+        http.request({
+            url: '/forum/user/follow/mobile/v1/save',
+            data: {
+                forumId: forumId
+            },
+            success: function (data) {
+                if (data) {
+                    notification.notice({
+                        content: '加入成功'
+                    });
+                    this.handleLoad();
+                } else {
+                    notification.notice({
+                        content: '加入失败'
+                    });
+                }
+
+            }.bind(this),
+            complete: function () {
+
+            }
+        });
     }
 
     render() {
         return (
             <div className={style.page} style={{minHeight: document.documentElement.clientHeight}}>
-                 <div className={style.homePageHeaderIco}></div>
+
+                <Link to={'/forum/info/' +  this.state.forum.forumId} key={this.state.forum.forumId} >
+                     <div className={style.homePageHeaderIco}></div>
+                </Link>
                  <div className={style.homePageHeaderTopBackground}>
                      <span style={{paddingTop:"97px",display:"block",paddingLeft:"10px",fontSize:"10px"}}>
                          已有{this.state.forum.forumUserFollowCount?this.state.forum.forumUserFollowCount:0}人加入圈子
@@ -69,7 +100,9 @@ class Homepage extends Component {
                              this.state.forum.memberIsFollowForum ?
                                  '已加入圈子'
                                  :
-                                 <input style={{borderRadius:"34px",backgroundColor:"#DEFAFD",width:"86px",height:"27px",boxShadow:" 0px 0px 6px #888888"}} type="button" value="加入圈子"/>
+
+                                 <input style={{borderRadius:"34px",backgroundColor:"#DEFAFD",width:"86px",height:"27px",boxShadow:" 0px 0px 6px #888888"}}
+                                       onClick={this.handleJoin.bind(this)} type="button" value="加入圈子"/>
                          }
 
                      </p>
