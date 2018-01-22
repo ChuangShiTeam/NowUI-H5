@@ -139,7 +139,6 @@ class Index extends Component {
 
 Index.propTypes = {};
 
-
 export default connect((store) => ({
     forumSkip: store.forumSkip
 }))(Index);
