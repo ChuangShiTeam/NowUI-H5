@@ -1,0 +1,25 @@
+.zby-uploader {
+  width: 100%;
+  padding: 20px;
+  background: #fff; }
+  .zby-uploader .zby-uploader-button {
+    display: inline-block;
+    width: 160px;
+    height: 160px;
+    border-radius: 5px;
+    border: 2px dashed #d9d9d9;
+    vertical-align: top;
+    text-align: center;
+    color: #999;
+    box-sizing: border-box; }
+    .zby-uploader .zby-uploader-button .fa {
+      display: inline-block;
+      margin-top: 10px;
+      font-size: 60px;
+      line-height: 90px; }
+    .zby-uploader .zby-uploader-button .text {
+      font-size: 28px; }
+  .zby-uploader .file-input {
+    display: none; }
+
+/*# sourceMappingURL=uploader.css.map */
