@@ -42,7 +42,14 @@
 }
 
 .image {
+	-js-display: flex;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
 	height: 73px;
+	background: #ffffff;
 }
 
 .imageLeft {
@@ -67,10 +74,9 @@
 }
 
 .imageCenterImage {
-	border-radius: 100%;
+	border-radius: 4px;
 	width: 58px;
 	height: 58px;
-	margin-top: 5px;
 }
 
 .imageRight {
@@ -114,7 +120,11 @@
 
 .infoLeft {
 	position: relative;
+	-js-display: flex;
+	display: flex;
+	align-items: center;
 	width: 57px;
+	height: 47px;
 }
 
 .infoLeftCrown {
@@ -132,7 +142,6 @@
 	height: 35px;
 	border-radius: 100%;
 	align-self: flex-end;
-	margin-top: 12px;
 }
 
 .infoRight {
@@ -191,7 +200,6 @@
 	width: 39px;
 	height: 39px;
 	border-radius: 100%;
-	behavior: url(/pie/PIE.htc);
 	margin-right: 3px;
 	margin-bottom: 3px;
 }
@@ -200,7 +208,6 @@
 	width: 35px;
 	height: 35px;
 	border-radius: 100%;
-	behavior: url(/pie/PIE.htc);
 }
 
 .delete {

@@ -30,4 +30,37 @@ export default {
             }, 'my.dynamic');
         }
     }]
+    },{
+        path: '/my/info',
+        onEnter: util.handleEnter,
+        getComponent(location, cb) {
+            require.ensure([], (require) => {
+                cb(null, require('../view/my/Info').default);
+            }, 'my.info');
+        }
+    },{
+        path: '/my/location',
+        onEnter: util.handleEnter,
+        getComponent(location, cb) {
+            require.ensure([], (require) => {
+                cb(null, require('../view/my/Location').default);
+            }, 'my.location');
+        }
+    },{
+        path: '/my/message',
+        onEnter: util.handleEnter,
+        getComponent(location, cb) {
+            require.ensure([], (require) => {
+                cb(null, require('../view/my/Message').default);
+            }, 'my.message');
+        }
+    // },{
+    //     path: '/my/language',
+    //     onEnter: util.handleEnter,
+    //     getComponent(location, cb) {
+    //         require.ensure([], (require) => {
+    //             cb(null, require('../view/my/Language').default);
+    //         }, 'my.language');
+    //     }
+    }],
 }

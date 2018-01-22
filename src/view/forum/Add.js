@@ -3,11 +3,10 @@ import {connect} from 'react-redux';
 import {createForm} from "rc-form";
 import Notification from 'rc-notification';
 import classNames from 'classnames';
-
 import util from '../../common/util';
 import http from '../../common/http';
 import ImageUpload from '../../component/upload/ImageUpload';
-
+import Uploader from '../../component/upload/Uploader';
 import style from './Add.scss';
 import baseStyle from '../../css/Base.scss';
 
@@ -90,7 +89,7 @@ class Add extends Component {
         const {getFieldProps} = this.props.form;
 
         return (
-            <div className={style.page} style={{height: document.documentElement.clientHeight}}>
+            <div className={style.page} style={{minHeight: document.documentElement.clientHeight}}>
                 <div className={style.header}>
                     <div className={style.headerContent}>
                         创建圈子
@@ -99,7 +98,11 @@ class Add extends Component {
                 <div className={style.content}>
                     <div className={style.upload}>
                         <div className={style.uploadLeft}>上传圈子照片</div>
-                        <ImageUpload name="forumMedia" ref="forumMedia" limit={1}/>
+                        <Uploader
+                            uploadUrl={'https://jsonplaceholder.typicode.com/posts/'}
+                            max={9}
+                        />
+                        {/*<ImageUpload name="forumMedia" ref="forumMedia" limit={1}/>*/}
                     </div>
                 </div>
                 <div className={style.line}></div>
