@@ -74,7 +74,7 @@ class Category extends Component {
                            this.props.petCategory.categoryList.map((categoryList, index) =>
                                <li key={index} className={baseStyle.bottomLine}>
                                    <div className={style.listItemLeftIcon}>
-                                       <img src={categoryList.listItemLeftIcon} alt=""/>
+                                       <img src={categoryList.listItemLeftIcon} alt=''/>
                                    </div>
                                    <div className={style.listItemCenterName}>
                                        <Link to={categoryList.listItemLeftUrl}>

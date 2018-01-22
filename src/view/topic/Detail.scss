@@ -101,14 +101,14 @@
 	letter-spacing: 0;
 	width: 13px;
 	height: 17px;
-	background: rgba(0, 0, 0, 0.80);
+	background: #000000;
 	width: 65px;
 	height: 18px;
 	margin-left: 10px;
 	-js-display: flex;
 	display: flex;
-	justify-content:center;
-	align-items:center;
+	justify-content: center;
+	align-items: center;
 	color: #ffffff;
 }
 
@@ -128,7 +128,7 @@
 .footerInfoRightTag {
 	font-family: PingFangSC-Light;
 	font-size: 9px;
-	color:#c18108;
+	color: #c18108;
 	background: #DEFAFD;
 	border-radius: 9px;
 	margin-top: -2px;
@@ -149,7 +149,7 @@
 }
 
 .footerCountLeft {
-	flex-grow: 1;
+	width: 45px;
 	-js-display: flex;
 	display: flex;
 	justify-content: flex-start;
@@ -164,17 +164,32 @@
 
 .footerCountLeftLikeIconNumber {
 	margin-left: 5px;
+	display: inline-block;
+}
+
+.footerCountLeftLikeIconMember {
+
 }
 
 .footerCountLeftAvatarIcon {
 	width: 19px;
 	height: 19px;
-	border-radius:100%;
+	border-radius: 100%;
 	margin-left: 5px;
 }
 
-.footerCountRight {
+.footerCountCenter {
 	flex-grow: 1;
+	-js-display: flex;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.footerCountRight {
+	width: 130px;
 	-js-display: flex;
 	display: flex;
 	justify-content: flex-end;
@@ -221,4 +236,92 @@
 	background: #f6f6f6;
 	width: 100%;
 	height: 10px;
+}
+
+.comment {
+	padding-bottom: 12px;
+	-js-display: flex;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+.commentLeft {
+	width: 40px;
+}
+
+.commentLeftImage {
+	width: 28px;
+	height: 28px;
+	border-radius: 100%;
+}
+
+.commentRight {
+	flex-grow: 1;
+	width: 0;
+	padding-bottom: 12px;
+}
+
+.commentRightLike {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	width: 50px;
+	text-align: right;
+}
+
+.commentRightLikeContent {
+	-js-display: flex;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+.commentRightLikeIcon {
+	width: 15px;
+	margin-top: 1px;
+}
+
+.commentRightLikeText {
+	font-family: PingFangSC-Regular;
+	font-size: 10px;
+	color: #aeaeae;
+	letter-spacing: 0.12px;
+	text-align: left;
+	margin-left: 5px;
+}
+
+.commentRightName {
+	font-family: PingFangSC-Regular;
+	font-size: 10px;
+	color: #8b8b8b;
+	letter-spacing: 0.12px;
+	text-align: left;
+}
+
+.commentRightTime {
+	font-family: PingFangSC-Regular;
+	font-size: 9px;
+	color: #aeaeae;
+	letter-spacing: 0.11px;
+	text-align: left;
+}
+
+.commentRightContent {
+	font-family: PingFangSC-Regular;
+	font-size: 12px;
+	color: #313131;
+	letter-spacing: 0.14px;
+	text-align: left;
+	margin-top: 5px;
+}
+
+.commentRightContentWho {
+	font-family:PingFangSC-Regular;
+	font-size:12px;
+	color:#c18108;
+	letter-spacing:0.14px;
+	text-align:left;
+	margin-left: 3px;
+	margin-right: 3px;
 }

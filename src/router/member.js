@@ -3,7 +3,7 @@ import util from '../common/util';
 export default {
     childRoutes: [{
         childRoutes: [{
-            path: '/member/homepage',
+            path: '/member/homepage/:userId',
             onEnter: util.handleEnter,
             getComponent(location, cb) {
                 require.ensure([], (require) => {

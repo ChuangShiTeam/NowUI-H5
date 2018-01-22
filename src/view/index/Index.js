@@ -346,17 +346,14 @@ class Index extends Component {
                         </div>
                     </div>
                 </div>
-                <div className="index-new-topic">
-                    <div>
-                        - 热门话题 -
+                <div>
+                    <div className={style.guessHeader}>
+                        <div className={style.guessHeaderTitle}>
+                            - 最新话题 -
+                        </div>
                     </div>
                     <TopicIndex/>
                 </div>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
             </div>
         );
     }
