@@ -2,10 +2,13 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router';
 import classNames from 'classnames';
+
 import TopicIndex from "../../component/topic/Index";
+
 import util from '../../common/util';
 import http from '../../common/http';
 import constant from '../../common/constant';
+
 import style from './Index.scss';
 import baseStyle from '../../css/Base.scss';
 
@@ -164,7 +167,7 @@ class Index extends Component {
                 }}></div>
                 <div className={style.header}>
                     <div className={style.headerContent}>
-                        <Link to="/login/index" className={style.headerContentLeft}>
+                        <Link to='/login/index' className={style.headerContentLeft}>
                             <img className={style.headerContentLeftUser}
                                  src={require('../../image/index-user.png')}
                                  alt=''/>
@@ -173,10 +176,10 @@ class Index extends Component {
                             <img className={style.headerContentCenterLogo}
                                  src={require('../../image/index-logo.png')} alt=''/>
                         </div>
-                        <div className={style.headerContentContentRight}>
+                        <Link to='/search' className={style.headerContentContentRight}>
                             <img className={style.headerContentContentRightSearch}
                                  src={require('../../image/index-search.png')} alt=''/>
-                        </div>
+                        </Link>
                     </div>
                 </div>
                 <div className={classNames(style.banner, 'swiper-container')}
