@@ -1,0 +1,46 @@
+.page {
+	position: relative;
+	max-width: 600px;
+	margin-left: auto;
+	margin-right: auto;
+	background: #ffffff;
+}
+
+.header {
+	position: fixed;
+	top: 0;
+	height: 45px;
+	z-index: 99;
+	width: 100%;
+	max-width: 600px;
+	background: #ffffff;
+	font-size: 16px;
+	line-height: 46px;
+	text-align: center;
+}
+
+.content {
+	margin-top: 45px;
+	padding: 0px 12px 12px;
+}
+.content li{
+	padding: 10px 0px;
+	-js-display: flex;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items:center;
+}
+.listItemLeftIcon{
+	width: 22px;
+	height: 22px;
+    margin-right: 14px;
+}
+.listItemLeftIcon img{
+	width: 100%;
+}
+.listItemCenterName{
+	flex-grow: 1;
+    font-size: 14px;
+}

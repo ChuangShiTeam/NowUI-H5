@@ -1,16 +1,16 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {createForm} from "rc-form";
+import Notification from "rc-notification";
+import classNames from "classnames";
 
 import ImageUpload from '../../component/upload/ImageUpload';
 
+import http from "../../common/http";
 import util from '../../common/util';
 
 import style from './Add.scss';
 import baseStyle from '../../css/Base.scss';
-import {createForm} from "rc-form";
-import classNames from "classnames";
-import http from "../../common/http";
-import Notification from "rc-notification";
 
 
 let notification = null;
@@ -80,7 +80,7 @@ class Add extends Component {
                 });
 
 
-                console.log("values.topicMediaList="+values.topicMediaList)
+                console.log("values.topicMediaList=" + values.topicMediaList)
             }
             delete values.topicMedia;
             http.request({
