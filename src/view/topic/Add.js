@@ -128,7 +128,7 @@ class Add extends Component {
                 </div>
                 <div className={style.line}></div>
                 <div className={style.content}>
-                    <div className={classNames(baseStyle.list, baseStyle.bottomLine)}>
+                    <Link to='/topic/location' className={classNames(baseStyle.list, baseStyle.bottomLine)}>
                         <div className={style.listLeft}>
                             <img className={style.listLeftLocation} src={require('../../image/topic-location.png')} alt=''/>
                         </div>
@@ -138,7 +138,7 @@ class Add extends Component {
                         <div className={style.listRight}>
                             <div className={baseStyle.rightArrow}></div>
                         </div>
-                    </div>
+                    </Link>
                     <Link to='/topic/remind' className={classNames(baseStyle.list, baseStyle.bottomLine)}>
                         <div className={style.listLeft}>
                             <img className={style.listLeftRemind} src={require('../../image/remind.png')} alt=''/>

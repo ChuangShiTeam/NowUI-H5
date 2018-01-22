@@ -61,5 +61,13 @@ export default {
                 cb(null, require('../view/topic/Detail').default);
             }, 'forum.detail');
         }
+    }, {
+        path: '/topic/location',
+        onEnter: util.handleEnter,
+        getComponent(location, cb) {
+            require.ensure([], (require) => {
+                cb(null, require('../view/topic/Location').default);
+            }, 'forum.location');
+        }
     }]
 }
