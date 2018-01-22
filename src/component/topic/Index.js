@@ -45,15 +45,15 @@ class Index extends Component {
                     <div className={style.footerInfo}>
                         <div className={style.footerInfoCount}>
                             <div className={style.footerInfoCountLike}>
-                                <img className={style.footerInfoCountLikeIcon} src={true ? require('../../image/like.png') : require('../../image/like-active.png')} alt=""/>
+                                <img className={style.footerInfoCountLikeIcon} src={true ? require('../../image/like.png') : require('../../image/like-active.png')} alt=''/>
                                 <span className={style.footerInfoCountLikeNumber}>10</span>
                             </div>
                             <div className={style.footerInfoCountBookmark}>
-                                <img className={style.footerInfoCountBookmarkIcon} src={true ? require('../../image/bookmark.png') : require('../../image/bookmark-acitve.png')} alt=""/>
+                                <img className={style.footerInfoCountBookmarkIcon} src={true ? require('../../image/bookmark.png') : require('../../image/bookmark-acitve.png')} alt=''/>
                                 <span className={style.footerInfoCountBookmarkNumber}>10</span>
                             </div>
                             <div className={style.footerInfoCountComment}>
-                                <img className={style.footerInfoCountCommentIcon} src={require('../../image/comment.png')} alt=""/>
+                                <img className={style.footerInfoCountCommentIcon} src={require('../../image/comment.png')} alt=''/>
                                 <span className={style.footerInfoCountCommentNumber}>10</span>
                             </div>
                         </div>

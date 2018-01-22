@@ -38,7 +38,7 @@ class Like extends Component {
                 </div>
                 <div className={classNames(style.list, baseStyle.bottomLine)}>
                     <div className={style.listLeft}>
-                        <img className={style.listLeftIcon} src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/30/h/30" alt=""/>
+                        <img className={style.listLeftIcon} src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/30/h/30" alt=''/>
                     </div>
                     <div className={style.listCenter}>
                         是大雄啊是大雄啊是大雄啊是大雄啊是大雄啊是大雄啊是大雄啊是大雄啊是大雄啊是大雄啊是大雄啊
@@ -58,7 +58,7 @@ class Like extends Component {
                 </div>
                 <div className={classNames(style.list, baseStyle.bottomLine)}>
                     <div className={style.listLeft}>
-                        <img className={style.listLeftIcon} src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/30/h/30" alt=""/>
+                        <img className={style.listLeftIcon} src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/30/h/30" alt=''/>
                     </div>
                     <div className={style.listCenter}>
                         是大雄啊是大雄啊是大雄啊是大雄啊是大雄啊是大雄啊是大雄啊是大雄啊是大雄啊是大雄啊是大雄啊
