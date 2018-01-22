@@ -7,6 +7,8 @@ import util from '../../common/util';
 import style from './Detail.scss';
 import baseStyle from '../../css/Base.scss';
 import classNames from "classnames";
+import http from "../../common/http";
+import constant from "../../common/constant";
 
 
 let notification = null;
