@@ -29,10 +29,9 @@ export default {
                 cb(null, require('../view/my/Dynamic').default);
             }, 'my.dynamic');
         }
-    }]
     },{
         path: '/my/info',
-        onEnter: util.handleEnter,
+        onEnter:util.handleEnter,
         getComponent(location, cb) {
             require.ensure([], (require) => {
                 cb(null, require('../view/my/Info').default);

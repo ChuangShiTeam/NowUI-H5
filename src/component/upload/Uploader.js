@@ -19,7 +19,7 @@ class Uploader extends React.Component {
         super(props);
         this.state = {
             imgArray: [], // 图片已上传显示的数组
-            formData: this.props.value.FormData
+            formData: this.props.value.formData
         };
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
@@ -36,6 +36,8 @@ class Uploader extends React.Component {
         }
     }
 
+
+
     componentWillUnmount() {
         this._isMounted = true;
     }
@@ -44,7 +46,7 @@ class Uploader extends React.Component {
         // 根据id重新上传
         const {imgArray} = this.state;
 
-        const errorItem = imgArray.filter((item) => {
+        const errorItem = imgArray.filter((item) =>{
             if (item.id === id) return true;
         })[0];
 
@@ -55,6 +57,7 @@ class Uploader extends React.Component {
         // 检查是否是ios ios图片使用canvas压缩之后图片size为0 原因未知
         // 解决办法更改服务端使用base64上传图片
         let canCompress = true;
+
         // ios
         if (!!window.navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)) {
             canCompress = false;
@@ -67,11 +70,23 @@ class Uploader extends React.Component {
         }
     }
 
-    handleDelete(id) {
-        this.setState((previousState) => {
+    handleDelete(id){
+        this.setState((previousState) =>{
             previousState.imgArray = previousState.imgArray.filter((item) => (item.id !== id));
             return previousState;
         });
+        this.setState((previousState) =>{
+            previousState.formData = previousState.formData.filter((item)=>(item.uuid !== id));
+            return previousState;
+        });
+        this.triggerChange(this.state.formData);
+    }
+
+    triggerChange = (changedValue) =>{
+        const onChange = this.props.onChange;
+        if(onChange){
+            onChange(Object.assign({},this.state.formData,changedValue))
+        }
     }
 
     handleProgress(id, e) {
@@ -493,10 +508,12 @@ class Uploader extends React.Component {
         const xhr = new XMLHttpRequest();
         const {uploadUrl} = this.props;
         const formData = data.formData;
-
-        console.log('formData',formData);
-        this.state.formData.push(formData);
-
+        let formDataItem = {
+            uuid:data.uuid,
+            formData:data.formData
+        }
+        this.state.formData.push(formDataItem);
+        this.triggerChange(this.state.formData);
         // // 进度监听
         // xhr.upload.addEventListener('progress', _this.handleProgress.bind(_this, data.uuid), false);
         // // xhr.addEventListener("error", _this.handleUploadEnd(data, undefined, 3), false);

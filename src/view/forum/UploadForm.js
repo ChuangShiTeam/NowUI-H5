@@ -65,8 +65,8 @@ class UploadForm extends Component {
                         <Uploader
                             uploadUrl={'https://jsonplaceholder.typicode.com/posts/'}
                             max={9}
-                            {...getFieldProps('FormData',{
-                                initialValue:{FormData:[]},
+                            {...getFieldProps('formData',{
+                                initialValue:{formData:[]},
                                 rules: [{
                                     required: true,
                                     message: '圈子名称不能为空'
