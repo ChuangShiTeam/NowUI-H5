@@ -80,7 +80,7 @@ class Detail extends Component {
                     </div>
                     <div className={style.headerCenter}>
                         <p className={style.headerCenterName}>{this.state.topic.userId && this.state.topic.userId.userNickName ?this.state.topic.userId.userNickName : '用户昵称为null'}</p>
-                        <p className={style.headerCenterTime}>{this.state.topic ?this.state.topic.systemCreateTime : '未知发布时间'}</p>
+                        <p className={style.headerCenterTime}>{this.state.topic.systemCreateTime ? this.state.topic.systemCreateTime : '未知发布时间'}</p>
                     </div>
                     <div className={style.headerRight}></div>
                 </div>
@@ -88,38 +88,58 @@ class Detail extends Component {
                 <div className={style.content}>
                     {
                         this.state.topic && this.state.topic.topicMediaList ?
-                            this.state.topic.topicMediaList.map(function (media,index){
+                            this.state.topic.topicMediaList.map(function (mediaList,index){
                                 return (
-                                    <img src={constant.image_host + this.state.topic.userId.userAvatar} alt=''/>
+                                    <div key={mediaList.topicMedia.fileId}>
+                                    <img src={constant.image_host + mediaList.topicMedia.filePath} alt=''/>
+                                    </div>
                                 )
                             })
                             :
-                            <img className={style.contentImage} src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/320/h/255' alt=''/>
+                            null
                     }
 
                 </div>
                 <div className={style.footer}>
                     <div className={classNames(style.footerText, baseStyle.bottomLine)}>
-                        奶糖和福禄娃给你过圣诞啦～
+                        {
+                            this.state.topic.topicSummary
+                        }
                     </div>
                     <div className={style.footerInfo}>
                         <div className={style.footerInfoLeft}>
                             <img className={style.footerInfoLeftLocationIcon} src={require('../../image/location.png')} alt=''/>
-                            <span className={style.footerInfoLeftLocationText}>上海  松江区</span>
+                            <span className={style.footerInfoLeftLocationText}>
+                            {
+                                this.state.topic.topicLocation
+                            }
+                            </span>
                         </div>
                         <div className={style.footerInfoRight}>
                             <span className={style.footerInfoRightFrom}>来自</span>
-                            <span className={style.footerInfoRightTag}>大爱猫咪控</span>
-                            <span className={style.footerInfoRightTag}>大爱猫咪控</span>
+                            {
+                                this.state.topic && this.state.topic.topicMediaList ?
+                                    this.state.topic.topicForumList.map(function (forumList,index){
+                                        return (
+                                            <span key={forumList.forumId} className={style.footerInfoRightTag}>{forumList.forumName}</span>
+                                        )
+                                    })
+                                    :
+                                    null
+                            }
+
                         </div>
                     </div>
                     <div className={style.footerCount}>
                         <div className={style.footerCountLeft}>
                             <img className={style.footerCountLeftLikeIcon} src={true ? require('../../image/like.png') : require('../../image/like-active.png')} alt=''/>
-                            <div className={style.footerCountLeftLikeIconNumber}>60</div>
+                            <div className={style.footerCountLeftLikeIconNumber}>{this.state.topic.topicCountLike }</div>
                         </div>
                         <Link to='/topic/like' className={style.footerCountCenter}>
                             <img className={style.footerCountLeftAvatarIcon} src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/320/h/255' alt=''/>
+
+
+
                             <img className={style.footerCountLeftAvatarIcon} src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/320/h/255' alt=''/>
                             <img className={style.footerCountLeftAvatarIcon} src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/320/h/255' alt=''/>
                             <img className={style.footerCountLeftAvatarIcon} src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/320/h/255' alt=''/>
@@ -127,9 +147,9 @@ class Detail extends Component {
                         </Link>
                         <div className={style.footerCountRight}>
                             <img className={style.footerCountRightBookmarkIcon} src={true ? require('../../image/bookmark.png') : require('../../image/bookmark-acitve.png')} alt=''/>
-                            <span className={style.footerCountRightBookmarkNumber}>10</span>
+                            <span className={style.footerCountRightBookmarkNumber}>{this.state.topic.topicCountBookmark }</span>
                             <img className={style.footerCountRightCommentIcon} src={require('../../image/comment.png')} alt=''/>
-                            <span className={style.footerCountRightCommentNumber}>10</span>
+                            <span className={style.footerCountRightCommentNumber}>{this.state.topic.topicCountComment } </span>
                         </div>
                     </div>
                 </div>
