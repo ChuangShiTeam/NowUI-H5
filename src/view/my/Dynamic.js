@@ -41,26 +41,27 @@ class Dynamic extends Component {
                                 
                                 <div className={style.contentLeftAll}>
                                     <div className={style.contentLeft1}>
-                                    
                                         <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/68/h/68" alt=""/>
                                         <div className={style.contentLeftFoot}>
-                                            <div className={style.contentLeftFoot1}> 为工作而生的汪星人拉布...</div>
+                                            <div className={style.contentLeftFoot1}> 这只柴柴和加菲也太可爱了吧~</div>
                                             <div className={style.contentLeftFoot3}>
                                                 <div>收藏于:2018-1-10 16.:44</div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div></div>
-                                        
+                                    <div className={style.contentLeftBottom}>
+                                        <div  className={style.contentLBL}>
+                                            <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/20/h/20" alt=""/>
+                                            <div>Nami</div>
+                                        </div>
+                                        <div  className={style.contentLBR}>
+                                            <div className={style.fromFoot}>来自</div>
+                                            <div className={style.fromWhere}>
+                                                <div>柴犬窝</div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-
-
-
-
-
-
-
-
                             </div>
                             <div className={style.contentRight}>
                                 <div>
@@ -73,12 +74,27 @@ class Dynamic extends Component {
                     <div>
                         <div className={style.contentList}>
                             <div className={style.contentLeft}>
-                                <div className={style.contentLeft1}>
-                                    <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/68/h/68" alt=""/>
-                                    <div className={style.contentLeftFoot}>
-                                        <div className={style.contentLeftFoot1}> 什么？现在宠物的专机如…</div>
-                                        <div className={style.contentLeftFoot3}>
-                                            <div>收藏于:2017-12-01 12:02</div>
+
+                                <div className={style.contentLeftAll}>
+                                    <div className={style.contentLeft1}>
+                                        <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/68/h/68" alt=""/>
+                                        <div className={style.contentLeftFoot}>
+                                            <div className={style.contentLeftFoot1}>热烈庆祝我家的小胖子两周岁生日快乐~感谢一直…</div>
+                                            <div className={style.contentLeftFoot3}>
+                                                <div>收藏于:2018-1-10 16.:44</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className={style.contentLeftBottom}>
+                                        <div  className={style.contentLBL}>
+                                            <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/20/h/20" alt=""/>
+                                            <div>Nami</div>
+                                        </div>
+                                        <div  className={style.contentLBR}>
+                                            <div className={style.fromFoot}>来自</div>
+                                            <div className={style.fromWhere}>
+                                                <div>蓝猫圈</div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

@@ -8,6 +8,7 @@
     width: 100%;
     height:44px ;
     background: white;
+    -js-display: flex;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -42,17 +43,19 @@
     margin-right: 11px;
     margin-top: 10px;
     background: white;
+    -js-display: flex;
     display:flex ;
     align-content: center;
     justify-content: center;
     flex-direction: column;
 }
 .contentList{
-    height: 95px;
+    height: 126px;
     width: 100%;
     border-radius: 8px;
     box-shadow:0 2px 2px 0 rgba(209,209,209,1);
     border:0 solid #ededed;
+    -js-display: flex;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -60,14 +63,21 @@
 .contentLeft{
     display: flex;
     height:95px ;
+    -js-display: flex;
     justify-content: flex-start;
     align-content: center;
     margin-left: 10px;
+    width: 100%;
 }
 .contentLeftAll{
+    -js-display: flex;
     display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
 }
 .contentLeft1{
+    -js-display: flex;
     display: flex;
     align-items:  center;
 }
@@ -77,6 +87,7 @@
 }
 .contentLeftFoot{
     margin-left: 11px;
+    -js-display: flex;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -95,18 +106,63 @@
     color:#4a4a4a;
     letter-spacing:0.08px;
     line-height:19px;
+    -js-display: flex;
     display: flex;
     justify-content: space-between;
-
+}
+.contentLeftBottom{
+    width: 100%;
+    height:20px ;
+    -js-display: flex;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: -8px;
+}
+.contentLBL>div{
+  display: inline-block;
+    font-family:PingFangSC-Light;
+    font-size:12px;
+    color:#2c2c2c;
+    letter-spacing:0.14px;
+    margin-left: 6px;
+}
+.contentLBL>img{
+    vertical-align: middle;
+    border-radius: 50%;
+}
+.contentLBR>div{
+    display: inline-block;
+}
+.contentLBR{
+    display: flex;
+    align-items: center;
+}
+.fromFoot{
+    font-family:PingFangSC-Light;
+    font-size:9px;
+    color:#323232;
+    transform: scale(0.75);
+}
+.fromWhere{
+    margin-left: -5px;
+    font-family:PingFangSC-Light;
+    font-size:9px;
+    color:#c18108;
+    transform: scale(0.75);
+    border-radius: 10px;
+    background:#defafd;
+    margin-right: 7px;
 }
 .contentRight{
+    -js-display: flex;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-right: 12px;
     padding-left: 12px;
-    height: 69.5px;
+    height: 101px;
     border-left: 1px solid  #dfdfdf;
+    flex-shrink: 0;
 }
 .contentRight>div>img{
     width: 24px;
