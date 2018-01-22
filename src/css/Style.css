@@ -45,6 +45,10 @@ body {
     background-color: #EEEEEE;
 }
 
+* {
+    -webkit-text-size-adjust:none;
+}
+
 .swiper-pagination-switch {
     display: inline-block;
     width: 10px;

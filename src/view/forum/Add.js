@@ -3,15 +3,18 @@ import {connect} from 'react-redux';
 import {createForm} from "rc-form";
 import Notification from 'rc-notification';
 import classNames from 'classnames';
+
+import Uploader from '../../component/upload/Uploader';
+
 import util from '../../common/util';
 import http from '../../common/http';
-import ImageUpload from '../../component/upload/ImageUpload';
-import Uploader from '../../component/upload/Uploader';
+
 import style from './Add.scss';
 import baseStyle from '../../css/Base.scss';
 
 let notification = null;
 Notification.newInstance({}, (n) => notification = n);
+
 class Add extends Component {
     constructor(props) {
         super(props);

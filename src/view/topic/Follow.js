@@ -40,7 +40,7 @@ class Follow extends Component {
                 <div className={style.contentMargin}>
                         <div className={style.content}>
                             <div className={style.imageLeft}>
-                                <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/30/h/30" alt=""/>
+                                <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/30/h/30" alt=''/>
                                 <div className={style.imageCenter}> 是大熊啊</div>
                             </div>
                             <div  className={style.imageRight}>
@@ -51,7 +51,7 @@ class Follow extends Component {
                         <div className={style.divNull}></div>
                         <div className={style.content}>
                             <div className={style.imageLeft}>
-                                <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/30/h/30" alt=""/>
+                                <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/30/h/30" alt=''/>
                                 <div className={style.imageCenter}> 粒粒</div>
                             </div>
                             <div className={style.imageRight}>
@@ -62,7 +62,7 @@ class Follow extends Component {
                     <div className={style.divNull}></div>
                         <div className={style.content}>
                             <div className={style.imageLeft}>
-                                <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/30/h/30" alt=""/>
+                                <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/30/h/30" alt=''/>
                                 <div className={style.imageCenter}> 小高同志</div>
                             </div>
                             <div className={style.imageRights}>
@@ -72,7 +72,7 @@ class Follow extends Component {
                     <div className={style.divNull}></div>
                         <div className={style.content}>
                             <div className={style.imageLeft}>
-                                <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/30/h/30" alt=""/>
+                                <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/30/h/30" alt=''/>
                                 <div className={style.imageCenter}> 大大大饺子</div>
                             </div>
                             <div className={style.imageRights}>
@@ -82,7 +82,7 @@ class Follow extends Component {
                     <div className={style.divNull}></div>
                         <div className={style.content}>
                             <div className={style.imageLeft}>
-                                <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/30/h/30" alt=""/>
+                                <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/30/h/30" alt=''/>
                                 <div className={style.imageCenter}> 阿拉系蕾</div>
                             </div>
                             <div className={style.imageRights}>
