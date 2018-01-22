@@ -29,6 +29,30 @@ export default {
                 cb(null, require('../view/my/Dynamic').default);
             }, 'my.dynamic');
         }
+    }, {
+            path: '/my/adorable',
+            onEnter: util.handleEnter,
+            getComponent(location, cb) {
+                require.ensure([], (require) => {
+                    cb(null, require('../view/my/Adorable').default);
+                }, 'my.adorable');
+            }
+        }, {
+        path: '/my/shop',
+        onEnter: util.handleEnter,
+        getComponent(location, cb) {
+            require.ensure([], (require) => {
+                cb(null, require('../view/my/Shop').default);
+            }, 'my.shop');
+        }
+    }, {
+        path: '/my/whole',
+        onEnter: util.handleEnter,
+        getComponent(location, cb) {
+            require.ensure([], (require) => {
+                cb(null, require('../view/my/Whole').default);
+            }, 'my.whole');
+        }
     },{
         path: '/my/info',
         onEnter:util.handleEnter,

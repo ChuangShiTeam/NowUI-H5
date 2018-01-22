@@ -6,6 +6,7 @@ import util from '../../common/util';
 
 import style from './Index.scss';
 import baseStyle from '../../css/Base.scss';
+import classNames from "classnames";
 
 class Index extends Component {
     constructor(props) {
@@ -26,15 +27,14 @@ class Index extends Component {
     }
     render() {
         return (
-            <div className={style.baseStyle}>
-                <div className={style.page}>
-                    <div className={style.headImg}>
-                        <div className={style.imgLeft}>
-                            <div className={style.headImg1}>
-                                <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/56/h/56" alt=''/>
+            <div className={baseStyle.page} style={{minHeight: document.documentElement.clientHeight}}>
+                    <div className={style.header}>
+                        <div className={style.headerLeft}>
+                            <div className={style.headerImg}>
+                                <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/56/h/56" alt=""/>
                                 <div>大木木_Lin</div>
                             </div>
-                            <div className={style.imgRight}>
+                            <div className={style.headerRight}>
                                 <div className={style.rightLeft}>个人主页</div>
                                 <div className={style.rightRight}></div>
                             </div>
@@ -44,77 +44,71 @@ class Index extends Component {
                         <div className={style.middleLeft}>
                             <div className={style.redSpot}></div>
                             <div>
-                               <div className={style.newsImg}>
-                                   <img src={require('../../image/my-news.png')} alt=''/>
+                               <div className={style.leftIcon}>
+                                   <img src={require('../../image/my-news.png')} alt=""/>
                                </div>
                                 <div className={style.news}>消息</div>
                             </div>
                         </div>
                         <div className={style.middleRight}>
                             <div>
-                                <div className={style.loveImg}>
-                                    <img src={require('../../image/my-collect.png')} alt=''/>
+                                <div className={style.rightIcon}>
+                                    <img src={require('../../image/my-collect.png')} alt=""/>
                                 </div>
                                 <div className={style.news}>收藏</div>
                             </div>
                         </div>
                     </div>
-                    <div className={style.nullDiv}></div>
+                    <div className={style.middleBottom}></div>
                     <div className={style.newsList}>
-                        <Link to="/my/info" className={style.listModule}>
-                            <div className={style.moreLeft}>
-                                <div  className={style.picture}>
-                                    <img src={require('../../image/my-user.png')}  alt=''/>
+                        <Link to="/my/info" className={classNames(style.listModule, baseStyle.bottomLine)}>
+                            <div  className={style.listLeft}>
+                                <div  className={style.listLeftIcon}>
+                                    <img src={require('../../image/my-user.png')}  alt=""/>
                                 </div>
-                                <div className={style.pictureRight}>个人资料</div>
+                                <div className={style.listCenter}>个人资料</div>
                             </div>
-                            <div className={style.more}>
-                                <div className={style.moreImg}></div>
+                            <div className={style.listRight}>
+                                <div className={style.listRightIcon}></div>
                             </div>
                         </Link>
-                        <div className={style.nullDiv1}></div>
-                        <div className={style.listModule}>
-                            <div className={style.moreLeft}>
-                                <div  className={style.picture}>
-                                    <img src={require('../../image/my-pet.png')}  alt=''/>
+                        <div  className={classNames(style.listModule, baseStyle.bottomLine)}>
+                            <div className={style.listLeft}>
+                                <div  className={style.listLeftIcon}>
+                                    <img src={require('../../image/my-pet.png')}  alt=""/>
                                 </div>
-                                <div className={style.pictureRight}>我的爱宠</div>
+                                <div className={style.listCenter}>我的爱宠</div>
                             </div>
-                            <div className={style.more}>
-                                <div className={style.moreImg}></div>
+                            <div className={style.listRight}>
+                                <div className={style.listRightIcon}></div>
                             </div>
                         </div>
-                        <div className={style.nullDiv1}></div>
-                        <div className={style.listModule}>
-                            <div className={style.moreLeft}>
-                                <div  className={style.pictureFollow}>
-                                    <img  src={require('../../image/my-follow.png')}  alt=''/>
+                        <div  className={classNames(style.listModule, baseStyle.bottomLine)}>
+                            <div className={style.listLeft}>
+                                <div  className={style.listLeftIcon}>
+                                    <img  src={require('../../image/my-follow.png')}  alt=""/>
                                 </div>
-                                <div className={style.pictureRight}>我的关注</div>
+                                <div className={style.listCenter}>我的关注</div>
                             </div>
-                            <div className={style.more}>
-                                <div className={style.moreImg}></div>
+                            <div className={style.listRight}>
+                                <div className={style.listRightIcon}></div>
                             </div>
                         </div>
-                        <div className={style.nullDiv1}></div>
-                        <div className={style.listModule}>
-                            <div className={style.moreLeft}>
-                                <div  className={style.pictureQrcode}>
-                                    <img src={require('../../image/my-qrcode.png')}  alt=''/>
+                        <div className={classNames(style.listModule, baseStyle.bottomLine)}>
+                            <div className={style.listLeft}>
+                                <div  className={style.listLeftIcon}>
+                                    <img src={require('../../image/my-qrcode.png')}  alt=""/>
                                 </div>
-                                <div className={style.pictureRight}>我的二维码</div>
+                                <div className={style.listCenter}>我的二维码</div>
                             </div>
-                            <div className={style.more}>
-                                <div className={style.moreImg}></div>
+                            <div className={style.listRight}>
+                                <div className={style.listRightIcon}></div>
                             </div>
                         </div>
-                        <div className={style.nullDiv1}></div>
                     </div>
                     <div className={style.getOut}>
                         <div>退出登录</div>
                     </div>
-
-                </div>
             </div>
         );
     }

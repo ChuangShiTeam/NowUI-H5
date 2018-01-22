@@ -32,7 +32,6 @@ class Like extends Component {
     render() {
         return (
             <div className={baseStyle.page} style={{minHeight: document.documentElement.clientHeight}}>
-
                 <div className={style.header}>
                     <div className={style.headerLeft}>赞过的人</div>
                 </div>
