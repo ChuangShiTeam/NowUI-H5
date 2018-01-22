@@ -1,0 +1,114 @@
+.page{
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    background: white;
+}
+.navList{
+    width: 100%;
+    height:44px ;
+    background: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow:0 1px 1px 0 rgba(234,234,234,0.83);
+}
+.navList>div{
+    font-size:14px ;
+    font-family:PingFangSC-Regular;
+    height: 20px;
+    line-height: 20px;
+}
+.navList1{
+    margin-left: 16px;
+    color:#9b9b9b;
+}
+.navList2{
+    color:#9b9b9b;
+}
+.running{
+    margin-top: 8px;
+    color: #c18108;
+    border-bottom:2px solid  #c18108;
+    padding-bottom: 5px;
+}
+.search>img{
+    width: 18px;
+    height: 18px;
+    margin-top: 5px;
+}
+.content{
+    margin-left: 13px;
+    margin-right: 11px;
+    margin-top: 10px;
+    background: white;
+    display:flex ;
+    align-content: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.contentList{
+    height: 95px;
+    width: 100%;
+    border-radius: 8px;
+    box-shadow:0 2px 2px 0 rgba(209,209,209,1);
+    border:0 solid #ededed;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.contentLeft{
+    display: flex;
+    height:95px ;
+    justify-content: flex-start;
+    align-content: center;
+    margin-left: 10px;
+}
+.contentLeftAll{
+    display: flex;
+}
+.contentLeft1{
+    display: flex;
+    align-items:  center;
+}
+.contentLeft1>img{
+    width: 68px;
+    height: 68px;
+}
+.contentLeftFoot{
+    margin-left: 11px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 68px;
+    padding-right: 5px;
+}
+.contentLeftFoot1{
+    font-family:PingFangSC-Regular;
+    font-size:13px;
+    color:#373737;
+    letter-spacing:-0.41px;
+}
+.contentLeftFoot3{
+    font-family:PingFangSC-Regular;
+    font-size:10px;
+    color:#4a4a4a;
+    letter-spacing:0.08px;
+    line-height:19px;
+    display: flex;
+    justify-content: space-between;
+
+}
+.contentRight{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 12px;
+    padding-left: 12px;
+    height: 69.5px;
+    border-left: 1px solid  #dfdfdf;
+}
+.contentRight>div>img{
+    width: 24px;
+
+}
