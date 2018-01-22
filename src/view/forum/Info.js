@@ -2,17 +2,31 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import classNames from 'classnames';
 
+import Notification from 'rc-notification';
+
 import util from '../../common/util';
+import http from '../../common/http';
 
 import style from './Info.scss';
 import baseStyle from '../../css/Base.scss';
+import storage from "../../common/storage";
+import style2 from './Index.scss';
+import constant from "../../common/constant";
+
+
+let notification = null;
+Notification.newInstance({}, (n) => notification = n);
 
 class Info extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            isLoad: false
+            isLoad: false,
+            pageIndex: 1,
+            pageSize: 5,
+            forumId: '',
+            forum: {},
         }
     }
 
@@ -32,12 +46,75 @@ class Info extends Component {
     }
 
     handleLoad() {
+        this.state.forumId = this.props.params.forumId;
         let forumId = this.props.params.forumId;
+        console.log('开始加载数据... ');
+    //  开始查询后台数据
+        http.request({
+            url: '/forum/mobile/v1/find',
+            data: {
+                forumId: forumId,
+                pageIndex: this.state.pageIndex,
+                pageSize: this.state.pageSize
+            },
+            success: function (data) {
+                console.log('加载数据完成 ');
+                this.setState({
+                    forum: data
+                });
+                console.log(this.state.forum.forumUserIsModerator)
+            }.bind(this),
+            complete: function () {
+
+            }
+        });
+    }
+
+    handleDelete() {
+        http.request({
+            url: '/forum/mobile/v1/delete',
+            data: {
+                forumId: this.state.forumId,
+            },
+            success: function (data) {
+                notification.notice({
+                    content: '删除成功'
+                });
+                this.props.history.push({
+                    pathname: '/forum/index',
+                    query: {}
+                });
+            }.bind(this),
+            complete: function () {
+
+            }
+        });
+    }
+
+    handleExit() {
+        http.request({
+            url: '/forum/user/unfollow/mobile/v1/save',
+            data: {
+                forumId: this.state.forumId
+            },
+            success: function (data) {
+                notification.notice({
+                    content: '成功退出'
+                });
+                this.props.history.push({
+                    pathname: '/forum/index',
+                    query: {}
+                });
+            }.bind(this),
+            complete: function () {
+
+            }
+        });
     }
 
     render() {
         return (
-            <div className={style.page} style={{height: document.documentElement.clientHeight}}>
+            <div className={style.page} style={{minHeight: document.documentElement.clientHeight}}>
                 <div className={style.header}>
                     <div className={style.headerContent}>
                         圈子信息
@@ -47,9 +124,17 @@ class Info extends Component {
                     <div className={classNames(style.image, baseStyle.list)}>
                         <div className={baseStyle.listLeft}>圈子头像</div>
                         <div className={classNames(style.listCenter, baseStyle.listCenter)}>
-                            <img className={style.imageCenterImage}
-                                 src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/58/h/58'
-                                 alt=''/>
+                            {
+                                this.state.forum.forumModerator && this.state.forum.forumModerator.userAvatar ?
+                                    <img className={style2.joinContentListLeftIcon}
+                                         src={constant.image_host + this.state.forum.forumModerator.userAvatar}
+                                         alt=''/>
+                                    :
+                                    <img className={style.imageCenterImage}
+                                         src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/58/h/58'
+                                         alt=''/>
+                            }
+
                         </div>
                         <div className={baseStyle.listRight}>
                             <div className={baseStyle.rightArrow}></div>
@@ -61,7 +146,7 @@ class Info extends Component {
                     <div className={classNames(baseStyle.list, baseStyle.bottomLine)}>
                         <div className={baseStyle.listLeft}>圈子名称</div>
                         <div className={classNames(style.listCenter, baseStyle.listCenter)}>
-                            魔都喵星人
+                            {this.state.forum.forumName}
                         </div>
                         <div className={baseStyle.listRight}>
                             <div className={baseStyle.rightArrow}></div>
@@ -70,7 +155,7 @@ class Info extends Component {
                     <div className={classNames(baseStyle.list, baseStyle.bottomLine)}>
                         <div className={baseStyle.listLeft}>圈子简介</div>
                         <div className={classNames(style.listCenter, baseStyle.listCenter)}>
-                            这里是魔都喵星人的聚集这里是魔都喵星人的聚集这里是魔都喵星人的聚集
+                            {this.state.forum.forumDescription}
                         </div>
                         <div className={baseStyle.listRight}>
                             <div className={baseStyle.rightArrow}></div>
@@ -89,9 +174,22 @@ class Info extends Component {
                                  alt=''/>
                         </div>
                         <div className={style.infoRight}>
-                            <div className={style.infoRightName}>小野</div>
+                            <div className={style.infoRightName}>
+                                {
+                                    this.state.forum.forumModerator && this.state.forum.forumModerator.userNickName ?
+                                        this.state.forum.forumModerator.userNickName
+                                        :
+                                        null
+                                }
+                            </div>
                             <div
-                                className={style.infoRightDescription}>资深遛狗师一枚，对宠物行为有很深的造诣。资深遛狗师一枚，对宠物行为有很深的造诣。资深遛狗师一枚，对宠物行为有很深的造诣。
+                                className={style.infoRightDescription}>
+                                {
+                                    this.state.forum.forumModerator && this.state.forum.forumModerator.memberSignature ?
+                                        this.state.forum.forumModerator.memberSignature
+                                        :
+                                        null
+                                }
                             </div>
                         </div>
                     </div>
@@ -99,73 +197,39 @@ class Info extends Component {
                         全部圈友
                     </div>
                     <div className={style.member}>
-                        <div className={style.memberAvatar}>
-                            <img className={style.memberAvatarImage}
-                                 src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/35/h/35'
-                                 alt=''/>
-                        </div>
-                        <div className={style.memberAvatar}>
-                            <img className={style.memberAvatarImage}
-                                 src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/35/h/35'
-                                 alt=''/>
-                        </div>
-                        <div className={style.memberAvatar}>
-                            <img className={style.memberAvatarImage}
-                                 src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/35/h/35'
-                                 alt=''/>
-                        </div>
-                        <div className={style.memberAvatar}>
-                            <img className={style.memberAvatarImage}
-                                 src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/35/h/35'
-                                 alt=''/>
-                        </div>
-                        <div className={style.memberAvatar}>
-                            <img className={style.memberAvatarImage}
-                                 src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/35/h/35'
-                                 alt=''/>
-                        </div>
-                        <div className={style.memberAvatar}>
-                            <img className={style.memberAvatarImage}
-                                 src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/35/h/35'
-                                 alt=''/>
-                        </div>
-                        <div className={style.memberAvatar}>
-                            <img className={style.memberAvatarImage}
-                                 src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/35/h/35'
-                                 alt=''/>
-                        </div>
-                        <div className={style.memberAvatar}>
-                            <img className={style.memberAvatarImage}
-                                 src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/35/h/35'
-                                 alt=''/>
-                        </div>
-                        <div className={style.memberAvatar}>
-                            <img className={style.memberAvatarImage}
-                                 src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/35/h/35'
-                                 alt=''/>
-                        </div>
-                        <div className={style.memberAvatar}>
-                            <img className={style.memberAvatarImage}
-                                 src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/35/h/35'
-                                 alt=''/>
-                        </div>
-                        <div className={style.memberAvatar}>
-                            <img className={style.memberAvatarImage}
-                                 src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/35/h/35'
-                                 alt=''/>
-                        </div>
-                        <div className={style.memberAvatar}>
-                            <img className={style.memberAvatarImage}
-                                 src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/35/h/35'
-                                 alt=''/>
-                        </div>
-                        <div className={style.memberAvatar}>
-                            <img className={style.memberAvatarImage}
-                                 src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/35/h/35'
-                                 alt=''/>
-                        </div>
+                        {
+                            this.state.forum.forumUserFollowList &&  this.state.forum.forumUserFollowList.length > 0?
+                                this.state.forum.forumUserFollowList.map(function (member, index) {
+                                    return (
+                                        member.userId ?
+                                            <div className={style.memberAvatar}>
+                                            {
+                                                member.userAvatar ?
+                                                    <img className={style.memberAvatarImage}
+                                                         src={constant.host + member.userAvatar}
+                                                         alt=''/>
+                                                    :
+                                                    <img className={style.memberAvatarImage}
+                                                         src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/35/h/35'
+                                                         alt=''/>
+                                            }
+                                            </div>
+                                        :
+                                        null
+                                    )
+                                })
+                                :
+                                null
+                        }
                     </div>
-                    <div className={style.delete}>删除圈子</div>
+
+                    {
+                        this.state.forum.forumUserIsModerator ?
+                            <div className={style.delete} onClick={this.handleDelete.bind(this)}>删除圈子</div>
+                            :
+                            <div className={style.delete} onClick={this.handleExit.bind(this)}>退出圈子</div>
+                    }
+
                 </div>
             </div>
         );

@@ -225,7 +225,7 @@ class ForgetPassword extends Component {
 
         return (
             this.state.step === 0 ?
-                <div className={style.page} style={{height: document.documentElement.clientHeight}}>
+                <div className={style.page} style={{minHeight: document.documentElement.clientHeight}}>
                     <div className={style.header}>
                         忘记密码？
                     </div>
@@ -283,7 +283,7 @@ class ForgetPassword extends Component {
                     </div>
                 </div>
                 :
-                <div className={style.page} style={{height: document.documentElement.clientHeight}}>
+                <div className={style.page} style={{minHeight: document.documentElement.clientHeight}}>
                     <div className={style.header}>
                         下一步
                     </div>

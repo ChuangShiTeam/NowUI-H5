@@ -1,10 +1,14 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router';
+import classNames from 'classnames';
+
+import TopicIndex from '../../component/topic/Index';
 
 import util from '../../common/util';
 
 import style from './Index.scss';
+import baseStyle from '../../css/Base.scss';
 
 class Index extends Component {
     constructor(props) {
@@ -30,7 +34,7 @@ class Index extends Component {
 
     render() {
         return (
-            <div className={style.page} style={{height: document.documentElement.clientHeight}}>
+            <div className={classNames(style.page, baseStyle.tabbarPage)} style={{minHeight: document.documentElement.clientHeight}}>
                 <div className={style.header}>
                     <div className={style.headerContent}>
                         <div className={style.headerContentLeft}>
@@ -57,6 +61,8 @@ class Index extends Component {
                          src={require('../../image/forum-add.png')}
                          alt=''/>
                 </Link>
+                <TopicIndex/>
+                <TopicIndex/>
             </div>
         );
     }

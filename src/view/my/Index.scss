@@ -1,0 +1,220 @@
+.page {
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 950px;
+}
+.headImg{
+    width: 100%;
+    -js-display: flex;
+    display: flex;
+    align-items: center;
+    height:165px ;
+    background: url(http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/320/h/165) ;
+}
+.imgLeft{
+    width: 100%;
+    display: flex;
+    -js-display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left:19px ;
+    margin-right: 13px;
+    background: transparent;
+}
+.headImg1{
+    display: flex;
+    -js-display: flex;
+    align-items: center;
+}
+
+.headImg1>img{
+    border-radius: 50%;
+    border: 2px solid white;
+}
+.headImg1>div{
+    font-family: PingFangSC-Regular;
+    font-size: 14px;
+    margin-left: 11px;
+}
+.imgRight{
+    width: 71px;
+    height: 24px;
+    background: #DEFAFD;
+    border-radius: 16px;
+    display: flex;
+    -js-display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.rightLeft{
+    display: inline-block;
+    line-height: 21px;
+    font-family: PingFangSC-Regular;
+    font-size: 11px;
+    transform: scale(0.91);
+}
+.rightRight{
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-right: 1px solid #c18108;
+    border-bottom: 1px solid #c18108;
+    transform: rotate(-45deg);
+    background: transparent;
+}
+.middle{
+    display: flex;
+    -js-display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    width: 100%;
+    height:40px ;
+}
+.middleLeft{
+    width: 51%;
+    height: 25.6px;
+    border-right: 2.6px solid #D8D8D8;
+    display: flex;
+    -js-display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.middleLeft>div{
+    display: flex;
+    -js-display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: -5px;
+}
+.newsImg>img{
+    width: 17px;
+    height: 16px;
+    margin-top: 2px;
+}
+.news{
+    display: flex;
+    -js-display: flex;
+    flex-direction: column;
+    margin-left: 6px;
+    font-size: 11px;
+    height: 19px;
+    transform: scale(0.91);
+}
+.redSpot{
+    width: 10px;
+    height: 10px;
+    margin-top:-9px;
+    margin-left: 50px;
+    border-radius: 50%;
+    background: #F2473C ;
+}
+.middleRight{
+    display: flex;
+    -js-display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 49%;
+}
+.middleRight>div{
+    display: flex;
+    -js-display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.loveImg>img{
+    width: 17px;
+    height: 16px;
+}
+.nullDiv{
+    width: 100%;
+    height:6px ;
+    background: #EEF6F7;
+}
+.newsList{
+    width: 100%;
+    overflow: hidden;
+}
+.listModule{
+    display: flex;
+    -js-display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+.listModule>div{
+    width: 45%;
+    height: 38.8px;
+    display: flex;
+    -js-display: flex;
+    align-items: center;
+}
+.moreLeft{
+    justify-content: flex-start;
+    margin-left: 14px;
+}
+.picture{
+    width: 16px;
+    height: 16px;
+    text-align: center;
+    line-height: 16px;
+}
+.pictureRight{
+    margin-left: 10px;
+    font-family: PingFangSC-Light;
+    font-size: 13px;
+    line-height: 17px;
+}
+.pictureFollow{
+   line-height: 17px;
+    width: 15px;
+    height: 14px;
+}
+.pictureQrcode{
+    line-height: 20px;
+    width: 16px;
+    height: 15px;
+}
+.more{
+    margin-right: 12px;
+    justify-content: flex-end;
+}
+.moreImg{
+    width: 7px;
+    height: 7px;
+    transform: rotate(-45deg);
+    border-right:1px solid #b7b7b7 ;
+    border-bottom:1px solid #b7b7b7 ;
+}
+.nullDiv1{
+    height: 3.5px;
+   margin-left: 12px;
+    margin-right: 12px;
+    border-bottom: 1px solid  #D3D3D3;
+    overflow: hidden;
+}
+.getOut{
+    display: flex;
+    -js-display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    bottom: 26px;
+    position: absolute;
+    max-width: 600px;
+}
+.getOut>div{
+    width: 304px;
+    text-align: center;
+    line-height: 50px;
+    font-family: PingFangSC-Light;
+    font-size: 16px;
+    margin-left: 9px;
+    margin-right: 9px;
+    height: 50px;
+    background:#DEFAFD ;
+    box-shadow: 0 2px 4px 0 rgba(216,216,216,0.50);
+    border-radius: 5px;
+}
