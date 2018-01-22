@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {Link} from 'react-router';
 import {createForm} from "rc-form";
 import Notification from "rc-notification";
 import classNames from "classnames";
@@ -107,7 +108,7 @@ class Add extends Component {
         const {getFieldProps} = this.props.form;
 
         return (
-            <div className={baseStyle.page} style={{minHeight: document.documentElement.clientHeight}}>
+            <div className={style.page} style={{minHeight: document.documentElement.clientHeight}}>
                 <div className={style.content}>
                     <div className={style.upload}>
                         <ImageUpload name="topicMedia" ref="topicMedia" limit={9}/>
@@ -128,7 +129,9 @@ class Add extends Component {
                 <div className={style.line}></div>
                 <div className={style.content}>
                     <div className={classNames(baseStyle.list, baseStyle.bottomLine)}>
-                        <div className={style.listLeft}></div>
+                        <div className={style.listLeft}>
+                            <img className={style.listLeftLocation} src={require('../../image/topic-location.png')} alt=''/>
+                        </div>
                         <div className={classNames(style.listCenter, baseStyle.listCenter)}>
                             所在位置
                         </div>
@@ -136,17 +139,21 @@ class Add extends Component {
                             <div className={baseStyle.rightArrow}></div>
                         </div>
                     </div>
-                    <div className={classNames(baseStyle.list, baseStyle.bottomLine)}>
-                        <div className={style.listLeft}></div>
+                    <Link to='/topic/remind' className={classNames(baseStyle.list, baseStyle.bottomLine)}>
+                        <div className={style.listLeft}>
+                            <img className={style.listLeftRemind} src={require('../../image/remind.png')} alt=''/>
+                        </div>
                         <div className={classNames(style.listCenter, baseStyle.listCenter)}>
                             提醒谁看
                         </div>
                         <div className={style.listRight}>
                             <div className={baseStyle.rightArrow}></div>
                         </div>
-                    </div>
+                    </Link>
                     <div className={classNames(baseStyle.list)}>
-                        <div className={style.listLeft}></div>
+                        <div className={style.listLeft}>
+                            <img className={style.listLeftTag} src={require('../../image/tag.png')} alt=''/>
+                        </div>
                         <div className={classNames(style.listCenter, baseStyle.listCenter)}>
                             添加标签
                         </div>

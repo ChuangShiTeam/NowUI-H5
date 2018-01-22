@@ -1,64 +1,64 @@
 .headerMask {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    max-width: 600px;
-    height: 49px;
-    background: #defafd;
-    z-index: 98;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	max-width: 600px;
+	height: 49px;
+	background: #defafd;
+	z-index: 98;
 }
 
 .header {
-    position: fixed;
-    top: 0;
-    height: 49px;
-    z-index: 99;
-    width: 100%;
-    max-width: 600px;
+	position: fixed;
+	top: 0;
+	height: 49px;
+	z-index: 99;
+	width: 100%;
+	max-width: 600px;
 }
 
 .headerContent {
-    -js-display: flex;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
+	-js-display: flex;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
 }
 
 .headerContentLeft {
-    width: 100px;
+	width: 100px;
 }
 
 .headerContentLeftUser {
-    margin-top: 5px;
-    margin-left: 18px;
-    width: 20px;
-    height: 22px;
+	margin-top: 5px;
+	margin-left: 18px;
+	width: 20px;
+	height: 22px;
 }
 
 .headerContentCenter {
-    margin-top: 7px;
-    flex-grow: 1;
-    text-align: center;
+	margin-top: 7px;
+	flex-grow: 1;
+	text-align: center;
 }
 
 .headerContentCenterLogo {
-    width: 134px;
-    height: 31px;
+	width: 134px;
+	height: 31px;
 }
 
 .headerContentContentRight {
-    margin-right: 18px;
-    width: 100px;
-    text-align: right;
+	margin-right: 18px;
+	width: 100px;
+	text-align: right;
 }
 
 .headerContentContentRightSearch {
-    margin-top: 5px;
-    width: 18px;
-    height: 18px;
+	margin-top: 5px;
+	width: 18px;
+	height: 18px;
 }
 
 .banner {
@@ -66,40 +66,40 @@
 }
 
 .bannerPagination {
-    position: absolute;
-    bottom: 16px;
-    left: 0;
-    text-align: center;
-    width: 100%;
-    z-index: 99999;
+	position: absolute;
+	bottom: 16px;
+	left: 0;
+	text-align: center;
+	width: 100%;
+	z-index: 99999;
 }
 
 .category {
-    height: 100px;
-    background: #ffffff;
-    border-bottom: 4px solid #f6f6f6;
+	height: 100px;
+	background: #ffffff;
+	border-bottom: 4px solid #f6f6f6;
 }
 
 .categoryContent {
-    padding-top: 20px;
+	padding-top: 20px;
 }
 
 .categoryContentItem {
-    width: 94px;
-    text-align: center;
+	width: 94px;
+	text-align: center;
 }
 
 .categoryContentItemImage {
-    width: 43px;
-    height: 43px;
+	width: 43px;
+	height: 43px;
 }
 
 .categoryContentItemItemName {
-    font-family: PingFangSC-Light;
-    font-size: 10px;
-    -webkit-transform: scale(0.83);
-    color: #000000;
-    line-height: 6px;
+	font-family: PingFangSC-Light;
+	font-size: 10px;
+	-webkit-transform: scale(0.83);
+	color: #000000;
+	line-height: 6px;
 }
 
 .hotArticle {
@@ -107,11 +107,11 @@
 }
 
 .hotArticleHeader {
-    margin: 16px 16px 0px 16px;
-    font-family: PingFangSC-Light;
-    font-size: 15px;
-    color: #000000;
-    letter-spacing: 0;
+	margin: 16px 16px 0px 16px;
+	font-family: PingFangSC-Light;
+	font-size: 15px;
+	color: #000000;
+	letter-spacing: 0;
 }
 
 .hotArticleContent {
@@ -119,8 +119,8 @@
 }
 
 .hotArticleContentTop {
-    position: relative;
-    margin: 13px 16px;
+	position: relative;
+	margin: 13px 16px;
 }
 
 .hotArticleContentTopImage {
@@ -128,23 +128,23 @@
 }
 
 .hotArticleContentTopName {
-    position: absolute;
-    top: 50%;
-    left: 0px;
-    width: 100%;
-    text-align: center;
-    font-family: PingFangSC;
-    font-size: 12px;
-    color: #FFFFFF;
+	position: absolute;
+	top: 50%;
+	left: 0px;
+	width: 100%;
+	text-align: center;
+	font-family: PingFangSC;
+	font-size: 12px;
+	color: #FFFFFF;
 }
 
 .hotArticleContentList {
-    padding: 12px 16px;
-    background: #F6F6F6;
+	padding: 12px 16px;
+	background: #F6F6F6;
 }
 
 .hotArticleContentListContainer {
-    height: 125px;
+	height: 125px;
 }
 
 .hotArticleContentListContainerWrapper {
@@ -152,130 +152,130 @@
 }
 
 .hotArticleContentListContainerWrapperItem {
-    -js-display: flex;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 50px;
-    background: #FFFFFF;
+	-js-display: flex;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 50px;
+	background: #FFFFFF;
 }
 
 .hotArticleContentListContainerWrapperItemLeft {
-    width: 54px;
-    -js-display: flex;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+	width: 54px;
+	-js-display: flex;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .hotArticleContentListContainerWrapperItemLeftImage {
-    width: 34px;
-    height: 34px;
+	width: 34px;
+	height: 34px;
 }
 
 .hotArticleContentListContainerWrapperItemRight {
-    flex-grow: 1;
-    width: 0;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+	flex-grow: 1;
+	width: 0;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
 .animalCategory {
-    height: 135px;
+	height: 135px;
 }
 
 .animalCategoryHeader {
-    margin: 30px 16px 0px 16px;
-    font-family: PingFangSC-Light;
-    font-size: 15px;
-    color: #000000;
-    letter-spacing: 0;
+	margin: 30px 16px 0px 16px;
+	font-family: PingFangSC-Light;
+	font-size: 15px;
+	color: #000000;
+	letter-spacing: 0;
 }
 
 .animalCategoryContent {
-    margin-top: 21px;
-    padding-left: 16px;
+	margin-top: 21px;
+	padding-left: 16px;
 }
 
 .animalCategoryContentWrapper {
-    width: 100%;
-    height: 75px !important;
+	width: 100%;
+	height: 75px !important;
 }
 
 .animalCategoryContentWrapperItem {
-    position: relative;
-    width: 81px;
-    height: 75px;
+	position: relative;
+	width: 81px;
+	height: 75px;
 }
 
 .animalCategoryContentWrapperItemImage {
-    width: 75px;
-    height: 75px;
+	width: 75px;
+	height: 75px;
 }
 
 .animalCategoryContentWrapperItemName {
-    position: absolute;
-    top: 23px;
-    width: 100%;
-    text-align: center;
-    font-family: PingFangSC-Regular;
-    font-size: 12px;
-    color: #FFFFFF;
-    letter-spacing: 0;
+	position: absolute;
+	top: 23px;
+	width: 100%;
+	text-align: center;
+	font-family: PingFangSC-Regular;
+	font-size: 12px;
+	color: #FFFFFF;
+	letter-spacing: 0;
 }
 
 .animalCategoryContentWrapperItemDescription {
-    position: absolute;
-    top: 38px;
-    width: 100%;
-    text-align: center;
-    font-family: PingFangSC-Regular;
-    font-size: 11px;
-    color: #FFFFFF;
-    letter-spacing: 0;
+	position: absolute;
+	top: 38px;
+	width: 100%;
+	text-align: center;
+	font-family: PingFangSC-Regular;
+	font-size: 11px;
+	color: #FFFFFF;
+	letter-spacing: 0;
 }
 
 .guess {
-    background: #F6F6F6;
-    padding-bottom: 16px;
+	background: #F6F6F6;
+	padding-bottom: 16px;
 }
 
 .guessHeader {
-    padding: 16px 16px 10px 16px;
-    -js-display: flex;
-    display: flex;
-    flex-direction: row;
+	padding: 16px 16px 10px 16px;
+	-js-display: flex;
+	display: flex;
+	flex-direction: row;
 }
 
 .guessHeaderTitle {
-    flex-grow: 1;
-    font-family: PingFangSC-Light;
-    font-size: 15px;
-    color: #000000;
-    letter-spacing: 0;
+	flex-grow: 1;
+	font-family: PingFangSC-Light;
+	font-size: 15px;
+	color: #000000;
+	letter-spacing: 0;
 }
 
 .guessHeaderMoreText {
-    width: 29px;
-    font-family: PingFangSC-Regular;
-    font-size: 12px;
-    color: #000000;
-    letter-spacing: 0;
+	width: 29px;
+	font-family: PingFangSC-Regular;
+	font-size: 12px;
+	color: #000000;
+	letter-spacing: 0;
 }
 
 .guessHeaderMoreIcon {
-    margin-top: 3px;
-    width: 12px;
-    height: 12px;
+	margin-top: 3px;
+	width: 12px;
+	height: 12px;
 }
 
 .guessContent {
-    padding-left: 16px;
-    height: 148px;
+	padding-left: 16px;
+	height: 148px;
 }
 
 .guessContentWrapper {
@@ -283,63 +283,141 @@
 }
 
 .guessContentWrapperItem {
-    width: 120px;
+	width: 120px;
 }
 
 .guessContentWrapperItemCard {
-    position: relative;
-    background: #FFFFFF;
-    border: 1px solid #F0F0F0;
-    border-radius: 4px;
-    width: 110px;
-    height: 148px;
-    text-align: center;
+	position: relative;
+	background: #FFFFFF;
+	border: 1px solid #F0F0F0;
+	border-radius: 4px;
+	width: 110px;
+	height: 148px;
+	text-align: center;
 }
 
 .guessContentWrapperItemCardImage {
-    width: 52px;
-    height: 52px;
-    margin-top: 15px;
+	width: 52px;
+	height: 52px;
+	margin-top: 15px;
 }
 
 .guessContentWrapperItemCardName {
-    font-family: PingFangSC-Regular;
-    font-size: 13px;
-    color: #4A4A4A;
-    letter-spacing: 0;
-    margin-top: 12px;
+	font-family: PingFangSC-Regular;
+	font-size: 13px;
+	color: #4A4A4A;
+	letter-spacing: 0;
+	margin-top: 12px;
 }
 
 .guessContentWrapperItemCardDescription {
-    font-family: PingFangSC-Regular;
-    font-size: 9px;
-    -webkit-transform: scale(0.75);
-    color: #4A4A4A;
-    letter-spacing: 0;
-    margin-top: 5px;
+	font-family: PingFangSC-Regular;
+	font-size: 9px;
+	-webkit-transform: scale(0.75);
+	color: #4A4A4A;
+	letter-spacing: 0;
+	margin-top: 5px;
 }
 
 .guessContentWrapperItemCardButton {
-    position: absolute;
-    left: 50%;
-    margin-left: -25px;
-    background: #DEFAFD;
-    border-radius: 31px;
-    font-family: PingFangSC-Regular;
-    font-size: 9px;
-    -webkit-transform: scale(0.75);
-    color: #000000;
-    letter-spacing: 0;
-    width: 50px;
-    height: 17px;
-    line-height: 17px;
-    margin-top: 5px;
+	position: absolute;
+	left: 50%;
+	margin-left: -25px;
+	background: #DEFAFD;
+	border-radius: 31px;
+	font-family: PingFangSC-Regular;
+	font-size: 9px;
+	-webkit-transform: scale(0.75);
+	color: #000000;
+	letter-spacing: 0;
+	width: 50px;
+	height: 17px;
+	line-height: 17px;
+	margin-top: 5px;
 }
 
 .newTopicHeader {
-    margin: 16px 16px 0px 16px;
-    font-family: PingFangSC-Light;
-    font-size: 15px;
-    color: #000000;
-    letter-spacing: 0;
+	padding: 16px 16px 10px 16px;
+	font-family: PingFangSC-Light;
+	font-size: 15px;
+	color: #000000;
+	letter-spacing: 0;
+}
+
+.newTopicHeaderTitle {
+	font-family: PingFangSC-Light;
+	font-size: 15px;
+	color: #000000;
+	letter-spacing: 0;
+}
+
+.newTopicFooter {
+	height: 80px;
+	-js-display: flex;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.newTopicFooterMore {
+	border: 1px solid #c18108;
+	border-radius: 15px;
+	width: 67px;
+	height: 19px;
+	font-family: PingFangSC-Light;
+	font-size: 12px;
+	color: #C18108;
+	-js-display: flex;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.footer {
+	background: #defafd;
+	width: 100%;
+	height: 115px;
+	font-family:PingFangSC-Light;
+	font-size:10px;
+	color:#c18108;
+	letter-spacing:0;
+	text-align: center;
+	padding-top: 10px;
+}
+
+.footerLanguage {
+	-js-display: flex;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items:center;
+	height: 40px;
+}
+
+.footerLanguageLeft {
+	width: 20px;
+}
+
+.footerLanguageLeftIcon {
+	width: 15px;
+	height: 15px;
+}
+
+.footerLanguageCenter {
+	width: 20px;
+}
+
+.footerLanguageCenterIcon {
+	width: 9px;
+	height: 7px;
+}
+
+.footerLanguageRight {
+	width: 20px;
+}
+
+.footerLanguageRightIcon {
+	width: 15px;
+	height: 15px;
 }

@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import util from '../../common/util';
-import searchStyle from './Search.scss';
+
+import style from './Search.scss';
 
 class Index extends Component {
     constructor(props) {
@@ -25,10 +26,10 @@ class Index extends Component {
 
     render() {
         return (
-                <div className={searchStyle.Search}>
+                <div className={style.Search}>
                     <input placeholder=" # 搜索话题、商品" type="text" name="search"
-                           className={searchStyle.SearchText}/>
-                    <label className={searchStyle.SearchAction}> 搜 索 </label>
+                           className={style.SearchText}/>
+                    <label className={style.SearchAction}> 搜 索 </label>
                 </div>
         );
     }

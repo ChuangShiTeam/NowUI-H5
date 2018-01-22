@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import classNames from 'classnames';
+import baseStyle from '../../css/Base.scss';
 
 
 import util from '../../common/util';
@@ -32,71 +33,95 @@ class Follow extends Component {
 
     render() {
         return (
-            <div className={style.page} style={{minHeight: document.documentElement.clientHeight}}>
+            <div className={baseStyle.page} style={{minHeight: document.documentElement.clientHeight}}>
 
                 <div className={style.header}>
                     <div>TA关注的人</div>
                 </div>
                 <div className={style.contentMargin}>
-                        <div className={style.content}>
-                            <div className={style.imageLeft}>
-                                <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/30/h/30" alt=''/>
-                                <div className={style.imageCenter}> 是大熊啊</div>
+                        <div className={classNames(style.list,baseStyle.bottomLine)}>
+                            <div className={style.listLeft}>
+                                    <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?listView/1/w/30/h/30" alt=""/>
+                                <div className={style.listCenter}>是大熊啊</div>
                             </div>
-                            <div  className={style.imageRight}>
-                                 <div className={style.imageRight1}>+</div>
-                                <div className={style.imageRightFont}>关注</div>
-                            </div>
+                            {
+                                true ?
+                                    <div className={style.listRight}>
+                                        <span className={style.listRightFont}>+ 关注</span>
+                                    </div>
+                                    :
+                                    <div className={style.listRights}>
+                                        <span className={style.listRightFont1}>已关注</span>
+                                    </div>
+                            }
                         </div>
-                        <div className={style.divNull}></div>
-                        <div className={style.content}>
-                            <div className={style.imageLeft}>
-                                <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/30/h/30" alt=''/>
-                                <div className={style.imageCenter}> 粒粒</div>
+                    <div className={classNames(style.list,baseStyle.bottomLine)}>
+                            <div className={style.listLeft}>
+                                <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?listView/1/w/30/h/30" alt=""/>
+                                <div className={style.listCenter}> 粒粒</div>
                             </div>
-                            <div className={style.imageRight}>
-                                <div className={style.imageRight1}>+</div>
-                                <div className={style.imageRightFont}>关注</div>
-                            </div>
+                        {
+                            true ?
+                                <div className={style.listRight}>
+                                    <span className={style.listRightFont}>+ 关注</span>
+                                </div>
+                                :
+                                <div className={style.listRights}>
+                                    <span className={style.listRightFont1}>已关注</span>
+                                </div>
+                        }
                         </div>
-                    <div className={style.divNull}></div>
-                        <div className={style.content}>
-                            <div className={style.imageLeft}>
-                                <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/30/h/30" alt=''/>
-                                <div className={style.imageCenter}> 小高同志</div>
+                    <div className={classNames(style.list,baseStyle.bottomLine)}>
+                            <div className={style.listLeft}>
+                                <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?listView/1/w/30/h/30" alt=""/>
+                                <div className={style.listCenter}> 小高同志</div>
                             </div>
-                            <div className={style.imageRights}>
-                                <div className={style.imageRightFont1}>已关注</div>
-                            </div>
+                        {
+                            false ?
+                                <div className={style.listRights}>
+                                    <span className={style.listRightFont1}>已关注</span>
+                                </div>
+                                :
+                                <div className={style.listRights}>
+                                    <span className={style.listRightFont1}>已关注</span>
+                                </div>
+                        }
                         </div>
-                    <div className={style.divNull}></div>
-                        <div className={style.content}>
-                            <div className={style.imageLeft}>
-                                <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/30/h/30" alt=''/>
-                                <div className={style.imageCenter}> 大大大饺子</div>
+                    <div className={classNames(style.list,baseStyle.bottomLine)}>
+                            <div className={style.listLeft}>
+                                <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?listView/1/w/30/h/30" alt=""/>
+                                <div className={style.listCenter}> 大大大饺子</div>
                             </div>
-                            <div className={style.imageRights}>
-                                <div className={style.imageRightFont1}>已关注</div>
-                            </div>
+                        {
+                            false ?
+                                <div className={style.listRights}>
+                                    <span className={style.listRightFont1}>已关注</span>
+                                </div>
+                                :
+                                <div className={style.listRights}>
+                                    <span className={style.listRightFont1}>已关注</span>
+                                </div>
+                        }
                         </div>
-                    <div className={style.divNull}></div>
-                        <div className={style.content}>
-                            <div className={style.imageLeft}>
-                                <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/30/h/30" alt=''/>
-                                <div className={style.imageCenter}> 阿拉系蕾</div>
+                    <div className={classNames(style.list,baseStyle.bottomLine)}>
+                            <div className={style.listLeft}>
+                                <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?listView/1/w/30/h/30" alt=""/>
+                                <div className={style.listCenter}> 阿拉系蕾</div>
                             </div>
-                            <div className={style.imageRights}>
-                                <div className={style.imageRightFont1}>已关注</div>
-                            </div>
+                        {
+                            false ?
+                                <div className={style.listRights}>
+                                    <span className={style.listRightFont1}>已关注</span>
+                                </div>
+                                :
+                                <div className={style.listRights}>
+                                    <span className={style.listRightFont1}>已关注</span>
+                                </div>
+                        }
                         </div>
-                    <div className={style.divNull}></div>
                 </div>
-
-
             </div>
-
         );
     }
 }
-
 export default connect(() => ({}))(Follow);
