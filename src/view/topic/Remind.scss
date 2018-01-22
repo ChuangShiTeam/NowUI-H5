@@ -3,7 +3,6 @@
 	margin-left: auto;
 	margin-right: auto;
 	background-color: #FFFFFF;
-	padding-top: 150px;
 }
 
 .header {
@@ -17,6 +16,11 @@
 	box-shadow: 0 2px 2px 0 rgba(228, 228, 228, 0.50);
 	filter: progid:DXImageTransform.Microsoft.Shadow(color='#DFDFDF', Direction=180, Strength=1);
 }
+
+.line {
+	height: 150px;
+}
+
 .selected {
 	-js-display: flex;
 	display: flex;
