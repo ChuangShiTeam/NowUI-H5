@@ -89,60 +89,30 @@ class Detail extends Component {
                 </div>
                 <div className={style.line2}></div>
                 <div className={style.content}>
-                    <div className={style.comment}>
-                        <div className={style.commentLeft}>
-                            <img className={style.commentLeftImage} src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/38/h/38' alt=''/>
-                        </div>
-                        <div className={classNames(style.commentRight, baseStyle.bottomLine)}>
-                            <div className={style.commentRightLike}>
-                                <div className={style.commentRightLikeContent}>
-                                    <img className={style.commentRightLikeIcon} src={true ? require('../../image/like.png') : require('../../image/like-active.png')} alt=''/>
-                                    <span className={style.commentRightLikeText}>3</span>
+                    {
+                        [{},{},{}].map(function (comment, index) {
+                            return (
+                                <div key={index} className={classNames(style.comment, baseStyle.maxWidthWithPadding, index > 0 ? baseStyle.marginTop : '')}>
+                                    <div className={style.commentLeft}>
+                                        <img className={style.commentLeftImage} src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/38/h/38' alt=''/>
+                                    </div>
+                                    <div className={classNames(style.commentRight, baseStyle.bottomLine)}>
+                                        <div className={style.commentRightLike}>
+                                            <div className={style.commentRightLikeContent}>
+                                                <img className={style.commentRightLikeIcon} src={true ? require('../../image/like.png') : require('../../image/like-active.png')} alt=''/>
+                                                <span className={style.commentRightLikeText}>3</span>
+                                            </div>
+                                        </div>
+                                        <div className={style.commentRightName}>我是来找茬的</div>
+                                        <div className={style.commentRightName}>3小时前</div>
+                                        <div className={style.commentRightContent}>
+                                            回复<span className={style.commentRightContentWho}>我是来找茬的</span>: 不行不行，他是我的～不行不行，他是我的～不行不行，他是我的～不行不行，他是我的～不行不行，他是我的～不行不行，他是我的～不行不行，他是我的～不行不行，他是我的～不行不行，他是我的～不行不行，他是我的～不行不行，他是我的～不行不行，他是我的～
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div className={style.commentRightName}>我是来找茬的</div>
-                            <div className={style.commentRightName}>3小时前</div>
-                            <div className={style.commentRightContent}>
-                                太好玩了，我也好想养一只啊，好想摸摸，快到碗里来～太好玩了，我也好想养一只啊，好想摸摸，快到碗里来～太好玩了，我也好想养一只啊，好想摸摸，快到碗里来～
-                            </div>
-                        </div>
-                    </div>
-                    <div className={style.comment}>
-                        <div className={style.commentLeft}>
-                            <img className={style.commentLeftImage} src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/38/h/38' alt=''/>
-                        </div>
-                        <div className={classNames(style.commentRight, baseStyle.bottomLine)}>
-                            <div className={style.commentRightLike}>
-                                <div className={style.commentRightLikeContent}>
-                                    <img className={style.commentRightLikeIcon} src={true ? require('../../image/like.png') : require('../../image/like-active.png')} alt=''/>
-                                    <span className={style.commentRightLikeText}>3</span>
-                                </div>
-                            </div>
-                            <div className={style.commentRightName}>我是来找茬的</div>
-                            <div className={style.commentRightName}>3小时前</div>
-                            <div className={style.commentRightContent}>
-                                回复<span className={style.commentRightContentWho}>我是来找茬的</span>: 不行不行，他是我的～
-                            </div>
-                        </div>
-                    </div>
-                    <div className={style.comment}>
-                        <div className={style.commentLeft}>
-                            <img className={style.commentLeftImage} src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/38/h/38' alt=''/>
-                        </div>
-                        <div className={classNames(style.commentRight, baseStyle.bottomLine)}>
-                            <div className={style.commentRightLike}>
-                                <div className={style.commentRightLikeContent}>
-                                    <img className={style.commentRightLikeIcon} src={true ? require('../../image/like.png') : require('../../image/like-active.png')} alt=''/>
-                                    <span className={style.commentRightLikeText}>3</span>
-                                </div>
-                            </div>
-                            <div className={style.commentRightName}>我是来找茬的</div>
-                            <div className={style.commentRightName}>3小时前</div>
-                            <div className={style.commentRightContent}>
-                                太好玩了，我也好想养一只啊，好想摸摸，快到碗里来～太好玩了，我也好想养一只啊，好想摸摸，快到碗里来～太好玩了，我也好想养一只啊，好想摸摸，快到碗里来～
-                            </div>
-                        </div>
-                    </div>
+                            )
+                        })
+                    }
                 </div>
             </div>
         );
