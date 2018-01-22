@@ -1,0 +1,84 @@
+div, form, img, ul, ol, li, dl, dt, dd, p, tr, td, body, strong, span, pre, input {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background-repeat: no-repeat;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    margin: 0;
+    padding: 0;
+}
+
+img {
+    border: 0px;
+    max-width: 100%;
+}
+
+ul, li {
+    list-style: none;
+}
+
+em {
+    font-style: normal;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+    outline: none;
+}
+
+a:hover {
+    text-decoration: none;
+    background-repeat: no-repeat;
+}
+
+a, area {
+    blr: expression(this.onFocus=this.blur());
+}
+
+body {
+    font-family: "PingFangSC-Light", "PingFangSC-Regular", "Microsoft YaHei", "Helvetica Neue For Number", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    color: #000000;
+    background-color: #EEEEEE;
+}
+
+* {
+    -webkit-text-size-adjust:none;
+}
+
+.swiper-pagination-switch {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+    border: 1px solid #FFFFFF;
+    margin: 0 3px;
+    cursor: pointer;
+}
+
+.rmc-select-list-playground .rmc-select-list-search, .rmc-select-list-playground {
+    height: 100%;
+}
+
+.swiper-active-switch {
+    background: #fff;
+}
+
+::-webkit-input-placeholder { /* WebKit browsers */
+    color: #9b9b9b;
+}
+
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: #9b9b9b;
+}
+
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #9b9b9b;
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color: #9b9b9b;
+}

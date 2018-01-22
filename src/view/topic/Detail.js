@@ -7,8 +7,6 @@ import util from '../../common/util';
 import style from './Detail.scss';
 import baseStyle from '../../css/Base.scss';
 import classNames from "classnames";
-import http from "../../common/http";
-import constant from "../../common/constant";
 
 
 let notification = null;
@@ -103,10 +101,90 @@ class Detail extends Component {
                     </div>
                     <div className={style.footerInfo}>
                         <div className={style.footerInfoLeft}>
-                            <img className={style.footerInfoLeftLocationIcon} src={require('../../image/location.png')} alt=""/>
+                            <img className={style.footerInfoLeftLocationIcon} src={require('../../image/location.png')} alt=''/>
                             <span className={style.footerInfoLeftLocationText}>上海  松江区</span>
                         </div>
-                        <div className={style.footerInfoRight}></div>
+                        <div className={style.footerInfoRight}>
+                            <span className={style.footerInfoRightFrom}>来自</span>
+                            <span className={style.footerInfoRightTag}>大爱猫咪控</span>
+                            <span className={style.footerInfoRightTag}>大爱猫咪控</span>
+                        </div>
+                    </div>
+                    <div className={style.footerCount}>
+                        <div className={style.footerCountLeft}>
+                            <img className={style.footerCountLeftLikeIcon} src={true ? require('../../image/like.png') : require('../../image/like-active.png')} alt=''/>
+                            <div className={style.footerCountLeftLikeIconNumber}>60</div>
+                        </div>
+                        <Link to='/topic/like' className={style.footerCountCenter}>
+                            <img className={style.footerCountLeftAvatarIcon} src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/320/h/255' alt=''/>
+                            <img className={style.footerCountLeftAvatarIcon} src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/320/h/255' alt=''/>
+                            <img className={style.footerCountLeftAvatarIcon} src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/320/h/255' alt=''/>
+                            <img className={style.footerCountLeftAvatarIcon} src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/320/h/255' alt=''/>
+                            <img className={style.footerCountLeftAvatarIcon} src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/320/h/255' alt=''/>
+                        </Link>
+                        <div className={style.footerCountRight}>
+                            <img className={style.footerCountRightBookmarkIcon} src={true ? require('../../image/bookmark.png') : require('../../image/bookmark-acitve.png')} alt=''/>
+                            <span className={style.footerCountRightBookmarkNumber}>10</span>
+                            <img className={style.footerCountRightCommentIcon} src={require('../../image/comment.png')} alt=''/>
+                            <span className={style.footerCountRightCommentNumber}>10</span>
+                        </div>
+                    </div>
+                </div>
+                <div className={style.line2}></div>
+                <div className={style.content}>
+                    <div className={style.comment}>
+                        <div className={style.commentLeft}>
+                            <img className={style.commentLeftImage} src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/38/h/38' alt=''/>
+                        </div>
+                        <div className={classNames(style.commentRight, baseStyle.bottomLine)}>
+                            <div className={style.commentRightLike}>
+                                <div className={style.commentRightLikeContent}>
+                                    <img className={style.commentRightLikeIcon} src={true ? require('../../image/like.png') : require('../../image/like-active.png')} alt=''/>
+                                    <span className={style.commentRightLikeText}>3</span>
+                                </div>
+                            </div>
+                            <div className={style.commentRightName}>我是来找茬的</div>
+                            <div className={style.commentRightName}>3小时前</div>
+                            <div className={style.commentRightContent}>
+                                太好玩了，我也好想养一只啊，好想摸摸，快到碗里来～太好玩了，我也好想养一只啊，好想摸摸，快到碗里来～太好玩了，我也好想养一只啊，好想摸摸，快到碗里来～
+                            </div>
+                        </div>
+                    </div>
+                    <div className={style.comment}>
+                        <div className={style.commentLeft}>
+                            <img className={style.commentLeftImage} src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/38/h/38' alt=''/>
+                        </div>
+                        <div className={classNames(style.commentRight, baseStyle.bottomLine)}>
+                            <div className={style.commentRightLike}>
+                                <div className={style.commentRightLikeContent}>
+                                    <img className={style.commentRightLikeIcon} src={true ? require('../../image/like.png') : require('../../image/like-active.png')} alt=''/>
+                                    <span className={style.commentRightLikeText}>3</span>
+                                </div>
+                            </div>
+                            <div className={style.commentRightName}>我是来找茬的</div>
+                            <div className={style.commentRightName}>3小时前</div>
+                            <div className={style.commentRightContent}>
+                                回复<span className={style.commentRightContentWho}>我是来找茬的</span>: 不行不行，他是我的～
+                            </div>
+                        </div>
+                    </div>
+                    <div className={style.comment}>
+                        <div className={style.commentLeft}>
+                            <img className={style.commentLeftImage} src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/38/h/38' alt=''/>
+                        </div>
+                        <div className={classNames(style.commentRight, baseStyle.bottomLine)}>
+                            <div className={style.commentRightLike}>
+                                <div className={style.commentRightLikeContent}>
+                                    <img className={style.commentRightLikeIcon} src={true ? require('../../image/like.png') : require('../../image/like-active.png')} alt=''/>
+                                    <span className={style.commentRightLikeText}>3</span>
+                                </div>
+                            </div>
+                            <div className={style.commentRightName}>我是来找茬的</div>
+                            <div className={style.commentRightName}>3小时前</div>
+                            <div className={style.commentRightContent}>
+                                太好玩了，我也好想养一只啊，好想摸摸，快到碗里来～太好玩了，我也好想养一只啊，好想摸摸，快到碗里来～太好玩了，我也好想养一只啊，好想摸摸，快到碗里来～
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
