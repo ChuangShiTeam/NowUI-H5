@@ -10,6 +10,7 @@
     "exif-js": "^2.3.0",
     "font-awesome": "^4.7.0",
     "history": "^1.17.0",
+    "moment": "^2.20.1",
     "rc-form": "^1.5.0",
     "rc-notification": "^3.0.1",
     "rc-upload": "^2.4.4",

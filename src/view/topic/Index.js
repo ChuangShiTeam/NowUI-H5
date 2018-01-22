@@ -6,6 +6,8 @@ import classNames from 'classnames';
 import TopicIndex from '../../component/topic/Index';
 
 import util from '../../common/util';
+import http from '../../common/http';
+import constant from '../../common/constant';
 
 import style from './Index.scss';
 import baseStyle from '../../css/Base.scss';
@@ -15,13 +17,19 @@ class Index extends Component {
         super(props);
 
         this.state = {
-            isLoad: false
+            isLoad: false,
+            topicPageIndex: 1,
+            topicPageSize: 2,
+            topicTotal: 0,
+            topicList: []
         }
     }
 
     componentDidMount() {
         util.setTitle('wawipet哇咿宠');
         util.hancleComponentDidMount();
+
+        this.handleLoad();
     }
 
     componentDidUpdate() {
@@ -30,6 +38,25 @@ class Index extends Component {
 
     componentWillUnmount() {
 
+    }
+
+    handleLoad() {
+        http.request({
+            url: '/topic/mobile/v1/home/list',
+            data: {
+                pageIndex: this.state.topicPageIndex,
+                pageSize: this.state.topicPageSize
+            },
+            success: function (data) {
+                this.setState({
+                    topicTotal: data.total,
+                    topicList: data.list
+                });
+            }.bind(this),
+            complete: function () {
+
+            }
+        });
     }
 
     render() {
@@ -61,8 +88,9 @@ class Index extends Component {
                          src={require('../../image/forum-add.png')}
                          alt=''/>
                 </Link>
-                <TopicIndex/>
-                <TopicIndex/>
+                {
+                    this.state.topicList.map((topic, index) => <TopicIndex topic={topic} key={index}/>)
+                }
             </div>
         );
     }

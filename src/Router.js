@@ -3,6 +3,12 @@ import {Router, browserHistory} from 'react-router';
 import {createStore, combineReducers} from 'redux';
 import {Provider} from 'react-redux';
 import {routerReducer} from 'react-router-redux';
+import moment from 'moment';
+
+/**
+ * 设置全局moment语言为中文
+ */
+moment.locale('zh-cn');
 
 import constant from './common/constant';
 
