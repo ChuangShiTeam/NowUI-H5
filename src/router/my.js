@@ -21,5 +21,13 @@ export default {
                 cb(null, require('../view/my/Bookmark').default);
             }, 'my.bookmark');
         }
+    }, {
+        path: '/my/dynamic',
+        onEnter: util.handleEnter,
+        getComponent(location, cb) {
+            require.ensure([], (require) => {
+                cb(null, require('../view/my/Dynamic').default);
+            }, 'my.dynamic');
+        }
     }]
 }
