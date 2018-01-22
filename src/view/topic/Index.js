@@ -56,7 +56,7 @@ class Index extends Component {
                         </div>
                     </div>
                 </div>
-                <Link to="/topic/add" className={style.add}>
+                <Link to="/topic/add" className={style.add} style={{marginLeft: (document.documentElement.clientWidth > 600 ? 300 : document.documentElement.clientWidth / 2) - 60 + 'px'}}>
                     <img className={style.addImage}
                          src={require('../../image/forum-add.png')}
                          alt=''/>

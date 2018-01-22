@@ -347,12 +347,35 @@ class Index extends Component {
                     </div>
                 </div>
                 <div>
-                    <div className={style.guessHeader}>
-                        <div className={style.guessHeaderTitle}>
+                    <div className={style.newTopicHeader}>
+                        <div className={style.newTopicHeaderTitle}>
                             - 最新话题 -
                         </div>
                     </div>
                     <TopicIndex/>
+                    <TopicIndex/>
+                    <div className={style.newTopicFooter}>
+                        <div className={style.newTopicFooterMore}>查看更多</div>
+                    </div>
+                </div>
+                <div className={style.footer}>
+                    <div className={style.footerLanguage}>
+                        <div className={style.footerLanguageLeft}>
+                            <img className={style.footerLanguageLeftIcon}
+                                 src={require('../../image/en.png')} alt=''/>
+                        </div>
+                        <div className={style.footerLanguageCenter}>
+                            <img className={style.footerLanguageCenterIcon}
+                                 src={require('../../image/translator.png')} alt=''/>
+                        </div>
+                        <div className={style.footerLanguageRight}>
+                            <img className={style.footerLanguageRightIcon}
+                                 src={require('../../image/cn.png')} alt=''/>
+                        </div>
+                    </div>
+                    <div>copyright wawipet.com 2017-2019</div>
+                    <div>沪ICP备 12345678</div>
+                    <div>email:market@wawipet.com</div>
                 </div>
             </div>
         );
