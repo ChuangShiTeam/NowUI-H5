@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {Link} from 'react-router';
+
 
 import util from '../../common/util';
 import http from "../../common/http";
@@ -52,7 +54,9 @@ class Homepage extends Component {
     render() {
         return (
             <div className={style.page} style={{minHeight: document.documentElement.clientHeight}}>
-                 <div className={style.homePageHeaderIco}></div>
+                <Link to={'/forum/info/' +  this.state.forum.forumId} key={this.state.forum.forumId} >
+                    <div className={style.homePageHeaderIco}></div>
+                </Link>
                  <div className={style.homePageHeaderTopBackground}>
                      <span style={{paddingTop:"97px",display:"block",paddingLeft:"10px",fontSize:"10px"}}>
                          已有{this.state.forum.forumUserFollowCount?this.state.forum.forumUserFollowCount:0}人加入圈子
@@ -64,7 +68,7 @@ class Homepage extends Component {
                      <p style={{textAlign:"center",marginTop:"10px"}}>
                          {
                              this.state.forum.memberIsFollowForum ?
-                                 '已加入此圈子'
+                                 '已加入圈子'
                                  :
                                  <input style={{borderRadius:"34px",backgroundColor:"#DEFAFD",width:"86px",height:"27px",boxShadow:" 0px 0px 6px #888888"}} type="button" value="加入圈子"/>
                          }
@@ -76,10 +80,17 @@ class Homepage extends Component {
                      <dl>
                          <dt className={style.homePageHeaderMessageLeft}>
                              {
-                                 this.state.forum && this.state.forum.forumModerator && this.state.forum.forumModerator.userAvatar ?
-                                     <img src={constant.image_host + this.state.forum.forumModerator.userAvatar} alt=''/>
+                                 this.state.forum && this.state.forum.forumModerator && this.state.forum.forumModerator.userId ?
+                                     <Link to={'/member/homepage/' +  this.state.forum.forumModerator.userId} key={this.state.forum.forumModerator.userId} >
+                                         {
+                                             this.state.forum.forumModerator.userAvatar ?
+                                                 <img src={constant.image_host + this.state.forum.forumModerator.userAvatar} alt=''/>
+                                                 :
+                                                 <img src={require('../../image/topicItem.png')} alt='' />
+                                         }
+                                     </Link>
                                      :
-                                     <img src={require('../../image/topicItem.png')} alt=''/>
+                                     null
                              }
 
                          </dt>

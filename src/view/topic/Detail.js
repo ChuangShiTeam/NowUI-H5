@@ -21,7 +21,8 @@ class Detail extends Component {
 
         this.state = {
             isLoad: false,
-            topic: {}
+            topic: {},
+            isLike: false
         }
     }
 
@@ -63,6 +64,35 @@ class Detail extends Component {
                 }
             });
         }
+    }
+
+    handleClickLike() {
+        console.log('点赞')
+        let topicId = this.state.topic.topicId;
+        console.log(topicId)
+        if (topicId) {
+            http.request({
+                url: '/topic/user/like/mobile/v1/save',
+                data: {
+                    topicId: topicId
+                },
+                success: function (data) {
+                    this.setState({
+                        topic: data
+                    });
+                    console.log(data)
+                }.bind(this),
+                complete: function () {
+
+                }
+            });
+        }
+
+    }
+
+    handleClickUnLike() {
+        console.log('取消点赞')
+        this.state.isLike = false
     }
 
     render() {
@@ -132,17 +162,20 @@ class Detail extends Component {
                     </div>
                     <div className={style.footerCount}>
                         <div className={style.footerCountLeft}>
-                            <img className={style.footerCountLeftLikeIcon} src={true ? require('../../image/like.png') : require('../../image/like-active.png')} alt=''/>
+                            <img className={style.footerCountLeftLikeIcon} onClick={this.handleClickLike.bind(this)} src={this.state.isLike ? require('../../image/like-active.png') : require('../../image/like.png')} alt=''/>
                             <div className={style.footerCountLeftLikeIconNumber}>{this.state.topic.topicCountLike }</div>
                         </div>
-                        <Link to='/topic/like' className={style.footerCountCenter}>
-                            <img className={style.footerCountLeftAvatarIcon} src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/320/h/255' alt=''/>
-
-
-
-                            <img className={style.footerCountLeftAvatarIcon} src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/320/h/255' alt=''/>
-                            <img className={style.footerCountLeftAvatarIcon} src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/320/h/255' alt=''/>
-                            <img className={style.footerCountLeftAvatarIcon} src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/320/h/255' alt=''/>
+                        <Link to={'/topic/like/' + this.state.topic.topicId }  className={style.footerCountCenter}>
+                            {
+                                this.state.topic && this.state.topic.topicUserLikeList ?
+                                    this.state.topic.topicUserLikeList.map(function (userLikeList,index){
+                                        return (
+                                            <span key={userLikeList.userId} className={style.footerInfoRightTag}>{userLikeList.userAvatar}</span>
+                                        )
+                                    })
+                                    :
+                                    null
+                            }
                             <img className={style.footerCountLeftAvatarIcon} src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/320/h/255' alt=''/>
                         </Link>
                         <div className={style.footerCountRight}>

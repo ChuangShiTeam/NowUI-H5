@@ -6,19 +6,23 @@ import util from '../../common/util';
 import style from './Like.scss';
 import baseStyle from '../../css/Base.scss';
 import classNames from "classnames";
+import http from "../../common/http";
 
 class Like extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            isLoad: false
+            isLoad: false,
+            userLikeList: {}
         }
     }
 
     componentDidMount() {
         util.setTitle('wawipet哇咿宠');
         util.hancleComponentDidMount();
+
+        this.handleLoad();
     }
 
     componentDidUpdate() {
@@ -27,6 +31,31 @@ class Like extends Component {
 
     componentWillUnmount() {
 
+    }
+
+    handleLoad() {
+        //假数据start
+        //let topicId = '029b48ea1edc4138b9875c63606e24e7';
+        //假数据end
+        let topicId = this.props.params.topicId;
+        console.log(topicId)
+        if (topicId) {
+            http.request({
+                url: '/topic/mobile/v1/find',
+                data: {
+                    topicId: topicId
+                },
+                success: function (data) {
+                    this.setState({
+                        userLikeList: data
+                    });
+                    console.log(this.state.userLikeList)
+                }.bind(this),
+                complete: function () {
+
+                }
+            });
+        }
     }
 
     render() {
