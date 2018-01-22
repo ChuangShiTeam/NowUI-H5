@@ -34,7 +34,7 @@ class Like extends Component {
             <div className={baseStyle.page} style={{minHeight: document.documentElement.clientHeight}}>
 
                 <div className={style.header}>
-                    赞过的人
+                    <div className={style.headerLeft}>赞过的人</div>
                 </div>
                 <div className={classNames(style.list, baseStyle.bottomLine)}>
                     <div className={style.listLeft}>
@@ -51,7 +51,7 @@ class Like extends Component {
                                 </div>
                                 :
                                 <div className={style.listRightFollowActive}>
-                                    <span>+ 关注</span>
+                                    <span>已关注</span>
                                 </div>
                         }
                     </div>
