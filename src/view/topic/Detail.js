@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {Link} from 'react-router';
 import Notification from "rc-notification";
 
 import util from '../../common/util';
@@ -60,9 +61,33 @@ class Detail extends Component {
                             <img className={style.footerInfoLeftLocationIcon} src={require('../../image/location.png')} alt=""/>
                             <span className={style.footerInfoLeftLocationText}>上海  松江区</span>
                         </div>
-                        <div className={style.footerInfoRight}></div>
+                        <div className={style.footerInfoRight}>
+                            <span className={style.footerInfoRightFrom}>来自</span>
+                            <span className={style.footerInfoRightTag}>大爱猫咪控</span>
+                            <span className={style.footerInfoRightTag}>大爱猫咪控</span>
+                        </div>
+                    </div>
+                    <div className={style.footerCount}>
+                        <div className={style.footerCountLeft}>
+                            <img className={style.footerCountLeftLikeIcon} src={require('../../image/like-active.png')} alt=""/>
+                            <Link to="/topic/like">
+                            <span className={style.footerCountLeftLikeIconNumber}>60</span>
+                            <img className={style.footerCountLeftAvatarIcon} src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/320/h/255' alt=''/>
+                            <img className={style.footerCountLeftAvatarIcon} src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/320/h/255' alt=''/>
+                            <img className={style.footerCountLeftAvatarIcon} src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/320/h/255' alt=''/>
+                            <img className={style.footerCountLeftAvatarIcon} src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/320/h/255' alt=''/>
+                            <img className={style.footerCountLeftAvatarIcon} src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/320/h/255' alt=''/>
+                            </Link>
+                        </div>
+                        <div className={style.footerCountRight}>
+                            <img className={style.footerCountRightBookmarkIcon} src={true ? require('../../image/bookmark.png') : require('../../image/bookmark-acitve.png')} alt=""/>
+                            <span className={style.footerCountRightBookmarkNumber}>10</span>
+                            <img className={style.footerCountRightCommentIcon} src={require('../../image/comment.png')} alt=""/>
+                            <span className={style.footerCountRightCommentNumber}>10</span>
+                        </div>
                     </div>
                 </div>
+                <div className={style.line2}></div>
             </div>
         );
     }
