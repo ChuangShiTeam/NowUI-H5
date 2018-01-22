@@ -2,10 +2,13 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router';
 import classNames from 'classnames';
+
 import TopicIndex from "../../component/topic/Index";
+
 import util from '../../common/util';
 import http from '../../common/http';
 import constant from '../../common/constant';
+
 import style from './Index.scss';
 import baseStyle from '../../css/Base.scss';
 
@@ -164,7 +167,7 @@ class Index extends Component {
                 }}></div>
                 <div className={style.header}>
                     <div className={style.headerContent}>
-                        <Link to="/login/index" className={style.headerContentLeft}>
+                        <Link to='/login/index' className={style.headerContentLeft}>
                             <img className={style.headerContentLeftUser}
                                  src={require('../../image/index-user.png')}
                                  alt=''/>
@@ -173,10 +176,10 @@ class Index extends Component {
                             <img className={style.headerContentCenterLogo}
                                  src={require('../../image/index-logo.png')} alt=''/>
                         </div>
-                        <div className={style.headerContentContentRight}>
+                        <Link to='/search' className={style.headerContentContentRight}>
                             <img className={style.headerContentContentRightSearch}
                                  src={require('../../image/index-search.png')} alt=''/>
-                        </div>
+                        </Link>
                     </div>
                 </div>
                 <div className={classNames(style.banner, 'swiper-container')}
@@ -347,12 +350,35 @@ class Index extends Component {
                     </div>
                 </div>
                 <div>
-                    <div className={style.guessHeader}>
-                        <div className={style.guessHeaderTitle}>
+                    <div className={style.newTopicHeader}>
+                        <div className={style.newTopicHeaderTitle}>
                             - 最新话题 -
                         </div>
                     </div>
                     <TopicIndex/>
+                    <TopicIndex/>
+                    <div className={style.newTopicFooter}>
+                        <div className={style.newTopicFooterMore}>查看更多</div>
+                    </div>
+                </div>
+                <div className={style.footer}>
+                    <div className={style.footerLanguage}>
+                        <div className={style.footerLanguageLeft}>
+                            <img className={style.footerLanguageLeftIcon}
+                                 src={require('../../image/en.png')} alt=''/>
+                        </div>
+                        <div className={style.footerLanguageCenter}>
+                            <img className={style.footerLanguageCenterIcon}
+                                 src={require('../../image/translator.png')} alt=''/>
+                        </div>
+                        <div className={style.footerLanguageRight}>
+                            <img className={style.footerLanguageRightIcon}
+                                 src={require('../../image/cn.png')} alt=''/>
+                        </div>
+                    </div>
+                    <div>copyright wawipet.com 2017-2019</div>
+                    <div>沪ICP备 12345678</div>
+                    <div>email:market@wawipet.com</div>
                 </div>
             </div>
         );

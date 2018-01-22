@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import MSelectList from 'rmc-select-list';
+
 import util from '../../common/util';
+
 import style from './Remind.scss';
-import baseStyle from '../../css/Base.scss';
-import classNames from "classnames";
 
 class Remind extends Component {
     constructor(props) {
@@ -94,7 +94,7 @@ class Remind extends Component {
 
     render() {
         return (
-            <div className={style.page} style={{minHeight: document.documentElement.clientHeight}}>
+            <div className={style.page} style={{height: document.documentElement.clientHeight}}>
                 <div className={style.header}>
                     <div className={style.selected}>
                         {
@@ -116,33 +116,12 @@ class Remind extends Component {
                             ''
                     }
                 </div>
+                <div className={style.line}></div>
                 <MSelectList
                     data={this.props.forumRemind.memberList}
                     showCurrentSelected={true}
                     onChange={this.handleChange.bind(this)}
                 />
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
             </div>
         );
     }

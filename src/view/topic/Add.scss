@@ -1,3 +1,11 @@
+.page {
+	max-width: 600px;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #FFFFFF;
+	position: relative;
+}
+
 .content {
 	margin-left: 12px;
 	margin-right: 12px;
@@ -25,6 +33,25 @@
 
 .listLeft {
 	width: 30px;
+	-js-display: flex;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.listLeftLocation {
+	width: 13px;
+	height: 17px;
+}
+
+.listLeftRemind {
+	width: 15px;
+	height: 15px;
+}
+
+.listLeftTag {
+	width: 19px;
+	height: 14px;
 }
 
 .listCenter {
@@ -44,13 +71,13 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background:#defafd;
-	box-shadow:0 1px 3px 0 rgba(194,194,194,0.50);
-	border-radius:21px;
-	width:69px;
-	height:29px;
-	font-family:PingFangSC-Regular;
-	font-size:14px;
-	color:#c18108;
-	letter-spacing:0;
+	background: #defafd;
+	box-shadow: 0 1px 3px 0 rgba(194, 194, 194, 0.50);
+	border-radius: 21px;
+	width: 69px;
+	height: 29px;
+	font-family: PingFangSC-Regular;
+	font-size: 14px;
+	color: #c18108;
+	letter-spacing: 0;
 }

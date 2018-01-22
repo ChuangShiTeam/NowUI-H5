@@ -17,15 +17,12 @@ $textGray: #888;
     font-size: $font-size * 3;
   }
 }
-
 @mixin border-top () {
   border-top: 2px solid $lightGray;
 }
-
 @mixin border-bottom () {
   border-bottom: 2px solid $lightGray;
 }
-
 @mixin list-item-bottom-line ($fromLeft: 40px) {
   content: '';
   display: block;
