@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import Upload from 'rc-upload';
+	import Upload from 'rc-upload';
 import Notification from 'rc-notification';
 
 import style from './ImageUpload.scss';
