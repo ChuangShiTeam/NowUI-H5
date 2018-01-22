@@ -13,9 +13,25 @@ export default {
                 }, 'my.index');
             }
         }]
+    }, {
+        path: '/my/bookmark',
+        onEnter: util.handleEnter,
+        getComponent(location, cb) {
+            require.ensure([], (require) => {
+                cb(null, require('../view/my/Bookmark').default);
+            }, 'my.bookmark');
+        }
+    }, {
+        path: '/my/dynamic',
+        onEnter: util.handleEnter,
+        getComponent(location, cb) {
+            require.ensure([], (require) => {
+                cb(null, require('../view/my/Dynamic').default);
+            }, 'my.dynamic');
+        }
     },{
         path: '/my/info',
-        onEnter: util.handleEnter,
+        onEnter:util.handleEnter,
         getComponent(location, cb) {
             require.ensure([], (require) => {
                 cb(null, require('../view/my/Info').default);
