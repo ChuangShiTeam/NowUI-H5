@@ -13,5 +13,13 @@ export default {
                 }, 'my.index');
             }
         }]
+    }, {
+        path: '/my/bookmark',
+        onEnter: util.handleEnter,
+        getComponent(location, cb) {
+            require.ensure([], (require) => {
+                cb(null, require('../view/my/Bookmark').default);
+            }, 'my.bookmark');
+        }
     }]
 }
