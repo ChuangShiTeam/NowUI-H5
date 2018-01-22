@@ -18,7 +18,6 @@ class Homepage extends Component {
     componentDidMount(){
         util.setTitle('wawipet哇咿宠');
         util.hancleComponentDidMount();
-
         this.handleLoad();
     }
 
@@ -43,12 +42,11 @@ class Homepage extends Component {
                         forum: data
                     });
                 }.bind(this),
-                complete: function () {
+                complete: function (){
 
                 }
             });
         }
-
     }
 
     render() {
@@ -101,7 +99,6 @@ class Homepage extends Component {
                                          :
                                          '用户没有个性签名哦'
                                  }
-
                              </p>
                          </dd>
                      </dl>

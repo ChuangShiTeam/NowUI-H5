@@ -98,11 +98,7 @@ class Add extends Component {
                 <div className={style.content}>
                     <div className={style.upload}>
                         <div className={style.uploadLeft}>上传圈子照片</div>
-                        <Uploader
-                            uploadUrl={'https://jsonplaceholder.typicode.com/posts/'}
-                            max={9}
-                        />
-                        {/*<ImageUpload name="forumMedia" ref="forumMedia" limit={1}/>*/}
+                        <ImageUpload name="forumMedia" ref="forumMedia" limit={1}/>
                     </div>
                 </div>
                 <div className={style.line}></div>

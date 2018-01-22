@@ -14,12 +14,12 @@ const getUuid = () => {
 };
 // 内置的一个获取图片key的format方法
 const getImgKey = (item) => (item.imgKey);
-
 class Uploader extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            imgArray: [] // 图片已上传 显示的数组
+            imgArray: [], // 图片已上传显示的数组
+            formData: this.props.value.FormData
         };
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
@@ -31,7 +31,6 @@ class Uploader extends React.Component {
     componentDidMount() {
         // 判断是否有初始化的数据传入
         const {data} = this.props;
-
         if (data && data.length > 0) {
             this.setState({imgArray: data});
         }
@@ -494,6 +493,9 @@ class Uploader extends React.Component {
         const xhr = new XMLHttpRequest();
         const {uploadUrl} = this.props;
         const formData = data.formData;
+
+        console.log('formData',formData);
+        this.state.formData.push(formData);
 
         // // 进度监听
         // xhr.upload.addEventListener('progress', _this.handleProgress.bind(_this, data.uuid), false);
