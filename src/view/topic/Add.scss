@@ -35,7 +35,7 @@
 	width: 30px;
 	-js-display: flex;
 	display: flex;
-	justify-content: center;
+	justify-content: flex-start;
 	align-items: center;
 }
 
@@ -63,10 +63,69 @@
 	text-align: right;
 }
 
-.submit {
-	position: absolute;
-	margin-top: 50px;
-	right: 12px;
+.forumHeader {
+	background: #e6f4f8;
+	font-family: PingFangSC-Regular;
+	font-size: 13px;
+	color: #686868;
+	padding: 10px 12px 10px 12px;
+}
+
+.forumContent {
+	-js-display: flex;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: flex-start;
+	padding: 12px;
+}
+
+.forumContentItem {
+	border: 1px solid #b59768;
+	border-radius: 16px;
+	width: 49px;
+	height: 21px;
+	font-family: PingFangSC-Light;
+	font-size: 12px;
+	color: #c18108;
+	letter-spacing: 0;
+	-js-display: flex;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-right: 10px;
+	cursor: pointer;
+}
+
+.forumContentItemActive {
+	background: #defafd;
+	border: 1px solid #c18108;
+	border-radius: 16px;
+	width: 49px;
+	height: 21px;
+	font-family: PingFangSC-Light;
+	font-size: 12px;
+	color: #c18108;
+	letter-spacing: 0;
+	-js-display: flex;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-right: 10px;
+	cursor: pointer;
+}
+
+.forumSubmit {
+	-js-display: flex;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: flex-end;
+	padding: 12px;
+	margin-top: 30px;
+}
+
+.forumSubmitButton {
 	-js-display: flex;
 	display: flex;
 	justify-content: center;
@@ -80,4 +139,32 @@
 	font-size: 14px;
 	color: #c18108;
 	letter-spacing: 0;
+}
+
+.forumSelect {
+	-js-display: flex;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	padding: 12px;
+}
+
+.forumSelectAll {
+	width: 50px;
+	font-family:PingFangSC-Regular;
+	font-size:12px;
+	color:#727272;
+	letter-spacing:0;
+	cursor: pointer;
+}
+
+.forumUnSelectAll {
+	width: 50px;
+	font-family:PingFangSC-Regular;
+	font-size:12px;
+	color:#727272;
+	letter-spacing:0;
+	cursor: pointer;
 }

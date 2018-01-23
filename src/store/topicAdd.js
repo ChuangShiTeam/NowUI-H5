@@ -1,5 +1,6 @@
 const initialState = {
-    remindList: []
+    remindList: [],
+    forumList: []
 };
 
 function topicAdd(state = initialState, action) {

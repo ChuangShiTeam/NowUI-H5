@@ -12,6 +12,7 @@ import util from '../../common/util';
 
 import style from './Add.scss';
 import baseStyle from '../../css/Base.scss';
+import constant from "../../common/constant";
 
 
 let notification = null;
@@ -29,6 +30,25 @@ class Add extends Component {
     componentDidMount() {
         util.setTitle('wawipet哇咿宠');
         util.hancleComponentDidMount();
+
+        this.props.dispatch({
+            type: 'topicAdd',
+            data: {
+                forumList: [{
+                    id: 1,
+                    selected: false
+                }, {
+                    id: 2,
+                    selected: false
+                }, {
+                    id: 3,
+                    selected: false
+                }, {
+                    id: 4,
+                    selected: false
+                }]
+            }
+        });
     }
 
     componentDidUpdate() {
@@ -104,6 +124,34 @@ class Add extends Component {
         });
     }
 
+    handleSelectForum(index) {
+        let forumList = this.props.topicAdd.forumList;
+        let forum = forumList[index];
+        forum.selected = !forum.selected;
+        forumList[index] = forum;
+
+        this.props.dispatch({
+            type: 'topicAdd',
+            data: {
+                forumList: forumList
+            }
+        });
+    }
+
+    handleSelectAllForum(result) {
+        let forumList = this.props.topicAdd.forumList;
+        for (let i = 0; i < forumList.length; i++) {
+            forumList[i].selected = result;
+        }
+
+        this.props.dispatch({
+            type: 'topicAdd',
+            data: {
+                forumList: forumList
+            }
+        });
+    }
+
     render() {
         const {getFieldProps} = this.props.form;
 
@@ -167,8 +215,26 @@ class Add extends Component {
                         </div>
                     </div>
                 </div>
-                <div className={style.line}></div>
-                <div className={style.submit} onClick={this.handleAddTopic.bind(this)}>发送</div>
+
+                <div className={style.forumHeader}>
+                    同步到我的圈子
+                </div>
+                <div className={style.forumContent}>
+                    {
+                        this.props.topicAdd.forumList.map(function (forum, index) {
+                            return (
+                                <span key={index} className={forum.selected ? style.forumContentItemActive : style.forumContentItem} onClick={this.handleSelectForum.bind(this, index)}>加菲猫</span>
+                            )
+                        }.bind(this))
+                    }
+                </div>
+                <div className={style.forumSubmit} onClick={this.handleAddTopic.bind(this)}>
+                    <div className={style.forumSubmitButton}>发送</div>
+                </div>
+                <div className={style.forumSelect}>
+                    <div className={style.forumSelectAll} onClick={this.handleSelectAllForum.bind(this, true)}>全选</div>
+                    <div className={style.forumUnSelectAll} onClick={this.handleSelectAllForum.bind(this, false)}>全不选</div>
+                </div>
             </div>
         );
     }
@@ -176,4 +242,6 @@ class Add extends Component {
 
 Add = createForm({})(Add);
 
-export default connect(() => ({}))(Add);
+export default connect((store) => ({
+    topicAdd: store.topicAdd
+}))(Add);
