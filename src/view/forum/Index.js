@@ -8,6 +8,7 @@ import util from '../../common/util';
 import http from '../../common/http';
 import storage from '../../common/storage';
 import constant from '../../common/constant';
+import TopicIndex from '../../component/topic/Index';
 
 import style from './Index.scss';
 
@@ -26,6 +27,9 @@ class Index extends Component {
             forumJoinTotal: 0,
             forumJoinList: [],
             forumRecommendList: [],
+            hotTopicPageIndex: 1,
+            hotTopicPageSize: 3,
+            hotTopicTotal: 0,
             hotTopicList: []
         }
     }
@@ -67,6 +71,26 @@ class Index extends Component {
     handleLoad() {
         this.handleLoadJoinList();
         this.handleLoadRecommendList();
+        this.handleLoadHotTopic();
+    }
+
+    handleLoadHotTopic() {
+        http.request({
+            url: '/topic/mobile/v1/home/list',
+            data: {
+                pageIndex: this.state.hotTopicPageIndex,
+                pageSize: this.state.hotTopicPageSize
+            },
+            success: function (data) {
+                this.setState({
+                    hotTopicTotal: data.total,
+                    hotTopicList: data.list
+                });
+            }.bind(this),
+            complete: function () {
+
+            }
+        });
     }
 
     handleLoadRecommendList() {
@@ -293,6 +317,19 @@ class Index extends Component {
                             </div>
                             :
                             null
+                    }
+                </div>
+                <div className={style.interest}>
+                    <div className={style.interestHeader}>
+                        <div className={style.interestHeaderLeft}>
+
+                        </div>
+                        <div className={style.interestHeaderCenter}>
+                            热门动态
+                        </div>
+                    </div>
+                    {
+                        this.state.hotTopicList.map((topic, index) => <TopicIndex topic={topic} key={index}/>)
                     }
                 </div>
                 <br/>
