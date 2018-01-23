@@ -1,5 +1,6 @@
 const initialState = {
-    remindList: []
+    remindList: [],
+    location: {}
 };
 
 function topicAdd(state = initialState, action) {

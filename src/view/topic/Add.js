@@ -29,6 +29,7 @@ class Add extends Component {
     componentDidMount() {
         util.setTitle('wawipet哇咿宠');
         util.hancleComponentDidMount();
+        console.log(this.props.topicAdd.location);
     }
 
     componentDidUpdate() {
@@ -59,11 +60,19 @@ class Add extends Component {
             values.topicMediaList = '';
             values.topicMediaType = 'IMAGE';
 
+            values.longtitude = '';
+            values.latitude = '';
+            values.topicLocation = '';
+            values.topicIsLocation = false;
+            let location = this.props.topicAdd.location;
+            if (location && location.module === 'locationPicker') {
+                values.longtitude = location.latlng.lng;
+                values.latitude = location.latlng.lat;
+                values.topicLocation = location.cityName;
+                values.topicIsLocation = true;
+            }
             //假数据start
-            values.longtitude = '121.42818';
-            values.latitude = '31.202601';
-            values.topicLocation = '上海市徐汇区慧谷创业园';
-            values.topicIsLocation = true;
+
             values.topicForumList = ["6a5b2b71b3cf47b0b9b363ccdfa0e20b", "403d31aef86c4599b1a6c7646ae2842a"];
             values.topicTipUserList = ["3bdfcbb00f90415989fb53e6677c25df"];
 
@@ -171,4 +180,4 @@ class Add extends Component {
 
 Add = createForm({})(Add);
 
-export default connect(() => ({}))(Add);
+export default connect((state) => ({topicAdd: state.topicAdd}))(Add);
