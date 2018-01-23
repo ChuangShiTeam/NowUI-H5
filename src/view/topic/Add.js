@@ -60,7 +60,6 @@ class Add extends Component {
     }
 
     handleAddTopic() {
-        console.log('开始发布...')
         this.props.form.validateFields((errors, values) => {
             if (!!errors) {
                 var message = '';
@@ -76,6 +75,10 @@ class Add extends Component {
 
                 return;
             }
+
+            console.log(values);
+            return;
+
             values.topicMediaList = '';
             values.topicMediaType = 'IMAGE';
 
@@ -159,7 +162,9 @@ class Add extends Component {
             <div className={style.page} style={{minHeight: document.documentElement.clientHeight}}>
                 <div className={style.content}>
                     <div className={style.upload}>
-                        <ImageUpload name="topicMedia" ref="topicMedia" limit={9}/>
+                        <ImageUpload {...getFieldProps('forumMedia', {
+                            initialValue: []
+                        })} name="forumMedia" ref="forumMedia" limit={9}/>
                     </div>
                 </div>
                 <div className={style.line}></div>
