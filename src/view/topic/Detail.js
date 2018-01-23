@@ -24,7 +24,6 @@ class Detail extends Component {
         this.state = {
             isLoad: false,
             topic: {},
-            isLike: false
         }
     }
 
@@ -97,6 +96,35 @@ class Detail extends Component {
 
     }
 
+    handleClickBookmarkTopic() {
+        http.request({
+            url: this.state.topic.topicUserIsBookmark? '/topic/user/unbookmark/mobile/v1/save' : '/topic/user/bookmark/mobile/v1/save',
+            data: {
+                topicId: this.state.topic.topicId
+            },
+            success: function (data) {
+                if (data) {
+                    let topic = this.state.topic;
+                    topic.topicUserIsBookmark = !topic.topicUserIsBookmark;
+                    if (topic.topicUserIsBookmark) {
+                        topic.topicCountBookmark = topic.topicCountBookmark + 1;
+                    } else {
+                        topic.topicCountBookmark = topic.topicCountBookmark - 1;
+                    }
+
+                    this.setState({
+                        topic: topic
+                    })
+                }
+            }.bind(this),
+            complete: function () {
+
+            }
+
+        })
+
+    }
+
     handleSubmit() {
         this.props.form.validateFields((errors, values) => {
             if (!!errors) {
@@ -114,7 +142,28 @@ class Detail extends Component {
                 return;
             }
 
-            console.log(values);
+            values.topicCommentContent = values.message;
+            values.topicId = this.state.topic.topicId;
+            values.topicReplayUserId = '';
+            values.topicReplyCommentId = '';
+            delete(values.message);
+
+            http.request({
+                url: '/topic/comment/mobile/v1/save',
+                data: values,
+                success: function (data) {
+                    notification.notice({
+                        content: '评论成功'
+                    });
+                    // this.props.history.push({
+                    //     pathname: '/forum/index',
+                    //     query: {}
+                    // });
+                }.bind(this),
+                complete: function () {
+
+                }
+            });
         });
     }
 
@@ -205,7 +254,7 @@ class Detail extends Component {
                             <img className={style.footerCountLeftAvatarIcon} src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/320/h/255' alt=''/>
                         </Link>
                         <div className={style.footerCountRight}>
-                            <img className={style.footerCountRightBookmarkIcon} src={this.state.topic.topicUserIsBookmark ? require('../../image/bookmark.png') : require('../../image/bookmark-acitve.png')} alt=''/>
+                            <img className={style.footerCountRightBookmarkIcon} onClick={this.handleClickBookmarkTopic.bind(this)} src={this.state.topic.topicUserIsBookmark ? require('../../image/bookmark-acitve.png') : require('../../image/bookmark.png') } alt=''/>
                             <span className={style.footerCountRightBookmarkNumber}>{this.state.topic.topicCountBookmark }</span>
                             <img className={style.footerCountRightCommentIcon} src={require('../../image/comment.png')} alt=''/>
                             <span className={style.footerCountRightCommentNumber}>{this.state.topic.topicCountComment } </span>
