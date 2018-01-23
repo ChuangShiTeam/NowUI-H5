@@ -1,8 +1,40 @@
-.upload {
-  width: 57px;
+.page {
+	position: relative;
+	-js-display: flex;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	height: 57px;
 }
 
-.uploadIcon {
-  width: 57px;
-  margin-top: 5px;
+.image {
+	width: 57px;
+	height: 57px;
+	margin-right: 10px;
+}
+
+.close {
+	position: absolute;
+	top: -6px;
+	right: 3px;
+	width: 16px;
+	height: 16px;
+	background-color: #000000;
+	border-radius: 100%;
+	-js-display: flex;
+	display: flex;
+	justify-content:center;
+	align-items:center;
+}
+
+.closeIcon {
+	width: 8px;
+	height: 8px;
+}
+
+.upload {
+	width: 57px;
+	height: 57px;
 }

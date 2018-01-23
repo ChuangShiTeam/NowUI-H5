@@ -136,10 +136,6 @@ class Add extends Component {
         });
     }
 
-    handleSelectLocation() {
-        notificationEvent.emit('notification_location_show', location);
-    }
-
     handleSelectForum(index) {
         let forumList = this.props.topicAdd.forumList;
         let forum = forumList[index];
@@ -259,8 +255,8 @@ class Add extends Component {
                         }.bind(this))
                     }
                 </div>
-                <div className={style.forumSubmit} onClick={this.handleAddTopic.bind(this)}>
-                    <div className={style.forumSubmitButton}>发送</div>
+                <div className={style.forumSubmit}>
+                    <div className={style.forumSubmitButton} onClick={this.handleAddTopic.bind(this)}>发送</div>
                 </div>
                 <div className={style.forumSelect}>
                     <div className={style.forumSelectAll} onClick={this.handleSelectAllForum.bind(this, true)}>全选</div>

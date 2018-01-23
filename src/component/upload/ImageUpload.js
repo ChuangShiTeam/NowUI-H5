@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-	import Upload from 'rc-upload';
+import Upload from 'rc-upload';
 import Notification from 'rc-notification';
 
 import style from './ImageUpload.scss';
@@ -9,6 +9,7 @@ import storage from '../../common/storage';
 
 let notification = null;
 Notification.newInstance({}, (n) => notification = n);
+
 class ImageUpload extends Component {
 	constructor(props) {
 		super(props);
@@ -115,7 +116,7 @@ class ImageUpload extends Component {
 		});
 	}
 
-	removeFile(index) {
+    handleDelete(index) {
 		let value = this.state.value;
 		value.splice(index, 1);
 		this.setState({
@@ -124,7 +125,6 @@ class ImageUpload extends Component {
 	}
 
 	render() {
-
 		const props = {
 			name: 'file',
 			multiple: true,
@@ -142,9 +142,22 @@ class ImageUpload extends Component {
 			onProgress: this.handleProgress,
 			beforeUpload: this.handleBeforeUpload
 		};
+
 		return (
-			<div className={style.upload}>
-				<Upload className={style.uploadIcon} {...props} component="div" style={{display: 'inline-block'}}>
+			<div className={style.page}>
+                {
+                    this.state.value.map(function (image, index) {
+                        return (
+                            <div key={index} className={style.page}>
+								<div className={style.close} onClick={this.handleDelete.bind(this, index)}>
+                                    <img className={style.closeIcon} src={require('../../image/upload-close.png')} alt=''/>
+								</div>
+                                <img className={style.image} src={constant.image_host + image.filePath} alt=''/>
+                            </div>
+                        )
+                    }.bind(this))
+                }
+				<Upload className={style.upload} {...props} component="div" style={{display: 'inline-block'}}>
 					<img src={require('../../image/upload.png')} alt=''/>
 				</Upload>
 			</div>

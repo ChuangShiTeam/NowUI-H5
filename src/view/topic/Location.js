@@ -15,21 +15,19 @@ class Location extends Component {
         this.state = {
             isLoad: false
         }
+
+        this.handleMessage = this.handleMessage.bind(this);
     }
 
     componentDidMount() {
         util.setTitle('wawipet哇咿宠');
         util.hancleComponentDidMount();
 
-        window.addEventListener('message', function(event) {
-            let location = event.data;
-            //防止其他应用也会向该页面post信息，需判断module是否为'locationPicker'
-            if (location && location.module === 'locationPicker') {
-                notification.emit('notification_location_submit', location);
-            }
-
-            this.props.history.goBack();
-        }.bind(this), false);
+        if (window.addEventListener) {
+            window.addEventListener('message', this.handleMessage);
+        } else {
+            window.attachEvent('message', this.handleMessage);
+        }
     }
 
     componentDidUpdate() {
@@ -37,12 +35,26 @@ class Location extends Component {
     }
 
     componentWillUnmount() {
+        if (window.addEventListener) {
+            window.removeEventListener('message', this.handleMessage);
+        } else {
+            window.detachEvent('message', this.handleMessage);
+        }
+    }
 
+    handleMessage(event) {
+        let location = event.data;
+        if (location && location.module === 'locationPicker') {
+            notification.emit('notification_location_submit', location);
+        }
+
+        this.props.history.goBack();
     }
 
     render() {
         return (
-            <div className={classNames(style.page, baseStyle.page)} style={{minHeight: document.documentElement.clientHeight,}}>
+            <div className={classNames(style.page, baseStyle.page)}
+                 style={{minHeight: document.documentElement.clientHeight,}}>
                 {
                     <iframe style={{width: '100%', height: document.documentElement.clientHeight}}
                             border="0" scrolling="no"
