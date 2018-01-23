@@ -68,33 +68,33 @@ class Detail extends Component {
         }
     }
 
-    handleClickLike() {
-        console.log('点赞')
-        let topicId = this.state.topic.topicId;
-        console.log(topicId)
-        if (topicId) {
-            http.request({
-                url: '/topic/user/like/mobile/v1/save',
-                data: {
-                    topicId: topicId
-                },
-                success: function (data) {
+    handleClickLikeTopic() {
+        http.request({
+            url: this.state.topic.topicUserIsLike? '/topic/user/unlike/mobile/v1/save' : '/topic/user/like/mobile/v1/save',
+            data: {
+                topicId: this.state.topic.topicId
+            },
+            success: function (data) {
+                if (data) {
+                    let topic = this.state.topic;
+                    topic.topicUserIsLike = !topic.topicUserIsLike;
+                    if (topic.topicUserIsLike) {
+                        topic.topicCountLike = topic.topicCountLike + 1;
+                    } else {
+                        topic.topicCountLike = topic.topicCountLike - 1;
+                    }
+
                     this.setState({
-                        topic: data
-                    });
-                    console.log(data)
-                }.bind(this),
-                complete: function () {
-
+                        topic: topic
+                    })
                 }
-            });
-        }
+            }.bind(this),
+            complete: function () {
 
-    }
+            }
+        });
 
-    handleClickUnLike() {
-        console.log('取消点赞')
-        this.state.isLike = false
+
     }
 
     handleSubmit() {
@@ -187,7 +187,7 @@ class Detail extends Component {
                     </div>
                     <div className={style.footerCount}>
                         <div className={style.footerCountLeft}>
-                            <img className={style.footerCountLeftLikeIcon} onClick={this.handleClickLike.bind(this)} src={this.state.isLike ? require('../../image/like-active.png') : require('../../image/like.png')} alt=''/>
+                            <img className={style.footerCountLeftLikeIcon} onClick={this.handleClickLikeTopic.bind(this)} src={this.state.topic.topicUserIsLike ? require('../../image/like-active.png') : require('../../image/like.png')} alt=''/>
                             <div className={style.footerCountLeftLikeIconNumber}>{this.state.topic.topicCountLike }</div>
                         </div>
                         <Link to={'/topic/like/' + this.state.topic.topicId }  className={style.footerCountCenter}>
@@ -205,7 +205,7 @@ class Detail extends Component {
                             <img className={style.footerCountLeftAvatarIcon} src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/320/h/255' alt=''/>
                         </Link>
                         <div className={style.footerCountRight}>
-                            <img className={style.footerCountRightBookmarkIcon} src={true ? require('../../image/bookmark.png') : require('../../image/bookmark-acitve.png')} alt=''/>
+                            <img className={style.footerCountRightBookmarkIcon} src={this.state.topic.topicUserIsBookmark ? require('../../image/bookmark.png') : require('../../image/bookmark-acitve.png')} alt=''/>
                             <span className={style.footerCountRightBookmarkNumber}>{this.state.topic.topicCountBookmark }</span>
                             <img className={style.footerCountRightCommentIcon} src={require('../../image/comment.png')} alt=''/>
                             <span className={style.footerCountRightCommentNumber}>{this.state.topic.topicCountComment } </span>
