@@ -24,11 +24,13 @@
 }
 
 .summary {
-
+	width: 100%;
+	padding: 5px 0px;
 }
 
 .summaryTextarea {
 	width: 100%;
+	border: 0;
 }
 
 .listLeft {
@@ -81,7 +83,6 @@
 }
 
 .forumContentItem {
-	border: 1px solid #b59768;
 	border-radius: 16px;
 	width: 49px;
 	height: 21px;
@@ -95,6 +96,7 @@
 	align-items: center;
 	margin-right: 10px;
 	cursor: pointer;
+	border: 1px solid #b59768;
 }
 
 .forumContentItemActive {
@@ -153,18 +155,18 @@
 
 .forumSelectAll {
 	width: 50px;
-	font-family:PingFangSC-Regular;
-	font-size:12px;
-	color:#727272;
-	letter-spacing:0;
+	font-family: PingFangSC-Regular;
+	font-size: 12px;
+	color: #727272;
+	letter-spacing: 0;
 	cursor: pointer;
 }
 
 .forumUnSelectAll {
 	width: 50px;
-	font-family:PingFangSC-Regular;
-	font-size:12px;
-	color:#727272;
-	letter-spacing:0;
+	font-family: PingFangSC-Regular;
+	font-size: 12px;
+	color: #727272;
+	letter-spacing: 0;
 	cursor: pointer;
 }
