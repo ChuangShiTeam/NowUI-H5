@@ -19,7 +19,7 @@ class Index extends Component {
         this.state = {
             isLoad: false,
             topicPageIndex: 1,
-            topicPageSize: 10,
+            topicPageSize: 4,
             topicTotal: 0,
             topicList: []
         }
