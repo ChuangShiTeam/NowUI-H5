@@ -1,5 +1,7 @@
 const initialState = {
     remindList: [],
+    forumList: []
+    remindList: [],
     location: {}
 };
 
