@@ -52,13 +52,10 @@ class Add extends Component {
                 return;
             }
 
-            values.forumMedia = '';
             values.forumMediaType = 'IMAGE';
-            let forumMedia = this.refs.forumMedia.handleGetValue();
-            if (forumMedia.length > 0) {
-                values.forumMedia = forumMedia[0].fileId
+            if (values.forumMedia.length > 0) {
+                values.forumMedia = values.forumMedia[0].fileId
             }
-
             http.request({
                 url: '/forum/mobile/v1/save',
                 data: values,
@@ -99,7 +96,9 @@ class Add extends Component {
                 <div className={style.content}>
                     <div className={style.upload}>
                         <div className={style.uploadLeft}>上传圈子照片</div>
-                        <ImageUpload name="forumMedia" ref="forumMedia" limit={1}/>
+                        <ImageUpload {...getFieldProps('forumMedia', {
+                            initialValue: []
+                        })} name="forumMedia" ref="forumMedia" limit={1}/>
                     </div>
                 </div>
                 <div className={style.line}></div>

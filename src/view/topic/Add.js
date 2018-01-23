@@ -105,7 +105,6 @@ class Add extends Component {
             values.topicForumList = this.state.forumList.filter(forum => forum.selected).map(forum => forum.forumId);
             values.topicTipUserList = this.props.topicAdd.topicTipUserList;
 
-            console.log(values.topicMedia);
             values.topicMediaList = values.topicMedia.map((topicMedia, index) => {
                 return {
                     topicMedia: topicMedia.fileId,
