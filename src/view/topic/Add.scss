@@ -56,8 +56,14 @@
 	height: 14px;
 }
 
-.listCenter {
+.listName {
+	width: 50px;
+}
 
+.listCenter {
+	flex-grow: 1;
+	text-align: right;
+	color: #c7c7cb;
 }
 
 .listRight {

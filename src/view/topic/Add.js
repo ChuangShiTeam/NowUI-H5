@@ -6,13 +6,14 @@ import Notification from "rc-notification";
 import classNames from "classnames";
 
 import ImageUpload from '../../component/upload/ImageUpload';
+import Location from '../../component/Location/Index';
 
+import notificationEvent from '../../common/notification';
 import http from "../../common/http";
 import util from '../../common/util';
 
 import style from './Add.scss';
 import baseStyle from '../../css/Base.scss';
-import constant from "../../common/constant";
 
 
 let notification = null;
@@ -23,8 +24,7 @@ class Add extends Component {
         super(props);
 
         this.state = {
-            isLoad: false,
-            forumList: []
+            isLoad: false
         }
     }
 
@@ -32,7 +32,33 @@ class Add extends Component {
         util.setTitle('wawipet哇咿宠');
         util.hancleComponentDidMount();
 
-        this.hanldeLoadForum();
+        this.props.dispatch({
+            type: 'topicAdd',
+            data: {
+                forumList: [{
+                    id: 1,
+                    selected: false
+                }, {
+                    id: 2,
+                    selected: false
+                }, {
+                    id: 3,
+                    selected: false
+                }, {
+                    id: 4,
+                    selected: false
+                }]
+            }
+        });
+
+        notificationEvent.on('notification_location_submit', this, function (data) {
+            this.props.dispatch({
+                type: 'topicAdd',
+                data: {
+                    location: data
+                }
+            });
+        });
     }
 
     componentDidUpdate() {
@@ -40,33 +66,7 @@ class Add extends Component {
     }
 
     componentWillUnmount() {
-        this.props.dispatch({
-            type: 'topicAdd',
-            data: {
-                topicMediaList: this
-            }
-        })
-    }
-
-    hanldeLoadForum() {
-        http.request({
-            url: '/forum/user/follow/mobile/v1/name/list',
-            data: {},
-            success: function (data) {
-                let forumList = data;
-                if (forumList && forumList.length > 0) {
-                    forumList = forumList.map(forum => {
-                        forum.selected = false;
-                        return forum;
-                    });
-                    this.setState({
-                        forumList: forumList
-                    })
-                }
-            }.bind(this),
-            complete: function () {
-            }
-        });
+        notificationEvent.remove('nnotification_location_submit', this);
     }
 
     handleAddTopic() {
@@ -86,22 +86,24 @@ class Add extends Component {
                 return;
             }
 
-            values.longtitude = '';
-            values.latitude = '';
-            values.topicLocation = '';
-            values.topicIsLocation = false;
-            let location = this.props.topicAdd.location;
-            if (location && location.module === 'locationPicker') {
-                values.longtitude = location.latlng.lng;
-                values.latitude = location.latlng.lat;
-                values.topicLocation = location.cityName;
-                values.topicIsLocation = true;
-            }
+            console.log(values);
+            return;
 
-            values.topicForumList = this.state.forumList.filter(forum => forum.selected).map(forum => forum.forumId);
-            values.topicTipUserList = this.props.topicAdd.topicTipUserList;
+            values.topicMediaList = '';
+            values.topicMediaType = 'IMAGE';
+
+            //假数据start
+            values.longtitude = '121.42818';
+            values.latitude = '31.202601';
+            values.topicLocation = '上海市徐汇区慧谷创业园';
+            values.topicIsLocation = true;
+            values.topicForumList = ["6a5b2b71b3cf47b0b9b363ccdfa0e20b", "403d31aef86c4599b1a6c7646ae2842a"];
+            values.topicTipUserList = ["3bdfcbb00f90415989fb53e6677c25df"];
+
+            //假数据end
 
             let topicMedia = this.refs.topicMedia.handleGetValue();
+            console.log(topicMedia)
             if (topicMedia.length > 0) {
                 values.topicMediaList = topicMedia.map((topicMedia, index) => {
                     return {
@@ -110,10 +112,10 @@ class Add extends Component {
                         topicMediaSort: index + 1
                     }
                 });
-            } else {
-                values.topicMediaList = [];
-            }
 
+
+                console.log("values.topicMediaList=" + values.topicMediaList)
+            }
             delete values.topicMedia;
             http.request({
                 url: '/topic/mobile/v1/save',
@@ -128,31 +130,42 @@ class Add extends Component {
                     });
                 }.bind(this),
                 complete: function () {
-
+                    console.log('..')
                 }
             });
+
         });
     }
 
+    handleSelectLocation() {
+        notificationEvent.emit('notification_location_show', location);
+    }
+
     handleSelectForum(index) {
-        let forumList = this.state.forumList;
+        let forumList = this.props.topicAdd.forumList;
         let forum = forumList[index];
         forum.selected = !forum.selected;
         forumList[index] = forum;
 
-        this.setState({
-            forumList: forumList
+        this.props.dispatch({
+            type: 'topicAdd',
+            data: {
+                forumList: forumList
+            }
         });
     }
 
     handleSelectAllForum(result) {
-        let forumList = this.state.forumList;
+        let forumList = this.props.topicAdd.forumList;
         for (let i = 0; i < forumList.length; i++) {
             forumList[i].selected = result;
         }
 
-        this.setState({
-            forumList: forumList
+        this.props.dispatch({
+            type: 'topicAdd',
+            data: {
+                forumList: forumList
+            }
         });
     }
 
@@ -182,27 +195,33 @@ class Add extends Component {
                 </div>
                 <div className={style.line}></div>
                 <div className={style.content}>
-                    <Link to='/topic/location'>
-                        <div className={classNames(baseStyle.list, baseStyle.bottomLine)}>
-                            <div className={style.listLeft}>
-                                <img className={style.listLeftLocation} src={require('../../image/topic-location.png')}
-                                     alt=''/>
-                            </div>
-                            <div className={classNames(style.listCenter, baseStyle.listCenter)}>
-                                所在位置
-                            </div>
-                            <div className={style.listRight}>
-                                <div className={baseStyle.rightArrow}></div>
-                            </div>
+                    <div className={classNames(baseStyle.list, baseStyle.bottomLine)} onClick={this.handleSelectLocation.bind(this)}>
+                        <div className={style.listLeft}>
+                            <img className={style.listLeftLocation} src={require('../../image/topic-location.png')}
+                                 alt=''/>
                         </div>
-                    </Link>
+                        <div className={style.listName}>
+                            所在位置
+                        </div>
+                        <div className={classNames(style.listCenter, baseStyle.listCenter)}>
+                            {
+                                this.props.topicAdd.location.poiaddress
+                            }
+                        </div>
+                        <div className={style.listRight}>
+                            <div className={baseStyle.rightArrow}></div>
+                        </div>
+                    </div>
                     <Link to='/topic/remind'>
                         <div className={classNames(baseStyle.list, baseStyle.bottomLine)}>
                             <div className={style.listLeft}>
                                 <img className={style.listLeftRemind} src={require('../../image/remind.png')} alt=''/>
                             </div>
-                            <div className={classNames(style.listCenter, baseStyle.listCenter)}>
+                            <div className={style.listName}>
                                 提醒谁看
+                            </div>
+                            <div className={classNames(style.listCenter, baseStyle.listCenter)}>
+
                             </div>
                             <div className={style.listRight}>
                                 <div className={baseStyle.rightArrow}></div>
@@ -213,8 +232,11 @@ class Add extends Component {
                         <div className={style.listLeft}>
                             <img className={style.listLeftTag} src={require('../../image/tag.png')} alt=''/>
                         </div>
-                        <div className={classNames(style.listCenter, baseStyle.listCenter)}>
+                        <div className={style.listName}>
                             添加标签
+                        </div>
+                        <div className={classNames(style.listCenter, baseStyle.listCenter)}>
+
                         </div>
                         <div className={style.listRight}>
                             <div className={baseStyle.rightArrow}></div>
@@ -227,20 +249,24 @@ class Add extends Component {
                 </div>
                 <div className={style.forumContent}>
                     {
-                        this.state.forumList.map(function (forum, index) {
+                        this.props.topicAdd.forumList.map(function (forum, index) {
                             return (
-                                <span key={index} className={forum.selected ? style.forumContentItemActive : style.forumContentItem} onClick={this.handleSelectForum.bind(this, index)}>{forum.forumName}</span>
+                                <span key={index}
+                                      className={forum.selected ? style.forumContentItemActive : style.forumContentItem}
+                                      onClick={this.handleSelectForum.bind(this, index)}>加菲猫</span>
                             )
                         }.bind(this))
                     }
                 </div>
-                <div className={style.forumSubmit}>
-                    <div className={style.forumSubmitButton} onClick={this.handleAddTopic.bind(this)}>发送</div>
+                <div className={style.forumSubmit} onClick={this.handleAddTopic.bind(this)}>
+                    <div className={style.forumSubmitButton}>发送</div>
                 </div>
                 <div className={style.forumSelect}>
                     <div className={style.forumSelectAll} onClick={this.handleSelectAllForum.bind(this, true)}>全选</div>
-                    <div className={style.forumUnSelectAll} onClick={this.handleSelectAllForum.bind(this, false)}>全不选</div>
+                    <div className={style.forumUnSelectAll} onClick={this.handleSelectAllForum.bind(this, false)}>全不选
+                    </div>
                 </div>
+                <Location/>
             </div>
         );
     }
@@ -248,4 +274,6 @@ class Add extends Component {
 
 Add = createForm({})(Add);
 
-export default connect((state) => ({topicAdd: state.topicAdd}))(Add);
+export default connect((store) => ({
+    topicAdd: store.topicAdd
+}))(Add);
