@@ -15,7 +15,7 @@ class ImageUpload extends Component {
 
 		this.state = {
 			isLoad: false,
-			fileList: []
+			value: []
 		}
 	}
 
@@ -27,26 +27,8 @@ class ImageUpload extends Component {
 		this.handleReset();
 	}
 
-	handleGetValue() {
-		return this.state.fileList;
-	}
-
-	handleSetValue(data) {
-		let array = [];
-		for (let i = 0; i < data.length; i++) {
-			array.push({
-				fileId: data[i].fileId,
-				filePath: data[i].filePath
-			});
-		}
-
-		this.setState({
-			fileList: array
-		});
-	}
-
-	handleBeforeUpload = (file, fileList) => {
-		if (!(this.props.limit === 0) && this.props.limit < fileList.length + this.state.fileList.length) {
+	handleBeforeUpload = (file, value) => {
+		if (!(this.props.limit === 0) && this.props.limit < value.length + this.state.value.length) {
 			notification.notice({
 				content: <div dangerouslySetInnerHTML={{__html: `图片上传数量限制为${this.props.limit}张！`}}></div>
 			});
@@ -96,13 +78,26 @@ class ImageUpload extends Component {
 			isLoad: false
 		});
 		if (result.code === 200) {
-			let file_list = this.state.fileList;
+			let fileList = this.state.value;
 			for (let i = 0; i < result.data.length; i++) {
-				file_list.push(result.data[i]);
+				fileList.push(result.data[i]);
 			}
 			this.setState({
-				fileList: file_list
-			});
+				value: fileList
+			}, function () {
+                const onChange = this.props.onChange;
+                if (onChange) {
+                    var value = [];
+                    for (var i = 0; i < fileList.length; i++) {
+                        value.push({
+                            fileId: fileList[i].fileId,
+                            filePath: fileList[i].filePath
+                        })
+                    }
+                    onChange(value);
+                }
+            }.bind(this));
+
 			notification.notice({
 				content: <div dangerouslySetInnerHTML={{__html: `图片上传成功`}}></div>
 			});
@@ -116,15 +111,15 @@ class ImageUpload extends Component {
 	handleReset() {
 		this.setState({
 			isLoad: false,
-			fileList: []
+			value: []
 		});
 	}
 
 	removeFile(index) {
-		let fileList = this.state.fileList;
-		fileList.splice(index, 1);
+		let value = this.state.value;
+		value.splice(index, 1);
 		this.setState({
-			fileList: fileList
+			value: value
 		})
 	}
 
