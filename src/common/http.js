@@ -28,6 +28,7 @@ function request(config) {
         type: 'json',
         method: 'POST',
         crossOrigin: true,
+        processData: false,
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'

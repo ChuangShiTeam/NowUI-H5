@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import Upload from 'rc-upload';
 import Notification from 'rc-notification';
+import ImageCompressor from 'image-compressor.js';
 
 import style from './ImageUpload.scss';
 import constant from '../../common/constant';
@@ -27,6 +28,22 @@ class ImageUpload extends Component {
 	componentWillUnmount() {
 		this.handleReset();
 	}
+
+    handleCustomRequest(data) {
+        console.log(data.file);
+        new ImageCompressor(data.file, {
+            quality: 0.1,
+            success(result) {
+                console.log('--------');
+                console.log(result);
+
+                return data;
+            },
+            error(e) {
+                console.log(e.message);
+            },
+        });
+    }
 
 	handleBeforeUpload = (file, value) => {
 		if (!(this.props.limit === 0) && this.props.limit < value.length + this.state.value.length) {
@@ -140,7 +157,8 @@ class ImageUpload extends Component {
 			onError: this.handleError,
 			onSuccess: this.handleSuccess,
 			onProgress: this.handleProgress,
-			beforeUpload: this.handleBeforeUpload
+			beforeUpload: this.handleBeforeUpload,
+            // customRequest: this.handleCustomRequest.bind(this)
 		};
 
 		return (
@@ -152,7 +170,7 @@ class ImageUpload extends Component {
 								<div className={style.close} onClick={this.handleDelete.bind(this, index)}>
                                     <img className={style.closeIcon} src={require('../../image/upload-close.png')} alt=''/>
 								</div>
-                                <img className={style.image} src={constant.image_host + image.filePath} alt=''/>
+								<div className={style.image} style={{backgroundImage: 'url(' + constant.image_host + image.filePath + ')'}}></div>
                             </div>
                         )
                     }.bind(this))
