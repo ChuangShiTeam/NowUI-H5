@@ -84,7 +84,7 @@
 
 .forumContentItem {
 	border-radius: 16px;
-	width: 49px;
+	padding: 2px 5px;
 	height: 21px;
 	font-family: PingFangSC-Light;
 	font-size: 12px;
@@ -95,6 +95,7 @@
 	justify-content: center;
 	align-items: center;
 	margin-right: 10px;
+	margin-bottom: 10px;
 	cursor: pointer;
 	border: 1px solid #b59768;
 }
@@ -103,7 +104,7 @@
 	background: #defafd;
 	border: 1px solid #c18108;
 	border-radius: 16px;
-	width: 49px;
+	padding: 2px 5px;
 	height: 21px;
 	font-family: PingFangSC-Light;
 	font-size: 12px;
@@ -114,6 +115,7 @@
 	justify-content: center;
 	align-items: center;
 	margin-right: 10px;
+	margin-bottom: 10px;
 	cursor: pointer;
 }
 

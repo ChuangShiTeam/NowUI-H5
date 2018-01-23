@@ -11,7 +11,9 @@ class Location extends Component {
         super(props);
 
         this.state = {
-            isLoad: false
+            isView: false,
+            isLoad: false,
+            location: {}
         }
     }
 

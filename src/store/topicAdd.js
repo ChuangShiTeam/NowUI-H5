@@ -1,6 +1,7 @@
 const initialState = {
-    remindList: [],
-    forumList: [],
+    topicMediaList: [],
+    topicContent: '',
+    topicTipUserList: [],
     location: {}
 };
 
