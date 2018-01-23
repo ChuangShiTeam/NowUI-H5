@@ -1,15 +1,16 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {createForm} from "rc-form";
 import {Link} from 'react-router';
 import Notification from "rc-notification";
+import classNames from "classnames";
 
+import constant from "../../common/constant";
+import http from "../../common/http";
 import util from '../../common/util';
 
 import style from './Detail.scss';
 import baseStyle from '../../css/Base.scss';
-import classNames from "classnames";
-import http from "../../common/http";
-import constant from "../../common/constant";
 
 
 let notification = null;
@@ -65,9 +66,32 @@ class Detail extends Component {
         }
     }
 
+    handleSubmit() {
+        this.props.form.validateFields((errors, values) => {
+            if (!!errors) {
+                var message = '';
+                for (var error in errors) {
+                    message += '<p>';
+                    message += errors[error].errors[0].message;
+                    message += '</p>';
+                }
+
+                notification.notice({
+                    content: <div dangerouslySetInnerHTML={{__html: message}}></div>
+                });
+
+                return;
+            }
+
+            console.log(values);
+        });
+    }
+
     render() {
+        const {getFieldProps} = this.props.form;
+
         return (
-            <div className={baseStyle.page} style={{minHeight: document.documentElement.clientHeight}}>
+            <div className={classNames(style.page, baseStyle.page)} style={{minHeight: document.documentElement.clientHeight}}>
                 <div className={style.header}>
                     <div className={style.headerLeft}>
                         {
@@ -160,9 +184,30 @@ class Detail extends Component {
                         })
                     }
                 </div>
+                <div className={classNames(style.feedback, baseStyle.topLine)}>
+                    <div className={style.feedbackContent}>
+                        <div className={style.feedbackContentLeft}>
+                            <img className={style.feedbackContentLeftImage} src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/28/h/28' alt=''/>
+                        </div>
+                        <div className={style.feedbackContentCenter}>
+                            <input className={style.feedbackContentCenterInput} {...getFieldProps('message', {
+                                rules: [{
+                                    required: true,
+                                    message: '您也要说点什么？'
+                                }],
+                                initialValue: ''
+                            })} type="text" placeholder="我也要说点什么…"/>
+                        </div>
+                        <div className={style.feedbackContentRight}>
+                            <div className={style.feedbackContentRightSend} onClick={this.handleSubmit.bind(this)}>提交</div>
+                        </div>
+                    </div>
+                </div>
             </div>
         );
     }
 }
+
+Detail = createForm({})(Detail);
 
 export default connect(() => ({}))(Detail);

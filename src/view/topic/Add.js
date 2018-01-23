@@ -128,26 +128,31 @@ class Add extends Component {
                 </div>
                 <div className={style.line}></div>
                 <div className={style.content}>
-                    <Link to='/topic/location' className={classNames(baseStyle.list, baseStyle.bottomLine)}>
-                        <div className={style.listLeft}>
-                            <img className={style.listLeftLocation} src={require('../../image/topic-location.png')} alt=''/>
-                        </div>
-                        <div className={classNames(style.listCenter, baseStyle.listCenter)}>
-                            所在位置
-                        </div>
-                        <div className={style.listRight}>
-                            <div className={baseStyle.rightArrow}></div>
+                    <Link to='/topic/location'>
+                        <div className={classNames(baseStyle.list, baseStyle.bottomLine)}>
+                            <div className={style.listLeft}>
+                                <img className={style.listLeftLocation} src={require('../../image/topic-location.png')}
+                                     alt=''/>
+                            </div>
+                            <div className={classNames(style.listCenter, baseStyle.listCenter)}>
+                                所在位置
+                            </div>
+                            <div className={style.listRight}>
+                                <div className={baseStyle.rightArrow}></div>
+                            </div>
                         </div>
                     </Link>
-                    <Link to='/topic/remind' className={classNames(baseStyle.list, baseStyle.bottomLine)}>
-                        <div className={style.listLeft}>
-                            <img className={style.listLeftRemind} src={require('../../image/remind.png')} alt=''/>
-                        </div>
-                        <div className={classNames(style.listCenter, baseStyle.listCenter)}>
-                            提醒谁看
-                        </div>
-                        <div className={style.listRight}>
-                            <div className={baseStyle.rightArrow}></div>
+                    <Link to='/topic/remind'>
+                        <div className={classNames(baseStyle.list, baseStyle.bottomLine)}>
+                            <div className={style.listLeft}>
+                                <img className={style.listLeftRemind} src={require('../../image/remind.png')} alt=''/>
+                            </div>
+                            <div className={classNames(style.listCenter, baseStyle.listCenter)}>
+                                提醒谁看
+                            </div>
+                            <div className={style.listRight}>
+                                <div className={baseStyle.rightArrow}></div>
+                            </div>
                         </div>
                     </Link>
                     <div className={classNames(baseStyle.list)}>
