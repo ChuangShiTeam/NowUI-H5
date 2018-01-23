@@ -64,11 +64,11 @@ class Index extends Component {
                                 <div className={style.footerInfo}>
                                     <div className={style.footerInfoCount}>
                                         <div className={style.footerInfoCountLike}>
-                                            <img className={style.footerInfoCountLikeIcon} src={this.props.topic.topicUserIsLike ? require('../../image/like.png') : require('../../image/like-active.png')} alt=''/>
+                                            <img className={style.footerInfoCountLikeIcon} src={this.props.topic.topicUserIsLike ? require('../../image/like-active.png'): require('../../image/like.png') } alt=''/>
                                             <span className={style.footerInfoCountLikeNumber}>{this.props.topic.topicCountLike}</span>
                                         </div>
                                         <div className={style.footerInfoCountBookmark}>
-                                            <img className={style.footerInfoCountBookmarkIcon} src={this.props.topic.topicUserIsBookmark ? require('../../image/bookmark.png') : require('../../image/bookmark-acitve.png')} alt=''/>
+                                            <img className={style.footerInfoCountBookmarkIcon} src={this.props.topic.topicUserIsBookmark ? require('../../image/bookmark-acitve.png'):require('../../image/bookmark.png')  } alt=''/>
                                             <span className={style.footerInfoCountBookmarkNumber}>{this.props.topic.topicCountBookmark}</span>
                                         </div>
                                         <div className={style.footerInfoCountComment}>

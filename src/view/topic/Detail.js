@@ -33,6 +33,7 @@ class Detail extends Component {
         util.hancleComponentDidMount();
 
         this.handleLoad();
+        this.handleLoadComment();
     }
 
     componentDidUpdate() {
@@ -68,6 +69,10 @@ class Detail extends Component {
         }
     }
 
+    handleLoadComment() {
+
+    }
+
     handleClickLike() {
         console.log('点赞')
         let topicId = this.state.topic.topicId;
@@ -79,8 +84,12 @@ class Detail extends Component {
                     topicId: topicId
                 },
                 success: function (data) {
-                    this.setState({
-                        topic: data
+                    // this.setState({
+                    //     topic: data
+                    // });
+
+                    notification.notice({
+                        content: '点赞成功'
                     });
                     console.log(data)
                 }.bind(this),
@@ -96,6 +105,53 @@ class Detail extends Component {
         console.log('取消点赞')
         this.state.isLike = false
     }
+
+    handleClickBookmark() {
+        console.log('收藏')
+        let topicId = this.state.topic.topicId;
+        console.log(topicId)
+        if (topicId) {
+            http.request({
+                url: '/topic/user/bookmark/mobile/v1/save',
+                data: {
+                    topicId: topicId
+                },
+                success: function (data) {
+                    notification.notice({
+                        content: '收藏成功'
+                    });
+                    console.log('收藏成功')
+                }.bind(this),
+                complete: function () {
+
+                }
+            });
+        }
+    }
+
+    handleClickUnBookmark() {
+        console.log('取消收藏')
+        let topicId = this.state.topic.topicId;
+        console.log(topicId)
+        if (topicId) {
+            http.request({
+                url: '/topic/user/unbookmark/mobile/v1/save',
+                data: {
+                    topicId: topicId
+                },
+                success: function (data) {
+                    notification.notice({
+                        content: '取消收藏成功'
+                    });
+                    console.log('取消收藏成功')
+                }.bind(this),
+                complete: function () {
+
+                }
+            });
+        }
+    }
+
 
     handleSubmit() {
         this.props.form.validateFields((errors, values) => {
@@ -114,7 +170,28 @@ class Detail extends Component {
                 return;
             }
 
-            console.log(values);
+            values.topicCommentContent = values.message;
+            values.topicId = this.state.topic.topicId;
+            values.topicReplayUserId = '';
+            values.topicReplyCommentId = '';
+            delete(values.message);
+
+            http.request({
+                url: '/topic/comment/mobile/v1/save',
+                data: values,
+                success: function (data) {
+                    notification.notice({
+                        content: '评论成功'
+                    });
+                    // this.props.history.push({
+                    //     pathname: '/forum/index',
+                    //     query: {}
+                    // });
+                }.bind(this),
+                complete: function () {
+
+                }
+            });
         });
     }
 
@@ -205,7 +282,7 @@ class Detail extends Component {
                             <img className={style.footerCountLeftAvatarIcon} src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/320/h/255' alt=''/>
                         </Link>
                         <div className={style.footerCountRight}>
-                            <img className={style.footerCountRightBookmarkIcon} src={true ? require('../../image/bookmark.png') : require('../../image/bookmark-acitve.png')} alt=''/>
+                            <img className={style.footerCountRightBookmarkIcon} onClick={this.handleClickUnBookmark.bind(this)} src={true ? require('../../image/bookmark.png') : require('../../image/bookmark-acitve.png')} alt=''/>
                             <span className={style.footerCountRightBookmarkNumber}>{this.state.topic.topicCountBookmark }</span>
                             <img className={style.footerCountRightCommentIcon} src={require('../../image/comment.png')} alt=''/>
                             <span className={style.footerCountRightCommentNumber}>{this.state.topic.topicCountComment } </span>
@@ -215,7 +292,7 @@ class Detail extends Component {
                 <div className={style.line2}></div>
                 <div className={style.content}>
                     {
-                        [{},{},{}].map(function (comment, index) {
+                        [{},{}].map(function (comment, index) {
                             return (
                                 <div key={index} className={classNames(style.comment, baseStyle.maxWidthWithPadding, index > 0 ? baseStyle.marginTop : '')}>
                                     <div className={style.commentLeft}>
