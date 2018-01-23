@@ -1,7 +1,6 @@
 const initialState = {
     remindList: [],
-    forumList: []
-    remindList: [],
+    forumList: [],
     location: {}
 };
 
