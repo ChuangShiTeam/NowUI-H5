@@ -50,14 +50,15 @@ class Index extends Component {
                                 <div className={style.news}>消息</div>
                             </div>
                         </div>
-                        <div className={style.middleRight}>
-                            <div>
+                            <div className={style.middleRight}>
                                 <div className={style.rightIcon}>
                                     <img src={require('../../image/my-collect.png')} alt=""/>
+
                                 </div>
-                                <div className={style.news}>收藏</div>
+                                <Link to={'/my/bookmark'}>
+                                    <div className={style.news}>收藏</div>
+                                </Link>
                             </div>
-                        </div>
                     </div>
                     <div className={style.middleBottom}></div>
                     <div className={style.newsList}>
