@@ -19,7 +19,7 @@ class Index extends Component {
         this.state = {
             isLoad: false,
             topicPageIndex: 1,
-            topicPageSize: 2,
+            topicPageSize: 10,
             topicTotal: 0,
             topicList: []
         }
@@ -52,6 +52,7 @@ class Index extends Component {
                     topicTotal: data.total,
                     topicList: data.list
                 });
+                console.log(data)
             }.bind(this),
             complete: function () {
 

@@ -54,7 +54,7 @@ export default {
             }, 'forum.remind');
         }
     }, {
-        path: '/topic/detail',
+        path: '/topic/detail/:topicId',
         onEnter: util.handleEnter,
         getComponent(location, cb) {
             require.ensure([], (require) => {

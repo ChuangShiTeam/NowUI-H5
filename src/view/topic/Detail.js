@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router';
 import Notification from "rc-notification";
+import moment from 'moment';
 
 import util from '../../common/util';
 
@@ -43,10 +44,10 @@ class Detail extends Component {
 
     handleLoad() {
         //假数据start
-        let topicId = '029b48ea1edc4138b9875c63606e24e7';
+        // let topicId = '029b48ea1edc4138b9875c63606e24e7';
         //假数据end
-        // let topicId = this.props.params.topicId;
-
+        let topicId = this.props.params.topicId;
+        console.log('详情页的id'+ topicId)
         if (topicId) {
             http.request({
                 url: '/topic/mobile/v1/find',
@@ -110,7 +111,7 @@ class Detail extends Component {
                     </div>
                     <div className={style.headerCenter}>
                         <p className={style.headerCenterName}>{this.state.topic.userId && this.state.topic.userId.userNickName ?this.state.topic.userId.userNickName : '用户昵称为null'}</p>
-                        <p className={style.headerCenterTime}>{this.state.topic.systemCreateTime ? this.state.topic.systemCreateTime : '未知发布时间'}</p>
+                        <p className={style.headerCenterTime}> {moment(this.state.topic.systemCreateTime).fromNow()}</p>
                     </div>
                     <div className={style.headerRight}></div>
                 </div>
@@ -170,11 +171,12 @@ class Detail extends Component {
                                 this.state.topic && this.state.topic.topicUserLikeList ?
                                     this.state.topic.topicUserLikeList.map(function (userLikeList,index){
                                         return (
-                                            <span key={userLikeList.userId} className={style.footerInfoRightTag}>{userLikeList.userAvatar}</span>
+                                        <img className={style.footerCountLeftAvatarIcon} src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/320/h/255' alt=''/>
                                         )
                                     })
                                     :
-                                    null
+                                    <img className={style.footerCountLeftAvatarIcon} src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/320/h/255' alt=''/>
+
                             }
                             <img className={style.footerCountLeftAvatarIcon} src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/320/h/255' alt=''/>
                         </Link>
