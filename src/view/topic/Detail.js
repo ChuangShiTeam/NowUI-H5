@@ -24,6 +24,10 @@ class Detail extends Component {
         this.state = {
             isLoad: false,
             topic: {},
+            pageIndex: 1,
+            pageSize: 3,
+            topicCommentTotal: 0,
+            topicCommentList: []
         }
     }
 
@@ -43,11 +47,7 @@ class Detail extends Component {
     }
 
     handleLoad() {
-        //假数据start
-        // let topicId = '029b48ea1edc4138b9875c63606e24e7';
-        //假数据end
         let topicId = this.props.params.topicId;
-        console.log('详情页的id'+ topicId)
         if (topicId) {
             http.request({
                 url: '/topic/mobile/v1/find',
@@ -56,9 +56,32 @@ class Detail extends Component {
                 },
                 success: function (data) {
                     this.setState({
-                        topic: data
+                        topic: data,
+                        topicCommentList: data.topicCommentList
                     });
-                    console.log(this.state.topic)
+                }.bind(this),
+                complete: function () {
+
+                }
+            });
+        }
+    }
+
+    handleLoadComment() {
+        let topicId = this.props.params.topicId;
+        if (topicId) {
+            http.request({
+                url: '/topic/comment/mobile/v1/list',
+                data: {
+                    topicId: topicId,
+                    pageIndex: this.state.pageIndex,
+                    pageSize: this.state.pageSize
+                },
+                success: function (data) {
+                    this.setState({
+                        topicCommentTotal: data.total,
+                        topicCommentList: data.list
+                    });
                 }.bind(this),
                 complete: function () {
 
@@ -142,28 +165,26 @@ class Detail extends Component {
                 return;
             }
 
-            values.topicCommentContent = values.message;
-            values.topicId = this.state.topic.topicId;
+            let topicId = this.state.topic.topicId;
+            if (!topicId) {
+                return;
+            }
+            values.topicId = topicId;
             values.topicReplayUserId = '';
             values.topicReplyCommentId = '';
-            delete(values.message);
-
             http.request({
                 url: '/topic/comment/mobile/v1/save',
                 data: values,
                 success: function (data) {
-                    notification.notice({
-                        content: '评论成功'
-                    });
-                    // this.props.history.push({
-                    //     pathname: '/forum/index',
-                    //     query: {}
-                    // });
+                    if (data) {
+                        this.handleLoadComment();
+                    }
                 }.bind(this),
                 complete: function () {
 
                 }
             });
+
         });
     }
 
@@ -264,24 +285,37 @@ class Detail extends Component {
                 <div className={style.line2}></div>
                 <div className={style.content}>
                     {
-                        [{},{},{}].map(function (comment, index) {
+                        this.state.topicCommentList.map(function (comment, index) {
                             return (
                                 <div key={index} className={classNames(style.comment, baseStyle.maxWidthWithPadding, index > 0 ? baseStyle.marginTop : '')}>
                                     <div className={style.commentLeft}>
-                                        <img className={style.commentLeftImage} src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/38/h/38' alt=''/>
+                                        {
+                                            comment.userAvatar ?
+                                                <img className={style.commentLeftImage} src={constant.image_host + comment.userAvatar} alt=''/>
+                                                :
+                                                <img className={style.commentLeftImage} src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/38/h/38' alt=''/>
+
+                                        }
                                     </div>
                                     <div className={classNames(style.commentRight, baseStyle.bottomLine)}>
                                         <div className={style.commentRightLike}>
                                             <div className={style.commentRightLikeContent}>
                                                 <img className={style.commentRightLikeIcon} src={true ? require('../../image/like.png') : require('../../image/like-active.png')} alt=''/>
-                                                <span className={style.commentRightLikeText}>3</span>
+                                                <span className={style.commentRightLikeText}>0</span>
                                             </div>
                                         </div>
-                                        <div className={style.commentRightName}>我是来找茬的</div>
-                                        <div className={style.commentRightName}>3小时前</div>
-                                        <div className={style.commentRightContent}>
-                                            回复<span className={style.commentRightContentWho}>我是来找茬的</span>: 不行不行，他是我的～不行不行，他是我的～不行不行，他是我的～不行不行，他是我的～不行不行，他是我的～不行不行，他是我的～不行不行，他是我的～不行不行，他是我的～不行不行，他是我的～不行不行，他是我的～不行不行，他是我的～不行不行，他是我的～
-                                        </div>
+                                        <div className={style.commentRightName}>{comment.userNickName}</div>
+                                        <div className={style.commentRightName}>{moment(comment.systemCreateTime).fromNow()}</div>
+                                        {
+                                            comment.topicReplayUserId ?
+                                                <div className={style.commentRightContent}>
+                                                    回复<span className={style.commentRightContentWho}>{comment.topicReplayUserNickName}</span>: {comment.topicCommentContent}
+                                                </div>
+                                                :
+                                                <div className={style.commentRightContent}>
+                                                    {comment.topicCommentContent}
+                                                </div>
+                                        }
                                     </div>
                                 </div>
                             )
@@ -294,7 +328,7 @@ class Detail extends Component {
                             <img className={style.feedbackContentLeftImage} src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/28/h/28' alt=''/>
                         </div>
                         <div className={style.feedbackContentCenter}>
-                            <input className={style.feedbackContentCenterInput} {...getFieldProps('message', {
+                            <input className={style.feedbackContentCenterInput} {...getFieldProps('topicCommentContent', {
                                 rules: [{
                                     required: true,
                                     message: '您也要说点什么？'

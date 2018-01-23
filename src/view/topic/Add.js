@@ -6,7 +6,6 @@ import Notification from "rc-notification";
 import classNames from "classnames";
 
 import ImageUpload from '../../component/upload/ImageUpload';
-import Location from '../../component/Location/Index';
 
 import notificationEvent from '../../common/notification';
 import http from "../../common/http";
@@ -195,23 +194,25 @@ class Add extends Component {
                 </div>
                 <div className={style.line}></div>
                 <div className={style.content}>
-                    <div className={classNames(baseStyle.list, baseStyle.bottomLine)} onClick={this.handleSelectLocation.bind(this)}>
-                        <div className={style.listLeft}>
-                            <img className={style.listLeftLocation} src={require('../../image/topic-location.png')}
-                                 alt=''/>
+                    <Link to='/topic/location'>
+                        <div className={classNames(baseStyle.list, baseStyle.bottomLine)}>
+                            <div className={style.listLeft}>
+                                <img className={style.listLeftLocation} src={require('../../image/topic-location.png')}
+                                     alt=''/>
+                            </div>
+                            <div className={style.listName}>
+                                所在位置
+                            </div>
+                            <div className={classNames(style.listCenter, baseStyle.listCenter)}>
+                                {
+                                    this.props.topicAdd.location.poiaddress
+                                }
+                            </div>
+                            <div className={style.listRight}>
+                                <div className={baseStyle.rightArrow}></div>
+                            </div>
                         </div>
-                        <div className={style.listName}>
-                            所在位置
-                        </div>
-                        <div className={classNames(style.listCenter, baseStyle.listCenter)}>
-                            {
-                                this.props.topicAdd.location.poiaddress
-                            }
-                        </div>
-                        <div className={style.listRight}>
-                            <div className={baseStyle.rightArrow}></div>
-                        </div>
-                    </div>
+                    </Link>
                     <Link to='/topic/remind'>
                         <div className={classNames(baseStyle.list, baseStyle.bottomLine)}>
                             <div className={style.listLeft}>
@@ -266,7 +267,7 @@ class Add extends Component {
                     <div className={style.forumUnSelectAll} onClick={this.handleSelectAllForum.bind(this, false)}>全不选
                     </div>
                 </div>
-                <Location/>
+                {this.props.children}
             </div>
         );
     }

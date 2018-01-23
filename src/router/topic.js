@@ -1,5 +1,6 @@
 import util from '../common/util';
 import Main from "../view/main/Index";
+import TopicAdd from "../view/topic/Add";
 
 export default {
     childRoutes: [{
@@ -37,22 +38,44 @@ export default {
                 cb(null, require('../view/topic/Follow').default);
             }, 'forum.follow');
         }
-    },{
-        path:'/topic/hottopic',
-        onEnter:util.handleEnter,
-        getComponent(location, cb){
+    }, {
+        path: '/topic/hottopic',
+        onEnter: util.handleEnter,
+        getComponent(location, cb) {
             require.ensure([], (require) => {
                 cb(null, require('../view/topic/HotTopic').default);
             }, 'forum.hotTopic');
         }
     }, {
-        path: '/topic/remind',
-        onEnter: util.handleEnter,
         getComponent(location, cb) {
             require.ensure([], (require) => {
-                cb(null, require('../view/topic/Remind').default);
-            }, 'forum.remind');
-        }
+                cb(null, require('../view/topic/Add').default);
+            }, 'forum.add');
+        },
+        childRoutes: [{
+            path: '/topic/location',
+            onEnter: util.handleEnter,
+            getComponent(location, cb) {
+                require.ensure([], (require) => {
+                    cb(null, require('../view/topic/Location').default);
+                }, 'forum.location');
+            }
+        }]
+    }, {
+        getComponent(location, cb) {
+            require.ensure([], (require) => {
+                cb(null, require('../view/topic/Add').default);
+            }, 'forum.add');
+        },
+        childRoutes: [{
+            path: '/topic/remind',
+            onEnter: util.handleEnter,
+            getComponent(location, cb) {
+                require.ensure([], (require) => {
+                    cb(null, require('../view/topic/Remind').default);
+                }, 'forum.remind');
+            }
+        }]
     }, {
         path: '/topic/detail/:topicId',
         onEnter: util.handleEnter,
