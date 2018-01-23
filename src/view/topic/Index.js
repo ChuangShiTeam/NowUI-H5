@@ -19,7 +19,7 @@ class Index extends Component {
         this.state = {
             isLoad: false,
             topicPageIndex: 1,
-            topicPageSize: 4,
+            topicPageSize: 3,
             topicTotal: 0,
             topicList: []
         }
@@ -66,7 +66,7 @@ class Index extends Component {
                 <div className={style.header}>
                     <div className={style.headerContent}>
                         <div className={style.headerContentLeft}>
-                            <Link to="/forum/add" className={style.headerContentLeft}>
+                            <Link to="/member/homepage/" className={style.headerContentLeft}>
                                 <img className={style.headerContentLeftUser}
                                      src={require('../../image/topic-user.png')}
                                      alt=''/>
