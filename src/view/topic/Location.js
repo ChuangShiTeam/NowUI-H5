@@ -11,7 +11,9 @@ class Location extends Component {
         super(props);
 
         this.state = {
-            isLoad: false
+            isView: false,
+            isLoad: false,
+            location: {}
         }
     }
 
@@ -22,7 +24,16 @@ class Location extends Component {
         window.addEventListener('message', function(event) {
             let loc = event.data;
             if (loc && loc.module === 'locationPicker') {//防止其他应用也会向该页面post信息，需判断module是否为'locationPicker'
-                console.log(loc);
+                this.props.dispatch({
+                    type: 'topicAdd',
+                    data: {
+                        location: loc
+                    }
+                });
+                this.props.history.push({
+                    pathname: '/topic/add',
+                    query: {}
+                });
             }
         }.bind(this), false);
     }
@@ -38,9 +49,8 @@ class Location extends Component {
     render() {
         return (
             <div className={baseStyle.page} style={{minHeight: document.documentElement.clientHeight}}>
-                <iframe style={{width: '100%', height: document.documentElement.clientHeight}}
-                        frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no"
-                        allowtransparency="yes"
+                <iframe id="mapPage" style={{width: '100%', height: document.documentElement.clientHeight}}
+                        border="0" scrolling="no"
                         src="http://apis.map.qq.com/tools/locpicker?search=1&type=1&key=OB4BZ-D4W3U-B7VVO-4PJWW-6TKDJ-WPB77&referer=myapp">
                 </iframe>
             </div>

@@ -23,7 +23,8 @@ class Add extends Component {
         super(props);
 
         this.state = {
-            isLoad: false
+            isLoad: false,
+            forumList: []
         }
     }
 
@@ -31,24 +32,7 @@ class Add extends Component {
         util.setTitle('wawipet哇咿宠');
         util.hancleComponentDidMount();
 
-        this.props.dispatch({
-            type: 'topicAdd',
-            data: {
-                forumList: [{
-                    id: 1,
-                    selected: false
-                }, {
-                    id: 2,
-                    selected: false
-                }, {
-                    id: 3,
-                    selected: false
-                }, {
-                    id: 4,
-                    selected: false
-                }]
-            }
-        });
+        this.hanldeLoadForum();
     }
 
     componentDidUpdate() {
@@ -56,11 +40,36 @@ class Add extends Component {
     }
 
     componentWillUnmount() {
+        this.props.dispatch({
+            type: 'topicAdd',
+            data: {
+                topicMediaList: this
+            }
+        })
+    }
 
+    hanldeLoadForum() {
+        http.request({
+            url: '/forum/user/follow/mobile/v1/name/list',
+            data: {},
+            success: function (data) {
+                let forumList = data;
+                if (forumList && forumList.length > 0) {
+                    forumList = forumList.map(forum => {
+                        forum.selected = false;
+                        return forum;
+                    });
+                    this.setState({
+                        forumList: forumList
+                    })
+                }
+            }.bind(this),
+            complete: function () {
+            }
+        });
     }
 
     handleAddTopic() {
-        console.log('开始发布...')
         this.props.form.validateFields((errors, values) => {
             if (!!errors) {
                 var message = '';
@@ -76,21 +85,23 @@ class Add extends Component {
 
                 return;
             }
-            values.topicMediaList = '';
-            values.topicMediaType = 'IMAGE';
 
-            //假数据start
-            values.longtitude = '121.42818';
-            values.latitude = '31.202601';
-            values.topicLocation = '上海市徐汇区慧谷创业园';
-            values.topicIsLocation = true;
-            values.topicForumList = ["6a5b2b71b3cf47b0b9b363ccdfa0e20b", "403d31aef86c4599b1a6c7646ae2842a"];
-            values.topicTipUserList = ["3bdfcbb00f90415989fb53e6677c25df"];
+            values.longtitude = '';
+            values.latitude = '';
+            values.topicLocation = '';
+            values.topicIsLocation = false;
+            let location = this.props.topicAdd.location;
+            if (location && location.module === 'locationPicker') {
+                values.longtitude = location.latlng.lng;
+                values.latitude = location.latlng.lat;
+                values.topicLocation = location.cityName;
+                values.topicIsLocation = true;
+            }
 
-            //假数据end
+            values.topicForumList = this.state.forumList.filter(forum => forum.selected).map(forum => forum.forumId);
+            values.topicTipUserList = this.props.topicAdd.topicTipUserList;
 
             let topicMedia = this.refs.topicMedia.handleGetValue();
-            console.log(topicMedia)
             if (topicMedia.length > 0) {
                 values.topicMediaList = topicMedia.map((topicMedia, index) => {
                     return {
@@ -99,10 +110,10 @@ class Add extends Component {
                         topicMediaSort: index + 1
                     }
                 });
-
-
-                console.log("values.topicMediaList=" + values.topicMediaList)
+            } else {
+                values.topicMediaList = [];
             }
+
             delete values.topicMedia;
             http.request({
                 url: '/topic/mobile/v1/save',
@@ -117,38 +128,31 @@ class Add extends Component {
                     });
                 }.bind(this),
                 complete: function () {
-                    console.log('..')
+
                 }
             });
-
         });
     }
 
     handleSelectForum(index) {
-        let forumList = this.props.topicAdd.forumList;
+        let forumList = this.state.forumList;
         let forum = forumList[index];
         forum.selected = !forum.selected;
         forumList[index] = forum;
 
-        this.props.dispatch({
-            type: 'topicAdd',
-            data: {
-                forumList: forumList
-            }
+        this.setState({
+            forumList: forumList
         });
     }
 
     handleSelectAllForum(result) {
-        let forumList = this.props.topicAdd.forumList;
+        let forumList = this.state.forumList;
         for (let i = 0; i < forumList.length; i++) {
             forumList[i].selected = result;
         }
 
-        this.props.dispatch({
-            type: 'topicAdd',
-            data: {
-                forumList: forumList
-            }
+        this.setState({
+            forumList: forumList
         });
     }
 
@@ -159,7 +163,9 @@ class Add extends Component {
             <div className={style.page} style={{minHeight: document.documentElement.clientHeight}}>
                 <div className={style.content}>
                     <div className={style.upload}>
-                        <ImageUpload name="topicMedia" ref="topicMedia" limit={9}/>
+                        <ImageUpload {...getFieldProps('forumMedia', {
+                            initialValue: []
+                        })} name="forumMedia" ref="forumMedia" limit={9}/>
                     </div>
                 </div>
                 <div className={style.line}></div>
@@ -221,15 +227,15 @@ class Add extends Component {
                 </div>
                 <div className={style.forumContent}>
                     {
-                        this.props.topicAdd.forumList.map(function (forum, index) {
+                        this.state.forumList.map(function (forum, index) {
                             return (
-                                <span key={index} className={forum.selected ? style.forumContentItemActive : style.forumContentItem} onClick={this.handleSelectForum.bind(this, index)}>加菲猫</span>
+                                <span key={index} className={forum.selected ? style.forumContentItemActive : style.forumContentItem} onClick={this.handleSelectForum.bind(this, index)}>{forum.forumName}</span>
                             )
                         }.bind(this))
                     }
                 </div>
-                <div className={style.forumSubmit} onClick={this.handleAddTopic.bind(this)}>
-                    <div className={style.forumSubmitButton}>发送</div>
+                <div className={style.forumSubmit}>
+                    <div className={style.forumSubmitButton} onClick={this.handleAddTopic.bind(this)}>发送</div>
                 </div>
                 <div className={style.forumSelect}>
                     <div className={style.forumSelectAll} onClick={this.handleSelectAllForum.bind(this, true)}>全选</div>
@@ -242,6 +248,4 @@ class Add extends Component {
 
 Add = createForm({})(Add);
 
-export default connect((store) => ({
-    topicAdd: store.topicAdd
-}))(Add);
+export default connect((state) => ({topicAdd: state.topicAdd}))(Add);

@@ -1,17 +1,36 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import MSelectList from 'rmc-select-list';
+import pinyin from 'pinyin';
 
 import util from '../../common/util';
+import http from '../../common/http';
 
 import style from './Remind.scss';
+
+function toPinyin(str) {
+    if (str) {
+        let newStrItemArray = pinyin(str);
+        if (newStrItemArray && newStrItemArray.length > 0) {
+            let newStr = '';
+            for (let item of newStrItemArray) {
+                newStr = newStr + item[0];
+            }
+            return newStr;
+        } else {
+            return str;
+        }
+    }
+    return str;
+}
 
 class Remind extends Component {
     constructor(props) {
         super(props);
         this.state = {
             isLoad: false,
-            selectList: []
+            selectList: [],
+            memberList: []
         }
     }
 
@@ -19,26 +38,30 @@ class Remind extends Component {
         util.setTitle('wawipet哇咿宠');
         util.hancleComponentDidMount();
 
-        this.props.dispatch({
-            type: 'forumRemind',
-            data: {
-                memberList: [{
-                    value: '11',
-                    label: '北京市',
-                    spell: 'BeiJingShi'
-                }, {
-                    value: '12',
-                    label: '天津市',
-                    spell: 'TianJinShi'
-                }, {
-                    value: '13',
-                    label: '河北省',
-                    spell: 'HeBeiSheng'
-                }, {
-                    value: '14',
-                    label: '山西省',
-                    spell: 'ShanXiSheng'
-                }]
+        this.handleLoad();
+    }
+
+    handleLoad() {
+        http.request({
+            url: '/member/follow/mobile/v1/my/follow/list',
+            data: {},
+            success: function (data) {
+                let memberList = data;
+                if (memberList && memberList.length > 0) {
+                    memberList = memberList.map(member => {
+                        return {
+                            value: member.followUserId,
+                            label: member.userNickName,
+                            spell: toPinyin(member.userNickName)
+                        }
+                    });
+                    this.setState({
+                        memberList: memberList
+                    })
+                }
+            }.bind(this),
+            complete: function () {
+
             }
         });
     }
@@ -68,9 +91,9 @@ class Remind extends Component {
 
     handleChange(value) {
         let member;
-        for (let i = 0; i < this.props.forumRemind.memberList.length; i++) {
-            if (this.props.forumRemind.memberList[i].value === value) {
-                member = this.props.forumRemind.memberList[i];
+        for (let i = 0; i < this.state.memberList.length; i++) {
+            if (this.state.memberList[i].value === value) {
+                member = this.state.memberList[i];
             }
         }
 
@@ -118,7 +141,7 @@ class Remind extends Component {
                 </div>
                 <div className={style.line}></div>
                 <MSelectList
-                    data={this.props.forumRemind.memberList}
+                    data={this.state.memberList}
                     showCurrentSelected={true}
                     onChange={this.handleChange.bind(this)}
                 />

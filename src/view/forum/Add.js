@@ -3,12 +3,10 @@ import {connect} from 'react-redux';
 import {createForm} from "rc-form";
 import Notification from 'rc-notification';
 import classNames from 'classnames';
-
+import Uploader from '../../component/upload/Uploader';
 import ImageUpload from '../../component/upload/ImageUpload';
-
 import util from '../../common/util';
 import http from '../../common/http';
-
 import style from './Add.scss';
 import baseStyle from '../../css/Base.scss';
 
