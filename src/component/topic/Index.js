@@ -55,7 +55,8 @@ class Index extends Component {
                                 </div>
                                 <div className={style.headerRight}></div>
                             </div>
-                                {
+                            <Link to={"/topic/detail/" + this.props.topic.topicId } className={style.content}>
+                            {
                                     this.props.topic.topicMediaList && this.props.topic.topicMediaList.length > 0 ?
                                         this.props.topic.topicMediaList.map(
                                             (mediaList, index) => <img className={style.contentImage} src={constant.image_host + mediaList.topicMedia.filePath} alt='' key={index}/>
@@ -63,11 +64,12 @@ class Index extends Component {
                                         :
                                         null
                                 }
+                            </Link>
                             <div className={style.footer}>
                                 <Link to={"/topic/detail/" + this.props.topic.topicId } className={style.content}>
-                                <div className={classNames(style.footerText, baseStyle.bottomLine)}>
-                                    {this.props.topic.topicSummary}
-                                </div>
+                                    <div className={classNames(style.footerText, baseStyle.bottomLine)}>
+                                        {this.props.topic.topicSummary}
+                                    </div>
                                 </Link>
                                 <div className={style.footerInfo}>
                                     <div className={style.footerInfoCount}>

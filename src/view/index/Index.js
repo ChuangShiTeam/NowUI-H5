@@ -184,7 +184,7 @@ class Index extends Component {
                 </div>
                 <div className={classNames(style.banner, 'swiper-container')}
                      style={{
-                         height: ((document.documentElement.clientWidth > 600 ? 600 : document.documentElement.clientWidth) / 320 * 380) + 'px'
+                         height: ((document.documentElement.clientWidth > 640 ? 640 : document.documentElement.clientWidth) / 320 * 380) + 'px'
                      }}
                 >
                     <div className="swiper-wrapper">
@@ -192,7 +192,7 @@ class Index extends Component {
                             this.props.index.indexBannerList.map(function (indexBanner) {
                                 return (
                                     <div key={indexBanner.advertisementId} className="swiper-slide">
-                                        <img src={constant.image_host + indexBanner.filePath} alt=''/>
+                                        <img className={style.bannerImage} src={constant.image_host + indexBanner.filePath} alt=''/>
                                     </div>
                                 )
                             })
