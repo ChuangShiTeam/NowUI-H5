@@ -18,39 +18,7 @@ class ImageUpload extends Component {
 
         this.state = {
             isLoad: false,
-            value: [{
-                "fileName":"e84a3444c4504229a1da1d968a6532ac.jpeg",
-                "filePath":"/upload/df2078d6c9eb46babb0df957127273ab/14463951d1d94d39a9216dbd818fc984/e84a3444c4504229a1da1d968a6532ac.jpeg",
-                "fileId":"b738a4a3f1cd4eadb9fd30e0775f56e5"
-            },{
-                "fileName":"e84a3444c4504229a1da1d968a6532ac.jpeg",
-                "filePath":"/upload/df2078d6c9eb46babb0df957127273ab/14463951d1d94d39a9216dbd818fc984/e84a3444c4504229a1da1d968a6532ac.jpeg",
-                "fileId":"b738a4a3f1cd4eadb9fd30e0775f56e5"
-            },{
-                "fileName":"e84a3444c4504229a1da1d968a6532ac.jpeg",
-                "filePath":"/upload/df2078d6c9eb46babb0df957127273ab/14463951d1d94d39a9216dbd818fc984/e84a3444c4504229a1da1d968a6532ac.jpeg",
-                "fileId":"b738a4a3f1cd4eadb9fd30e0775f56e5"
-            },{
-                "fileName":"e84a3444c4504229a1da1d968a6532ac.jpeg",
-                "filePath":"/upload/df2078d6c9eb46babb0df957127273ab/14463951d1d94d39a9216dbd818fc984/e84a3444c4504229a1da1d968a6532ac.jpeg",
-                "fileId":"b738a4a3f1cd4eadb9fd30e0775f56e5"
-            },{
-                "fileName":"e84a3444c4504229a1da1d968a6532ac.jpeg",
-                "filePath":"/upload/df2078d6c9eb46babb0df957127273ab/14463951d1d94d39a9216dbd818fc984/e84a3444c4504229a1da1d968a6532ac.jpeg",
-                "fileId":"b738a4a3f1cd4eadb9fd30e0775f56e5"
-            },{
-                "fileName":"e84a3444c4504229a1da1d968a6532ac.jpeg",
-                "filePath":"/upload/df2078d6c9eb46babb0df957127273ab/14463951d1d94d39a9216dbd818fc984/e84a3444c4504229a1da1d968a6532ac.jpeg",
-                "fileId":"b738a4a3f1cd4eadb9fd30e0775f56e5"
-            },{
-                "fileName":"e84a3444c4504229a1da1d968a6532ac.jpeg",
-                "filePath":"/upload/df2078d6c9eb46babb0df957127273ab/14463951d1d94d39a9216dbd818fc984/e84a3444c4504229a1da1d968a6532ac.jpeg",
-                "fileId":"b738a4a3f1cd4eadb9fd30e0775f56e5"
-            },{
-                "fileName":"e84a3444c4504229a1da1d968a6532ac.jpeg",
-                "filePath":"/upload/df2078d6c9eb46babb0df957127273ab/14463951d1d94d39a9216dbd818fc984/e84a3444c4504229a1da1d968a6532ac.jpeg",
-                "fileId":"b738a4a3f1cd4eadb9fd30e0775f56e5"
-            }]
+            value: []
         }
     }
 
