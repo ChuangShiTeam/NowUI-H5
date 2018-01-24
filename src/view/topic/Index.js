@@ -111,7 +111,7 @@ class Index extends Component {
                     this.state.topicList.length > 0 ?
                         <Infinite elementHeight={document.documentElement.clientHeight * 0.8}
                                   containerHeight={document.documentElement.clientHeight}
-                                  infiniteLoadBeginEdgeOffset={100}
+                                  infiniteLoadBeginEdgeOffset={200}
                                   onInfiniteLoad={this.handleInfiniteLoad.bind(this)}
                                   loadingSpinnerDelegate={
                                         this.state.isInfiniteLoading ?
