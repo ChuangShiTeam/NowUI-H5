@@ -118,7 +118,8 @@ class Index extends Component {
                                 </div>
                                 <div className={style.headerRight}></div>
                             </div>
-                                {
+                            <Link to={"/topic/detail/" + this.state.topic.topicId } className={style.content}>
+                            {
                                     this.state.topic.topicMediaList && this.state.topic.topicMediaList.length > 0 ?
                                         this.state.topic.topicMediaList.map(
                                             (mediaList, index) => <img className={style.contentImage} src={constant.image_host + mediaList.topicMedia.filePath} alt='' key={index}/>
@@ -126,6 +127,7 @@ class Index extends Component {
                                         :
                                         null
                                 }
+                            </Link>
                             <div className={style.footer}>
                                 <Link to={"/topic/detail/" + this.state.topic.topicId } className={style.content}>
                                 <div className={classNames(style.footerText, baseStyle.bottomLine)}>
@@ -151,7 +153,12 @@ class Index extends Component {
                                     {
                                         this.state.topic.topicForumList && this.state.topic.topicForumList.length > 0 ?
                                             this.state.topic.topicForumList.map(
-                                                (forum, index) => <span className={style.footerInfoTag} key={index}>{forum.forumName}</span>
+                                                (forum, index) =>
+                                                    <span className={style.footerInfoTag} key={index}>
+                                                        <Link to={'/forum/homepage/' +  forum.forumId} key={forum.forumId} >
+                                                        {forum.forumName}
+                                                        </Link>
+                                                    </span>
                                             )
                                             :
                                             null

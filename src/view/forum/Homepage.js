@@ -31,6 +31,7 @@ class Homepage extends Component {
 
     }
 
+
     handleLoad() {
         let forumId = this.props.params.forumId;
         if (forumId) {

@@ -1,18 +1,27 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
+import Infinite from 'react-infinite';
+
+import TopicIndex from '../../component/topic/Index';
 import util from '../../common/util';
 
 import style from './Homepage.scss';
 import http from "../../common/http";
+
 
 class Homepage extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            isLoad: false ,
-            member: {}
+            isLoad: false,
+            topicPageIndex: 1,
+            topicPageSize: 2,
+            topicTotal: 0,
+            topicList: [],
+            isInfiniteLoading: false,
+            elementHeights: []
         }
     }
 
@@ -35,25 +44,47 @@ class Homepage extends Component {
         let userId = this.props.params.userId;
         if (userId) {
             http.request({
-                url: '/forum/mobile/v1/home',
+                url: '/topic/mobile/v1/home/topic',
                 data: {
-                    userId: userId
+                    userId: userId,
+                    pageIndex: this.state.topicPageIndex,
+                    pageSize: this.state.topicPageSize
                 },
                 success: function (data) {
+                    let topicList = this.state.topicList;
                     this.setState({
-                        member: data
+                        topicTotal: data.total,
+                        topicList: topicList.concat(data.list)
                     });
+
                 }.bind(this),
                 complete: function () {
-
-                }
+                    this.setState({
+                        isInfiniteLoading: false
+                    })
+                }.bind(this)
             });
         }
 
     }
 
+    handleInfiniteLoad() {
+        let {topicPageIndex, topicPageSize, topicTotal} = this.state;
+        if (topicPageIndex * topicPageSize < topicTotal) {
+            this.setState({
+                isInfiniteLoading: true,
+                topicPageIndex: topicPageIndex + 1
+            }, function () {
+                setTimeout(function() {
+                    this.handleLoad();
+                }.bind(this), 800)
+            }.bind(this))
+        }
+    };
+
     render() {
         return (
+
             <div className={style.page} style={{minHeight: document.documentElement.clientHeight}}>
                 <div className={style.headerContentTopBackground}>
                     <div className={style.headerContentMemberIcon}>
@@ -97,9 +128,37 @@ class Homepage extends Component {
                         牛头梗
                     </span>
                 </h3>
+
+                {
+                    this.state.topicList.length > 0 ?
+                        <Infinite elementHeight={document.documentElement.clientHeight * 0.8}
+                                  containerHeight={document.documentElement.clientHeight}
+                                  infiniteLoadBeginEdgeOffset={200}
+                                  onInfiniteLoad={this.handleInfiniteLoad.bind(this)}
+                                  loadingSpinnerDelegate={
+                                      this.state.isInfiniteLoading ?
+                                          <div className="infinite-list-item">Loading...</div>
+                                          :
+                                          this.state.topicPageIndex * this.state.topicPageSize >= this.state.topicTotal  ?
+                                              <div className="infinite-list-item">没有更多了</div>
+                                              :
+                                              null
+                                  }
+                                  isInfiniteLoading={this.state.isInfiniteLoading}
+                        >
+                            {
+                                this.state.topicList.map((topic, index) => <TopicIndex topic={topic} key={index}/>)
+                            }
+                        </Infinite>
+                        :
+                        null
+                }
             </div>
+
+
         );
     }
 }
+
 
 export default connect(() => ({}))(Homepage);

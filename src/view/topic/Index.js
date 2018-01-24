@@ -12,6 +12,7 @@ import http from '../../common/http';
 import style from './Index.scss';
 import baseStyle from '../../css/Base.scss';
 
+
 class Index extends Component {
     constructor(props) {
         super(props);
@@ -21,8 +22,6 @@ class Index extends Component {
             topicPageIndex: 1,
             topicPageSize: 2,
             topicTotal: 0,
-            topicList: [],
-            userId: '',
             topicList: [],
             isInfiniteLoading: false,
             elementHeights: []
@@ -55,11 +54,8 @@ class Index extends Component {
                 let topicList = this.state.topicList;
                 this.setState({
                     topicTotal: data.total,
-                    //topicList: data.list,
-                    userId: data.list.userIdForGotoUserHome,
                     topicList: topicList.concat(data.list)
                 });
-                console.log('topicHome',data)
             }.bind(this),
             complete: function () {
                 this.setState({
