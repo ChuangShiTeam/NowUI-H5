@@ -22,6 +22,8 @@ class Index extends Component {
             topicPageSize: 2,
             topicTotal: 0,
             topicList: [],
+            userId: '',
+            topicList: [],
             isInfiniteLoading: false,
             elementHeights: []
         }
@@ -53,8 +55,11 @@ class Index extends Component {
                 let topicList = this.state.topicList;
                 this.setState({
                     topicTotal: data.total,
+                    //topicList: data.list,
+                    userId: data.list.userIdForGotoUserHome,
                     topicList: topicList.concat(data.list)
                 });
+                console.log('topicHome',data)
             }.bind(this),
             complete: function () {
                 this.setState({
@@ -84,7 +89,7 @@ class Index extends Component {
                 <div className={style.header}>
                     <div className={style.headerContent}>
                         <div className={style.headerContentLeft}>
-                            <Link to="/member/homepage/" className={style.headerContentLeft}>
+                            <Link to={'/member/homepage/' +  this.state.userId} key={this.state.userId} className={style.headerContentLeft}>
                                 <img className={style.headerContentLeftUser}
                                      src={require('../../image/topic-user.png')}
                                      alt=''/>

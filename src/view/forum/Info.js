@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import classNames from 'classnames';
+import {Link} from 'react-router';
 
 import Notification from 'rc-notification';
 
@@ -27,6 +28,8 @@ class Info extends Component {
             pageSize: 5,
             forumId: '',
             forum: {},
+            ModeratorId: ''
+
         }
     }
 
@@ -60,9 +63,9 @@ class Info extends Component {
             success: function (data) {
                 console.log('加载数据完成 ');
                 this.setState({
-                    forum: data
+                    forum: data,
+                    ModeratorId: data.forumModerator.userId
                 });
-                console.log(this.state.forum.forumUserIsModerator)
             }.bind(this),
             complete: function () {
 
@@ -165,22 +168,29 @@ class Info extends Component {
                         圈子信息
                     </div>
                     <div className={classNames(style.info, baseStyle.bottomLine)}>
+                        <Link to={'/member/homepage/' +  this.state.ModeratorId} key={this.state.ModeratorId} >
                         <div className={style.infoLeft}>
+
                             <img className={style.infoLeftCrown}
                                  src={require('../../image/crown.png')}
                                  alt=''/>
+
                             <img className={style.infoLeftImage}
                                  src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/35/h/35'
                                  alt=''/>
+
                         </div>
+                        </Link>
                         <div className={style.infoRight}>
                             <div className={style.infoRightName}>
+                                <Link to={'/member/homepage/' +  this.state.ModeratorId} key={this.state.ModeratorId} >
                                 {
                                     this.state.forum.forumModerator && this.state.forum.forumModerator.userNickName ?
                                         this.state.forum.forumModerator.userNickName
                                         :
-                                        null
+                                        'null'
                                 }
+                                </Link>
                             </div>
                             <div
                                 className={style.infoRightDescription}>
@@ -188,7 +198,7 @@ class Info extends Component {
                                     this.state.forum.forumModerator && this.state.forum.forumModerator.memberSignature ?
                                         this.state.forum.forumModerator.memberSignature
                                         :
-                                        null
+                                        'null'
                                 }
                             </div>
                         </div>
@@ -202,18 +212,21 @@ class Info extends Component {
                                 this.state.forum.forumUserFollowList.map(function (member, index) {
                                     return (
                                         member.userId ?
+                                            <Link to={'/member/homepage/' +  member.userId} key={member.userId} >
                                             <div className={style.memberAvatar}>
-                                            {
-                                                member.userAvatar ?
-                                                    <img className={style.memberAvatarImage}
-                                                         src={constant.host + member.userAvatar}
-                                                         alt=''/>
-                                                    :
-                                                    <img className={style.memberAvatarImage}
-                                                         src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/35/h/35'
-                                                         alt=''/>
-                                            }
+
+                                                {
+                                                    member.userAvatar ?
+                                                        <img className={style.memberAvatarImage}
+                                                             src={constant.host + member.userAvatar}
+                                                             alt=''/>
+                                                        :
+                                                        <img className={style.memberAvatarImage}
+                                                             src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/35/h/35'
+                                                             alt=''/>
+                                                }
                                             </div>
+                                            </Link>
                                         :
                                         null
                                     )

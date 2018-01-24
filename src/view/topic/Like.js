@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {Link} from 'react-router';
 
 import util from '../../common/util';
 
@@ -7,6 +8,7 @@ import style from './Like.scss';
 import baseStyle from '../../css/Base.scss';
 import classNames from "classnames";
 import http from "../../common/http";
+import constant from "../../common/constant";
 
 class Like extends Component {
     constructor(props) {
@@ -14,7 +16,10 @@ class Like extends Component {
 
         this.state = {
             isLoad: false,
-            userLikeList: {}
+            userLikeList: [],
+            userLikePageIndex: 1,
+            userLikePageSize: 10,
+            userLikeTotal: 0
         }
     }
 
@@ -34,22 +39,27 @@ class Like extends Component {
     }
 
     handleLoad() {
-        //假数据start
-        //let topicId = '029b48ea1edc4138b9875c63606e24e7';
-        //假数据end
+
         let topicId = this.props.params.topicId;
+        console.log('topic =')
         console.log(topicId)
         if (topicId) {
             http.request({
-                url: '/topic/mobile/v1/find',
+                url: '/topic/user/like/mobile/v1/list',
                 data: {
-                    topicId: topicId
+                    topicId: topicId,
+                    pageIndex: this.state.userLikePageIndex,
+                    pageSize: this.state.userLikePageIndex
+
                 },
                 success: function (data) {
                     this.setState({
-                        userLikeList: data
+                        userLikeList: data.list,
+                        userLikeTotal: data.total
                     });
-                    console.log(this.state.userLikeList)
+                    console.log('data=')
+                    console.log(data)
+
                 }.bind(this),
                 complete: function () {
 
@@ -64,46 +74,58 @@ class Like extends Component {
                 <div className={style.header}>
                     <div className={style.headerLeft}>赞过的人</div>
                 </div>
-                <div className={classNames(style.list, baseStyle.bottomLine)}>
-                    <div className={style.listLeft}>
-                        <img className={style.listLeftIcon} src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/30/h/30" alt=''/>
-                    </div>
-                    <div className={style.listCenter}>
-                        是大雄啊是大雄啊是大雄啊是大雄啊是大雄啊是大雄啊是大雄啊是大雄啊是大雄啊是大雄啊是大雄啊
-                    </div>
-                    <div className={style.listRight}>
-                        {
-                            true ?
-                                <div className={style.listRightFollow}>
-                                    <span>+ 关注</span>
+                {
+                    this.state.userLikeList.map(
+                        (userLike,index) =>
+                            <div className={classNames(style.list, baseStyle.bottomLine)} key={userLike.userId}>
+                                <Link to={'/member/homepage/' +  userLike.userId} key={userLike.userId} >
+                                <div className={style.listLeft}>
+                                    {
+                                        userLike && userLike.userAvatar ?
+                                            <img className={style.listLeftIcon} src={constant.image_host + userLike.userAvatar} alt='' key={index}/>
+                                            :
+                                            <img className={style.listLeftIcon} src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/30/h/30" alt=''/>
+                                    }
                                 </div>
-                                :
-                                <div className={style.listRightFollowActive}>
-                                    <span>已关注</span>
+                                </Link>
+
+                                <div className={style.listCenter}>
+                                    {
+                                        userLike && userLike.userNickName ?
+                                            <span>
+                                                <Link to={'/member/homepage/' +  userLike.userId} key={userLike.userId} >
+                                            userLike.userNickName
+                                                </Link>
+                                            </span>
+                                            :
+                                            <span>
+                                                <Link to={'/member/homepage/' +  userLike.userId} key={userLike.userId} >
+                                            是大雄啊是大雄啊是大雄啊是大雄啊是大雄啊是大雄啊是大雄啊是大雄啊是大雄啊是大雄啊是大雄啊
+                                                </Link>
+                                            </span>
+                                    }
+
                                 </div>
-                        }
-                    </div>
-                </div>
-                <div className={classNames(style.list, baseStyle.bottomLine)}>
-                    <div className={style.listLeft}>
-                        <img className={style.listLeftIcon} src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/30/h/30" alt=''/>
-                    </div>
-                    <div className={style.listCenter}>
-                        是大雄啊是大雄啊是大雄啊是大雄啊是大雄啊是大雄啊是大雄啊是大雄啊是大雄啊是大雄啊是大雄啊
-                    </div>
-                    <div className={style.listRight}>
-                        {
-                            false ?
-                                <div className={style.listRightFollow}>
-                                    <span>+ 关注</span>
+
+                                <div className={style.listRight}>
+                                    {
+                                        userLike.topicUserLikeIsSelf ?
+                                            null
+                                            :
+                                            userLike && userLike.memberIsFollow ?
+                                            <div className={style.listRightFollow}>
+                                                <span>+ 关注</span>
+                                            </div>
+                                            :
+                                            <div className={style.listRightFollowActive}>
+                                                <span>已关注</span>
+                                            </div>
+                                    }
                                 </div>
-                                :
-                                <div className={style.listRightFollowActive}>
-                                    <span>+ 关注</span>
-                                </div>
-                        }
-                    </div>
-                </div>
+                            </div>
+                    )
+                }
+
             </div>
         );
     }
