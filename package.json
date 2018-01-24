@@ -5,12 +5,8 @@
   "dependencies": {
     "blueimp-md5": "^2.10.0",
     "classnames": "^2.2.5",
-    "component-font-awesome": "^0.0.4",
     "css-loader": "^0.28.9",
-    "exif-js": "^2.3.0",
-    "font-awesome": "^4.7.0",
     "history": "^1.17.0",
-    "image-compressor.js": "^1.0.0",
     "moment": "^2.20.1",
     "pinyin": "^2.8.3",
     "rc-form": "^1.5.0",
