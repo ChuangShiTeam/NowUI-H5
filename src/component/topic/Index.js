@@ -95,6 +95,7 @@ class Index extends Component {
                         <div>
                             <div className={style.header}>
                                 <div className={style.headerLeft}>
+                                    <Link to={'/member/homepage/' +  this.state.topic.userId} key={this.state.topic.userId} >
                                     {
                                         this.state.topic.userAvatar ?
                                             <img className={style.headerLeftImage} src={constant.image_host + this.state.topic.userAvatar} alt=''/>
@@ -102,15 +103,22 @@ class Index extends Component {
                                             <img className={style.headerLeftImage} src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/28/h/28' alt=''/>
 
                                     }
+                                    </Link>
                                 </div>
                                 <div className={style.headerCenter}>
-                                    <p className={style.headerCenterName}>{this.state.topic.userNickName}</p>
+                                    <Link to={'/member/homepage/' +  this.state.topic.userId} key={this.state.topic.userId} >
+                                    {
+                                        this.state.topic.userNickName ?
+                                            <p className={style.headerCenterName}>{this.state.topic.userNickName}</p>
+                                            :
+                                            <p className={style.headerCenterName}>null</p>
+                                    }
+                                    </Link>
                                     <p className={style.headerCenterTime}>{moment(this.state.topic.systemCreateTime).fromNow()}</p>
                                 </div>
                                 <div className={style.headerRight}></div>
                             </div>
-                            <Link to={"/topic/detail/" + this.state.topic.topicId } className={style.content}>
-                            {
+                                {
                                     this.state.topic.topicMediaList && this.state.topic.topicMediaList.length > 0 ?
                                         this.state.topic.topicMediaList.map(
                                             (mediaList, index) => <img className={style.contentImage} src={constant.image_host + mediaList.topicMedia.filePath} alt='' key={index}/>
@@ -118,7 +126,6 @@ class Index extends Component {
                                         :
                                         null
                                 }
-                            </Link>
                             <div className={style.footer}>
                                 <Link to={"/topic/detail/" + this.state.topic.topicId } className={style.content}>
                                 <div className={classNames(style.footerText, baseStyle.bottomLine)}>

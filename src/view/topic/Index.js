@@ -2,12 +2,12 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router';
 import classNames from 'classnames';
+import Infinite from 'react-infinite';
 
 import TopicIndex from '../../component/topic/Index';
 
 import util from '../../common/util';
 import http from '../../common/http';
-import constant from '../../common/constant';
 
 import style from './Index.scss';
 import baseStyle from '../../css/Base.scss';
@@ -19,9 +19,13 @@ class Index extends Component {
         this.state = {
             isLoad: false,
             topicPageIndex: 1,
-            topicPageSize: 3,
+            topicPageSize: 2,
             topicTotal: 0,
-            topicList: []
+            topicList: [],
+            userId: '',
+            topicList: [],
+            isInfiniteLoading: false,
+            elementHeights: []
         }
     }
 
@@ -48,17 +52,36 @@ class Index extends Component {
                 pageSize: this.state.topicPageSize
             },
             success: function (data) {
+                let topicList = this.state.topicList;
                 this.setState({
                     topicTotal: data.total,
-                    topicList: data.list
+                    //topicList: data.list,
+                    userId: data.list.userIdForGotoUserHome,
+                    topicList: topicList.concat(data.list)
                 });
-                console.log(data)
+                console.log('topicHome',data)
             }.bind(this),
             complete: function () {
-
-            }
+                this.setState({
+                    isInfiniteLoading: false
+                })
+            }.bind(this)
         });
     }
+
+    handleInfiniteLoad() {
+        let {topicPageIndex, topicPageSize, topicTotal} = this.state;
+        if (topicPageIndex * topicPageSize < topicTotal) {
+            this.setState({
+                isInfiniteLoading: true,
+                topicPageIndex: topicPageIndex + 1
+            }, function () {
+                setTimeout(function() {
+                    this.handleLoad();
+                }.bind(this), 800)
+            }.bind(this))
+        }
+    };
 
     render() {
         return (
@@ -66,7 +89,7 @@ class Index extends Component {
                 <div className={style.header}>
                     <div className={style.headerContent}>
                         <div className={style.headerContentLeft}>
-                            <Link to="/member/homepage/" className={style.headerContentLeft}>
+                            <Link to={'/member/homepage/' +  this.state.userId} key={this.state.userId} className={style.headerContentLeft}>
                                 <img className={style.headerContentLeftUser}
                                      src={require('../../image/topic-user.png')}
                                      alt=''/>
@@ -90,8 +113,30 @@ class Index extends Component {
                          alt=''/>
                 </Link>
                 {
-                    this.state.topicList.map((topic, index) => <TopicIndex topic={topic} key={index}/>)
+                    this.state.topicList.length > 0 ?
+                        <Infinite elementHeight={document.documentElement.clientHeight * 0.8}
+                                  containerHeight={document.documentElement.clientHeight}
+                                  infiniteLoadBeginEdgeOffset={200}
+                                  onInfiniteLoad={this.handleInfiniteLoad.bind(this)}
+                                  loadingSpinnerDelegate={
+                                        this.state.isInfiniteLoading ?
+                                        <div className="infinite-list-item">Loading...</div>
+                                        :
+                                        this.state.topicPageIndex * this.state.topicPageSize >= this.state.topicTotal  ?
+                                        <div className="infinite-list-item">没有更多了</div>
+                                        :
+                                        null
+                                  }
+                                  isInfiniteLoading={this.state.isInfiniteLoading}
+                        >
+                            {
+                                this.state.topicList.map((topic, index) => <TopicIndex topic={topic} key={index}/>)
+                            }
+                        </Infinite>
+                        :
+                        null
                 }
+
             </div>
         );
     }

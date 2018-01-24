@@ -27,7 +27,8 @@ class Detail extends Component {
             pageIndex: 1,
             pageSize: 3,
             topicCommentTotal: 0,
-            topicCommentList: []
+            topicCommentList: [],
+            userId: ''
         }
     }
 
@@ -57,7 +58,8 @@ class Detail extends Component {
                 success: function (data) {
                     this.setState({
                         topic: data,
-                        topicCommentList: data.topicCommentList
+                        topicCommentList: data.topicCommentList,
+                        userId: data.userId.userId
                     });
                 }.bind(this),
                 complete: function () {
@@ -190,21 +192,30 @@ class Detail extends Component {
 
     render() {
         const {getFieldProps} = this.props.form;
-
         return (
             <div className={classNames(style.page, baseStyle.page)} style={{minHeight: document.documentElement.clientHeight}}>
                 <div className={style.header}>
                     <div className={style.headerLeft}>
                         {
                             this.state.topic.userId && this.state.topic.userId.userAvatar ?
+                                <Link to={'/member/homepage/' +  this.state.userId} key={this.state.userId} >
                                 <img src={constant.image_host + this.state.topic.userId.userAvatar} alt=''/>
+                                </Link>
                                 :
+                                <Link to={'/member/homepage/' +  this.state.userId} key={this.state.userId} >
                                 <img className={style.headerLeftImage} src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/28/h/28' alt=''/>
+                                </Link>
                         }
 
                     </div>
                     <div className={style.headerCenter}>
-                        <p className={style.headerCenterName}>{this.state.topic.userId && this.state.topic.userId.userNickName ?this.state.topic.userId.userNickName : '用户昵称为null'}</p>
+
+                        <p className={style.headerCenterName}>
+                            <Link to={'/member/homepage/' +  this.state.userId} key={this.state.userId} >
+                            {this.state.topic.userId && this.state.topic.userId.userNickName ?this.state.topic.userId.userNickName : '用户昵称为null'}
+                            </Link>
+                        </p>
+
                         <p className={style.headerCenterTime}> {moment(this.state.topic.systemCreateTime).fromNow()}</p>
                     </div>
                     <div className={style.headerRight}></div>
@@ -291,9 +302,13 @@ class Detail extends Component {
                                     <div className={style.commentLeft}>
                                         {
                                             comment.userAvatar ?
+                                                <Link to={'/member/homepage/' +  comment.userId} key={comment.userId} >
                                                 <img className={style.commentLeftImage} src={constant.image_host + comment.userAvatar} alt=''/>
+                                                </Link>
                                                 :
+                                                <Link to={'/member/homepage/' +  comment.userId} key={comment.userId} >
                                                 <img className={style.commentLeftImage} src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/38/h/38' alt=''/>
+                                                </Link>
 
                                         }
                                     </div>
@@ -304,6 +319,14 @@ class Detail extends Component {
                                                 <span className={style.commentRightLikeText}>0</span>
                                             </div>
                                         </div>
+                                        <Link to={'/member/homepage/' +  comment.userId} key={comment.userId} >
+                                        {
+                                            comment.userNickName ?
+                                                comment.userNickName
+                                                :
+                                                'null'
+                                        }
+                                        </Link>
                                         <div className={style.commentRightName}>{comment.userNickName}</div>
                                         <div className={style.commentRightName}>{moment(comment.systemCreateTime).fromNow()}</div>
                                         {
