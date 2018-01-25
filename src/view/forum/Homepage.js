@@ -159,7 +159,7 @@ class Homepage extends Component {
         return (
             <div className={style.page} style={{minHeight: document.documentElement.clientHeight}}>
                 <Link to={'/forum/info/' +  this.state.forum.forumId} key={this.state.forum.forumId} >
-                    <div className={style.homePageHeaderIco}></div>
+                    <div className={style.homePageHeaderIcon}></div>
                 </Link>
                  <div className={style.homePageHeaderTopBackground}>
                      <span style={{paddingTop:"97px",display:"block",paddingLeft:"10px",fontSize:"10px"}}>

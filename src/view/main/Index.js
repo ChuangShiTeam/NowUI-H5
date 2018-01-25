@@ -3,7 +3,6 @@ import {connect} from 'react-redux';
 import classNames from 'classnames';
 
 import http from '../../common/http';
-import constant from '../../common/constant';
 import style from './Index.scss';
 import baseStyle from '../../css/Base.scss';
 

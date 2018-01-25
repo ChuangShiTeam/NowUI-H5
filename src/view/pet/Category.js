@@ -7,7 +7,7 @@ import classNames from 'classnames';
 
 import util from '../../common/util';
 import http from '../../common/http';
-import ImageUpload from '../../component/upload/ImageUpload';
+import ImageUpload from '../../component/upload/Index';
 
 import style from './Category.scss';
 import baseStyle from '../../css/Base.scss';

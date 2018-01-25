@@ -23,6 +23,14 @@ class Index extends Component {
         this.setState({
             topic: this.props.topic
         });
+
+        window.ImageView.show({
+            pattern: 'default',
+            selector: 'img,.item',
+            initDisplaySize: 'cover',
+            initDisplayPositionX: 'center',
+            initDisplayPositionY: 'center',
+        });
     }
 
     componentWillUnmount() {
@@ -129,7 +137,7 @@ class Index extends Component {
                                 }
                             </Link>
                             <div className={style.footer}>
-                                <Link to={"/topic/detail/" + this.state.topic.topicId } className={style.content}>
+                                <Link to={"/topic/detail/" + this.state.topic.topicId} className={style.content}>
                                 <div className={classNames(style.footerText, baseStyle.bottomLine)}>
                                     {this.state.topic.topicSummary}
                                 </div>

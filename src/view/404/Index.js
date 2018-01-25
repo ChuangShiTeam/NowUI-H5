@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
-import Header from '../component/Header';
-import Footer from '../component/Footer';
 import util from '../common/util';
 
 class NotFound extends Component {
