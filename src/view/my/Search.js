@@ -2,11 +2,15 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import util from '../../common/util';
 import  {Link} from  'react-router';
+import {createForm} from "rc-form";
+import Notification from 'rc-notification';
 import baseStyle from '../../css/Base.scss';
-import classNames from "classnames";
-
 import  style from './Whole.scss';
-class Adorable extends Component {
+
+let notification = null;
+Notification.newInstance({}, (n) => notification = n);
+
+class Search extends Component {
     constructor(props) {
         super(props);
 
@@ -23,7 +27,40 @@ class Adorable extends Component {
     componentWillUnmount() {
 
     }
+
+    handleClose() {
+        this.props.form.resetFields();
+    }
+
+    handleKeyUp(event) {
+        if (event.keyCode === 13) {
+            this.handleSubmit();
+        }
+    }
+
+    handleSubmit() {
+        this.props.form.validateFields((errors, values) => {
+            if (!!errors) {
+                var message = '';
+                for (var error in errors) {
+                    message += '<p>';
+                    message += errors[error].errors[0].message;
+                    message += '</p>';
+                }
+
+                notification.notice({
+                    content: <div dangerouslySetInnerHTML={{__html: message}}></div>
+                });
+
+                return;
+            }
+
+            alert(values)
+        });
+    }
+    
     render() {
+        const {getFieldProps} = this.props.form;
         return(
             <div className={baseStyle.page} style={{minHeight: document.documentElement.clientHeight}}>
                 <div className={style.navigation}>
@@ -31,23 +68,38 @@ class Adorable extends Component {
                         <Link to="/my/whole" className={style.navigationItem}>全部</Link>
                         <Link to="/my/bookmark" className={style.navigationItem}>文章</Link>
                         <Link to="/my/dynamic" className={style.navigationItem}>动态</Link>
-                        <div className={style.nowState}>萌物</div>
-                        <Link to="/my/shop" className={style.navigationItem}>商户</Link>
+                        <Link to="/my/adorable"  className={style.navigationItem}>萌物</Link>
+                        <div className={style.nowState}>商户</div>
                     </div>
-                    <Link  to='/my/search'  className={style.search}>
+                    <div className={style.search}>
                         <img src={require("../../image/search.png")} alt=""/>
-                    </Link>
+                    </div>
                 </div>
+                <div className={style.headerContents}>
+                    <div className={style.headerContentLeftSearchs}>
+                        <div className={style.headerContentLeftSearchLefts}>
+                            <img className={style.headerContentLeftSearchLeftIcons}
+                                 src={require('../../image/forum-search.png')} alt=''/>
+                        </div>
+                        <div className={style.headerContentLeftSearchRights}>
+                            <input
+                                className={style.headerContentLeftSearchRightInputs} {...getFieldProps('forumName', {
+                                rules: [{
+                                    required: true,
+                                    message: '圈子名称为空'
+                                }],
+                                initialValue: ''
+                            })} type="text" placeholder="查找收藏的内容" onKeyUp={this.handleKeyUp.bind(this)}/>
+                        </div>
+                    </div>
+                </div>
+
                 <div className={style.list}>
                     <div className={style.listContent}>
                         <div className={style.listLeft}>
                             <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/68/h/68" alt=""/>
                             <div className={style.listCenter}>
-                                <div className={style.tittles}>SANY日式口款精品项圈 </div>
-                                <div className={style.contentAdorable}>
-                                    <div className={style.price}>￥299</div>
-                                    <div className={style.seller}>京东</div>
-                                </div>
+                                <div className={style.tittles}>小佩的宠物店 </div>
                                 <div className={style.times}>
                                     <div>收藏于:2018-1-09 12:10</div>
                                 </div>
@@ -63,11 +115,7 @@ class Adorable extends Component {
                         <div className={style.listLeft}>
                             <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/68/h/68" alt=""/>
                             <div className={style.listCenter}>
-                                <div className={style.tittles}>雍友意大利植鞣革手工制…</div>
-                                <div className={style.contentAdorable}>
-                                    <div className={style.price}>￥699</div>
-                                    <div className={style.seller}>天猫</div>
-                                </div>
+                                <div className={style.tittles}>MAS-COTI宠物寄养酒店</div>
                                 <div className={style.times}>
                                     <div>收藏于:2017-12-01 12:02</div>
                                 </div>
@@ -84,4 +132,6 @@ class Adorable extends Component {
         );
     }
 }
-export default connect(() => ({}))(Adorable);
+Search = createForm({})(Search);
+export default connect(() => ({}))(Search);
+

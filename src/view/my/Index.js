@@ -41,7 +41,7 @@ class Index extends Component {
                         </div>
                     </div>
                     <div className={style.middle}>
-                        <div className={style.middleLeft}>
+                        <Link to={"/my/comment"} className={style.middleLeft}>
                             <div className={style.redSpot}></div>
                             <div>
                                <div className={style.leftIcon}>
@@ -49,13 +49,13 @@ class Index extends Component {
                                </div>
                                 <div className={style.news}>消息</div>
                             </div>
-                        </div>
+                        </Link>
                             <div className={style.middleRight}>
                                 <div className={style.rightIcon}>
                                     <img src={require('../../image/my-collect.png')} alt=""/>
 
                                 </div>
-                                <Link to={'/my/bookmark'}>
+                                <Link to={'/my/whole'}>
                                     <div className={style.news}>收藏</div>
                                 </Link>
                             </div>
@@ -89,7 +89,7 @@ class Index extends Component {
                                 <div  className={style.listLeftIcon}>
                                     <img  src={require('../../image/my-follow.png')}  alt=""/>
                                 </div>
-                                <div className={style.listCenter}>我的关注</div>
+                                <Link to={"/my/follow"} className={style.listCenter}>我的关注</Link>
                             </div>
                             <div className={style.listRight}>
                                 <div className={style.listRightIcon}></div>
@@ -100,7 +100,7 @@ class Index extends Component {
                                 <div  className={style.listLeftIcon}>
                                     <img src={require('../../image/my-qrcode.png')}  alt=""/>
                                 </div>
-                                <div className={style.listCenter}>我的二维码</div>
+                                <Link to={"/my/qrcode"} className={style.listCenter}>我的二维码</Link>
                             </div>
                             <div className={style.listRight}>
                                 <div className={style.listRightIcon}></div>

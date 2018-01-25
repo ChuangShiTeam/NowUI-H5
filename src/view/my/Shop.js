@@ -4,7 +4,6 @@ import util from '../../common/util';
 import  {Link} from  'react-router';
 import baseStyle from '../../css/Base.scss';
 import classNames from "classnames";
-// import  style from './Adorable.scss';
 import  style from './Whole.scss';
 class Shop extends Component {
     constructor(props) {
@@ -34,9 +33,9 @@ class Shop extends Component {
                         <Link to="/my/adorable"  className={style.navigationItem}>萌物</Link>
                         <div className={style.nowState}>商户</div>
                     </div>
-                    <div className={style.search}>
+                    <Link to='/my/search' className={style.search}>
                             <img src={require("../../image/search.png")} alt=""/>
-                    </div>
+                    </Link>
                 </div>
                 <div className={style.list}>
                     <div className={style.listContent}>
