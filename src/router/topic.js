@@ -1,6 +1,5 @@
 import util from '../common/util';
 import Main from "../view/main/Index";
-import TopicAdd from "../view/topic/Add";
 
 export default {
     childRoutes: [{
@@ -11,7 +10,7 @@ export default {
             getComponent(location, cb) {
                 require.ensure([], (require) => {
                     cb(null, require('../view/topic/Index').default);
-                }, 'topic.index');
+                }, 'topic.index')
             }
         }]
     }, {
@@ -20,7 +19,7 @@ export default {
         getComponent(location, cb) {
             require.ensure([], (require) => {
                 cb(null, require('../view/topic/Add').default);
-            }, 'forum.add');
+            }, 'forum.add')
         }
     }, {
         path: '/topic/like/:topicId',
@@ -28,7 +27,7 @@ export default {
         getComponent(location, cb) {
             require.ensure([], (require) => {
                 cb(null, require('../view/topic/Like').default);
-            }, 'forum.like');
+            }, 'forum.like')
         }
     }, {
         path: '/topic/follow',
@@ -36,7 +35,7 @@ export default {
         getComponent(location, cb) {
             require.ensure([], (require) => {
                 cb(null, require('../view/topic/Follow').default);
-            }, 'forum.follow');
+            }, 'forum.follow')
         }
     }, {
         path: '/topic/hottopic',
@@ -44,7 +43,7 @@ export default {
         getComponent(location, cb) {
             require.ensure([], (require) => {
                 cb(null, require('../view/topic/HotTopic').default);
-            }, 'forum.hotTopic');
+            }, 'forum.hotTopic')
         }
     }, {
         getComponent(location, cb) {
@@ -58,14 +57,14 @@ export default {
             getComponent(location, cb) {
                 require.ensure([], (require) => {
                     cb(null, require('../view/topic/Location').default);
-                }, 'forum.location');
+                }, 'forum.location')
             }
         }]
     }, {
         getComponent(location, cb) {
             require.ensure([], (require) => {
                 cb(null, require('../view/topic/Add').default);
-            }, 'forum.add');
+            }, 'forum.add')
         },
         childRoutes: [{
             path: '/topic/remind',
@@ -73,7 +72,7 @@ export default {
             getComponent(location, cb) {
                 require.ensure([], (require) => {
                     cb(null, require('../view/topic/Remind').default);
-                }, 'forum.remind');
+                }, 'forum.remind')
             }
         }]
     }, {
@@ -82,7 +81,7 @@ export default {
         getComponent(location, cb) {
             require.ensure([], (require) => {
                 cb(null, require('../view/topic/Detail').default);
-            }, 'forum.detail');
+            }, 'forum.detail')
         }
     }]
 }

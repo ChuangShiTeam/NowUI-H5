@@ -3,9 +3,12 @@ import {connect} from 'react-redux';
 import {createForm} from "rc-form";
 import Notification from 'rc-notification';
 import classNames from 'classnames';
-import ImageUpload from '../../component/upload/ImageUpload';
+
+import Upload from '../../component/upload/Index';
+
 import util from '../../common/util';
 import http from '../../common/http';
+
 import style from './Add.scss';
 import baseStyle from '../../css/Base.scss';
 
@@ -95,7 +98,7 @@ class Add extends Component {
                 <div className={style.content}>
                     <div className={style.upload}>
                         <div className={style.uploadLeft}>上传圈子照片</div>
-                        <ImageUpload {...getFieldProps('forumMedia', {
+                        <Upload {...getFieldProps('forumMedia', {
                             initialValue: []
                         })} name="forumMedia" ref="forumMedia" limit={1}/>
                     </div>

@@ -7,7 +7,7 @@ import constant from '../../common/constant';
 import storage from '../../common/storage';
 import http from "../../common/http";
 
-import style from './ImageUpload.scss';
+import style from './Index.scss';
 
 let notification = null;
 Notification.newInstance({}, (n) => notification = n);
@@ -70,7 +70,9 @@ class ImageUpload extends Component {
                         fileList.push(data);
                         this.setState({
                             value: fileList
-                        });
+                        }, function () {
+                            this.props.onChange(this.state.value);
+                        }.bind(this));
                     }.bind(this),
                     complete: function () {
 
@@ -123,19 +125,7 @@ class ImageUpload extends Component {
             }
             this.setState({
                 value: fileList
-            }, function () {
-                const onChange = this.props.onChange;
-                if (onChange) {
-                    let value = [];
-                    for (let i = 0; i < fileList.length; i++) {
-                        value.push({
-                            fileId: fileList[i].fileId,
-                            filePath: fileList[i].filePath
-                        })
-                    }
-                    onChange(value);
-                }
-            }.bind(this));
+            });
 
             notification.notice({
                 content: <div dangerouslySetInnerHTML={{__html: `图片上传成功`}}></div>

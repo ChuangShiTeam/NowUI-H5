@@ -355,8 +355,6 @@ class Index extends Component {
                             - 最新话题 -
                         </div>
                     </div>
-                    <TopicIndex/>
-                    <TopicIndex/>
                     <div className={style.newTopicFooter}>
                         <div className={style.newTopicFooterMore}>查看更多</div>
                     </div>

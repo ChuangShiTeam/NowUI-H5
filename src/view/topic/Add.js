@@ -5,7 +5,7 @@ import {createForm} from "rc-form";
 import Notification from "rc-notification";
 import classNames from "classnames";
 
-import ImageUpload from '../../component/upload/ImageUpload';
+import Upload from '../../component/upload/Index';
 
 import notificationEvent from '../../common/notification';
 import http from "../../common/http";
@@ -163,7 +163,7 @@ class Add extends Component {
             <div className={style.page} style={{minHeight: document.documentElement.clientHeight}}>
                 <div className={style.content}>
                     <div className={style.upload}>
-                        <ImageUpload {...getFieldProps('topicMedia', {
+                        <Upload {...getFieldProps('topicMedia', {
                             initialValue: []
                         })} name="topicMedia" ref="topicMedia" limit={9}/>
                     </div>
