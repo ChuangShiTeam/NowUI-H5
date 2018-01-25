@@ -30,7 +30,7 @@ class Index extends Component {
         util.setTitle('wawipet哇咿宠');
         util.hancleComponentDidMount();
 
-        // this.handleLoad();
+        this.handleLoad();
     }
 
     componentDidUpdate() {
@@ -66,6 +66,7 @@ class Index extends Component {
     }
 
     handleInfiniteLoad() {
+        return;
         let {topicPageIndex, topicPageSize, topicTotal} = this.state;
         if (topicPageIndex * topicPageSize < topicTotal) {
             this.setState({

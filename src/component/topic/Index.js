@@ -21,21 +21,28 @@ class Index extends Component {
     componentDidMount() {
         this.setState({
             topic: this.props.topic
-        });
+        }, function () {
 
-        window.ImageView.show({
-            pattern: 'default',
-            selector: 'img,.item',
-            initDisplaySize: 'cover',
-            initDisplayPositionX: 'center',
-            initDisplayPositionY: 'center',
-        });
+        }.bind(this));
+
+        setTimeout(() => {
+            let topicImage = document.querySelector('#' + this.props.topic.topicId);
+
+            topicImage.addEventListener('click', function () {
+                window.ImageView.show({
+                    pattern: 'default',
+                    selector: '.imageItem',
+                    initDisplaySize: 'cover',
+                    initDisplayPositionX: 'center',
+                    initDisplayPositionY: 'center'
+                });
+            });
+        }, 0);
     }
 
     componentWillUnmount() {
 
     }
-
 
     handleClickLikeTopic() {
         http.request({
@@ -59,6 +66,7 @@ class Index extends Component {
                 }
             }.bind(this),
             complete: function () {
+
             }
         });
 
@@ -95,6 +103,43 @@ class Index extends Component {
     }
 
     render() {
+        let clientWidth = document.documentElement.clientWidth > 640 ? 640 : document.documentElement.clientWidth;
+        let width;
+        let height;
+        let divHeight = 0;
+
+        if (this.state.topic.topicMediaList) {
+            switch (this.state.topic.topicMediaList.length) {
+                case 1:
+                    divHeight = clientWidth / 320 * 255;
+                    break;
+                case 2:
+                    divHeight = (clientWidth - 2) / 2 / 158 * 175;
+                    break;
+                case 3:
+                    divHeight = (clientWidth - 2) / 3 * 2;
+                    break;
+                case 4:
+                    divHeight = clientWidth;
+                    break;
+                case 5:
+                    divHeight = (clientWidth - 2) / 2 + (clientWidth - 4) / 3;
+                    break;
+                case 6:
+                    divHeight = clientWidth;
+                    break;
+                case 7:
+                    divHeight = clientWidth;
+                    break;
+                case 8:
+                    divHeight = clientWidth;
+                    break;
+                case 9:
+                    divHeight = clientWidth;
+                    break;
+            }
+        }
+
         return (
             <div className={baseStyle.page}>
                 {
@@ -130,17 +175,583 @@ class Index extends Component {
                                 </div>
                                 <div className={style.headerRight}></div>
                             </div>
-                            {
-                                this.state.topic.topicMediaList ?
-                                    this.state.topic.topicMediaList.map((mediaList, index) => (
-                                        <img key={index}
-                                             className={style.contentImage}
-                                             src={constant.image_host + mediaList.topicMedia.filePath}
-                                             alt=''/>
-                                    ))
-                                    :
-                                    null
-                            }
+                            <div id={this.props.topic.topicId} className={classNames(style.image)} style={{height: divHeight}}>
+                                {
+                                    this.state.topic.topicMediaList ?
+                                        this.state.topic.topicMediaList.map((image, index) => {
+                                            switch (this.state.topic.topicMediaList.length) {
+                                                case 1:
+                                                    width = clientWidth;
+                                                    height = width / 320 * 255;
+
+                                                    return (
+                                                        <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
+                                                            top: 0 + 'px',
+                                                            left: 0 + 'px',
+                                                            width: document.documentElement.clientWidth,
+                                                            height: document.documentElement.clientWidth / 320 * 255,
+                                                            backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                        }}></div>
+                                                    );
+
+                                                    break;
+                                                case 2:
+                                                    width = (clientWidth - 2) / 2;
+                                                    height = width / 158 * 175;
+
+                                                    switch (index) {
+                                                        case 0:
+                                                            return (
+                                                                <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
+                                                                    top: 0 + 'px',
+                                                                    left: 0 + 'px',
+                                                                    width: width,
+                                                                    height: height,
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                }}></div>
+                                                            );
+                                                            break;
+                                                        case 1:
+                                                            return (
+                                                                <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
+                                                                    top: 0 + 'px',
+                                                                    right: 0 + 'px',
+                                                                    width: width,
+                                                                    height: height,
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                }}></div>
+                                                            );
+                                                            break;
+                                                        default:
+                                                            return '';
+                                                    }
+
+                                                    break;
+                                                case 3:
+                                                    width = (clientWidth - 2) / 3;
+                                                    height = width;
+
+                                                    switch (index) {
+                                                        case 0:
+                                                            return (
+                                                                <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
+                                                                    top: 0 + 'px',
+                                                                    left: 0 + 'px',
+                                                                    width: width * 2,
+                                                                    height: height * 2 + 2,
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                }}></div>
+                                                            );
+                                                            break;
+                                                        case 1:
+                                                            return (
+                                                                <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
+                                                                    top: 0 + 'px',
+                                                                    right: 0 + 'px',
+                                                                    width: width,
+                                                                    height: height,
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                }}></div>
+                                                            );
+                                                            break;
+                                                        case 2:
+                                                            return (
+                                                                <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
+                                                                    top: height + 2 + 'px',
+                                                                    right: 0 + 'px',
+                                                                    width: width,
+                                                                    height: height,
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                }}></div>
+                                                            );
+                                                            break;
+                                                        default:
+                                                            return '';
+                                                    }
+
+                                                    break;
+                                                case 4:
+                                                    width = (clientWidth - 2) / 2;
+                                                    height = width;
+
+                                                    switch (index) {
+                                                        case 0:
+                                                            return (
+                                                                <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
+                                                                    top: 0 + 'px',
+                                                                    left: 0 + 'px',
+                                                                    width: width,
+                                                                    height: height,
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                }}></div>
+                                                            );
+                                                            break;
+                                                        case 1:
+                                                            return (
+                                                                <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
+                                                                    top: 0 + 'px',
+                                                                    right: 0 + 'px',
+                                                                    width: width,
+                                                                    height: height,
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                }}></div>
+                                                            );
+                                                            break;
+                                                        case 2:
+                                                            return (
+                                                                <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
+                                                                    top: height + 2 + 'px',
+                                                                    left: 0 + 'px',
+                                                                    width: width,
+                                                                    height: height,
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                }}></div>
+                                                            );
+                                                            break;
+                                                        case 3:
+                                                            return (
+                                                                <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
+                                                                    top: height + 2 + 'px',
+                                                                    right: 0 + 'px',
+                                                                    width: width,
+                                                                    height: height,
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                }}></div>
+                                                            );
+                                                            break;
+                                                        default:
+                                                            return '';
+                                                    }
+
+                                                    break;
+                                                case 5:
+                                                    switch (index) {
+                                                        case 0:
+                                                            return (
+                                                                <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
+                                                                    top: 0 + 'px',
+                                                                    left: 0 + 'px',
+                                                                    width: (clientWidth - 2) / 2,
+                                                                    height: (clientWidth - 2) / 2,
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                }}></div>
+                                                            );
+                                                            break;
+                                                        case 1:
+                                                            return (
+                                                                <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
+                                                                    top: 0 + 'px',
+                                                                    right: 0 + 'px',
+                                                                    width: (clientWidth - 2) / 2,
+                                                                    height: (clientWidth - 2) / 2,
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                }}></div>
+                                                            );
+                                                            break;
+                                                        case 2:
+                                                            return (
+                                                                <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
+                                                                    top: (clientWidth - 2) / 2 + 2 + 'px',
+                                                                    left: 0 + 'px',
+                                                                    width: (clientWidth - 4) / 3,
+                                                                    height: (clientWidth - 4) / 3,
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                }}></div>
+                                                            );
+                                                            break;
+                                                        case 3:
+                                                            return (
+                                                                <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
+                                                                    top: (clientWidth - 2) / 2 + 2 + 'px',
+                                                                    left: (clientWidth - 4) / 3 + 2 + 'px',
+                                                                    width: (clientWidth - 4) / 3,
+                                                                    height: (clientWidth - 4) / 3,
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                }}></div>
+                                                            );
+                                                            break;
+                                                        case 4:
+                                                            return (
+                                                                <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
+                                                                    top: (clientWidth - 2) / 2 + 2 + 'px',
+                                                                    right: 0 + 'px',
+                                                                    width: (clientWidth - 4) / 3,
+                                                                    height: (clientWidth - 4) / 3,
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                }}></div>
+                                                            );
+                                                            break;
+                                                        default:
+                                                            return '';
+                                                    }
+
+                                                    break;
+                                                case 6:
+                                                    switch (index) {
+                                                        case 0:
+                                                            return (
+                                                                <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
+                                                                    top: 0 + 'px',
+                                                                    left: 0 + 'px',
+                                                                    width: (clientWidth - 4) / 3 * 2 + 2,
+                                                                    height: (clientWidth - 4) / 3 * 2 + 2,
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                }}></div>
+                                                            );
+                                                            break;
+                                                        case 1:
+                                                            return (
+                                                                <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
+                                                                    top: 0 + 'px',
+                                                                    right: 0 + 'px',
+                                                                    width: (clientWidth - 2) / 3,
+                                                                    height: (clientWidth - 2) / 3 - 1,
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                }}></div>
+                                                            );
+                                                            break;
+                                                        case 2:
+                                                            return (
+                                                                <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
+                                                                    top: (clientWidth - 2) / 3 + 1 + 'px',
+                                                                    right: 0 + 'px',
+                                                                    width: (clientWidth - 2) / 3,
+                                                                    height: (clientWidth - 2) / 3 - 1,
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                }}></div>
+                                                            );
+                                                            break;
+                                                        case 3:
+                                                            return (
+                                                                <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
+                                                                    top: (clientWidth - 4) / 3 * 2 + 4 + 'px',
+                                                                    left: 0 + 'px',
+                                                                    width: (clientWidth - 4) / 3,
+                                                                    height: (clientWidth - 4) / 3,
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                }}></div>
+                                                            );
+                                                            break;
+                                                        case 4:
+                                                            return (
+                                                                <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
+                                                                    top: (clientWidth - 4) / 3 * 2 + 4 + 'px',
+                                                                    left: (clientWidth - 4) / 3 + 2 + 'px',
+                                                                    width: (clientWidth - 4) / 3,
+                                                                    height: (clientWidth - 4) / 3,
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                }}></div>
+                                                            );
+                                                            break;
+                                                        case 5:
+                                                            return (
+                                                                <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
+                                                                    top: (clientWidth - 4) / 3 * 2 + 4 + 'px',
+                                                                    right: 0 + 'px',
+                                                                    width: (clientWidth - 4) / 3,
+                                                                    height: (clientWidth - 4) / 3,
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                }}></div>
+                                                            );
+                                                            break;
+                                                        default:
+                                                            return '';
+                                                    }
+
+                                                    break;
+                                                case 7:
+                                                    switch (index) {
+                                                        case 0:
+                                                            return (
+                                                                <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
+                                                                    top: 0 + 'px',
+                                                                    left: 0 + 'px',
+                                                                    width: (clientWidth - 4) / 3,
+                                                                    height: (clientWidth - 4) / 3 * 2 + 2,
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                }}></div>
+                                                            );
+                                                            break;
+                                                        case 1:
+                                                            return (
+                                                                <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
+                                                                    top: 0 + 'px',
+                                                                    left: (clientWidth - 4) / 3 + 2 + 'px',
+                                                                    width: (clientWidth - 4) / 3,
+                                                                    height: (clientWidth - 4) / 3 * 2 + 2,
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                }}></div>
+                                                            );
+                                                            break;
+                                                        case 2:
+                                                            return (
+                                                                <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
+                                                                    top: 0 + 'px',
+                                                                    right: 0 + 'px',
+                                                                    width: (clientWidth - 4) / 3,
+                                                                    height: (clientWidth - 4) / 3,
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                }}></div>
+                                                            );
+                                                            break;
+                                                        case 3:
+                                                            return (
+                                                                <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
+                                                                    top: (clientWidth - 4) / 3 + 2 + 'px',
+                                                                    right: 0 + 'px',
+                                                                    width: (clientWidth - 4) / 3,
+                                                                    height: (clientWidth - 4) / 3,
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                }}></div>
+                                                            );
+                                                            break;
+                                                        case 4:
+                                                            return (
+                                                                <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
+                                                                    top: (clientWidth - 4) / 3 * 2 + 4 + 'px',
+                                                                    left: 0 + 'px',
+                                                                    width: (clientWidth - 4) / 3,
+                                                                    height: (clientWidth - 4) / 3,
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                }}></div>
+                                                            );
+                                                            break;
+                                                        case 5:
+                                                            return (
+                                                                <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
+                                                                    top: (clientWidth - 4) / 3 * 2 + 4 + 'px',
+                                                                    left: (clientWidth - 4) / 3 + 2 + 'px',
+                                                                    width: (clientWidth - 4) / 3,
+                                                                    height: (clientWidth - 4) / 3,
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                }}></div>
+                                                            );
+                                                            break;
+                                                        case 6:
+                                                            return (
+                                                                <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
+                                                                    top: (clientWidth - 4) / 3 * 2 + 4 + 'px',
+                                                                    right: 0 + 'px',
+                                                                    width: (clientWidth - 4) / 3,
+                                                                    height: (clientWidth - 4) / 3,
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                }}></div>
+                                                            );
+                                                            break;
+                                                        default:
+                                                            return '';
+                                                    }
+
+                                                    break;
+                                                case 8:
+                                                    switch (index) {
+                                                        case 0:
+                                                            return (
+                                                                <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
+                                                                    top: 0 + 'px',
+                                                                    left: 0 + 'px',
+                                                                    width: (clientWidth - 4) / 3 * 2 + 2,
+                                                                    height: (clientWidth - 4) / 3,
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                }}></div>
+                                                            );
+                                                            break;
+                                                        case 1:
+                                                            return (
+                                                                <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
+                                                                    top: 0 + 'px',
+                                                                    right: 0 + 'px',
+                                                                    width: (clientWidth - 4) / 3,
+                                                                    height: (clientWidth - 4) / 3,
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                }}></div>
+                                                            );
+                                                            break;
+                                                        case 2:
+                                                            return (
+                                                                <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
+                                                                    top: (clientWidth - 4) / 3 + 2 + 'px',
+                                                                    left: 0 + 'px',
+                                                                    width: (clientWidth - 4) / 3,
+                                                                    height: (clientWidth - 4) / 3,
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                }}></div>
+                                                            );
+                                                            break;
+                                                        case 3:
+                                                            return (
+                                                                <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
+                                                                    top: (clientWidth - 4) / 3 + 2 + 'px',
+                                                                    left: (clientWidth - 4) / 3 + 2 + 'px',
+                                                                    width: (clientWidth - 4) / 3,
+                                                                    height: (clientWidth - 4) / 3,
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                }}></div>
+                                                            );
+                                                            break;
+                                                        case 4:
+                                                            return (
+                                                                <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
+                                                                    top: (clientWidth - 4) / 3 + 2 + 'px',
+                                                                    right: 0 + 'px',
+                                                                    width: (clientWidth - 4) / 3,
+                                                                    height: (clientWidth - 4) / 3,
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                }}></div>
+                                                            );
+                                                            break;
+                                                        case 5:
+                                                            return (
+                                                                <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
+                                                                    top: (clientWidth - 4) / 3 * 2 + 4 + 'px',
+                                                                    left: 0 + 'px',
+                                                                    width: (clientWidth - 4) / 3,
+                                                                    height: (clientWidth - 4) / 3,
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                }}></div>
+                                                            );
+                                                            break;
+                                                        case 6:
+                                                            return (
+                                                                <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
+                                                                    top: (clientWidth - 4) / 3 * 2 + 4 + 'px',
+                                                                    left: (clientWidth - 4) / 3 + 2 + 'px',
+                                                                    width: (clientWidth - 4) / 3,
+                                                                    height: (clientWidth - 4) / 3,
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                }}></div>
+                                                            );
+                                                            break;
+                                                        case 7:
+                                                            return (
+                                                                <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
+                                                                    top: (clientWidth - 4) / 3 * 2 + 4 + 'px',
+                                                                    right: 0 + 'px',
+                                                                    width: (clientWidth - 4) / 3,
+                                                                    height: (clientWidth - 4) / 3,
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                }}></div>
+                                                            );
+                                                            break;
+                                                        default:
+                                                            return '';
+                                                    }
+
+                                                    break;
+                                                case 9:
+                                                    switch (index) {
+                                                        case 0:
+                                                            return (
+                                                                <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
+                                                                    top: 0 + 'px',
+                                                                    left: 0 + 'px',
+                                                                    width: (clientWidth - 4) / 3,
+                                                                    height: (clientWidth - 4) / 3,
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                }}></div>
+                                                            );
+                                                            break;
+                                                        case 1:
+                                                            return (
+                                                                <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
+                                                                    top: 0 + 'px',
+                                                                    left: (clientWidth - 4) / 3 + 2 + 'px',
+                                                                    width: (clientWidth - 4) / 3,
+                                                                    height: (clientWidth - 4) / 3,
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                }}></div>
+                                                            );
+                                                            break;
+                                                        case 2:
+                                                            return (
+                                                                <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
+                                                                    top: 0 + 'px',
+                                                                    right: 0 + 'px',
+                                                                    width: (clientWidth - 4) / 3,
+                                                                    height: (clientWidth - 4) / 3,
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                }}></div>
+                                                            );
+                                                            break;
+                                                        case 3:
+                                                            return (
+                                                                <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
+                                                                    top: (clientWidth - 4) / 3 + 2 + 'px',
+                                                                    left: 0 + 'px',
+                                                                    width: (clientWidth - 4) / 3,
+                                                                    height: (clientWidth - 4) / 3,
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                }}></div>
+                                                            );
+                                                            break;
+                                                        case 4:
+                                                            return (
+                                                                <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
+                                                                    top: (clientWidth - 4) / 3 + 2 + 'px',
+                                                                    left: (clientWidth - 4) / 3 + 2 + 'px',
+                                                                    width: (clientWidth - 4) / 3,
+                                                                    height: (clientWidth - 4) / 3,
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                }}></div>
+                                                            );
+                                                            break;
+                                                        case 5:
+                                                            return (
+                                                                <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
+                                                                    top: (clientWidth - 4) / 3 + 2 + 'px',
+                                                                    right: 0 + 'px',
+                                                                    width: (clientWidth - 4) / 3,
+                                                                    height: (clientWidth - 4) / 3,
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                }}></div>
+                                                            );
+                                                            break;
+                                                        case 6:
+                                                            return (
+                                                                <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
+                                                                    top: (clientWidth - 4) / 3 * 2 + 4 + 'px',
+                                                                    left: 0 + 'px',
+                                                                    width: (clientWidth - 4) / 3,
+                                                                    height: (clientWidth - 4) / 3,
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                }}></div>
+                                                            );
+                                                            break;
+                                                        case 7:
+                                                            return (
+                                                                <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
+                                                                    top: (clientWidth - 4) / 3 * 2 + 4 + 'px',
+                                                                    left: (clientWidth - 4) / 3 + 2 + 'px',
+                                                                    width: (clientWidth - 4) / 3,
+                                                                    height: (clientWidth - 4) / 3,
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                }}></div>
+                                                            );
+                                                            break;
+                                                        case 8:
+                                                            return (
+                                                                <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
+                                                                    top: (clientWidth - 4) / 3 * 2 + 4 + 'px',
+                                                                    right: 0 + 'px',
+                                                                    width: (clientWidth - 4) / 3,
+                                                                    height: (clientWidth - 4) / 3,
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                }}></div>
+                                                            );
+                                                            break;
+                                                        default:
+                                                            return '';
+                                                    }
+
+                                                    break;
+                                                default:
+                                                    return '';
+                                            }
+                                        })
+                                        :
+                                        null
+                                }
+                            </div>
                             <div className={style.footer}>
                                 <Link to={"/topic/detail/" + this.state.topic.topicId} className={style.content}>
                                     <div className={classNames(style.footerText, baseStyle.bottomLine)}>

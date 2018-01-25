@@ -130,7 +130,7 @@ class Index extends Component {
             guessSwiper.destroy();
         }
 
-        if (window.addEventListener) {
+        if (window.removeEventListener) {
             window.removeEventListener('scroll', this.handleScroll);
         } else {
             window.detachEvent('onscroll', this.handleScroll);
