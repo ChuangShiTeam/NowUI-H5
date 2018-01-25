@@ -10,7 +10,6 @@ import http from '../../common/http';
 
 import style from './Info.scss';
 import baseStyle from '../../css/Base.scss';
-import storage from "../../common/storage";
 import style2 from './Index.scss';
 import constant from "../../common/constant";
 
@@ -49,7 +48,6 @@ class Info extends Component {
     }
 
     handleLoad() {
-        this.state.forumId = this.props.params.forumId;
         let forumId = this.props.params.forumId;
         console.log('开始加载数据... ');
     //  开始查询后台数据
