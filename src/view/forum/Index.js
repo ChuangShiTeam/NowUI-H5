@@ -288,13 +288,15 @@ class Index extends Component {
                                         this.state.forumRecommendList.map((forum, index) => {
                                             return (
                                                 <div className={classNames(style.interestContentwrapperCard, 'swiper-slide')} key={forum.forumId}>
-                                                    <div className={style.interestContentwrapperCardAvatar}>
+                                                    <Link to={'/forum/homepage/' + forum.forumId} key={forum.forumId} >
+                                                        <div className={style.interestContentwrapperCardAvatar}>
                                                         <img className={style.interestContentwrapperCardAvatar}
                                                              src={constant.image_host + forum.forumMedia.filePath}
                                                              alt=''/>
-                                                    </div>
-                                                    <div className={style.interestContentwrapperCardName}>{forum.forumName}</div>
-                                                    <div className={style.interestContentwrapperCardSummary}>{forum.forumDescription}</div>
+                                                        </div>
+                                                        <div className={style.interestContentwrapperCardName}>{forum.forumName}</div>
+                                                        <div className={style.interestContentwrapperCardSummary}>{forum.forumDescription}</div>
+                                                    </Link>
                                                     <div className={style.interestContentwrapperCardImage}>
                                                         <img className={style.interestContentwrapperCardImageItem}
                                                              src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/44/h/44'

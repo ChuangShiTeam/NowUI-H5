@@ -25,9 +25,7 @@ class Homepage extends Component {
             topicPageSize: 3,
             topicList: [],
             topicTotal: 0,
-            isInfiniteLoading: false,
-            elementHeights: []
-
+            isInfiniteLoading: false
         }
     }
 
@@ -35,8 +33,28 @@ class Homepage extends Component {
         util.setTitle('wawipet哇咿宠');
         util.hancleComponentDidMount();
 
-        this.handleLoad();
-        this.handleTopicList();
+        this.handleLoad(this.props.params.forumId);
+        this.handleTopicList(this.props.params.forumId);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (this.props.route.path === nextProps.route.path) {
+            if (this.props.params.forumId !== nextProps.params.forumId) {
+                this.setState({
+                    isLoad: false,
+                    forum: {},
+                    forumId: '',
+                    topicPageIndex: 1,
+                    topicPageSize: 3,
+                    topicList: [],
+                    topicTotal: 0,
+                    isInfiniteLoading: false
+                });
+                this.handleLoad(nextProps.params.forumId);
+                this.handleTopicList(nextProps.params.forumId);
+            }
+        }
+
     }
 
     componentDidUpdate() {
@@ -48,8 +66,7 @@ class Homepage extends Component {
     }
 
 
-    handleLoad() {
-        let forumId = this.props.params.forumId;
+    handleLoad(forumId) {
         if (forumId) {
             http.request({
                 url: '/forum/mobile/v1/home',
@@ -70,8 +87,7 @@ class Homepage extends Component {
     }
 
 
-    handleTopicList() {
-        let forumId = this.props.params.forumId;
+    handleTopicList(forumId) {
         if (forumId) {
             http.request({
                 url: '/forum/mobile/v1/home/topic/list',
@@ -91,7 +107,7 @@ class Homepage extends Component {
                     this.setState({
                         isInfiniteLoading: false
                     })
-                }
+                }.bind(this)
             });
         }
     }
