@@ -131,7 +131,7 @@ class Homepage extends Component {
 
                 {
                     this.state.topicList.length > 0 ?
-                        <Infinite elementHeight={document.documentElement.clientHeight * 0.8}
+                        <Infinite elementHeight={document.documentElement.clientHeight * 0.5}
                                   containerHeight={document.documentElement.clientHeight}
                                   infiniteLoadBeginEdgeOffset={200}
                                   onInfiniteLoad={this.handleInfiniteLoad.bind(this)}

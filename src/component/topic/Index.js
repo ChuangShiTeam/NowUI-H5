@@ -155,7 +155,7 @@ class Index extends Component {
                                             this.state.topic.topicForumList.map(
                                                 (forum, index) =>
                                                     <span className={style.footerInfoTag} key={index}>
-                                                        <Link to={'/forum/homepage/' +  forum.forumId} key={forum.forumId} >
+                                                        <Link to={'/forum/homepage/' + forum.forumId} key={forum.forumId} >
                                                         {forum.forumName}
                                                         </Link>
                                                     </span>
