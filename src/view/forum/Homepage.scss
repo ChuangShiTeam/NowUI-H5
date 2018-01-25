@@ -3,6 +3,7 @@
 	margin-left: auto;
 	margin-right: auto;
 	background: #ffffff;
+	padding-top: 46px;
 }
 
 .header {
@@ -86,15 +87,15 @@
 	height:130px ;
 	width: 100%;
 }
-.homePageHeaderIcon{
+.homePageHeaderIco{
 	margin: 0 auto;
 	position: absolute;
-	top: 87px;
-	left: 159px;
+	top: 133px;
+	left: calc(50% - 30px);
 	width: 58px;
 	height: 58px;
 	border: 1px solid #FFFFFF;
-	z-index: 9999;
+	z-index: 1;
 	background: url("../../image/avatar-demo.png") no-repeat;
 	background-size:100% 100%;
 }
@@ -123,6 +124,11 @@
 	margin-left: 20px;
 	margin-top: 17px;
 }
+.homePageHeaderMessages{
+	position: absolute;
+	margin-top: -10px;
+
+}
 .homePageHeaderMessageLeft img{
 	height: 2rem;
 	width: 2rem;
@@ -133,4 +139,11 @@
 	margin-top: 15px;
 	float: left;
 	margin-left: 10px;
+}
+.nullDiv{
+	width: 100%;
+	height: 8px;
+	background: rgba(222, 250, 253, 0.40);
+	margin-top: 48px;
+	z-index: 99;
 }

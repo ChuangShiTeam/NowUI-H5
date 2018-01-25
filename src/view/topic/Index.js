@@ -12,6 +12,7 @@ import http from '../../common/http';
 import style from './Index.scss';
 import baseStyle from '../../css/Base.scss';
 
+
 class Index extends Component {
     constructor(props) {
         super(props);
@@ -20,7 +21,8 @@ class Index extends Component {
             isLoad: false,
             topicPageIndex: 1,
             topicPageSize: 2,
-            userId: '',
+            topicTotal: 0,
+            topicList: [],
             isInfiniteLoading: false,
             elementHeights: []
         }
@@ -49,6 +51,10 @@ class Index extends Component {
                 pageSize: this.state.topicPageSize
             },
             success: function (data) {
+                let topicList = this.state.topicList;
+                this.setState({
+                    topicTotal: data.total,
+                    topicList: topicList.concat(data.list)
                 this.props.dispatch({
                     type: 'topicIndex',
                     data: {
@@ -82,13 +88,11 @@ class Index extends Component {
 
     render() {
         return (
-            <div className={classNames(style.page, baseStyle.tabbarPage)}
-                 style={{minHeight: document.documentElement.clientHeight}}>
+            <div className={classNames(style.page, baseStyle.tabbarPage)} style={{minHeight: document.documentElement.clientHeight}}>
                 <div className={style.header}>
                     <div className={style.headerContent}>
                         <div className={style.headerContentLeft}>
-                            <Link to={'/member/homepage/123456' + this.state.userId} key={this.state.userId}
-                                  className={style.headerContentLeft}>
+                            <Link to={'/member/homepage'} key={this.state.userId} className={style.headerContentLeft}>
                                 <img className={style.headerContentLeftUser}
                                      src={require('../../image/topic-user.png')}
                                      alt=''/>

@@ -37,8 +37,6 @@ class Detail extends Component {
         util.hancleComponentDidMount();
 
         this.handleLoad();
-
-
     }
 
     componentDidUpdate() {
@@ -273,6 +271,11 @@ class Detail extends Component {
                                 this.state.topic && this.state.topic.topicMediaList ?
                                     this.state.topic.topicForumList.map(function (forumList, index) {
                                         return (
+                                            <span key={forumList.forumId} className={style.footerInfoRightTag}>
+                                                <Link to={'/forum/homepage/' +  forumList.forumId} key={forumList.forumId} >
+                                                {forumList.forumName}
+                                                </Link>
+                                            </span>
                                             <span key={forumList.forumId}
                                                   className={style.footerInfoRightTag}>{forumList.forumName}</span>
                                         )

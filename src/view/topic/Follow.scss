@@ -63,11 +63,12 @@
   text-align: center;
   margin-right: 12px;
 }
-.listRightFont{
+.listRightFollow{
   font-family:PingFangSC-Regular ;
   font-size: 12px;
   transform: scale(0.83);
   padding-right: 2px;
+  white-space: nowrap;
   color: #c18108;
   line-height: 13px;
   padding-left: 2px;
@@ -86,9 +87,11 @@
   border: 0.5px solid #9b9b9b ;
   margin-right: 12px;
 }
-.listRightFont1{
+.listRightFollowActive{
   font-family:PingFangSC-Regular ;
   font-size: 12px;
   transform: scale(0.83);
+  text-align: center;
+  line-height: 23px;
+  height: 23px;
 }
-
