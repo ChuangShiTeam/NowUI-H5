@@ -52,15 +52,11 @@ class Index extends Component {
             },
             success: function (data) {
                 let topicList = this.state.topicList;
-                this.setState({
-                    topicTotal: data.total,
-                    topicList: topicList.concat(data.list)
-                });
                 this.props.dispatch({
                     type: 'topicIndex',
                     data: {
                         topicTotal: data.total,
-                        topicList: data.list
+                        topicList: topicList.concat(data.list)
                     }
                 });
             }.bind(this),
@@ -73,7 +69,6 @@ class Index extends Component {
     }
 
     handleInfiniteLoad() {
-        return;
         let {topicPageIndex, topicPageSize, topicTotal} = this.state;
         if (topicPageIndex * topicPageSize < topicTotal) {
             this.setState({
@@ -122,14 +117,14 @@ class Index extends Component {
                     this.props.topicIndex.topicList.length > 0 ?
                         <Infinite elementHeight={document.documentElement.clientHeight * 0.8}
                                   containerHeight={document.documentElement.clientHeight}
-                                  infiniteLoadBeginEdgeOffset={200}
+                                  infiniteLoadBeginEdgeOffset={300}
                                   onInfiniteLoad={this.handleInfiniteLoad.bind(this)}
                                   loadingSpinnerDelegate={
                                       this.state.isInfiniteLoading ?
-                                          <div className="infinite-list-item">Loading...</div>
+                                          <div className={style.infiniteLoading}>Loading...</div>
                                           :
                                           this.state.topicPageIndex * this.state.topicPageSize >= this.state.topicTotal ?
-                                              <div className="infinite-list-item">没有更多了</div>
+                                              <div className={style.infiniteMore}>没有更多了</div>
                                               :
                                               null
                                   }

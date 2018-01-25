@@ -79,9 +79,9 @@
 	-js-display: flex;
 	display: flex;
 	flex-direction: row;
-	flex-wrap: wrap;
+	flex-wrap: nowrap;
 	justify-content: center;
-	align-items: center;
+	align-items: flex-start;
 	margin-top: 10px;
 }
 
@@ -137,6 +137,7 @@
 	border-radius: 9px;
 	margin-top: -2px;
 	margin-left: 5px;
+	margin-bottom: 8px;
 	padding: 5px;
 	white-space: nowrap;
 	display: inline-block;
@@ -153,7 +154,7 @@
 }
 
 .footerCountLeft {
-	width: 45px;
+	width: 40px;
 	-js-display: flex;
 	display: flex;
 	justify-content: flex-start;

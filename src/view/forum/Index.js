@@ -105,15 +105,10 @@ class Index extends Component {
                         forumRecommendList: data
                     }, function () {
                         interestSwiper = new window.Swiper('.' + style.interestContent, {
-                            slidesPerView: 3,
-                            loop:true,
-                            tdFlow: {
-                                rotate : 0,
-                                stretch :-30,
-                                depth: 200,
-                                modifier : 1,
-                                shadows : false
-                            }
+                            slidesPerView: 'auto',
+                            freeMode: true,
+                            freeModeFluid: true,
+                            spaceBetween: 0
                         });
                     });
                 }

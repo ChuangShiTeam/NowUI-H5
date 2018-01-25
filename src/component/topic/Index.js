@@ -168,7 +168,17 @@ class Index extends Component {
                                     </Link>
                                     <p className={style.headerCenterTime}>{moment(this.state.topic.systemCreateTime).fromNow()}</p>
                                 </div>
-                                <div className={style.headerRight}></div>
+                                <div className={style.headerRight}>
+                                    {
+                                        true ?
+                                            true ?
+                                                <div className={style.headerRightNotFollow}><span className={style.headerRightFollowAdd}>+</span> 关注</div>
+                                                :
+                                                <div className={style.headerRightFollow}>已关注</div>
+                                            :
+                                            <span className={style.headerRightDelete}>删除</span>
+                                    }
+                                </div>
                             </div>
                             <div id={this.props.topic.topicId} className={classNames(style.image)} style={{height: divHeight}}>
                                 {

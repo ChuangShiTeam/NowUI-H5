@@ -76,7 +76,7 @@ class Detail extends Component {
                             });
                         });
                     }, 0);
-                }
+                }.bind(this)
             });
         }
     }
@@ -133,7 +133,7 @@ class Detail extends Component {
 
     }
 
-    handleClickBookmarkTopic() {
+    handleBookmarkTopic() {
         http.request({
             url: this.state.topic.topicUserIsBookmark ? '/topic/user/unbookmark/mobile/v1/save' : '/topic/user/bookmark/mobile/v1/save',
             data: {
@@ -160,6 +160,10 @@ class Detail extends Component {
 
         })
 
+    }
+
+    handleCommentTopic() {
+        this.customFocusInst.focus();
     }
 
     handleSubmit() {
@@ -271,7 +275,7 @@ class Detail extends Component {
                                 this.state.topic && this.state.topic.topicMediaList ?
                                     this.state.topic.topicForumList.map(function (forumList, index) {
                                         return (
-                                            <span key={forumList.forumId} className={style.footerInfoRightTag}>
+                                            <span key={index} className={style.footerInfoRightTag}>
                                                 <Link to={'/forum/homepage/' +  forumList.forumId} key={forumList.forumId} >
                                                 {forumList.forumName}
                                                 </Link>
@@ -314,15 +318,15 @@ class Detail extends Component {
                         </Link>
                         <div className={style.footerCountRight}>
                             <img className={style.footerCountRightBookmarkIcon}
-                                 onClick={this.handleClickBookmarkTopic.bind(this)}
+                                 onClick={this.handleBookmarkTopic.bind(this)}
                                  src={this.state.topic.topicUserIsBookmark ? require('../../image/bookmark-acitve.png') : require('../../image/bookmark.png')}
                                  alt=''/>
-                            <span
-                                className={style.footerCountRightBookmarkNumber}>{this.state.topic.topicCountBookmark}</span>
-                            <img className={style.footerCountRightCommentIcon} src={require('../../image/comment.png')}
+                            <span className={style.footerCountRightBookmarkNumber}>{this.state.topic.topicCountBookmark}</span>
+                            <img className={style.footerCountRightCommentIcon}
+                                 src={require('../../image/comment.png')}
+                                 onClick={this.handleCommentTopic.bind(this)}
                                  alt=''/>
-                            <span
-                                className={style.footerCountRightCommentNumber}>{this.state.topic.topicCountComment} </span>
+                            <span className={style.footerCountRightCommentNumber}>{this.state.topic.topicCountComment} </span>
                         </div>
                     </div>
                 </div>
@@ -401,7 +405,12 @@ class Detail extends Component {
                                     message: '您也要说点什么？'
                                 }],
                                 initialValue: ''
-                            })} type="text" placeholder="我也要说点什么…"/>
+                            })} type="text"
+                                ref={el => this.customFocusInst = el}
+                                placeholder="我也要说点什么…"
+                            >
+
+                            </input>
                         </div>
                         <div className={style.feedbackContentRight}>
                             <div className={style.feedbackContentRightSend} onClick={this.handleSubmit.bind(this)}>提交
