@@ -35,7 +35,7 @@ class Category extends Component {
                     categoryList: [
                         {
                             listItemLeftIcon:"http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/1000/h/1000/q/80",
-                            listItemLeftUrl:"#",
+                            listItemLeftUrl:"/pet/hotcat",
                             listItemCenterName:"猫类",
                         },{
                             listItemLeftIcon:"http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/1000/h/1000/q/80",
