@@ -55,6 +55,7 @@ class Index extends Component {
                 this.setState({
                     topicTotal: data.total,
                     topicList: topicList.concat(data.list)
+                });
                 this.props.dispatch({
                     type: 'topicIndex',
                     data: {

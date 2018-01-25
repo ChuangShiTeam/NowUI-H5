@@ -276,8 +276,6 @@ class Detail extends Component {
                                                 {forumList.forumName}
                                                 </Link>
                                             </span>
-                                            <span key={forumList.forumId}
-                                                  className={style.footerInfoRightTag}>{forumList.forumName}</span>
                                         )
                                     })
                                     :
