@@ -12,7 +12,7 @@ class Hotkind extends Component {
             isLoad: false
         }
     }
-    
+
     componentDidMount() {
         util.setTitle('wawipet哇咿宠');
         util.hancleComponentDidMount();

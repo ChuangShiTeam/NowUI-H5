@@ -23,7 +23,7 @@ class Index extends Component {
 
     render() {
         return (
-            <div className={style.List}>
+            <div className={style.List} style={this.props.style}>
                 <div className={style.ListLeft}>
                     <Link to={'/forum/homepage/' + this.props.forum.forumId}>
                         <img className={style.ListLeftIcon}
@@ -84,7 +84,8 @@ class Index extends Component {
 }
 
 Index.propTypes = {
-    forum: PropTypes.object.isRequired
+    forum: PropTypes.object.isRequired,
+    style: PropTypes.object
 };
 
 export default Index;

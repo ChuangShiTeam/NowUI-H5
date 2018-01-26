@@ -12,7 +12,7 @@ class Index extends Component {
         }
     }
 
-    componentDidMount(){
+    componentDidMount() {
         util.setTitle('wawipet哇咿宠');
         util.hancleComponentDidMount();
     }
@@ -26,11 +26,11 @@ class Index extends Component {
 
     render() {
         return (
-                <div className={style.Search}>
-                    <input placeholder=" # 搜索话题、商品" type="text" name="search"
-                           className={style.SearchText}/>
-                    <label className={style.SearchAction}> 搜 索 </label>
-                </div>
+            <div className={style.Search}>
+                <input placeholder=" # 搜索话题、商品" type="text" name="search"
+                       className={style.SearchText}/>
+                <label className={style.SearchAction}> 搜 索 </label>
+            </div>
         );
     }
 }
