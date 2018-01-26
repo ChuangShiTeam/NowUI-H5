@@ -2,8 +2,11 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {createForm} from "rc-form";
 import {Link} from 'react-router';
+
 import util from '../../common/util';
 import http from '../../common/http';
+import constant from '../../common/constant';
+
 import style from './Category.scss';
 import baseStyle from '../../css/Base.scss';
 
@@ -51,12 +54,17 @@ class Category extends Component {
                         {
                             categorys.map((categoryList, index) =>
                                 <Link key={index} to={{
-                                    pathname: "pet/Hotcat/"+categoryList.petCategoryId
+                                    pathname: "pet/Hotcat/" + categoryList.petCategoryId
                                 }}>
                                     <li className={baseStyle.bottomLine}>
 
                                         <div className={style.listItemLeftIcon}>
-                                            <img src={categoryList.petCategoryImage} alt=''/>
+                                            {
+                                                categoryList.petCategoryImage && categoryList.petCategoryImage.filePath ?
+                                                    <img src={constant.image_host + categoryList.petCategoryImage.filePath} alt=''/>
+                                                    :
+                                                    null
+                                            }
                                         </div>
                                         <div className={style.listItemCenterName}>
 
