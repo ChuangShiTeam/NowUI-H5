@@ -26,9 +26,9 @@ export default {
             }, 'pet.hotkind');
         }
     }, {
-        path: '/pet/hotcat',
+        path: '/pet/hotcat/:categoryId',
         onEnter: util.handleEnter,
-        getComponent(location, cb) {
+        getComponent(location, cb){
             require.ensure([], (require) => {
                 cb(null, require('../view/pet/Hotcat').default);
             }, 'pet.hotcat');

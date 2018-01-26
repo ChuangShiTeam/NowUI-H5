@@ -147,7 +147,7 @@ export default {
         getComponent(location, cb) {
             require.ensure([], (require) => {
                 cb(null, require('../view/my/OthersHomepage').default);
-            }, 'my.othershomepage');
+            }, 'my.OthersHomepage');
         }
     },{
         path: '/my/info',
