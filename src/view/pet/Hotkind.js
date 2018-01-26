@@ -31,7 +31,7 @@ class Hotkind extends Component {
             petCategoryGroups: []
         }
     }
-    
+
     componentDidMount() {
         util.setTitle('wawipet哇咿宠');
         util.hancleComponentDidMount();

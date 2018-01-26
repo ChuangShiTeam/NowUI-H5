@@ -244,6 +244,7 @@ class Index extends Component {
                             this.props.forumIndex.forumJoinList.map(function (forum, index) {
                                 return (
                                     <ForumIndex key={index} forum={forum} forumIsTop={index !== 0} handleTop={this.handleTop.bind(this)}/>
+                                    <ForumIndex key={index} forum={forum} style={index == 0 ? {} : {marginTop: '10px'}}/>
                                 )
                             }.bind(this))
                         }
@@ -317,7 +318,9 @@ class Index extends Component {
                         </div>
                     </div>
                     {
-                        this.props.forumIndex.hotTopicList.map((topic, index) => <TopicIndex topic={topic} key={index}/>)
+                        this.props.forumIndex.hotTopicList.map((topic, index) => (
+                            <TopicIndex topic={topic} key={index}/>
+                        ))
                     }
                 </div>
             </div>

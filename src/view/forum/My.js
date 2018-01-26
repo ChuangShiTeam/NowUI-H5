@@ -47,7 +47,7 @@ class List extends Component {
                     {
                         this.props.forumMy.forumList.map(function (forum, index) {
                             return (
-                                <ForumIndex key={index} forum={forum}/>
+                                <ForumIndex key={index} forum={forum} style={index == 0 ? {} : {marginTop: '10px'}}/>
                             )
                         })
                     }

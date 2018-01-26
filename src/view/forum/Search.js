@@ -3,6 +3,8 @@ import {connect} from 'react-redux';
 import {createForm} from "rc-form";
 import Notification from 'rc-notification';
 
+import ForumIndex from '../../component/forum/Index';
+
 import util from '../../common/util';
 
 import style from './Search.scss';
@@ -15,7 +17,8 @@ class Search extends Component {
         super(props);
 
         this.state = {
-            isLoad: false
+            isLoad: false,
+            forumList: []
         }
     }
 
@@ -93,6 +96,13 @@ class Search extends Component {
                                  alt=''/>
                         </div>
                     </div>
+                </div>
+                <div className={style.content} style={{minHeight: document.documentElement.clientHeight - 46 - 12 - 8}}>
+                    {
+                        this.state.forumList.map((forum, index) => (
+                            <ForumIndex key={index} forum={forum} style={index == 0 ? {} : {marginTop: '10px'}}/>
+                        ))
+                    }
                 </div>
             </div>
         );
