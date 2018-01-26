@@ -1,12 +1,15 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import Infinite from 'react-infinite';
 
+import TopicIndex from '../../component/topic/Index';
 import baseStyle from '../../css/Base.scss';
 
 
 import util from '../../common/util';
 
 import style from './Publish.scss';
+import http from "../../common/http";
 
 
 class Publish extends Component {
@@ -14,13 +17,20 @@ class Publish extends Component {
         super(props);
 
         this.state = {
-            isLoad: false
+            isLoad: false,
+            topicPageIndex: 1,
+            topicPageSize: 2,
+            topicTotal: 0,
+            topicList: [],
+            isInfiniteLoading: false,
         }
     }
 
     componentDidMount() {
         util.setTitle('wawipet哇咿宠');
         util.hancleComponentDidMount();
+
+        this.handleLoad();
     }
 
     componentDidUpdate() {
@@ -30,6 +40,46 @@ class Publish extends Component {
     componentWillUnmount() {
 
     }
+
+    handleLoad() {
+        http.request({
+            url: '/topic/mobile/v1/self/home/topic',
+            data: {
+                pageIndex: this.state.topicPageIndex,
+                pageSize: this.state.topicPageSize
+            },
+            success: function (data) {
+                let topicList = this.state.topicList;
+                this.setState({
+                    topicTotal: data.total,
+                    topicList: topicList.concat(data.list)
+                });
+
+            }.bind(this),
+            complete: function () {
+                this.setState({
+                    isInfiniteLoading: false
+                })
+            }.bind(this)
+        });
+    }
+
+    handleInfiniteLoad() {
+        let {topicPageIndex, topicPageSize, topicTotal} = this.state;
+        if (topicPageIndex * topicPageSize < topicTotal) {
+            this.setState({
+                isInfiniteLoading: true,
+                topicPageIndex: topicPageIndex + 1
+            }, function () {
+                setTimeout(function() {
+                    this.handleLoad();
+                }.bind(this), 800)
+            }.bind(this))
+        }
+    };
+
+
+
 
     render() {
         return (
@@ -65,6 +115,30 @@ class Publish extends Component {
                  <span className={style.myPetLeft}>我的宠物</span>
                  <span className={style.myPetRight}>中华田园猫</span>
              </div>
+                {
+                    this.state.topicList.length > 0 ?
+                        <Infinite elementHeight={document.documentElement.clientHeight * 0.8}
+                                  containerHeight={document.documentElement.clientHeight}
+                                  infiniteLoadBeginEdgeOffset={200}
+                                  onInfiniteLoad={this.handleInfiniteLoad.bind(this)}
+                                  loadingSpinnerDelegate={
+                                      this.state.isInfiniteLoading ?
+                                          <div className="infinite-list-item">Loading...</div>
+                                          :
+                                          this.state.topicPageIndex * this.state.topicPageSize >= this.state.topicTotal  ?
+                                              <div className="infinite-list-item">没有更多了</div>
+                                              :
+                                              null
+                                  }
+                                  isInfiniteLoading={this.state.isInfiniteLoading}
+                        >
+                            {
+                                this.state.topicList.map((topic, index) => <TopicIndex topic={topic} key={index}/>)
+                            }
+                        </Infinite>
+                        :
+                        null
+                }
            
             </div>
         );
