@@ -3,6 +3,9 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router';
 
 import util from '../../common/util';
+import http from '../../common/http';
+import constant from '../../common/constant';
+import storage from '../../common/storage';
 
 import style from './Index.scss';
 import baseStyle from '../../css/Base.scss';
@@ -19,20 +22,52 @@ class Index extends Component {
 
     componentDidMount() {
         util.setTitle('wawipet哇咿宠');
-        
+        if (!this.props.myIndex.userNickName || !this.props.myIndex.userAvatar) {
+            http.request({
+                url: '/wawi/mobile/v1/my/index',
+                data: {},
+                success: function (data) {
+                    this.props.dispatch({
+                        type: 'myIndex',
+                        data: {
+                            userAvatar: data.userAvatar,
+                            userNickName: data.userNickName,
+                            memberBackground: data.memberBackground
+                        }
+                    });
+                }.bind(this),
+                complete: function () {
+
+                }
+            });
+        }
     }
 
     componentWillUnmount() {
 
     }
+
+    handleLogout() {
+        storage.setToken();
+        this.props.history.push({
+            pathname: '/login/index',
+            query: {}
+        });
+    }
+
     render() {
         return (
             <div className={baseStyle.page} style={{minHeight: document.documentElement.clientHeight}}>
                     <div className={style.header}>
                         <div className={style.headerLeft}>
                             <div className={style.headerImg}>
-                                <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/56/h/56" alt=""/>
-                                <div>大木木_Lin</div>
+                                {
+                                    this.props.myIndex.userAvatar ?
+                                        <img src={constant.image_host + this.props.myIndex.userAvatar} alt=""/>
+                                        :
+                                        <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/56/h/56" alt=""/>
+                                }
+                                <div>{this.props.myIndex.userNickName}</div>
                             </div>
                             <div className={style.headerRight}>
                                 <div className={style.rightLeft}>个人主页</div>
@@ -108,7 +143,7 @@ class Index extends Component {
                         </div>
                     </div>
                     <div className={style.getOut}>
-                        <div>退出登录</div>
+                        <div onClick={this.handleLogout.bind(this)}>退出登录</div>
                     </div>
             </div>
         );
@@ -117,4 +152,6 @@ class Index extends Component {
 
 Index.propTypes = {};
 
-export default connect(() => ({}))(Index);
+export default connect((state) => ({
+    myIndex: state.myIndex
+}))(Index);

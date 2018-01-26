@@ -48,9 +48,9 @@ function request(config) {
                 if (config.error) {
                     config.error();
                 }
-                notification.notice({
-                    content: '网络异常，请重试'
-                });
+                // notification.notice({
+                //     content: '网络异常，请重试'
+                // });
                 
                 console.log('接口异常信息：', response.message);
             }
@@ -59,9 +59,9 @@ function request(config) {
             if (config.error) {
                 config.error();
             } else {
-                notification.notice({
-                    content: '网络异常，请重试'
-                });
+                // notification.notice({
+                //     content: '网络异常，请重试'
+                // });
             }
         },
         complete: function () {

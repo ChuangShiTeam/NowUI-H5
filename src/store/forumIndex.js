@@ -1,4 +1,13 @@
 const initialState = {
+    forumJoinPageIndex: 1,
+    forumJoinPageSize: 3,
+    forumJoinTotal: 0,
+    forumJoinList: [],
+    forumRecommendList: [],
+    hotTopicPageIndex: 1,
+    hotTopicPageSize: 2,
+    hotTopicTotal: 0,
+    hotTopicList: []
 }
 
 function forumIndex(state = initialState, action) {

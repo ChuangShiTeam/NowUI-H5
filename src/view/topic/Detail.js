@@ -115,9 +115,9 @@ class Detail extends Component {
                     let topic = this.state.topic;
                     topic.topicUserIsLike = !topic.topicUserIsLike;
                     if (topic.topicUserIsLike) {
-                        topic.topicCountLike = topic.topicCountLike + 1;
+                        topic.topicCountLike += 1;
                     } else {
-                        topic.topicCountLike = topic.topicCountLike - 1;
+                        topic.topicCountLike -= 1;
                     }
 
                     this.setState({
@@ -144,9 +144,9 @@ class Detail extends Component {
                     let topic = this.state.topic;
                     topic.topicUserIsBookmark = !topic.topicUserIsBookmark;
                     if (topic.topicUserIsBookmark) {
-                        topic.topicCountBookmark = topic.topicCountBookmark + 1;
+                        topic.topicCountBookmark += 1;
                     } else {
-                        topic.topicCountBookmark = topic.topicCountBookmark - 1;
+                        topic.topicCountBookmark -= 1;
                     }
 
                     this.setState({
