@@ -2,9 +2,9 @@ const initialState = {
     forumList: []
 }
 
-function forumList(state = initialState, action) {
+function forumMy(state = initialState, action) {
     switch (action.type) {
-        case 'forumList':
+        case 'forumMy':
             return Object.assign({}, state, action.data);
 
         default :
@@ -12,4 +12,4 @@ function forumList(state = initialState, action) {
     }
 }
 
-export default forumList;
+export default forumMy;

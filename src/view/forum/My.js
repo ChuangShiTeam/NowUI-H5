@@ -46,17 +46,13 @@ class List extends Component {
                     </div>
                 </div>
                 <div className={style.content} style={{minHeight: document.documentElement.clientHeight - 46 - 12 - 8}}>
-                    <ForumIndex forum={{
-                        "forumMediaType":"IMAGE",
-                        "forumModerator":"14463951d1d94d39a9216dbd818fc984",
-                        "forumDescription":"这里是魔都喵星人的聚集地，是爱\n猫人士的家园，欢迎加入",
-                        "forumName":"魔都喵星人",
-                        "forumMedia":{
-                            "filePath":"/upload/df2078d6c9eb46babb0df957127273ab/14463951d1d94d39a9216dbd818fc984/ce9eda05f0d34544b5096ffe1d3f1e1f.jpeg"
-                        },
-                        "forumTodayTopicCount":1,
-                        "forumId":"e52980fd5bf7456890dfe392ac1a5e76"
-                    }}/>
+                    {
+                        this.props.forumMy.forumList.map(function (forum, index) {
+                            return (
+                                <ForumIndex key={index} forum={forum}/>
+                            )
+                        })
+                    }
                 </div>
             </div>
         );
@@ -66,5 +62,5 @@ class List extends Component {
 List = createForm({})(List);
 
 export default connect((store) => ({
-    forumList: store.forumList
+    forumMy: store.forumMy
 }))(List);
