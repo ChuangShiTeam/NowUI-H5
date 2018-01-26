@@ -91,7 +91,7 @@ class Index extends Component {
 Index.propTypes = {
     forum: PropTypes.object.isRequired,
     forumIsTop: PropTypes.bool,
-    handleTop: PropTypes.func
+    handleTop: PropTypes.func,
     forum: PropTypes.object.isRequired,
     style: PropTypes.object
 };
