@@ -19,7 +19,7 @@ class Publish extends Component {
         this.state = {
             isLoad: false,
             topicPageIndex: 1,
-            topicPageSize: 2,
+            topicPageSize: 3,
             topicTotal: 0,
             topicList: [],
             isInfiniteLoading: false,
