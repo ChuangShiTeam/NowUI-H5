@@ -45,7 +45,7 @@ class List extends Component {
                         我加入的圈子
                     </div>
                 </div>
-                <div className={style.content} style={{minHeight: document.documentElement.clientHeight - 41}}>
+                <div className={style.content} style={{minHeight: document.documentElement.clientHeight - 46 - 12 - 8}}>
                     <ForumIndex forum={{
                         "forumMediaType":"IMAGE",
                         "forumModerator":"14463951d1d94d39a9216dbd818fc984",
