@@ -4,13 +4,16 @@ import {Link} from 'react-router';
 import classNames from 'classnames';
 import Notification from 'rc-notification';
 
+import ForumIndex from '../../component/forum/Index';
+import TopicIndex from '../../component/topic/Index';
+
 import util from '../../common/util';
 import http from '../../common/http';
 import storage from '../../common/storage';
 import constant from '../../common/constant';
-import TopicIndex from '../../component/topic/Index';
 
 import style from './Index.scss';
+import baseStyle from '../../css/Base.scss';
 
 let interestSwiper;
 let notification = null;
@@ -186,7 +189,7 @@ class Index extends Component {
 
     render() {
         return (
-            <div className={style.page} style={{minHeight: document.documentElement.clientHeight}}>
+            <div className={classNames(style.page, baseStyle.tabbarPage)} style={{minHeight: document.documentElement.clientHeight}}>
                 <div className={style.header}>
                     <div className={style.headerContent}>
                         <div className={style.headerContentLeft}>
@@ -223,61 +226,16 @@ class Index extends Component {
                         {
                             this.props.forumIndex.forumJoinList.map(function (forum, index) {
                                 return (
-                                    <Link to={'/forum/homepage/' + forum.forumId} key={forum.forumId} style={index === 0 ? {} : {marginTop: '12px'}}
-                                          className={style.joinContentList}>
-                                        <div className={style.joinContentListLeft}>
-                                            <img className={style.joinContentListLeftIcon}
-                                                 src={constant.image_host + forum.forumMedia.filePath}
-                                                 alt=''/>
-                                        </div>
-                                        <div className={style.joinContentListCenter}>
-                                            <div className={style.joinContentListCenterHeader}>
-                                                <div className={style.joinContentListCenterHeaderName}>
-                                                    {forum.forumName}
-                                                </div>
-                                                <div className={style.joinContentListCenterHeaderTop}>
-                                                    {forum.forumIsTop ? '置顶': ''}
-                                                </div>
-                                            </div>
-                                            <div className={style.joinContentListCenterSummary}>
-                                                {forum.forumDescription}
-                                            </div>
-                                            <div className={style.joinContentListCenterFooter}>
-                                                <div className={style.joinContentListCenterFooterLeft}>
-                                                    <img className={style.joinContentListCenterFooterLeftCrown}
-                                                         src={require('../../image/crown.png')}
-                                                         alt=''/>
-                                                    {
-                                                        forum.forumModerator.userAvatar ?
-                                                            <img className={style.joinContentListCenterFooterLeftAvatar}
-                                                                 src={constant.image_host + forum.forumModerator.userAvatar}
-                                                                 alt=''/>
-                                                            :
-                                                            <img className={style.joinContentListCenterFooterLeftAvatar}
-                                                                 src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/15/h/15"
-                                                                 alt=''/>
-
-                                                    }
-                                                </div>
-                                                <div className={style.joinContentListCenterFooterCenter}>
-                                                    {forum.forumModerator.userNickName}
-                                                </div>
-                                                <div className={style.joinContentListCenterFooterRight}>
-                                                    今日最新话题数
-                                                    <span className={style.joinContentListCenterFooterRightNumber}>{forum.forumTodayTopicCount}</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </Link>
+                                    <ForumIndex key={index} forum={forum}/>
                                 )
                             })
                         }
-                        <div className={style.joinContentMore}>
+                        <Link to='/forum/my' className={style.joinContentMore}>
                             查看更多
                             <img className={style.joinContentMoreIcon}
                                  src={require('../../image/forum-more.png')}
                                  alt=''/>
-                        </div>
+                        </Link>
                     </div>
                 </div>
                 <div className={style.interest}>
@@ -301,9 +259,9 @@ class Index extends Component {
                                                 <div className={classNames(style.interestContentwrapperCard, 'swiper-slide')} key={forum.forumId}>
                                                     <Link to={'/forum/homepage/' + forum.forumId} key={forum.forumId} >
                                                         <div className={style.interestContentwrapperCardAvatar}>
-                                                            <img className={style.interestContentwrapperCardAvatar}
-                                                                 src={constant.image_host + forum.forumMedia.filePath}
-                                                                 alt=''/>
+                                                        <img className={style.interestContentwrapperCardAvatar}
+                                                             src={constant.image_host + forum.forumMedia.filePath}
+                                                             alt=''/>
                                                         </div>
                                                         <div className={style.interestContentwrapperCardName}>{forum.forumName}</div>
                                                         <div className={style.interestContentwrapperCardSummary}>{forum.forumDescription}</div>
