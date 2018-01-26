@@ -230,12 +230,12 @@ class Index extends Component {
                                 )
                             })
                         }
-                        <div className={style.joinContentMore}>
+                        <Link to='/forum/my' className={style.joinContentMore}>
                             查看更多
                             <img className={style.joinContentMoreIcon}
                                  src={require('../../image/forum-more.png')}
                                  alt=''/>
-                        </div>
+                        </Link>
                     </div>
                 </div>
                 <div className={style.interest}>
