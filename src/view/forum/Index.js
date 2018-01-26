@@ -273,29 +273,31 @@ class Index extends Component {
                                     {
                                         this.props.forumIndex.forumRecommendList.map((forum, index) => {
                                             return (
-                                                <div className={classNames(style.interestContentwrapperCard, 'swiper-slide')} key={forum.forumId}>
-                                                    <Link to={'/forum/homepage/' + forum.forumId} key={forum.forumId} >
-                                                        <div className={style.interestContentwrapperCardAvatar}>
-                                                        <img className={style.interestContentwrapperCardAvatar}
-                                                             src={constant.image_host + forum.forumMedia.filePath}
-                                                             alt=''/>
+                                                <div key={index} className={classNames(style.interestContentwrapperItem, 'swiper-slide')}>
+                                                    <div className={style.interestContentwrapperCard}>
+                                                        <Link to={'/forum/homepage/' + forum.forumId} key={forum.forumId} >
+                                                            <div className={style.interestContentwrapperCardAvatar}>
+                                                                <img className={style.interestContentwrapperCardAvatar}
+                                                                     src={constant.image_host + forum.forumMedia.filePath}
+                                                                     alt=''/>
+                                                            </div>
+                                                            <div className={style.interestContentwrapperCardName}>{forum.forumName}</div>
+                                                            <div className={style.interestContentwrapperCardSummary}>{forum.forumDescription}</div>
+                                                        </Link>
+                                                        <div className={style.interestContentwrapperCardImage}>
+                                                            <img className={style.interestContentwrapperCardImageItem}
+                                                                 src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/44/h/44'
+                                                                 alt=''/>
+                                                            <img className={style.interestContentwrapperCardImageItem}
+                                                                 src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/44/h/44'
+                                                                 alt=''/>
+                                                            <img className={style.interestContentwrapperCardImageItem}
+                                                                 src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/44/h/44'
+                                                                 alt=''/>
                                                         </div>
-                                                        <div className={style.interestContentwrapperCardName}>{forum.forumName}</div>
-                                                        <div className={style.interestContentwrapperCardSummary}>{forum.forumDescription}</div>
-                                                    </Link>
-                                                    <div className={style.interestContentwrapperCardImage}>
-                                                        <img className={style.interestContentwrapperCardImageItem}
-                                                             src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/44/h/44'
-                                                             alt=''/>
-                                                        <img className={style.interestContentwrapperCardImageItem}
-                                                             src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/44/h/44'
-                                                             alt=''/>
-                                                        <img className={style.interestContentwrapperCardImageItem}
-                                                             src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/44/h/44'
-                                                             alt=''/>
-                                                    </div>
-                                                    <div className={style.interestContentwrapperCardButton}>
-                                                        <div className={style.interestContentwrapperCardButtonJoin} onClick={this.handleJoin.bind(this, forum.forumId)}>加入</div>
+                                                        <div className={style.interestContentwrapperCardButton}>
+                                                            <div className={style.interestContentwrapperCardButtonJoin} onClick={this.handleJoin.bind(this, forum.forumId)}>加入</div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             )

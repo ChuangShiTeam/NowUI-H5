@@ -126,8 +126,8 @@ class Comment extends Component{
                             <div className={style.contentListRightContent}>
                                 <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/110/h/75" alt=""/>
                                 <div className={style.contentListRightContentRight}>
-                                    <span className={style.contentListRightContentRightTop}> 看看我新养的小黑黑可不可爱呀~</span>
-                                    <span className={style.contentListRightContentRightBottom}>2018-01-01</span>
+                                    <span className={style.contentListRightContentRightTop}> 今天一回家就看到这俩货把我的沙发拆得不今天一回家就看到这俩货把我的沙发拆得不…</span>
+                                    <span className={style.contentListRightContentRightBottom}>2018-01-10</span>
                                 </div>
                             </div>
                             <div className={style.contentListRightBottom}>
@@ -169,7 +169,7 @@ class Comment extends Component{
                             <div className={style.contentListRightContent}>
                                 <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/110/h/75" alt=""/>
                                 <div className={style.contentListRightContentRight}>
-                                    <span className={style.contentListRightContentRightTop}> 看看我家的小边牧是不是特别帅气</span>
+                                    <span className={style.contentListRightContentRightTop}> 今天一回家就看到这俩货把我的沙发拆得不今天一回家就看到这俩货把我的沙发拆得不…</span>
                                     <span className={style.contentListRightContentRightBottom}>2018-01-10</span>
                                 </div>
                             </div>

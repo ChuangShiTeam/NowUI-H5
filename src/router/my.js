@@ -142,14 +142,6 @@ export default {
             }, 'my.publish');
         }
     },{
-        path: '/my/othershomepage',
-        onEnter: util.handleEnter,
-        getComponent(location, cb) {
-            require.ensure([], (require) => {
-                cb(null, require('../view/my/OthersHomepage').default);
-            }, 'my.OthersHomepage');
-        }
-    },{
         path: '/my/info',
         onEnter:util.handleEnter,
         getComponent(location, cb) {
