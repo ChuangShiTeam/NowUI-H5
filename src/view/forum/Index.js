@@ -243,7 +243,7 @@ class Index extends Component {
                         {
                             this.props.forumIndex.forumJoinList.map(function (forum, index) {
                                 return (
-                                    <ForumIndex key={index} forum={forum} forumIsTop={index !== 0} handleTop={this.handleTop.bind(this)} style={index == 0 ? {} : {marginTop: '10px'}}/>
+                                    <ForumIndex key={index} forum={forum} forumIsTop={index !== 0} handleTop={this.handleTop.bind(this)}/>
                                 )
                             }.bind(this))
                         }
