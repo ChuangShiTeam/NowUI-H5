@@ -43,18 +43,23 @@ class Index extends Component {
                 url: '/wawi/mobile/v1/index/init',
                 data: {},
                 success: function (data) {
-                    this.props.dispatch({
-                        type: 'index',
-                        data: {
-                            indexBannerList: data.indexBannerList,
-                            indexNavigationList: data.indexNavigationList,
-                            hotArticleList: data.hotArticleList,
-                            petCategoryArticleList: data.petCategoryArticleList,
-                            recommendArticleList: data.recommendArticleList,
-                            latestArticleList: data.latestArticleList
-                        }
+                    new Promise(function (resolve) {
+                        this.props.dispatch({
+                            type: 'index',
+                            data: {
+                                indexBannerList: data.indexBannerList,
+                                indexNavigationList: data.indexNavigationList,
+                                hotArticleList: data.hotArticleList,
+                                petCategoryList: data.petCategoryList,
+                                recommendArticleList: data.recommendArticleList,
+                                latestArticleList: data.latestArticleList
+                            }
+                        });
+
+                        resolve();
+                    }.bind(this)).then(function () {
+                        this.handleSwiper();
                     });
-                    this.handleSwiper();
                 }.bind(this),
                 complete: function () {
 
@@ -66,41 +71,39 @@ class Index extends Component {
     }
 
     handleSwiper() {
-        setTimeout(function () {
-            bannerSwiper = new window.Swiper('.' + style.banner, {
-                pagination: '.' + style.bannerPagination,
-                loop: true
-            });
+        bannerSwiper = new window.Swiper('.' + style.banner, {
+            pagination: '.' + style.bannerPagination,
+            loop: true
+        });
 
-            new window.Swiper('.' + style.category, {
-                slidesPerView: 'auto',
-                freeMode: true,
-                freeModeFluid: true,
-                spaceBetween: 0
-            });
+        categorySwiper = new window.Swiper('.' + style.category, {
+            slidesPerView: 'auto',
+            freeMode: true,
+            freeModeFluid: true,
+            spaceBetween: 0
+        });
 
-            new window.Swiper('.' + style.hotArticleContentListContainer, {
-                mode: 'vertical',
-                slidesPerView: 'auto',
-                freeMode: true,
-                freeModeFluid: true,
-                spaceBetween: 0
-            });
+        hotSwiper = new window.Swiper('.' + style.hotArticleContentListContainer, {
+            mode: 'vertical',
+            slidesPerView: 'auto',
+            freeMode: true,
+            freeModeFluid: true,
+            spaceBetween: 0
+        });
 
-            new window.Swiper('.' + style.animalCategoryContent, {
-                slidesPerView: 'auto',
-                freeMode: true,
-                freeModeFluid: true,
-                spaceBetween: 0
-            });
+        animalSwiper = new window.Swiper('.' + style.animalCategoryContent, {
+            slidesPerView: 'auto',
+            freeMode: true,
+            freeModeFluid: true,
+            spaceBetween: 0
+        });
 
-            new window.Swiper('.' + style.guessContent, {
-                slidesPerView: 'auto',
-                freeMode: true,
-                freeModeFluid: true,
-                spaceBetween: 0
-            });
-        }, 100);
+        guessSwiper = new window.Swiper('.' + style.guessContent, {
+            slidesPerView: 'auto',
+            freeMode: true,
+            freeModeFluid: true,
+            spaceBetween: 0
+        });
     }
 
     componentDidUpdate() {
@@ -261,16 +264,21 @@ class Index extends Component {
                     <div className={classNames(style.animalCategoryContent, 'swiper-container')}>
                         <div className={classNames(style.animalCategoryContentWrapper, 'swiper-wrapper')}>
                             {
-                                this.props.index.petCategoryArticleList.map(function (petCategoryArticle, index) {
+                                this.props.index.petCategoryList.map(function (petCategory, index) {
                                     return (
                                         <div key={index}
                                              className={classNames(style.animalCategoryContentWrapperItem, 'swiper-slide')}>
-                                            <img className={style.animalCategoryContentWrapperItemImage}
-                                                 src={constant.image_host + petCategoryArticle.filePath} alt=''/>
+                                            {
+                                                petCategory.petCategoryImage && petCategory.petCategoryImage.filePath ?
+                                                    <img className={style.animalCategoryContentWrapperItemImage}
+                                                         src={constant.image_host + petCategory.petCategoryImage.filePath} alt=''/>
+                                                    :
+                                                    null
+                                            }
                                             <div
-                                                className={style.animalCategoryContentWrapperItemName}>{petCategoryArticle.articleTitle}</div>
+                                                className={style.animalCategoryContentWrapperItemName}>{petCategory.petCategoryName}</div>
                                             <div
-                                                className={style.animalCategoryContentWrapperItemDescription}>{petCategoryArticle.articleSummary}</div>
+                                                className={style.animalCategoryContentWrapperItemDescription}>{petCategory.petCategoryDescription}</div>
                                         </div>
                                     )
                                 })
