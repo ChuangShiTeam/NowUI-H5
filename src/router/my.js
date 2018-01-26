@@ -54,6 +54,86 @@ export default {
             }, 'my.whole');
         }
     },{
+        path: '/my/follow',
+        onEnter: util.handleEnter,
+        getComponent(location, cb) {
+            require.ensure([], (require) => {
+                cb(null, require('../view/my/Follow').default);
+            }, 'my.follow');
+        }
+    },{
+        path: '/my/followme',
+        onEnter: util.handleEnter,
+        getComponent(location, cb) {
+            require.ensure([], (require) => {
+                cb(null, require('../view/my/Followme').default);
+            }, 'my.followme');
+        }
+    },{
+        path: '/my/qrcode',
+        onEnter: util.handleEnter,
+        getComponent(location, cb) {
+            require.ensure([], (require) => {
+                cb(null, require('../view/my/Qrcode').default);
+            }, 'my.qrcode');
+        }
+    },{
+            path: '/my/search',
+            onEnter: util.handleEnter,
+            getComponent(location, cb) {
+                require.ensure([], (require) => {
+                    cb(null, require('../view/my/Search').default);
+                }, 'my.search');
+            }
+        },{
+        path: '/my/collectionfind',
+        onEnter: util.handleEnter,
+        getComponent(location, cb) {
+            require.ensure([], (require) => {
+                cb(null, require('../view/my/Collectionfind').default);
+            }, 'my.collectionfind');
+        }
+    },{
+        path: '/my/searchtype',
+        onEnter: util.handleEnter,
+        getComponent(location, cb) {
+            require.ensure([], (require) => {
+                cb(null, require('../view/my/Searchtype').default);
+            }, 'my.searchtype');
+        }
+    },{
+        path: '/my/personalletter',
+        onEnter: util.handleEnter,
+        getComponent(location, cb) {
+            require.ensure([], (require) => {
+                cb(null, require('../view/my/Personalletter').default);
+            }, 'my.personalletter');
+        }
+    },{
+        path: '/my/systemmessage',
+        onEnter: util.handleEnter,
+        getComponent(location, cb) {
+            require.ensure([], (require) => {
+                cb(null, require('../view/my/Systemmessage').default);
+            }, 'my.systemmessage');
+        }
+    },{
+        path: '/my/notice',
+        onEnter: util.handleEnter,
+        getComponent(location, cb) {
+            require.ensure([], (require) => {
+                cb(null, require('../view/my/Notice').default);
+            }, 'my.notice');
+        }
+    },{
+        path: '/my/comment',
+        onEnter: util.handleEnter,
+        getComponent(location, cb) {
+            require.ensure([], (require) => {
+                cb(null, require('../view/my/Comment').default);
+            }, 'my.comment');
+        }
+    },{
         path: '/my/info',
         onEnter:util.handleEnter,
         getComponent(location, cb) {
@@ -68,6 +148,14 @@ export default {
             require.ensure([], (require) => {
                 cb(null, require('../view/my/Location').default);
             }, 'my.location');
+        }
+    },{
+        path: '/my/follow',
+        onEnter: util.handleEnter,
+        getComponent(location, cb) {
+            require.ensure([], (require) => {
+                cb(null, require('../view/my/Follow').default);
+            }, 'my.follow');
         }
     },{
         path: '/my/message',

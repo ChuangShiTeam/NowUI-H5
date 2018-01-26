@@ -10,7 +10,6 @@ import http from '../../common/http';
 
 import style from './Info.scss';
 import baseStyle from '../../css/Base.scss';
-import storage from "../../common/storage";
 import style2 from './Index.scss';
 import constant from "../../common/constant";
 
@@ -28,7 +27,7 @@ class Info extends Component {
             pageSize: 5,
             forumId: '',
             forum: {},
-            ModeratorId: ''
+            ModeratorId: '',
 
         }
     }
@@ -49,7 +48,6 @@ class Info extends Component {
     }
 
     handleLoad() {
-        this.state.forumId = this.props.params.forumId;
         let forumId = this.props.params.forumId;
         console.log('开始加载数据... ');
     //  开始查询后台数据
@@ -64,8 +62,9 @@ class Info extends Component {
                 console.log('加载数据完成 ');
                 this.setState({
                     forum: data,
-                    ModeratorId: data.forumModerator.userId
+                    ModeratorId: data.forumModerator.userId,
                 });
+
             }.bind(this),
             complete: function () {
 
@@ -114,6 +113,33 @@ class Info extends Component {
             }
         });
     }
+
+
+    handleJoin(forumId) {
+        http.request({
+            url: '/forum/user/follow/mobile/v1/save',
+            data: {
+                forumId: forumId
+            },
+            success: function (data) {
+                if (data) {
+                    notification.notice({
+                        content: '加入成功'
+                    });
+                    this.handleLoad();
+                } else {
+                    notification.notice({
+                        content: '加入失败'
+                    });
+                }
+
+            }.bind(this),
+            complete: function () {
+
+            }
+        });
+    }
+
 
     render() {
         return (
@@ -237,10 +263,13 @@ class Info extends Component {
                     </div>
 
                     {
-                        this.state.forum.forumUserIsModerator ?
-                            <div className={style.delete} onClick={this.handleDelete.bind(this)}>删除圈子</div>
-                            :
-                            <div className={style.delete} onClick={this.handleExit.bind(this)}>退出圈子</div>
+                            this.state.forum.forumUserIsModerator ?
+                                <div className={style.delete} onClick={this.handleDelete.bind(this)}>删除圈子</div>
+                                :
+                                this.state.forum.forumRequestUserIsFollow ?
+                                    <div className={style.delete} onClick={this.handleExit.bind(this)}>退出圈子</div>
+                                    :
+                                    <div className={style.delete} onClick={this.handleJoin.bind(this, this.state.forumId)}>加入圈子</div>
                     }
 
                 </div>

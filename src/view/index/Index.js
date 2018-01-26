@@ -130,7 +130,7 @@ class Index extends Component {
             guessSwiper.destroy();
         }
 
-        if (window.addEventListener) {
+        if (window.removeEventListener) {
             window.removeEventListener('scroll', this.handleScroll);
         } else {
             window.detachEvent('onscroll', this.handleScroll);
@@ -355,8 +355,6 @@ class Index extends Component {
                             - 最新话题 -
                         </div>
                     </div>
-                    <TopicIndex/>
-                    <TopicIndex/>
                     <div className={style.newTopicFooter}>
                         <div className={style.newTopicFooterMore}>查看更多</div>
                     </div>

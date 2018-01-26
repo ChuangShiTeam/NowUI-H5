@@ -47,11 +47,11 @@ class Follow extends Component {
                             {
                                 true ?
                                     <div className={style.listRight}>
-                                        <span className={style.listRightFont}>+ 关注</span>
+                                        <span className={style.listRightFollow}>+ 关注</span>
                                     </div>
                                     :
                                     <div className={style.listRights}>
-                                        <span className={style.listRightFont1}>已关注</span>
+                                        <span className={style.listRightFollowActive}>已关注</span>
                                     </div>
                             }
                         </div>
@@ -63,11 +63,11 @@ class Follow extends Component {
                         {
                             true ?
                                 <div className={style.listRight}>
-                                    <span className={style.listRightFont}>+ 关注</span>
+                                    <span className={style.listRightFollow}>+ 关注</span>
                                 </div>
                                 :
                                 <div className={style.listRights}>
-                                    <span className={style.listRightFont1}>已关注</span>
+                                    <span className={style.listRightFollowActive}>已关注</span>
                                 </div>
                         }
                         </div>
@@ -79,11 +79,11 @@ class Follow extends Component {
                         {
                             false ?
                                 <div className={style.listRights}>
-                                    <span className={style.listRightFont1}>已关注</span>
+                                    <span className={style.listRightFollow}>+ 关注</span>
                                 </div>
                                 :
                                 <div className={style.listRights}>
-                                    <span className={style.listRightFont1}>已关注</span>
+                                    <span className={style.listRightFollowActive}>已关注</span>
                                 </div>
                         }
                         </div>
@@ -95,11 +95,11 @@ class Follow extends Component {
                         {
                             false ?
                                 <div className={style.listRights}>
-                                    <span className={style.listRightFont1}>已关注</span>
+                                    <span className={style.listRightFollow}>+ 关注</span>
                                 </div>
                                 :
                                 <div className={style.listRights}>
-                                    <span className={style.listRightFont1}>已关注</span>
+                                    <span className={style.listRightFollowActive}>已关注</span>
                                 </div>
                         }
                         </div>
@@ -111,11 +111,11 @@ class Follow extends Component {
                         {
                             false ?
                                 <div className={style.listRights}>
-                                    <span className={style.listRightFont1}>已关注</span>
+                                    <span className={style.listRightFollow}>+ 关注</span>
                                 </div>
                                 :
                                 <div className={style.listRights}>
-                                    <span className={style.listRightFont1}>已关注</span>
+                                    <span className={style.listRightFollowActive}>已关注</span>
                                 </div>
                         }
                         </div>

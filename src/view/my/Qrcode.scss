@@ -1,0 +1,40 @@
+.page {
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.messages{
+    width: 100%;
+    display:flex;
+    -js-display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.photo{
+    width: 72px;
+    height: 72px;
+    margin-top: 34px;
+    border-radius: 50%;
+}
+.names{
+    font-family:PingFangSC-Regular;
+    font-size:14px;
+    color:#323232;
+    margin-left: 12px;
+}
+.messages>div>img{
+    width: 9px;
+    height: 13px;
+    margin-left: 3px;
+}
+.qrCode{
+    margin-top:57px ;
+    width:100px ;
+    height: 101px;
+}
+.joinUs{
+    margin-top: 8px;
+    font-family:PingFangSC-Regular;
+    font-size:12px;
+    color:#4a4a4a;
+}
