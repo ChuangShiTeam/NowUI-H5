@@ -1,6 +1,6 @@
 const initialState = {
     topicPageIndex: 1,
-    topicPageSize: 3,
+    topicPageSize: 2,
     topicTotal: 0,
     topicList: []
 };

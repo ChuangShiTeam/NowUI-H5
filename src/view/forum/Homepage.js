@@ -10,6 +10,8 @@ import util from '../../common/util';
 import http from "../../common/http";
 import style from './Homepage.scss';
 import constant from "../../common/constant";
+import baseStyle from "../../css/Base.scss";
+import classNames from 'classnames';
 
 let notification = null;
 Notification.newInstance({}, (n) => notification = n);
@@ -157,31 +159,25 @@ class Homepage extends Component {
     render() {
         return (
             <div className={style.page} style={{minHeight: document.documentElement.clientHeight}}>
-                 <div className={style.homePageHeaderTopBackground}>
+                 <div className={style.homePageHeaderTopBackground} >
                      <span>
                          已有{this.state.forum.forumUserFollowCount?this.state.forum.forumUserFollowCount:0}人加入圈子
                      </span>
+                     <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?listView/1/w/72/h/72" alt=""/>
                  </div>
-
-
-
-
-                
-                 <div className={style.homePageHeaderMiddleMessage}>
-                     <p style={{fontSize:"20px",textAlign:"center",paddingTop:"33px"}}>{this.state.forum.forumName}</p>
-                     <p style={{fontSize:"10px",textAlign:"center"}}>{this.state.forum.forumDescription}</p>
+                 <div className={classNames(style.homePageHeaderMiddleMessage,baseStyle.bottomLine)}>
+                     <p style={{fontSize:"16px",textAlign:"center",paddingTop:"33px",color:"#323232"}}>{this.state.forum.forumName}sfsdhgfh</p>
+                     <p style={{fontSize:"12px",textAlign:"center",color:"#9d9d9d"}}>{this.state.forum.forumDescription}sgfjhfgssfdgfg</p>
                      <p style={{textAlign:"center",marginTop:"10px"}}>
                          {
                              this.state.forum.memberIsFollowForum ?
                                  '已加入圈子'
                                  :
-                                 <input style={{borderRadius:"34px",backgroundColor:"#DEFAFD",width:"86px",height:"27px",boxShadow:" 0px 0px 6px #888888"}} onClick={this.handleJoin.bind(this, this.state.forumId)} type="button" value="加入圈子"/>
+                                 <input style={{borderRadius:"34px",backgroundColor:"#DEFAFD",width:"86px",height:"27px",boxShadow:" 0px 0px 6px #888888",color:"#c18108"}} onClick={this.handleJoin.bind(this, this.state.forumId)} type="button" value="加入圈子"/>
                          }
-
                      </p>
-                     <p style={{borderBottom:"1px solid #DDDDDD ",margin:"14px"}}></p>
                  </div>
-                 <div>
+                 <div className={style.messages}>
                      <dl className={style.homePageHeaderMessages}>
                          <dt className={style.homePageHeaderMessageLeft}>
                              {
@@ -191,7 +187,7 @@ class Homepage extends Component {
                                              this.state.forum.forumModerator.userAvatar ?
                                                  <img src={constant.image_host + this.state.forum.forumModerator.userAvatar} alt=''/>
                                                  :
-                                                 <img src={require('../../image/topicItem.png')} alt='' />
+                                                 <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?listView/1/w/72/h/72" alt='' />
                                          }
                                      </Link>
                                      :
@@ -200,7 +196,7 @@ class Homepage extends Component {
 
                          </dt>
                          <dd className={style.homePageHeaderMessageRight}>
-                             <p style={{color:"#000000",fontSize:"12px"}}>
+                             <p className={style.homePageHeaderMessageRightTop}>
                                  {
                                      this.state.forum.forumModerator && this.state.forum.forumModerator.userNickName ?
                                          this.state.forum.forumModerator.userNickName
@@ -208,7 +204,7 @@ class Homepage extends Component {
                                          '默认用户昵称'
                                  }
                              </p>
-                             <p style={{color:"#000000",fontSize:"9px",marginTop:"2px"}}>
+                             <p className={style.homePageHeaderMessageRightBottom}>
                                  {
                                      this.state.forum && this.state.forum.forumDescription ?
                                          this.state.forum.forumDescription

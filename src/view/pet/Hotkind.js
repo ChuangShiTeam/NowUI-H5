@@ -2,10 +2,8 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import MSelectList from 'rmc-select-list';
 import pinyin from 'pinyin';
-
 import util from '../../common/util';
 import http from '../../common/http';
-
 import style from './Hotkind.scss';
 
 function toPinyin(str) {
@@ -33,7 +31,7 @@ class Hotkind extends Component {
             petCategoryGroups: []
         }
     }
-
+    
     componentDidMount() {
         util.setTitle('wawipet哇咿宠');
         util.hancleComponentDidMount();

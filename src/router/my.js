@@ -146,7 +146,7 @@ export default {
         onEnter: util.handleEnter,
         getComponent(location, cb) {
             require.ensure([], (require) => {
-                cb(null, require('../view/my/Othershomepage').default);
+                cb(null, require('../view/my/OthersHomepage').default);
             }, 'my.OthersHomepage');
         }
     },{

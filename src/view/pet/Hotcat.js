@@ -1,12 +1,12 @@
-import  React, {Component} from 'react';
+import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import util from '../../common/util';
-import  style from './Hotcat.scss';
 import http from '../../common/http';
 import Notification from 'rc-notification';
 import {Link} from 'react-router';
 let notification = null;
 Notification.newInstance({}, (n) => notification = n);
+import style from './Hotcat.scss';
 
 class Hotcat extends Component {
 
@@ -14,8 +14,10 @@ class Hotcat extends Component {
         super(props);
         this.state =
             {
+                isLoad: false,
                 petCategorys: []
             }
+
     }
 
     componentDidMount() {
@@ -51,7 +53,6 @@ class Hotcat extends Component {
     }
 
     componentWillUnmount() {
-
     }
 
     render() {
@@ -80,7 +81,6 @@ class Hotcat extends Component {
                 </div>
             </div>
         )
-
     }
 }
 

@@ -27,7 +27,7 @@ class Index extends Component {
         util.setTitle('wawipet哇咿宠');
         util.hancleComponentDidMount();
 
-        this.handleLoad(this.props.topicIndex.topicPageIndex);
+        this.handleLoad();
     }
 
     componentDidUpdate() {
@@ -38,20 +38,22 @@ class Index extends Component {
 
     }
 
-    handleLoad(topicPageIndex) {
+    handleLoad() {
         http.request({
             url: '/topic/mobile/v1/home/list',
             data: {
-                pageIndex: topicPageIndex,
+                pageIndex: this.props.topicIndex.topicPageIndex,
                 pageSize: this.props.topicIndex.topicPageSize
             },
             success: function (data) {
-                if (data.total > 0) {
-                    let topicList = this.props.topicIndex.topicList;
+                if (data && data.total > 0) {
+                    let topicList = [];
+                    if (this.props.topicIndex.topicPageIndex > 1) {
+                        topicList = this.props.topicIndex.topicList
+                    }
                     this.props.dispatch({
                         type: 'topicIndex',
                         data: {
-                            topicPageIndex: topicPageIndex,
                             topicTotal: data.total,
                             topicList: topicList.concat(data.list)
                         }
@@ -69,18 +71,37 @@ class Index extends Component {
     handleInfiniteLoad() {
         let {topicPageIndex, topicPageSize, topicTotal} = this.props.topicIndex;
         if (topicPageIndex * topicPageSize < topicTotal) {
-            this.setState({
-                isInfiniteLoading: true,
-            }, function () {
-                setTimeout(function () {
-                    this.handleLoad(topicPageIndex + 1);
-                }.bind(this), 800)
-            }.bind(this))
+            new Promise(function (resolve) {
+                this.setState({
+                    isInfiniteLoading: true
+                });
+                this.props.dispatch({
+                    type: 'topicIndex',
+                    data: {
+                        topicPageIndex: this.props.topicIndex.topicPageIndex + 1
+                    }
+                });
+                resolve();
+            }.bind(this)).then(function () {
+                this.handleLoad();
+            }.bind(this));
         }
     }
 
+
     handelTopicDelete() {
-        this.handleLoad(1);
+        new Promise(function (resolve) {
+            this.props.dispatch({
+                type: 'topicIndex',
+                data: {
+                    topicPageIndex: 1
+                }
+            });
+
+            resolve();
+        }.bind(this)).then(function () {
+            this.handleLoad();
+        }.bind(this));
     }
 
     render() {
@@ -124,7 +145,7 @@ class Index extends Component {
                                       this.state.isInfiniteLoading ?
                                           <div className={style.infiniteLoading}>Loading...</div>
                                           :
-                                          this.state.topicPageIndex * this.state.topicPageSize >= this.state.topicTotal ?
+                                          this.props.topicIndex.topicPageIndex * this.props.topicIndex.topicPageSize >= this.props.topicIndex.topicTotal ?
                                               <div className={style.infiniteMore}>没有更多了</div>
                                               :
                                               null
