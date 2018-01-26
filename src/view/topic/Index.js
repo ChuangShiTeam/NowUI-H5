@@ -79,7 +79,7 @@ class Index extends Component {
         }
     }
 
-    handleDelete() {
+    handelTopicDelete() {
         this.handleLoad(1);
     }
 
@@ -133,7 +133,7 @@ class Index extends Component {
                         >
                             {
                                 this.props.topicIndex.topicList.map((topic, index) => (
-                                    <TopicIndex topic={topic} key={index} isEdit={true} handleDelete={this.handleDelete.bind(this)}/>
+                                    <TopicIndex topic={topic} key={index} isEdit={true} handelTopicDelete={this.handelTopicDelete.bind(this)}/>
                                 ))
                             }
                         </Infinite>

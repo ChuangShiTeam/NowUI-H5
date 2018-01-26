@@ -136,7 +136,7 @@ class Index extends Component {
                 notification.notice({
                     content: '删除成功'
                 });
-                this.props.handleDelete();
+                this.props.handelTopicDelete();
             }.bind(this),
             complete: function () {
 
@@ -217,7 +217,7 @@ class Index extends Component {
                                         <div className={style.headerRight}>
                                             {
                                                 this.state.topic.topicIsSelf ?
-                                                    <span className={style.headerRightDelete} onClick={this.handelDelete.bind(this)}>删除</span>
+                                                    <span className={style.headerRightDelete} onClick={this.handleDelete.bind(this)}>删除</span>
                                                     :
                                                     this.state.topic.topicIsFollow ?
                                                         <div className={style.headerRightFollow}>已关注</div>
@@ -794,8 +794,8 @@ class Index extends Component {
 
 Index.propTypes = {
     topic: PropTypes.object.isRequired,
-    isEdit: PropTypes.object,
-    handelDelete: PropTypes.func
+    isEdit: PropTypes.bool,
+    handelTopicDelete: PropTypes.func
 };
 
 Index.defaultProps = {
