@@ -91,9 +91,8 @@ class List extends Component {
                     {
                         this.state.forumJoinList.map(function (forum, index) {
                             return (
-                                <ForumIndex key={index} forum={forum} forumIsTop={index !== 0} handleTop={this.handleTop.bind(this)}/>
 
-                                <ForumIndex key={index} forum={forum} style={index == 0 ? {} : {marginTop: '10px'}}/>
+                                <ForumIndex key={index} forum={forum} forumIsTop={index !== 0} handleTop={this.handleTop.bind(this)} style={index == 0 ? {} : {marginTop: '10px'}}/>
                             )
                         }.bind(this))
                     }
