@@ -5,10 +5,10 @@ const initialState = {
     forumJoinList: [],
     forumRecommendList: [],
     hotTopicPageIndex: 1,
-    hotTopicPageSize: 3,
+    hotTopicPageSize: 2,
     hotTopicTotal: 0,
     hotTopicList: []
-};
+}
 
 function forumIndex(state = initialState, action) {
     switch (action.type) {

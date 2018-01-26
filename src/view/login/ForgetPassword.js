@@ -101,7 +101,7 @@ class ForgetPassword extends Component {
                             });
 
                             slider.reset();
-                        }.bind(this),
+                        },
                         complete: function () {
 
                         }

@@ -161,14 +161,16 @@ class Homepage extends Component {
     render() {
         return (
             <div className={style.page} style={{minHeight: document.documentElement.clientHeight}}>
-                <Link to={'/forum/info/' +  this.state.forum.forumId} key={this.state.forum.forumId} >
-                    <div className={style.homePageHeaderIcon}></div>
-                </Link>
                  <div className={style.homePageHeaderTopBackground}>
-                     <span style={{paddingTop:"97px",display:"block",paddingLeft:"10px",fontSize:"10px"}}>
+                     <span>
                          已有{this.state.forum.forumUserFollowCount?this.state.forum.forumUserFollowCount:0}人加入圈子
                      </span>
                  </div>
+
+
+
+
+                
                  <div className={style.homePageHeaderMiddleMessage}>
                      <p style={{fontSize:"20px",textAlign:"center",paddingTop:"33px"}}>{this.state.forum.forumName}</p>
                      <p style={{fontSize:"10px",textAlign:"center"}}>{this.state.forum.forumDescription}</p>

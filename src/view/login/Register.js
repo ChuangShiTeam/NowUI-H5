@@ -100,7 +100,7 @@ class Register extends Component {
                             });
 
                             slider.reset();
-                        }.bind(this),
+                        },
                         complete: function () {
 
                         }

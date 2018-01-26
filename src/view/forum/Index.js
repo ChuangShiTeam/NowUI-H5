@@ -73,15 +73,17 @@ class Index extends Component {
                 pageSize: this.porps.forumIndex.hotTopicPageSize
             },
             success: function (data) {
-                let hotTopicList = this.props.forumIndex.hotTopicList;
-                this.props.dispatch({
-                    type: 'forumIndex',
-                    data: {
-                        hotTopicPageIndex: hotTopicPageIndex,
-                        hotTopicTotal: data.total,
-                        hotTopicList: hotTopicList.concat(data.list)
-                    }
-                });
+                if (data.total > 0) {
+                    let hotTopicList = this.props.forumIndex.hotTopicList;
+                    this.props.dispatch({
+                        type: 'forumIndex',
+                        data: {
+                            hotTopicPageIndex: hotTopicPageIndex,
+                            hotTopicTotal: data.total,
+                            hotTopicList: hotTopicList.concat(data.list)
+                        }
+                    });
+                }
             }.bind(this),
             complete: function () {
 
@@ -97,9 +99,16 @@ class Index extends Component {
             },
             success: function (data) {
                 if (data && data.length > 0) {
-                    this.setState({
-                        forumRecommendList: data
-                    }, function () {
+                    new Promise(function (resolve) {
+                        this.props.dispatch({
+                            type: 'forumIndex',
+                            data: {
+                                forumRecommendList: data
+                            }
+                        });
+
+                        resolve();
+                    }.bind(this)).then(function () {
                         interestSwiper = new window.Swiper('.' + style.interestContent, {
                             slidesPerView: 'auto',
                             freeMode: true,
@@ -122,15 +131,16 @@ class Index extends Component {
                 pageSize: this.props.forumIndex.forumJoinPageSize
             },
             success: function (data) {
-                let forumJoinList = this.props.forumIndex.forumJoinList;
-                this.props.dispatch({
-                    type: 'forumIndex',
-                    data: {
-                        forumJoinPageIndex: forumJoinPageIndex,
-                        forumJoinTotal: data.total,
-                        forumJoinList: forumJoinList.concat(data.list)
-                    }
-                });
+                if (data.total > 0) {
+                    this.props.dispatch({
+                        type: 'forumIndex',
+                        data: {
+                            forumJoinPageIndex: forumJoinPageIndex,
+                            forumJoinTotal: data.total,
+                            forumJoinList: data.list
+                        }
+                    });
+                }
             }.bind(this),
             complete: function () {
 
@@ -218,7 +228,7 @@ class Index extends Component {
                     </div>
                     <div className={style.joinContent}>
                         {
-                            this.state.forumJoinList.map(function (forum, index) {
+                            this.props.forumIndex.forumJoinList.map(function (forum, index) {
                                 return (
                                     <Link to={'/forum/homepage/' + forum.forumId} key={forum.forumId} style={index === 0 ? {} : {marginTop: '12px'}}
                                          className={style.joinContentList}>
@@ -244,9 +254,17 @@ class Index extends Component {
                                                     <img className={style.joinContentListCenterFooterLeftCrown}
                                                          src={require('../../image/crown.png')}
                                                          alt=''/>
-                                                    <img className={style.joinContentListCenterFooterLeftAvatar}
-                                                         src={constant.image_host + forum.forumModerator.userAvatar}
-                                                         alt=''/>
+                                                    {
+                                                        forum.forumModerator.userAvatar ?
+                                                            <img className={style.joinContentListCenterFooterLeftAvatar}
+                                                                 src={constant.image_host + forum.forumModerator.userAvatar}
+                                                                 alt=''/>
+                                                            :
+                                                            <img className={style.joinContentListCenterFooterLeftAvatar}
+                                                                 src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/15/h/15"
+                                                                 alt=''/>
+
+                                                    }
                                                 </div>
                                                 <div className={style.joinContentListCenterFooterCenter}>
                                                     {forum.forumModerator.userNickName}
@@ -281,11 +299,11 @@ class Index extends Component {
                         </div>
                     </div>
                     {
-                        this.state.forumRecommendList.length > 0 ?
+                        this.props.forumIndex.forumRecommendList.length > 0 ?
                             <div className={classNames(style.interestContent, 'swiper-container')}>
                                 <div className={classNames(style.interestContentwrapper, 'swiper-wrapper')}>
                                     {
-                                        this.state.forumRecommendList.map((forum, index) => {
+                                        this.props.forumIndex.forumRecommendList.map((forum, index) => {
                                             return (
                                                 <div className={classNames(style.interestContentwrapperCard, 'swiper-slide')} key={forum.forumId}>
                                                     <Link to={'/forum/homepage/' + forum.forumId} key={forum.forumId} >
@@ -331,15 +349,9 @@ class Index extends Component {
                         </div>
                     </div>
                     {
-                        this.state.hotTopicList.map((topic, index) => <TopicIndex topic={topic} key={index} handleDelete={this.handleTopicDelete.bind(this)}/>)
+                        this.props.forumIndex.hotTopicList.map((topic, index) => <TopicIndex topic={topic} key={index} handleDelete={this.handleTopicDelete.bind(this)}/>)
                     }
                 </div>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
             </div>
         );
     }
