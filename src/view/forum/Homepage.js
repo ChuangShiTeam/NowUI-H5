@@ -24,7 +24,7 @@ class Homepage extends Component {
             forum: {},
             forumId: '',
             topicPageIndex: 1,
-            topicPageSize: 3,
+            topicPageSize: 2,
             topicList: [],
             topicTotal: 0,
             isInfiniteLoading: false
@@ -47,7 +47,7 @@ class Homepage extends Component {
                     forum: {},
                     forumId: '',
                     topicPageIndex: 1,
-                    topicPageSize: 3,
+                    topicPageSize: 2,
                     topicList: [],
                     topicTotal: 0,
                     isInfiniteLoading: false
