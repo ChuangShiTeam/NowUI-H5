@@ -98,7 +98,7 @@ class Homepage extends Component {
                     <span style={{fontsize:"9px",marginLeft:"9px"}}>上海</span>
                     <span style={{fontsize:"9px",marginLeft:"9px"}}>徐汇区</span>
                 </p>
-                <p style={{marginLeft:"18px",fontSize:"12px"}}>
+                <p style={{marginLeft:"19px",fontSize:"12px"}}>
                     Capturing every moment of my life.
                 </p>
                 <div className={style.headerContentMemberClear2}></div>

@@ -187,6 +187,23 @@ class Index extends Component {
         });
     }
 
+    handleTop(forumId) {
+        http.request({
+            url: '/forum/user/follow/mobile/v1/top',
+            data: {
+                forumId: forumId
+            },
+            success: function (data) {
+                if (data) {
+                    this.handleLoadJoinList();
+                }
+            }.bind(this),
+            complete: function () {
+
+            }
+        });
+    }
+
     render() {
         return (
             <div className={classNames(style.page, baseStyle.tabbarPage)} style={{minHeight: document.documentElement.clientHeight}}>
@@ -226,9 +243,10 @@ class Index extends Component {
                         {
                             this.props.forumIndex.forumJoinList.map(function (forum, index) {
                                 return (
+                                    <ForumIndex key={index} forum={forum} forumIsTop={index !== 0} handleTop={this.handleTop.bind(this)}/>
                                     <ForumIndex key={index} forum={forum} style={index == 0 ? {} : {marginTop: '10px'}}/>
                                 )
-                            })
+                            }.bind(this))
                         }
                         <Link to='/forum/my' className={style.joinContentMore}>
                             查看更多

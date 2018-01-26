@@ -32,16 +32,21 @@ class Index extends Component {
                     </Link>
                 </div>
                 <div className={style.ListCenter}>
-                    <Link to={'/forum/homepage/' + this.props.forum.forumId}>
-                        <div className={style.ListCenterHeader}>
-                            <div className={style.ListCenterHeaderName}>
+                    <div className={style.ListCenterHeader}>
+                        <div className={style.ListCenterHeaderName}>
+                            <Link to={'/forum/homepage/' + this.props.forum.forumId}>
                                 {this.props.forum.forumName}
-                            </div>
-                            <div className={style.ListCenterHeaderTop}>
-                                {this.props.forum.forumIsTop ? '置顶' : ''}
-                            </div>
+                            </Link>
                         </div>
-                    </Link>
+                        {
+                            this.props.forumIsTop ?
+                                <div className={style.ListCenterHeaderTop} onClick={() => this.props.handleTop(this.props.forum.forumId)}>
+                                    置顶
+                                </div>
+                                :
+                                null
+                        }
+                    </div>
                     <Link to={'/forum/homepage/' + this.props.forum.forumId}>
                         <div className={style.ListCenterSummary}>
                             {this.props.forum.forumDescription}
@@ -85,7 +90,13 @@ class Index extends Component {
 
 Index.propTypes = {
     forum: PropTypes.object.isRequired,
+    forumIsTop: PropTypes.bool,
+    handleTop: PropTypes.func
+    forum: PropTypes.object.isRequired,
     style: PropTypes.object
 };
 
+Index.defaultProps = {
+    forumIsTop: false
+};
 export default Index;

@@ -1,6 +1,63 @@
-.page{
+.page {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  z-index: 999999;
   max-width: 640px;
   margin-left: auto;
   margin-right: auto;
-  background: white;
+  background-color: #FFFFFF;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  height: 150px;
+  z-index: 99;
+  width: 100%;
+  max-width: 640px;
+  background: #ffffff;
+  box-shadow: 0 2px 2px 0 rgba(228, 228, 228, 0.50);
+  filter: progid:DXImageTransform.Microsoft.Shadow(color='#DFDFDF', Direction=180, Strength=1);
+}
+
+.line {
+  height: 150px;
+}
+
+.selected {
+  -js-display: flex;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 15px 0px;
+}
+
+.selectedItem {
+  background: #f1f1f2;
+  border-radius: 2px;
+  height: 30px;
+  -js-display: flex;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10px;
+  padding: 0px 10px;
+}
+
+.close {
+  width: 10px;
+  height: 10px;
+  margin-left: 10px;
+}
+
+.submit {
+  font-family: PingFangSC-Regular;
+  font-size: 14px;
+  color: #c18108;
+  letter-spacing: 1.08px;
+  margin: 0px 0px 12px 12px;
 }
