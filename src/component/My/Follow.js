@@ -10,7 +10,7 @@ import util from '../../common/util';
 import style from './Follow.scss';
 
 
-class Followme extends Component {
+class Follow extends Component {
     constructor(props) {
         super(props);
 
@@ -35,29 +35,25 @@ class Followme extends Component {
     render() {
         return (
             <div className={baseStyle.page} style={{minHeight: document.documentElement.clientHeight}}>
-
-                <div className={classNames(style.header , baseStyle.bottomLine)}>
-                    <Link to={"/my/follow"} className={classNames(style.headerOther,style.navigation)}>我关注的</Link>
-                    <div className={classNames(style.headerHalfBottomLine,style.navigation)}>谁关注我</div>
-                </div>
+                
                 <div className={style.contentMargin}>
                     <div className={classNames(style.list , baseStyle.bottomLine)}>
                         <div className={style.listLeft}>
                             <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?listView/1/w/30/h/30" alt=""/>
                             <div className={style.listCenter}>是大熊啊</div>
                         </div>
-                     
-                            {true?
-                                <div className={classNames(style.listRights ,style.borderLineYellow)}>
-                                    <span className={classNames(style.listRightFollow)}>+关注</span>
-                                </div>
-                                :
-                                <div className={style.listRights}>
-                                    <span className={style.listRightFollowActive}>已关注</span>
-                                </div>
-                            }
-                            
-             
+
+                        {true?
+                            <div className={classNames(style.listRights ,style.borderLineYellow)}>
+                                <span className={classNames(style.listRightFollow)}>+关注</span>
+                            </div>
+                            :
+                            <div className={style.listRights}>
+                                <span className={style.listRightFollowActive}>已关注</span>
+                            </div>
+                        }
+
+
                     </div>
                     <div className={classNames(style.list,baseStyle.bottomLine)}>
                         <div className={style.listLeft}>
@@ -125,5 +121,5 @@ class Followme extends Component {
         );
     }
 }
-export default connect(() => ({}))(Followme);
+export default Follow;
 
