@@ -1,7 +1,10 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+
 import util from '../../common/util';
 import http from '../../common/http';
+import constant from '../../common/constant';
+
 import Notification from 'rc-notification';
 import {Link} from 'react-router';
 let notification = null;
@@ -72,9 +75,13 @@ class Hotcat extends Component {
                     {
                         petCategorys.map((category, index) =>
                             <div key={index} className={style.listItem}>
-                                <img src={category.petCategoryImage.filePath}/>
-                                <span>{category.petCategoryName}
-                                </span>
+                                {
+                                    category.petCategoryImage && category.petCategoryImage.filePath ?
+                                        <img src={constant.image_host + category.petCategoryImage.filePath}/>
+                                        :
+                                        null
+                                }
+                                <span>{category.petCategoryName}</span>
                             </div>
                         )
                     }
