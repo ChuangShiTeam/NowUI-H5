@@ -14,7 +14,7 @@ function toPinyin(str) {
         if (newStrItemArray && newStrItemArray.length > 0) {
             let newStr = '';
             for (let item of newStrItemArray) {
-                newStr = newStr + item[0];
+                newStr += item[0];
             }
             return newStr;
         } else {

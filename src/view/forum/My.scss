@@ -1,12 +1,15 @@
 .page {
-	background: rgba(222, 250, 253, 0.40);
+	max-width: 640px;
+	margin-left: auto;
+	margin-right: auto;
+	background: #ffffff;
 }
 
 .join {
 
 }
 
-.joinHeader {
+.header {
 	-js-display: flex;
 	display: flex;
 	flex-direction: row;
@@ -14,21 +17,22 @@
 	justify-content: center;
 	align-items: center;
 	background: #ffffff;
-	height: 41px;
+	height: 45px;
+	box-shadow: 0 2px 2px 0 rgba(228, 228, 228, 0.50);
 }
 
-.joinHeaderLeft {
+.headerLeft {
 	width: 40px;
 	text-align: center;
 }
 
-.joinHeaderLeftIcon {
+.headerLeftIcon {
 	width: 22px;
 	height: 16px;
 	margin-top: 5px;
 }
 
-.joinHeaderCenter {
+.headerCenter {
 	flex-grow: 1;
 	font-family: PingFangSC-Regular;
 	font-size: 15px;
@@ -36,7 +40,7 @@
 	letter-spacing: 0;
 }
 
-.joinContent {
+.content {
 	background: rgba(222, 250, 253, 0.40);
 	padding: 12px 12px 8px 12px;
 }

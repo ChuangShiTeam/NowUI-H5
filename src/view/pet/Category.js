@@ -2,16 +2,11 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {createForm} from "rc-form";
 import {Link} from 'react-router';
-import Notification from 'rc-notification';
-import classNames from 'classnames';
 
 import util from '../../common/util';
-import http from '../../common/http';
-import ImageUpload from '../../component/upload/Index';
 
 import style from './Category.scss';
 import baseStyle from '../../css/Base.scss';
-import petCategory from "../../store/petCategory";
 
 
 class Category extends Component {
