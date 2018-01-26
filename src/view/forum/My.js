@@ -1,14 +1,12 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {createForm} from "rc-form";
-import classNames from 'classnames';
 
 import ForumIndex from '../../component/forum/Index';
 
 import util from '../../common/util';
 
 import style from './My.scss';
-import baseStyle from '../../css/Base.scss';
 
 class List extends Component {
     constructor(props) {

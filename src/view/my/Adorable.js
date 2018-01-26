@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import util from '../../common/util';
 import  {Link} from  'react-router';
+
 import baseStyle from '../../css/Base.scss';
-import classNames from "classnames";
 
 import  style from './Whole.scss';
 class Adorable extends Component {

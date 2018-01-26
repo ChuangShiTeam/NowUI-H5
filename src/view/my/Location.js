@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import classNames from 'classnames';
-import {Link} from 'react-router';
 import util from '../../common/util';
 
 import style from './Location.scss';
@@ -32,7 +31,7 @@ class Location extends Component {
     }
 
     handleLoad() {
-        let forumId = this.props.params.forumId;
+
     }
 
     render() {

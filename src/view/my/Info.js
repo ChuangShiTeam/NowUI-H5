@@ -44,7 +44,7 @@ class Info extends Component {
         alert('保存修改');
     }
     handleLoad() {
-        let forumId = this.props.params.forumId;
+
     }
 
     render() {
