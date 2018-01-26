@@ -51,14 +51,16 @@ class Index extends Component {
                 pageSize: this.state.topicPageSize
             },
             success: function (data) {
-                let topicList = this.state.topicList;
-                this.props.dispatch({
-                    type: 'topicIndex',
-                    data: {
-                        topicTotal: data.total,
-                        topicList: topicList.concat(data.list)
-                    }
-                });
+                if (data.total > 0) {
+                    let topicList = this.state.topicList;
+                    this.props.dispatch({
+                        type: 'topicIndex',
+                        data: {
+                            topicTotal: data.total,
+                            topicList: topicList.concat(data.list)
+                        }
+                    });
+                }
             }.bind(this),
             complete: function () {
                 this.setState({

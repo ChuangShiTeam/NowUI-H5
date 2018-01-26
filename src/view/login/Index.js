@@ -97,7 +97,7 @@ class Index extends Component {
                         }.bind(this),
                         error: function() {
                             slider.reset();
-                        }.bind(this),
+                        },
                         complete: function () {
 
                         }

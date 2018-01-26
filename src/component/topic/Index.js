@@ -23,7 +23,7 @@ class Index extends Component {
             topic: this.props.topic
         }, function () {
 
-        }.bind(this));
+        });
 
         setTimeout(() => {
             let topicImage = document.querySelector('#' + this.props.topic.topicId);
@@ -55,9 +55,9 @@ class Index extends Component {
                     let topic = this.state.topic;
                     topic.topicUserIsLike = !topic.topicUserIsLike;
                     if (topic.topicUserIsLike) {
-                        topic.topicCountLike = topic.topicCountLike + 1;
+                        topic.topicCountLike += 1;
                     } else {
-                        topic.topicCountLike = topic.topicCountLike - 1;
+                        topic.topicCountLike -= 1;
                     }
 
                     this.setState({
@@ -84,9 +84,9 @@ class Index extends Component {
                     let topic = this.state.topic;
                     topic.topicUserIsBookmark = !topic.topicUserIsBookmark;
                     if (topic.topicUserIsBookmark) {
-                        topic.topicCountBookmark = topic.topicCountBookmark + 1;
+                        topic.topicCountBookmark += 1;
                     } else {
-                        topic.topicCountBookmark = topic.topicCountBookmark - 1;
+                        topic.topicCountBookmark -= 1;
                     }
 
                     this.setState({
@@ -137,6 +137,8 @@ class Index extends Component {
                 case 9:
                     divHeight = clientWidth;
                     break;
+                default:
+
             }
         }
 
@@ -198,8 +200,6 @@ class Index extends Component {
                                                             backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
                                                         }}></div>
                                                     );
-
-                                                    break;
                                                 case 2:
                                                     width = (clientWidth - 2) / 2;
                                                     height = width / 158 * 175;
@@ -215,7 +215,6 @@ class Index extends Component {
                                                                     backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
                                                                 }}></div>
                                                             );
-                                                            break;
                                                         case 1:
                                                             return (
                                                                 <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
@@ -226,12 +225,9 @@ class Index extends Component {
                                                                     backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
                                                                 }}></div>
                                                             );
-                                                            break;
                                                         default:
                                                             return '';
                                                     }
-
-                                                    break;
                                                 case 3:
                                                     width = (clientWidth - 2) / 3;
                                                     height = width;
@@ -247,7 +243,6 @@ class Index extends Component {
                                                                     backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
                                                                 }}></div>
                                                             );
-                                                            break;
                                                         case 1:
                                                             return (
                                                                 <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
@@ -258,7 +253,6 @@ class Index extends Component {
                                                                     backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
                                                                 }}></div>
                                                             );
-                                                            break;
                                                         case 2:
                                                             return (
                                                                 <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
@@ -269,12 +263,9 @@ class Index extends Component {
                                                                     backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
                                                                 }}></div>
                                                             );
-                                                            break;
                                                         default:
                                                             return '';
                                                     }
-
-                                                    break;
                                                 case 4:
                                                     width = (clientWidth - 2) / 2;
                                                     height = width;
@@ -290,7 +281,6 @@ class Index extends Component {
                                                                     backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
                                                                 }}></div>
                                                             );
-                                                            break;
                                                         case 1:
                                                             return (
                                                                 <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
@@ -301,7 +291,6 @@ class Index extends Component {
                                                                     backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
                                                                 }}></div>
                                                             );
-                                                            break;
                                                         case 2:
                                                             return (
                                                                 <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
@@ -312,7 +301,6 @@ class Index extends Component {
                                                                     backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
                                                                 }}></div>
                                                             );
-                                                            break;
                                                         case 3:
                                                             return (
                                                                 <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
@@ -323,12 +311,9 @@ class Index extends Component {
                                                                     backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
                                                                 }}></div>
                                                             );
-                                                            break;
                                                         default:
                                                             return '';
                                                     }
-
-                                                    break;
                                                 case 5:
                                                     switch (index) {
                                                         case 0:
@@ -341,7 +326,6 @@ class Index extends Component {
                                                                     backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
                                                                 }}></div>
                                                             );
-                                                            break;
                                                         case 1:
                                                             return (
                                                                 <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
@@ -352,7 +336,6 @@ class Index extends Component {
                                                                     backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
                                                                 }}></div>
                                                             );
-                                                            break;
                                                         case 2:
                                                             return (
                                                                 <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
@@ -363,7 +346,6 @@ class Index extends Component {
                                                                     backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
                                                                 }}></div>
                                                             );
-                                                            break;
                                                         case 3:
                                                             return (
                                                                 <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
@@ -374,7 +356,6 @@ class Index extends Component {
                                                                     backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
                                                                 }}></div>
                                                             );
-                                                            break;
                                                         case 4:
                                                             return (
                                                                 <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
@@ -385,12 +366,9 @@ class Index extends Component {
                                                                     backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
                                                                 }}></div>
                                                             );
-                                                            break;
                                                         default:
                                                             return '';
                                                     }
-
-                                                    break;
                                                 case 6:
                                                     switch (index) {
                                                         case 0:
@@ -403,7 +381,6 @@ class Index extends Component {
                                                                     backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
                                                                 }}></div>
                                                             );
-                                                            break;
                                                         case 1:
                                                             return (
                                                                 <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
@@ -414,7 +391,6 @@ class Index extends Component {
                                                                     backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
                                                                 }}></div>
                                                             );
-                                                            break;
                                                         case 2:
                                                             return (
                                                                 <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
@@ -425,7 +401,6 @@ class Index extends Component {
                                                                     backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
                                                                 }}></div>
                                                             );
-                                                            break;
                                                         case 3:
                                                             return (
                                                                 <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
@@ -436,7 +411,6 @@ class Index extends Component {
                                                                     backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
                                                                 }}></div>
                                                             );
-                                                            break;
                                                         case 4:
                                                             return (
                                                                 <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
@@ -447,7 +421,6 @@ class Index extends Component {
                                                                     backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
                                                                 }}></div>
                                                             );
-                                                            break;
                                                         case 5:
                                                             return (
                                                                 <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
@@ -458,12 +431,9 @@ class Index extends Component {
                                                                     backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
                                                                 }}></div>
                                                             );
-                                                            break;
                                                         default:
                                                             return '';
                                                     }
-
-                                                    break;
                                                 case 7:
                                                     switch (index) {
                                                         case 0:
@@ -476,7 +446,6 @@ class Index extends Component {
                                                                     backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
                                                                 }}></div>
                                                             );
-                                                            break;
                                                         case 1:
                                                             return (
                                                                 <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
@@ -487,7 +456,6 @@ class Index extends Component {
                                                                     backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
                                                                 }}></div>
                                                             );
-                                                            break;
                                                         case 2:
                                                             return (
                                                                 <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
@@ -498,7 +466,6 @@ class Index extends Component {
                                                                     backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
                                                                 }}></div>
                                                             );
-                                                            break;
                                                         case 3:
                                                             return (
                                                                 <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
@@ -509,7 +476,6 @@ class Index extends Component {
                                                                     backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
                                                                 }}></div>
                                                             );
-                                                            break;
                                                         case 4:
                                                             return (
                                                                 <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
@@ -520,7 +486,6 @@ class Index extends Component {
                                                                     backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
                                                                 }}></div>
                                                             );
-                                                            break;
                                                         case 5:
                                                             return (
                                                                 <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
@@ -531,7 +496,6 @@ class Index extends Component {
                                                                     backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
                                                                 }}></div>
                                                             );
-                                                            break;
                                                         case 6:
                                                             return (
                                                                 <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
@@ -542,12 +506,9 @@ class Index extends Component {
                                                                     backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
                                                                 }}></div>
                                                             );
-                                                            break;
                                                         default:
                                                             return '';
                                                     }
-
-                                                    break;
                                                 case 8:
                                                     switch (index) {
                                                         case 0:
@@ -560,7 +521,6 @@ class Index extends Component {
                                                                     backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
                                                                 }}></div>
                                                             );
-                                                            break;
                                                         case 1:
                                                             return (
                                                                 <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
@@ -571,7 +531,6 @@ class Index extends Component {
                                                                     backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
                                                                 }}></div>
                                                             );
-                                                            break;
                                                         case 2:
                                                             return (
                                                                 <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
@@ -582,7 +541,6 @@ class Index extends Component {
                                                                     backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
                                                                 }}></div>
                                                             );
-                                                            break;
                                                         case 3:
                                                             return (
                                                                 <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
@@ -593,7 +551,6 @@ class Index extends Component {
                                                                     backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
                                                                 }}></div>
                                                             );
-                                                            break;
                                                         case 4:
                                                             return (
                                                                 <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
@@ -604,7 +561,6 @@ class Index extends Component {
                                                                     backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
                                                                 }}></div>
                                                             );
-                                                            break;
                                                         case 5:
                                                             return (
                                                                 <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
@@ -615,7 +571,6 @@ class Index extends Component {
                                                                     backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
                                                                 }}></div>
                                                             );
-                                                            break;
                                                         case 6:
                                                             return (
                                                                 <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
@@ -626,7 +581,6 @@ class Index extends Component {
                                                                     backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
                                                                 }}></div>
                                                             );
-                                                            break;
                                                         case 7:
                                                             return (
                                                                 <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
@@ -637,12 +591,9 @@ class Index extends Component {
                                                                     backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
                                                                 }}></div>
                                                             );
-                                                            break;
                                                         default:
                                                             return '';
                                                     }
-
-                                                    break;
                                                 case 9:
                                                     switch (index) {
                                                         case 0:
@@ -655,7 +606,6 @@ class Index extends Component {
                                                                     backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
                                                                 }}></div>
                                                             );
-                                                            break;
                                                         case 1:
                                                             return (
                                                                 <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
@@ -666,7 +616,6 @@ class Index extends Component {
                                                                     backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
                                                                 }}></div>
                                                             );
-                                                            break;
                                                         case 2:
                                                             return (
                                                                 <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
@@ -677,7 +626,6 @@ class Index extends Component {
                                                                     backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
                                                                 }}></div>
                                                             );
-                                                            break;
                                                         case 3:
                                                             return (
                                                                 <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
@@ -688,7 +636,6 @@ class Index extends Component {
                                                                     backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
                                                                 }}></div>
                                                             );
-                                                            break;
                                                         case 4:
                                                             return (
                                                                 <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
@@ -699,7 +646,6 @@ class Index extends Component {
                                                                     backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
                                                                 }}></div>
                                                             );
-                                                            break;
                                                         case 5:
                                                             return (
                                                                 <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
@@ -710,7 +656,6 @@ class Index extends Component {
                                                                     backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
                                                                 }}></div>
                                                             );
-                                                            break;
                                                         case 6:
                                                             return (
                                                                 <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
@@ -721,7 +666,6 @@ class Index extends Component {
                                                                     backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
                                                                 }}></div>
                                                             );
-                                                            break;
                                                         case 7:
                                                             return (
                                                                 <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
@@ -732,7 +676,6 @@ class Index extends Component {
                                                                     backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
                                                                 }}></div>
                                                             );
-                                                            break;
                                                         case 8:
                                                             return (
                                                                 <div key={index} className={classNames(style.imageItem, 'imageItem')} style={{
@@ -743,12 +686,9 @@ class Index extends Component {
                                                                     backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
                                                                 }}></div>
                                                             );
-                                                            break;
                                                         default:
                                                             return '';
                                                     }
-
-                                                    break;
                                                 default:
                                                     return '';
                                             }

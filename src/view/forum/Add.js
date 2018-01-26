@@ -117,17 +117,17 @@ class Add extends Component {
                             })} type="text" placeholder="输入不超过25个字符的圈子名称"/>
                         </div>
                     </div>
-                    <div className={classNames(baseStyle.list, baseStyle.bottomLine)}>
+                    <div className={classNames(baseStyle.list)}>
                         <div className={baseStyle.listLeft}>圈子简介</div>
-                        <div className={style.listItemCenter}>
-                            <input className={style.listItemCenterInput} {...getFieldProps('forumDescription', {
-                                rules: [{
-                                    required: true,
-                                    message: '圈子简介不能为空'
-                                }],
-                                initialValue: ''
-                            })} type="text" placeholder="请输入超过255个字符的圈子简介"/>
-                        </div>
+                    </div>
+                    <div className={classNames(style.listItemCenterDescription, baseStyle.bottomLine)}>
+                        <textarea className={style.listItemCenterTextarea} {...getFieldProps('forumDescription', {
+                            rules: [{
+                                required: true,
+                                message: '圈子简介不能为空'
+                            }],
+                            initialValue: ''
+                        })} rows="5" placeholder="请输入超过255个字符的圈子简介"/>
                     </div>
                 </div>
                 <div className={classNames(style.content, style.footer)}>
