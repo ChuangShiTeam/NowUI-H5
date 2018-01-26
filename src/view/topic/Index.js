@@ -19,7 +19,12 @@ class Index extends Component {
 
         this.state = {
             isLoad: false,
-            isInfiniteLoading: false
+            topicPageIndex: 1,
+            topicPageSize: 2,
+            topicTotal: 0,
+            topicList: [],
+            isInfiniteLoading: false,
+            elementHeights: []
         }
     }
 
@@ -42,23 +47,18 @@ class Index extends Component {
         http.request({
             url: '/topic/mobile/v1/home/list',
             data: {
-                pageIndex: this.props.topicIndex.topicPageIndex,
-                pageSize: this.props.topicIndex.topicPageSize
+                pageIndex: this.state.topicPageIndex,
+                pageSize: this.state.topicPageSize
             },
             success: function (data) {
-                if (data && data.total > 0) {
-                    let topicList = [];
-                    if (this.props.topicIndex.topicPageIndex > 1) {
-                        topicList = this.props.topicIndex.topicList
+                let topicList = this.state.topicList;
+                this.props.dispatch({
+                    type: 'topicIndex',
+                    data: {
+                        topicTotal: data.total,
+                        topicList: topicList.concat(data.list)
                     }
-                    this.props.dispatch({
-                        type: 'topicIndex',
-                        data: {
-                            topicTotal: data.total,
-                            topicList: topicList.concat(data.list)
-                        }
-                    });
-                }
+                });
             }.bind(this),
             complete: function () {
                 this.setState({
@@ -69,39 +69,17 @@ class Index extends Component {
     }
 
     handleInfiniteLoad() {
-        let {topicPageIndex, topicPageSize, topicTotal} = this.props.topicIndex;
+        let {topicPageIndex, topicPageSize, topicTotal} = this.state;
         if (topicPageIndex * topicPageSize < topicTotal) {
-            new Promise(function (resolve) {
-                this.setState({
-                    isInfiniteLoading: true
-                });
-                this.props.dispatch({
-                    type: 'topicIndex',
-                    data: {
-                        topicPageIndex: this.props.topicIndex.topicPageIndex + 1
-                    }
-                });
-                resolve();
-            }.bind(this)).then(function () {
-                this.handleLoad();
-            }.bind(this));
+            this.setState({
+                isInfiniteLoading: true,
+                topicPageIndex: topicPageIndex + 1
+            }, function () {
+                setTimeout(function () {
+                    this.handleLoad();
+                }.bind(this), 800)
+            }.bind(this))
         }
-    }
-
-
-    handelTopicDelete() {
-        new Promise(function (resolve) {
-            this.props.dispatch({
-                type: 'topicIndex',
-                data: {
-                    topicPageIndex: 1
-                }
-            });
-
-            resolve();
-        }.bind(this)).then(function () {
-            this.handleLoad();
-        }.bind(this));
     }
 
     render() {
@@ -110,7 +88,7 @@ class Index extends Component {
                 <div className={style.header}>
                     <div className={style.headerContent}>
                         <div className={style.headerContentLeft}>
-                            <Link to={'/member/homepage'} key={this.state.userId} className={style.headerContentLeft}>
+                            <Link to={'/my/publish'} key={this.state.userId} className={style.headerContentLeft}>
                                 <img className={style.headerContentLeftUser}
                                      src={require('../../image/topic-user.png')}
                                      alt=''/>
@@ -145,7 +123,7 @@ class Index extends Component {
                                       this.state.isInfiniteLoading ?
                                           <div className={style.infiniteLoading}>Loading...</div>
                                           :
-                                          this.props.topicIndex.topicPageIndex * this.props.topicIndex.topicPageSize >= this.props.topicIndex.topicTotal ?
+                                          this.state.topicPageIndex * this.state.topicPageSize >= this.state.topicTotal ?
                                               <div className={style.infiniteMore}>没有更多了</div>
                                               :
                                               null
@@ -154,7 +132,7 @@ class Index extends Component {
                         >
                             {
                                 this.props.topicIndex.topicList.map((topic, index) => (
-                                    <TopicIndex topic={topic} key={index} isEdit={true} handelTopicDelete={this.handelTopicDelete.bind(this)}/>
+                                    <TopicIndex topic={topic} key={index}/>
                                 ))
                             }
                         </Infinite>

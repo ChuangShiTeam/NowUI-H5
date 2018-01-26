@@ -7,19 +7,26 @@ import ForumIndex from '../../component/forum/Index';
 import util from '../../common/util';
 
 import style from './My.scss';
+import http from "../../common/http";
 
 class List extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            isLoad: false
+            isLoad: false,
+            forumJoinList: [],
+            forumJoinTotal: 0,
+            forumJoinPageIndex: 1,
+            forumJoinPageSize: 10
         }
     }
 
     componentDidMount() {
         util.setTitle('wawipet哇咿宠');
         util.hancleComponentDidMount();
+
+        this.handleLoadJoinList();
     }
 
     componentDidUpdate() {
@@ -29,6 +36,43 @@ class List extends Component {
     componentWillUnmount() {
 
     }
+
+    handleLoadJoinList() {
+        http.request({
+            url: '/forum/user/follow/mobile/v1/list',
+            data: {
+                pageIndex: this.state.forumJoinPageIndex,
+                pageSize: this.state.forumJoinPageSize
+            },
+            success: function (data) {
+                this.setState({
+                    forumJoinList: data.list,
+                    forumJoinTotal: data.total
+                });
+            }.bind(this),
+            complete: function () {
+
+            }
+        });
+    }
+
+    handleTop(forumId) {
+        http.request({
+            url: '/forum/user/follow/mobile/v1/top',
+            data: {
+                forumId: forumId
+            },
+            success: function (data) {
+                if (data) {
+                    this.handleLoadJoinList();
+                }
+            }.bind(this),
+            complete: function () {
+
+            }
+        });
+    }
+
 
     render() {
         return (
@@ -45,11 +89,12 @@ class List extends Component {
                 </div>
                 <div className={style.content} style={{minHeight: document.documentElement.clientHeight - 46 - 12 - 8}}>
                     {
-                        this.props.forumMy.forumList.map(function (forum, index) {
+                        this.state.forumJoinList.map(function (forum, index) {
                             return (
-                                <ForumIndex key={index} forum={forum}/>
+
+                                <ForumIndex key={index} forum={forum} forumIsTop={index !== 0} handleTop={this.handleTop.bind(this)} style={index == 0 ? {} : {marginTop: '10px'}}/>
                             )
-                        })
+                        }.bind(this))
                     }
                 </div>
             </div>

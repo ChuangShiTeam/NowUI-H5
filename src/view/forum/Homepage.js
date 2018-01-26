@@ -163,11 +163,14 @@ class Homepage extends Component {
                      <span>
                          已有{this.state.forum.forumUserFollowCount?this.state.forum.forumUserFollowCount:0}人加入圈子
                      </span>
-                     <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?listView/1/w/72/h/72" alt=""/>
+                     <Link to={'/forum/info/' +  this.state.forum.forumId} key={this.state.forum.forumId} >
+
+                     <img className={style.homePageHeaderTopBackgroundImg} src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?listView/1/w/72/h/72" alt=""/>
+                     </Link>
                  </div>
                  <div className={classNames(style.homePageHeaderMiddleMessage,baseStyle.bottomLine)}>
-                     <p style={{fontSize:"16px",textAlign:"center",paddingTop:"33px",color:"#323232"}}>{this.state.forum.forumName}sfsdhgfh</p>
-                     <p style={{fontSize:"12px",textAlign:"center",color:"#9d9d9d"}}>{this.state.forum.forumDescription}sgfjhfgssfdgfg</p>
+                     <p style={{fontSize:"16px",textAlign:"center",marginTop:"33px",color:"#323232"}}>{this.state.forum.forumName}</p>
+                     <p style={{fontSize:"12px",textAlign:"center",color:"#9d9d9d"}}>{this.state.forum.forumDescription}</p>
                      <p style={{textAlign:"center",marginTop:"10px"}}>
                          {
                              this.state.forum.memberIsFollowForum ?
