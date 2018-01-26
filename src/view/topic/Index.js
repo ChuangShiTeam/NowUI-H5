@@ -19,12 +19,7 @@ class Index extends Component {
 
         this.state = {
             isLoad: false,
-            topicPageIndex: 1,
-            topicPageSize: 2,
-            topicTotal: 0,
-            topicList: [],
-            isInfiniteLoading: false,
-            elementHeights: []
+            isInfiniteLoading: false
         }
     }
 
@@ -32,7 +27,7 @@ class Index extends Component {
         util.setTitle('wawipet哇咿宠');
         util.hancleComponentDidMount();
 
-        this.handleLoad();
+        this.handleLoad(this.props.topicIndex.topicPageIndex);
     }
 
     componentDidUpdate() {
@@ -43,18 +38,19 @@ class Index extends Component {
 
     }
 
-    handleLoad() {
+    handleLoad(topicPageIndex) {
         http.request({
             url: '/topic/mobile/v1/home/list',
             data: {
-                pageIndex: this.state.topicPageIndex,
-                pageSize: this.state.topicPageSize
+                pageIndex: topicPageIndex,
+                pageSize: this.props.topicIndex.topicPageSize
             },
             success: function (data) {
-                let topicList = this.state.topicList;
+                let topicList = this.props.topicIndex.topicList;
                 this.props.dispatch({
                     type: 'topicIndex',
                     data: {
+                        topicPageIndex: topicPageIndex,
                         topicTotal: data.total,
                         topicList: topicList.concat(data.list)
                     }
@@ -69,17 +65,20 @@ class Index extends Component {
     }
 
     handleInfiniteLoad() {
-        let {topicPageIndex, topicPageSize, topicTotal} = this.state;
+        let {topicPageIndex, topicPageSize, topicTotal} = this.props.topicIndex;
         if (topicPageIndex * topicPageSize < topicTotal) {
             this.setState({
                 isInfiniteLoading: true,
-                topicPageIndex: topicPageIndex + 1
             }, function () {
                 setTimeout(function () {
-                    this.handleLoad();
+                    this.handleLoad(topicPageIndex + 1);
                 }.bind(this), 800)
             }.bind(this))
         }
+    }
+
+    handleDelete() {
+        this.handleLoad(1);
     }
 
     render() {
@@ -132,7 +131,7 @@ class Index extends Component {
                         >
                             {
                                 this.props.topicIndex.topicList.map((topic, index) => (
-                                    <TopicIndex topic={topic} key={index}/>
+                                    <TopicIndex topic={topic} key={index} />
                                 ))
                             }
                         </Infinite>

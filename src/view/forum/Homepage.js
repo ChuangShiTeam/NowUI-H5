@@ -154,7 +154,10 @@ class Homepage extends Component {
         }
     };
 
-
+    handleTopicDelete () {
+        this.handleLoad(this.props.params.forumId);
+    }
+    
     render() {
         return (
             <div className={style.page} style={{minHeight: document.documentElement.clientHeight}}>
@@ -238,7 +241,7 @@ class Homepage extends Component {
                                       isInfiniteLoading={this.state.isInfiniteLoading}
                             >
                                 {
-                                    this.state.topicList.map((topic, index) => <TopicIndex topic={topic} key={index}/>)
+                                    this.state.topicList.map((topic, index) => <TopicIndex topic={topic} key={index} handleDelete={this.handleTopicDelete.bind(this)}/>)
                                 }
                             </Infinite>
                             :

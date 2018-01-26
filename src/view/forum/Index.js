@@ -21,16 +21,7 @@ class Index extends Component {
         super(props);
 
         this.state = {
-            isLoad: false,
-            forumJoinPageIndex: 1,
-            forumJoinPageSize: 3,
-            forumJoinTotal: 0,
-            forumJoinList: [],
-            forumRecommendList: [],
-            hotTopicPageIndex: 1,
-            hotTopicPageSize: 3,
-            hotTopicTotal: 0,
-            hotTopicList: []
+            isLoad: false
         }
     }
 
@@ -69,22 +60,27 @@ class Index extends Component {
     }
 
     handleLoad() {
-        this.handleLoadJoinList();
+        this.handleLoadJoinList(this.props.forumIndex.forumJoinPageIndex);
         this.handleLoadRecommendList();
-        this.handleLoadHotTopic();
+        this.handleLoadHotTopic(this.props.forumIndex.hotTopicPageIndex);
     }
 
-    handleLoadHotTopic() {
+    handleLoadHotTopic(hotTopicPageIndex) {
         http.request({
             url: '/topic/mobile/v1/home/list',
             data: {
-                pageIndex: this.state.hotTopicPageIndex,
-                pageSize: this.state.hotTopicPageSize
+                pageIndex: this.porps.forumIndex.hotTopicPageIndex,
+                pageSize: this.porps.forumIndex.hotTopicPageSize
             },
             success: function (data) {
-                this.setState({
-                    hotTopicTotal: data.total,
-                    hotTopicList: data.list
+                let hotTopicList = this.props.forumIndex.hotTopicList;
+                this.props.dispatch({
+                    type: 'forumIndex',
+                    data: {
+                        hotTopicPageIndex: hotTopicPageIndex,
+                        hotTopicTotal: data.total,
+                        hotTopicList: hotTopicList.concat(data.list)
+                    }
                 });
             }.bind(this),
             complete: function () {
@@ -118,17 +114,22 @@ class Index extends Component {
             }
         });
     }
-    handleLoadJoinList() {
+    handleLoadJoinList(forumJoinPageIndex) {
         http.request({
             url: '/forum/user/follow/mobile/v1/list',
             data: {
-                pageIndex: this.state.forumJoinPageIndex,
-                pageSize: this.state.forumJoinPageSize
+                pageIndex: forumJoinPageIndex,
+                pageSize: this.props.forumIndex.forumJoinPageSize
             },
             success: function (data) {
-                this.setState({
-                    forumJoinTotal: data.total,
-                    forumJoinList: data.list
+                let forumJoinList = this.props.forumIndex.forumJoinList;
+                this.props.dispatch({
+                    type: 'forumIndex',
+                    data: {
+                        forumJoinPageIndex: forumJoinPageIndex,
+                        forumJoinTotal: data.total,
+                        forumJoinList: forumJoinList.concat(data.list)
+                    }
                 });
             }.bind(this),
             complete: function () {
@@ -174,6 +175,10 @@ class Index extends Component {
 
             }
         });
+    }
+
+    handleTopicDelete() {
+        this.handleLoadHotTopic(1);
     }
 
     render() {
@@ -326,7 +331,7 @@ class Index extends Component {
                         </div>
                     </div>
                     {
-                        this.state.hotTopicList.map((topic, index) => <TopicIndex topic={topic} key={index}/>)
+                        this.state.hotTopicList.map((topic, index) => <TopicIndex topic={topic} key={index} handleDelete={this.handleTopicDelete.bind(this)}/>)
                     }
                 </div>
                 <br/>

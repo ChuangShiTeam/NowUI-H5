@@ -3,12 +3,15 @@ import PropTypes from 'prop-types';
 import {Link} from 'react-router';
 import classNames from 'classnames';
 import moment from 'moment';
+import Notification from 'rc-notification';
 
 import constant from '../../common/constant';
 import style from './Index.scss';
 import baseStyle from '../../css/Base.scss';
 import http from "../../common/http";
 
+let notification = null;
+Notification.newInstance({}, (n) => notification = n);
 class Index extends Component {
     constructor(props) {
         super(props);
@@ -97,9 +100,48 @@ class Index extends Component {
             complete: function () {
 
             }
-
         })
 
+    }
+
+    handleFollow() {
+        http.request({
+            url: '/member/follow/mobile/v1/save',
+            data: {
+                followUserId: this.state.topic.userId
+            },
+            success: function (data) {
+                notification.notice({
+                    content: '关注成功'
+                });
+                let topic = this.state.topic;
+                topic.topicIsFollow = true;
+                this.setState({
+                    topic: topic
+                })
+            }.bind(this),
+            complete: function () {
+
+            }
+        })
+    }
+
+    handleDelete() {
+        http.request({
+            url: '/topic/mobile/v1/delete',
+            data: {
+                topicId: this.state.topic.topicId
+            },
+            success: function (data) {
+                notification.notice({
+                    content: '删除成功'
+                });
+                this.props.handleDelete();
+            }.bind(this),
+            complete: function () {
+
+            }
+        })
     }
 
     render() {
@@ -170,13 +212,13 @@ class Index extends Component {
                                 </div>
                                 <div className={style.headerRight}>
                                     {
-                                        true ?
-                                            true ?
-                                                <div className={style.headerRightNotFollow}><span className={style.headerRightFollowAdd}>+</span> 关注</div>
-                                                :
-                                                <div className={style.headerRightFollow}>已关注</div>
+                                        this.state.topic.topicIsSelf ?
+                                            <span className={style.headerRightDelete} onClick={this.handelDelete.bind(this)}>删除</span>
                                             :
-                                            <span className={style.headerRightDelete}>删除</span>
+                                            this.state.topic.topicIsFollow ?
+                                                <div className={style.headerRightFollow}>已关注</div>
+                                                :
+                                                <div className={style.headerRightNotFollow} onClick={this.handleFollow.bind(this)}><span className={style.headerRightFollowAdd}>+</span> 关注</div>
                                     }
                                 </div>
                             </div>
@@ -806,7 +848,8 @@ class Index extends Component {
 }
 
 Index.propTypes = {
-    topic: PropTypes.object.isRequired
+    topic: PropTypes.object.isRequired,
+    handelDelete: PropTypes.func.isRequired
 };
 
 export default Index;
