@@ -76,7 +76,7 @@ class Detail extends Component {
                             });
                         });
                     }, 0);
-                }.bind(this)
+                }
             });
         }
     }

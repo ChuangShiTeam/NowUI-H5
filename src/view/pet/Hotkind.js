@@ -1,15 +1,18 @@
 import  React, {Component} from 'react';
 import {connect} from 'react-redux';
 import util from '../../common/util';
-import {Link} from 'react-router';
+
 import  style from './Hotkind.scss';
-import baseStyle from '../../css/Base.scss';
-import classNames from 'classnames';
 
 class Hotkind extends Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            isLoad: false
+        }
     }
+    
     componentDidMount() {
         util.setTitle('wawipet哇咿宠');
         util.hancleComponentDidMount();

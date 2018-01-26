@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import classNames from 'classnames';
+
 import baseStyle from '../../css/Base.scss';
 
 

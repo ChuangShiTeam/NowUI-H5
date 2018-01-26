@@ -1,32 +1,35 @@
-import  React, {Component} from 'react';
+import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import util from '../../common/util';
-import {Link} from 'react-router';
-import  style from './Hotcat.scss';
-import baseStyle from '../../css/Base.scss';
-import classNames from 'classnames';
+
+import style from './Hotcat.scss';
 
 class Hotcat extends Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            isLoad: false
+        }
     }
+
     componentDidMount() {
         util.setTitle('wawipet哇咿宠');
         util.hancleComponentDidMount();
     }
 
-    componentDidUpdate(){
+    componentDidUpdate() {
         util.hancleComponentDidUpdate();
     }
 
-    componentWillUnmount(){
+    componentWillUnmount() {
     }
 
     render() {
         return (
             <div className={style.page} style={{minHeight: document.documentElement.clientHeight}}>
-                <div className={style.header}> 
-                   <span className={style.tittle}>热门品种</span>
+                <div className={style.header}>
+                    <span className={style.tittle}>热门品种</span>
                     <span className={style.allKind}>查看全部</span>
                 </div>
                 <div className={style.list}>
@@ -42,6 +45,5 @@ class Hotcat extends Component {
     }
 
 }
-
 
 export default connect(() => ({}))(Hotcat);

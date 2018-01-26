@@ -1,11 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import classNames from 'classnames';
-import {Link} from 'react-router';
 import util from '../../common/util';
 
 import style from './Message.scss';
-import baseStyle from '../../css/Base.scss';
 
 class Message extends Component {
     constructor(props) {
@@ -32,7 +29,7 @@ class Message extends Component {
     }
 
     handleLoad() {
-        let forumId = this.props.params.forumId;
+
     }
 
     render() {

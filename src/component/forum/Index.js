@@ -1,12 +1,10 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router';
-import classNames from 'classnames';
 
 import constant from '../../common/constant';
 
 import style from './Index.scss';
-import baseStyle from '../../css/Base.scss';
 
 class Index extends Component {
     constructor(props) {
