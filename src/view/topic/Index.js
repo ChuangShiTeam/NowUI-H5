@@ -110,7 +110,7 @@ class Index extends Component {
                 <div className={style.header}>
                     <div className={style.headerContent}>
                         <div className={style.headerContentLeft}>
-                            <Link to={'/member/homepage'} key={this.state.userId} className={style.headerContentLeft}>
+                            <Link to={'/my/publish'} key={this.state.userId} className={style.headerContentLeft}>
                                 <img className={style.headerContentLeftUser}
                                      src={require('../../image/topic-user.png')}
                                      alt=''/>
