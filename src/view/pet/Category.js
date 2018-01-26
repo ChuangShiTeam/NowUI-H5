@@ -4,15 +4,12 @@ import {createForm} from "rc-form";
 import {Link} from 'react-router';
 import Notification from 'rc-notification';
 import classNames from 'classnames';
-
 import util from '../../common/util';
 import http from '../../common/http';
 import ImageUpload from '../../component/upload/ImageUpload';
-
 import style from './Category.scss';
 import baseStyle from '../../css/Base.scss';
 import petCategory from "../../store/petCategory";
-
 
 class Category extends Component {
     constructor(props) {
@@ -27,29 +24,40 @@ class Category extends Component {
         util.setTitle('wawipet哇咿宠');
         util.hancleComponentDidMount();
 
+        http.request({
+            url: '/wawi/pet/category/mobile/v1/list',
+            data: {},
+            success: function (data) {
+                console.log(data);
+            }.bind(this),
+            complete: function () {
+            }
+        });
+
+
         if (this.props.petCategory.categoryList && this.props.petCategory.categoryList.length === 0) {
+
             // 本地测试静态数据
             this.props.dispatch({
                 type: 'petCategory',
                 data: {
-                    categoryList: [
+                    categoryList:[
                         {
                             listItemLeftIcon:"http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/1000/h/1000/q/80",
                             listItemLeftUrl:"#",
-                            listItemCenterName:"猫类",
+                            listItemCenterName:"猫类"
                         },{
                             listItemLeftIcon:"http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/1000/h/1000/q/80",
                             listItemLeftUrl:"#",
-                            listItemCenterName:"狗类",
+                            listItemCenterName:"狗类"
                         },{
                             listItemLeftIcon:"http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/1000/h/1000/q/80",
                             listItemLeftUrl:"#",
-                            listItemCenterName:"鸟类",
+                            listItemCenterName:"鸟类"
                         }
                     ]
                 }
-
-            })
+            });
         }
     }
 

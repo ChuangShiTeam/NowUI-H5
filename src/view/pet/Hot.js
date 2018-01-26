@@ -14,9 +14,8 @@ import baseStyle from '../../css/Base.scss';
 let notification = null;
 Notification.newInstance({}, (n) => notification = n);
 class Add extends Component {
-    constructor(props) {
+    constructor(props){
         super(props);
-
         this.state = {
             isLoad: false
         }
