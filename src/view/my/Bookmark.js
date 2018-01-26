@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router';
 import util from '../../common/util';
 import baseStyle from '../../css/Base.scss';
-// import style from './Bookmark.scss';
+
 import  style from './Whole.scss';
 class Bookmark extends Component {
     constructor(props) {
@@ -33,9 +33,9 @@ class Bookmark extends Component {
                             <Link to="/my/adorable" className={style.navigationItem}>萌物</Link>
                             <Link to="/my/shop" className={style.navigationItem}>商户</Link>
                         </div>
-                        <div className={style.search}>
+                        <Link  to='/my/search'  className={style.search}>
                             <img src={require("../../image/search.png")} alt=""/>
-                        </div>
+                        </Link>
                     </div>
                     <div className={style.list}>
                             <div className={style.listContent}>

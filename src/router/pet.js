@@ -17,5 +17,21 @@ export default {
                 cb(null, require('../view/pet/Hot').default);
             }, 'pet.hot');
         }
+    }, {
+        path: '/pet/hotkind',
+        onEnter: util.handleEnter,
+        getComponent(location, cb) {
+            require.ensure([], (require) => {
+                cb(null, require('../view/pet/Hotkind').default);
+            }, 'pet.hotkind');
+        }
+    }, {
+        path: '/pet/hotcat',
+        onEnter: util.handleEnter,
+        getComponent(location, cb) {
+            require.ensure([], (require) => {
+                cb(null, require('../view/pet/Hotcat').default);
+            }, 'pet.hotcat');
+        }
     }]
 }

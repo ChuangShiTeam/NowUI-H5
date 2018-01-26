@@ -1,26 +1,60 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router';
+import Infinite from 'react-infinite';
+import Notification from 'rc-notification';
 
+import TopicIndex from '../../component/topic/Index';
 
 import util from '../../common/util';
 import http from "../../common/http";
 import style from './Homepage.scss';
 import constant from "../../common/constant";
 
+let notification = null;
+Notification.newInstance({}, (n) => notification = n);
+
 class Homepage extends Component {
     constructor(props) {
         super(props);
         this.state = {
             isLoad: false,
-            forum: {}
+            forum: {},
+            forumId: '',
+            topicPageIndex: 1,
+            topicPageSize: 3,
+            topicList: [],
+            topicTotal: 0,
+            isInfiniteLoading: false
         }
     }
 
     componentDidMount(){
         util.setTitle('wawipet哇咿宠');
         util.hancleComponentDidMount();
-        this.handleLoad();
+
+        this.handleLoad(this.props.params.forumId);
+        this.handleTopicList(this.props.params.forumId);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (this.props.route.path === nextProps.route.path) {
+            if (this.props.params.forumId !== nextProps.params.forumId) {
+                this.setState({
+                    isLoad: false,
+                    forum: {},
+                    forumId: '',
+                    topicPageIndex: 1,
+                    topicPageSize: 3,
+                    topicList: [],
+                    topicTotal: 0,
+                    isInfiniteLoading: false
+                });
+                this.handleLoad(nextProps.params.forumId);
+                this.handleTopicList(nextProps.params.forumId);
+            }
+        }
+
     }
 
     componentDidUpdate() {
@@ -31,8 +65,8 @@ class Homepage extends Component {
 
     }
 
-    handleLoad() {
-        let forumId = this.props.params.forumId;
+
+    handleLoad(forumId) {
         if (forumId) {
             http.request({
                 url: '/forum/mobile/v1/home',
@@ -41,7 +75,8 @@ class Homepage extends Component {
                 },
                 success: function (data) {
                     this.setState({
-                        forum: data
+                        forum: data,
+                        forumId: forumId
                     });
                 }.bind(this),
                 complete: function (){
@@ -51,11 +86,80 @@ class Homepage extends Component {
         }
     }
 
+
+    handleTopicList(forumId) {
+        if (forumId) {
+            http.request({
+                url: '/forum/mobile/v1/home/topic/list',
+                data: {
+                    forumId: forumId,
+                    pageIndex: this.state.topicPageIndex,
+                    pageSize: this.state.topicPageSize
+                },
+                success: function (data) {
+                    let topicList = this.state.topicList;
+                    this.setState({
+                        topicList: topicList.concat(data.list),
+                        topicTotal: data.total
+                    });
+                }.bind(this),
+                complete: function (){
+                    this.setState({
+                        isInfiniteLoading: false
+                    })
+                }.bind(this)
+            });
+        }
+    }
+
+
+
+    handleJoin(forumId) {
+        http.request({
+            url: '/forum/user/follow/mobile/v1/save',
+            data: {
+                forumId: forumId
+            },
+            success: function (data) {
+                if (data) {
+                    notification.notice({
+                        content: '加入成功'
+                    });
+                    this.handleLoad();
+                } else {
+                    notification.notice({
+                        content: '加入失败'
+                    });
+                }
+
+            }.bind(this),
+            complete: function () {
+
+            }
+        });
+    }
+
+
+    handleInfiniteLoad() {
+        let {topicPageIndex, topicPageSize, topicTotal} = this.state;
+        if (topicPageIndex * topicPageSize < topicTotal) {
+            this.setState({
+                isInfiniteLoading: true,
+                topicPageIndex: topicPageIndex + 1
+            }, function () {
+                setTimeout(function() {
+                    this.handleLoad();
+                }.bind(this), 800)
+            }.bind(this))
+        }
+    };
+
+
     render() {
         return (
             <div className={style.page} style={{minHeight: document.documentElement.clientHeight}}>
                 <Link to={'/forum/info/' +  this.state.forum.forumId} key={this.state.forum.forumId} >
-                    <div className={style.homePageHeaderIco}></div>
+                    <div className={style.homePageHeaderIcon}></div>
                 </Link>
                  <div className={style.homePageHeaderTopBackground}>
                      <span style={{paddingTop:"97px",display:"block",paddingLeft:"10px",fontSize:"10px"}}>
@@ -70,14 +174,14 @@ class Homepage extends Component {
                              this.state.forum.memberIsFollowForum ?
                                  '已加入圈子'
                                  :
-                                 <input style={{borderRadius:"34px",backgroundColor:"#DEFAFD",width:"86px",height:"27px",boxShadow:" 0px 0px 6px #888888"}} type="button" value="加入圈子"/>
+                                 <input style={{borderRadius:"34px",backgroundColor:"#DEFAFD",width:"86px",height:"27px",boxShadow:" 0px 0px 6px #888888"}} onClick={this.handleJoin.bind(this, this.state.forumId)} type="button" value="加入圈子"/>
                          }
 
                      </p>
-                     <p style={{borderBottom:"1px solid #DDDDDD ",margin:"20px"}}></p>
+                     <p style={{borderBottom:"1px solid #DDDDDD ",margin:"14px"}}></p>
                  </div>
                  <div>
-                     <dl>
+                     <dl className={style.homePageHeaderMessages}>
                          <dt className={style.homePageHeaderMessageLeft}>
                              {
                                  this.state.forum && this.state.forum.forumModerator && this.state.forum.forumModerator.userId ?
@@ -114,7 +218,37 @@ class Homepage extends Component {
                          </dd>
                      </dl>
                  </div>
+                <div className={style.nullDiv}></div>
+                <div>
+                    {
+                        this.state.topicList.length > 0 ?
+                            <Infinite elementHeight={document.documentElement.clientHeight * 0.8}
+                                      containerHeight={document.documentElement.clientHeight}
+                                      infiniteLoadBeginEdgeOffset={200}
+                                      onInfiniteLoad={this.handleInfiniteLoad.bind(this)}
+                                      loadingSpinnerDelegate={
+                                          this.state.isInfiniteLoading ?
+                                              <div className="infinite-list-item">Loading...</div>
+                                              :
+                                              this.state.topicPageIndex * this.state.topicPageSize >= this.state.topicTotal  ?
+                                                  <div className="infinite-list-item">没有更多了</div>
+                                                  :
+                                                  null
+                                      }
+                                      isInfiniteLoading={this.state.isInfiniteLoading}
+                            >
+                                {
+                                    this.state.topicList.map((topic, index) => <TopicIndex topic={topic} key={index}/>)
+                                }
+                            </Infinite>
+                            :
+                            null
+                    }
+                </div>
+
             </div>
+
+
         );
     }
 }

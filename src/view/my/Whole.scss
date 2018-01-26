@@ -59,17 +59,27 @@
     justify-content: center;
     flex-direction: column;
 }
-.mask{
+.mengBan{
     width: 68px;
-    height: 15px;
-    background:#defafd ;
-    font-family:PingFangSC-Regular;
-    font-size:10px;
-    color:#c18108;
-    letter-spacing:-0.31px;
+    height: 68px;
+}
+.mask{
+    width: 66px;
     text-align: center;
     line-height: 15px;
-
+    height: 13px;
+    background:#defafd;
+    position: relative;
+    bottom: 18px;
+    border: 1px solid transparent;
+}
+.mask>div{
+    margin-left: 4px;
+    font-family:PingFangSC-Regular;
+    font-size:12px;
+    transform: scale(0.83);
+    color:#c18108;
+    letter-spacing:4px;
 }
 .listContent{
     height: 95px;
@@ -268,5 +278,160 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
 
+.headerContents {
+    -js-display: flex;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 40px;
+    font-family: PingFangSC-Regular;
+    font-size: 16px;
+    color: #4a4a4a;
+    background:#defafd;
+}
+.headerContentLeftSearchs {
+    background: #ffffff;
+    border-radius: 4px;
+    width: 92.5%;
+    height: 23px;
+    -js-display: flex;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+.headerContentLeftSearchLefts {
+    width: 16px;
+    height: 16px;
+    -js-display: flex;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 35px;
+}
+.headerContentLeftSearchLeftIcons {
+    width: 12px;
+    height: 12px;
+}
+.headerContentLeftSearchRightInputs {
+    font-family: PingFangSC-Regular;
+    font-size: 12px;
+    transform: scale(0.91);
+    color: #000000;
+    letter-spacing: 0;
+    width: 91%;
+    height: 16px;
+    margin-bottom: 5px;
+}
+.headerContentRights{
+    -js-display: flex;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.headerContentLeftCollectionfind{
+    width: 100%;
+    margin: 0px 12px;
+}
+.headerContentLeftSearchCollectionfind {
+    background: #ffffff;
+    border-radius: 4px;
+    width: 100%;
+    height: 23px;
+    -js-display: flex;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+}
+.headerContentLeftSearchLeftCollectionfind {
+    width: 16px;
+    height: 16px;
+    -js-display: flex;
+    display: flex;
+    font-size: 12px;
+    transform: scale(0.91);
+    justify-content: center;
+    align-items: center;
+}
+.clearCollectionfind{
+margin-right: 12px;
+}
+
+
+.header {
+    position: fixed;
+    top: 0;
+    height: 45px;
+    z-index: 99;
+    width: 100%;
+    max-width: 600px;
+    background: #defafd;
+}
+.headerContent {
+    -js-display: flex;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 45px;
+    font-family: PingFangSC-Regular;
+    font-size: 16px;
+    color: #4a4a4a;
+}
+.headerContentLeft {
+    flex-grow: 1;
+    margin: 0px 12px 0px 12px;
+}
+.headerContentLeftSearch {
+    background: #ffffff;
+    border-radius: 86px;
+    width: 100%;
+    height: 28px;
+    -js-display: flex;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+.headerContentLeftSearchLeft {
+    width: 40px;
+    height: 28px;
+    -js-display: flex;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.headerContentLeftSearchRight {
+    flex-grow: 1;
+}
+.headerContentLeftSearchRightInput {
+    font-family: PingFangSC-Regular;
+    font-size: 12px;
+    color: #000000;
+    letter-spacing: 0;
+    width: 91%;
+    height: 20px;
+}
+.headerContentLeftSearchLeftIcon {
+    width: 18px;
+    height: 18px;
+}
+.headerContentRight {
+    width: 32px;
+}
+.headerContentRightClose {
+    width: 15px;
+    height: 15px;
+    margin-top: 7px;
+}
+.headerContentRightCloses {
+    width: 15px;
+    height: 15px;
 }

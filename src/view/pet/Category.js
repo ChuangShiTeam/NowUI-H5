@@ -7,7 +7,7 @@ import classNames from 'classnames';
 
 import util from '../../common/util';
 import http from '../../common/http';
-import ImageUpload from '../../component/upload/ImageUpload';
+import ImageUpload from '../../component/upload/Index';
 
 import style from './Category.scss';
 import baseStyle from '../../css/Base.scss';
@@ -35,7 +35,7 @@ class Category extends Component {
                     categoryList: [
                         {
                             listItemLeftIcon:"http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/1000/h/1000/q/80",
-                            listItemLeftUrl:"#",
+                            listItemLeftUrl:"/pet/hotcat",
                             listItemCenterName:"猫类",
                         },{
                             listItemLeftIcon:"http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/1000/h/1000/q/80",

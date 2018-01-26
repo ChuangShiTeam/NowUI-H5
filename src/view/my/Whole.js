@@ -34,16 +34,18 @@ class Whole extends Component {
                         <Link to="/my/adorable"  className={style.navigationItem}>萌物</Link>
                         <Link to="/my/shop" className={style.navigationItem}>商户</Link>
                     </div>
-                    <div className={style.search}>
+                    <Link  to='/my/search'  className={style.search}>
                         <img src={require("../../image/search.png")} alt=""/>
-                    </div>
+                    </Link>
                 </div>
                 <div className={style.list}>
                     <div className={style.listContent}>
                         <div className={style.listLeft}>
-                            <div >
+                            <div className={style.mengBan}>
                                 <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/68/h/68" alt=""/>
-                                <div className={style.mask}></div>
+                                <div className={style.mask}>
+                                    <div>文章</div>
+                                </div>
                             </div>
                             <div className={style.listCenter}>
                                 <div className={style.tittles}> 为工作而生的汪星人拉布...</div>
@@ -62,7 +64,12 @@ class Whole extends Component {
                     <div className={style.listContentDynamic}>
                         <div className={style.listLeftDynamic}>
                             <div className={style.listLeftHeader}>
-                                <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/68/h/68" alt=""/>
+                                <div className={style.mengBan}>
+                                    <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/68/h/68" alt=""/>
+                                    <div className={style.mask}>
+                                        <div>动态</div>
+                                    </div>
+                                </div>
                                 <div className={style.contentDynamic}>
                                     <div className={style.tittlesDynamic}>这只柴柴和加菲也太可爱了吧~</div>
                                     <div className={style.times}>
@@ -91,7 +98,12 @@ class Whole extends Component {
                     </div>
                     <div className={style.listContent}>
                         <div className={style.listLeft}>
-                            <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/68/h/68" alt=""/>
+                            <div className={style.mengBan}>
+                                <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/68/h/68" alt=""/>
+                                <div className={style.mask}>
+                                    <div>萌物</div>
+                                </div>
+                            </div>
                             <div className={style.listCenter}>
                                 <div className={style.tittles}>SANY日式口款精品项圈 </div>
                                 <div className={style.contentAdorable}>
@@ -111,7 +123,12 @@ class Whole extends Component {
                     </div>
                     <div className={style.listContent}>
                         <div className={style.listLeft}>
-                            <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/68/h/68" alt=""/>
+                            <div className={style.mengBan}>
+                                <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/68/h/68" alt=""/>
+                                <div className={style.mask}>
+                                    <div>商户</div>
+                                </div>
+                            </div>
                             <div className={style.listCenter}>
                                 <div className={style.tittles}>小佩的宠物店 </div>
                                 <div className={style.times}>

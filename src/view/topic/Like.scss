@@ -7,19 +7,16 @@
 	justify-content: flex-start;
 	align-items: center;
 }
-
 .headerLeft {
 	margin-left: 12px;
 	font-family: PingFangSC-Regular;
 	font-size: 14px;
 	color: #c18108;
 }
-
 .content {
 	padding-right: 12px;
 	padding-left: 12px;
 }
-
 .list {
 	-js-display: flex;
 	display: flex;
@@ -29,7 +26,6 @@
 	height: 54px;
 	background: #ffffff;
 }
-
 .listLeft {
 	font-family: PingFangSC-Regular;
 	font-size: 14px;
@@ -37,11 +33,9 @@
 	width: 54px;
 	text-align: center;
 }
-
 .listLeftIcon {
 	border-radius: 100%;
 }
-
 .listCenter {
 	flex-grow: 1;
 	width: 0;
@@ -53,19 +47,16 @@
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
-
 .listRight {
 	width: 58px;
 	text-align: center;
 }
-
 .listRightFollow {
 	border: 1px solid #c18108;
 	border-radius: 4px;
 	width: 45px;
 	height: 23px;
 	font-family: PingFangSC-Regular;
-	font-size: 10px;
 	color: #c28200;
 	letter-spacing: 0;
 	-js-display: flex;
@@ -73,7 +64,14 @@
 	justify-content: center;
 	align-items: center;
 }
-
+.listRightFollow>span,.listRightFollowActive >span{
+	text-align: center;
+	line-height: 23px;
+	height: 23px;
+	font-size: 12px;
+	transform: scale(0.83);
+	white-space: nowrap;
+}
 .listRightFollowActive {
 	border: 1px solid #9b9b9b;
 	border-radius: 4px;
