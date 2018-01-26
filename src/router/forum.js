@@ -12,7 +12,15 @@ export default {
                 }, 'forum.index');
             }
         }]
-    }, {
+    } ,{
+        path: '/forum/homepage',
+        onEnter: util.handleEnter,
+        getComponent(location, cb) {
+            require.ensure([], (require) => {
+                cb(null, require('../view/forum/Homepage').default);
+            }, 'forum.homepage');
+        }
+    },  {
         path: '/forum/skip',
         onEnter: util.handleEnter,
         getComponent(location, cb) {
