@@ -2,10 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import classNames from 'classnames';
 import baseStyle from '../../css/Base.scss';
-
-
 import util from '../../common/util';
-
 import style from './OthersHomepage.scss';
 
 
@@ -47,7 +44,6 @@ class OthersHomepage extends Component {
                             <span className={style.messagesFrom}>来自 上海 徐汇区</span>
                         </div>
                         <span className={style.messagesCenter}> Capturing every moment of my life</span>
-
                     </div>
                     <div className={style.middle}>
                         <div className={style.middleLeft}>

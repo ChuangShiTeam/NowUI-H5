@@ -61,19 +61,17 @@ class Hotcat extends Component {
             <div className={style.page} style={{minHeight: document.documentElement.clientHeight}}>
                 <div className={style.header}>
                     <span className={style.tittle}>热门品种</span>
-
                     <Link to={{
                         pathname: `pet/Category`
                     }}>
                         <span className={style.allKind}> 查看全部 </span>
                     </Link>
-
                 </div>
                 <div className={style.list}>
                     {
                         petCategorys.map((category, index) =>
                             <div key={index} className={style.listItem}>
-                                <img src={category.petCategoryImage.filePath} alt={category.petCategoryName}/>
+                                <img src={category.petCategoryImage.filePath}/>
                                 <span>{category.petCategoryName}
                                 </span>
                             </div>

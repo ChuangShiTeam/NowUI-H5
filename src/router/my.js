@@ -146,8 +146,8 @@ export default {
         onEnter: util.handleEnter,
         getComponent(location, cb) {
             require.ensure([], (require) => {
-                cb(null, require('../view/my/OthersHomepage').default);
-            }, 'my.othershomepage');
+                cb(null, require('../view/my/Othershomepage').default);
+            }, 'my.OthersHomepage');
         }
     },{
         path: '/my/info',

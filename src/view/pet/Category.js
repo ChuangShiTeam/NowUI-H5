@@ -12,7 +12,7 @@ class Category extends Component {
         super(props);
         this.state = {
             isLoad: false,
-            categorys:[]
+            categorys: []
         }
     }
 
@@ -24,7 +24,7 @@ class Category extends Component {
             data: {},
             success: function (data) {
                 this.setState({
-                    categorys:data
+                    categorys: data
                 })
             }.bind(this),
             complete: function () {
@@ -50,21 +50,24 @@ class Category extends Component {
                     <ul>
                         {
                             categorys.map((categoryList, index) =>
-                                <li key={index} className={baseStyle.bottomLine}>
-                                    <div className={style.listItemLeftIcon}>
-                                        <img src={categoryList.petCategoryImage} alt=''/>
-                                    </div>
-                                    <div className={style.listItemCenterName}>
-                                        <Link to={{
-                                            pathname: `pet/Hotcat/${categoryList.petCategoryId}`
-                                        }}>
+                                <Link key={index} to={{
+                                    pathname: "pet/Hotcat/"+categoryList.petCategoryId
+                                }}>
+                                    <li className={baseStyle.bottomLine}>
+
+                                        <div className={style.listItemLeftIcon}>
+                                            <img src={categoryList.petCategoryImage} alt=''/>
+                                        </div>
+                                        <div className={style.listItemCenterName}>
+
                                             {categoryList.petCategoryName}
-                                        </Link>
-                                    </div>
-                                    <div className={style.listItemRightArrow}>
-                                        <span className={baseStyle.rightArrow}></span>
-                                    </div>
-                                </li>
+
+                                        </div>
+                                        <div className={style.listItemRightArrow}>
+                                            <span className={baseStyle.rightArrow}></span>
+                                        </div>
+                                    </li>
+                                </Link>
                             )
                         }
                     </ul>
@@ -73,9 +76,5 @@ class Category extends Component {
         );
     }
 }
-
 Category = createForm({})(Category);
-
-export default connect((store) => ({
-    petCategory: store.petCategory
-}))(Category);
+export default connect((store) => ({}))(Category);
