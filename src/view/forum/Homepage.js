@@ -24,7 +24,7 @@ class Homepage extends Component {
             forum: {},
             forumId: '',
             topicPageIndex: 1,
-            topicPageSize: 2,
+            topicPageSize: 3,
             topicList: [],
             topicTotal: 0,
             isInfiniteLoading: false
@@ -47,7 +47,7 @@ class Homepage extends Component {
                     forum: {},
                     forumId: '',
                     topicPageIndex: 1,
-                    topicPageSize: 2,
+                    topicPageSize: 3,
                     topicList: [],
                     topicTotal: 0,
                     isInfiniteLoading: false
@@ -90,6 +90,7 @@ class Homepage extends Component {
 
 
     handleTopicList(forumId) {
+        console.log('test',forumId)
         if (forumId) {
             http.request({
                 url: '/forum/mobile/v1/home/topic/list',
@@ -99,6 +100,7 @@ class Homepage extends Component {
                     pageSize: this.state.topicPageSize
                 },
                 success: function (data) {
+                    console.log('data=',data.list)
                     let topicList = this.state.topicList;
                     this.setState({
                         topicList: topicList.concat(data.list),
