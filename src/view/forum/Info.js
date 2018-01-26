@@ -59,9 +59,9 @@ class Info extends Component {
                 pageSize: this.state.pageSize
             },
             success: function (data) {
-                console.log('加载数据完成 ');
                 this.setState({
                     forum: data,
+                    forumId: forumId,
                     ModeratorId: data.forumModerator.userId,
                 });
 

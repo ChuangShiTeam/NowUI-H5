@@ -761,8 +761,10 @@ class Index extends Component {
                                             <span className={style.footerInfoCountBookmarkNumber}>{this.state.topic.topicCountBookmark}</span>
                                         </div>
                                         <div className={style.footerInfoCountComment}>
+                                            <Link to={"/topic/detail/" + this.state.topic.topicId} className={style.content}>
                                             <img className={style.footerInfoCountCommentIcon} src={require('../../image/comment.png')} alt=''/>
                                             <span className={style.footerInfoCountCommentNumber}>{this.state.topic.topicCountComment}</span>
+                                            </Link>
                                         </div>
                                     </div>
                                     <span className={style.footerInfoFrom}>同步到</span>
