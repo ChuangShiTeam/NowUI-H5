@@ -60,27 +60,25 @@ class Index extends Component {
     }
 
     handleLoad() {
-        this.handleLoadJoinList(this.props.forumIndex.forumJoinPageIndex);
+        this.handleLoadJoinList();
         this.handleLoadRecommendList();
-        this.handleLoadHotTopic(this.props.forumIndex.hotTopicPageIndex);
+        this.handleLoadHotTopic();
     }
 
-    handleLoadHotTopic(hotTopicPageIndex) {
+    handleLoadHotTopic() {
         http.request({
             url: '/topic/mobile/v1/home/list',
             data: {
-                pageIndex: this.porps.forumIndex.hotTopicPageIndex,
-                pageSize: this.porps.forumIndex.hotTopicPageSize
+                pageIndex: this.props.forumIndex.hotTopicPageIndex,
+                pageSize: this.props.forumIndex.hotTopicPageSize
             },
             success: function (data) {
                 if (data.total > 0) {
-                    let hotTopicList = this.props.forumIndex.hotTopicList;
                     this.props.dispatch({
                         type: 'forumIndex',
                         data: {
-                            hotTopicPageIndex: hotTopicPageIndex,
                             hotTopicTotal: data.total,
-                            hotTopicList: hotTopicList.concat(data.list)
+                            hotTopicList: data.list
                         }
                     });
                 }
@@ -123,11 +121,11 @@ class Index extends Component {
             }
         });
     }
-    handleLoadJoinList(forumJoinPageIndex) {
+    handleLoadJoinList() {
         http.request({
             url: '/forum/user/follow/mobile/v1/list',
             data: {
-                pageIndex: forumJoinPageIndex,
+                pageIndex: this.props.forumIndex.forumJoinPageIndex,
                 pageSize: this.props.forumIndex.forumJoinPageSize
             },
             success: function (data) {
@@ -135,7 +133,6 @@ class Index extends Component {
                     this.props.dispatch({
                         type: 'forumIndex',
                         data: {
-                            forumJoinPageIndex: forumJoinPageIndex,
                             forumJoinTotal: data.total,
                             forumJoinList: data.list
                         }
@@ -187,10 +184,6 @@ class Index extends Component {
         });
     }
 
-    handleTopicDelete() {
-        this.handleLoadHotTopic(1);
-    }
-
     render() {
         return (
             <div className={style.page} style={{minHeight: document.documentElement.clientHeight}}>
@@ -231,7 +224,7 @@ class Index extends Component {
                             this.props.forumIndex.forumJoinList.map(function (forum, index) {
                                 return (
                                     <Link to={'/forum/homepage/' + forum.forumId} key={forum.forumId} style={index === 0 ? {} : {marginTop: '12px'}}
-                                         className={style.joinContentList}>
+                                          className={style.joinContentList}>
                                         <div className={style.joinContentListLeft}>
                                             <img className={style.joinContentListLeftIcon}
                                                  src={constant.image_host + forum.forumMedia.filePath}
@@ -308,9 +301,9 @@ class Index extends Component {
                                                 <div className={classNames(style.interestContentwrapperCard, 'swiper-slide')} key={forum.forumId}>
                                                     <Link to={'/forum/homepage/' + forum.forumId} key={forum.forumId} >
                                                         <div className={style.interestContentwrapperCardAvatar}>
-                                                        <img className={style.interestContentwrapperCardAvatar}
-                                                             src={constant.image_host + forum.forumMedia.filePath}
-                                                             alt=''/>
+                                                            <img className={style.interestContentwrapperCardAvatar}
+                                                                 src={constant.image_host + forum.forumMedia.filePath}
+                                                                 alt=''/>
                                                         </div>
                                                         <div className={style.interestContentwrapperCardName}>{forum.forumName}</div>
                                                         <div className={style.interestContentwrapperCardSummary}>{forum.forumDescription}</div>
@@ -349,7 +342,7 @@ class Index extends Component {
                         </div>
                     </div>
                     {
-                        this.props.forumIndex.hotTopicList.map((topic, index) => <TopicIndex topic={topic} key={index} handleDelete={this.handleTopicDelete.bind(this)}/>)
+                        this.props.forumIndex.hotTopicList.map((topic, index) => <TopicIndex topic={topic} key={index}/>)
                     }
                 </div>
             </div>

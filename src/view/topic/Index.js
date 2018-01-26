@@ -133,7 +133,7 @@ class Index extends Component {
                         >
                             {
                                 this.props.topicIndex.topicList.map((topic, index) => (
-                                    <TopicIndex topic={topic} key={index} />
+                                    <TopicIndex topic={topic} key={index} isEdit={true} handleDelete={this.handleDelete.bind(this)}/>
                                 ))
                             }
                         </Infinite>

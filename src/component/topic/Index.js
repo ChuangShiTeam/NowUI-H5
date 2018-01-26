@@ -212,17 +212,22 @@ class Index extends Component {
                                     </Link>
                                     <p className={style.headerCenterTime}>{moment(this.state.topic.systemCreateTime).fromNow()}</p>
                                 </div>
-                                <div className={style.headerRight}>
-                                    {
-                                        this.state.topic.topicIsSelf ?
-                                            <span className={style.headerRightDelete} onClick={this.handelDelete.bind(this)}>删除</span>
-                                            :
-                                            this.state.topic.topicIsFollow ?
-                                                <div className={style.headerRightFollow}>已关注</div>
-                                                :
-                                                <div className={style.headerRightNotFollow} onClick={this.handleFollow.bind(this)}><span className={style.headerRightFollowAdd}>+</span> 关注</div>
-                                    }
-                                </div>
+                                {
+                                    this.props.isEdit ?
+                                        <div className={style.headerRight}>
+                                            {
+                                                this.state.topic.topicIsSelf ?
+                                                    <span className={style.headerRightDelete} onClick={this.handelDelete.bind(this)}>删除</span>
+                                                    :
+                                                    this.state.topic.topicIsFollow ?
+                                                        <div className={style.headerRightFollow}>已关注</div>
+                                                        :
+                                                        <div className={style.headerRightNotFollow} onClick={this.handleFollow.bind(this)}><span className={style.headerRightFollowAdd}>+</span> 关注</div>
+                                            }
+                                        </div>
+                                        :
+                                        null
+                                }
                             </div>
                             <div id={this.props.topic.topicId} className={classNames(style.image)} style={{height: divHeight}}>
                                 {
@@ -789,7 +794,11 @@ class Index extends Component {
 
 Index.propTypes = {
     topic: PropTypes.object.isRequired,
-    handelDelete: PropTypes.func.isRequired
+    isEdit: PropTypes.object,
+    handelDelete: PropTypes.func
 };
 
+Index.defaultProps = {
+    isEdit: false
+};
 export default Index;
