@@ -22,6 +22,14 @@ export default {
             }, 'forum.add')
         }
     },{
+        path: '/topic/chat',
+        onEnter: util.handleEnter,
+        getComponent(location, cb) {
+            require.ensure([], (require) => {
+                cb(null, require('../view/topic/Chat').default);
+            }, 'forum.chat')
+        }
+    },{
         path: '/topic/like/:topicId',
         onEnter: util.handleEnter,
         getComponent(location, cb) {

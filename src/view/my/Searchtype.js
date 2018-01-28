@@ -80,7 +80,7 @@ class Searchtype extends Component {
                                         className={style.headerContentLeftSearchRightInput} {...getFieldProps('forumName', {
                                         rules: [{
                                             required: true,
-                                            message: '圈子名称为空'
+                                            message: '内容不能为空'
                                         }],
                                         initialValue: ''
                                     })} type="text" placeholder="搜索宠物品种" onKeyUp={this.handleKeyUp.bind(this)}/>
