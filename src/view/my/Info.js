@@ -160,7 +160,6 @@ class Info extends Component {
                                              src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/18/h/18'
                                              alt=''/>
                                     </div>
-
                                     :
                                     '上海'
                             }
