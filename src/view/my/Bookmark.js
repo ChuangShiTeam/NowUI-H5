@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router';
 import util from '../../common/util';
 import baseStyle from '../../css/Base.scss';
+import  BookMarkIndex from '../../component/My/Bookmark'
 
 import  style from './Whole.scss';
 class Bookmark extends Component {
@@ -10,7 +11,8 @@ class Bookmark extends Component {
         super(props);
 
         this.state = {
-            isLoad: false
+            isLoad: false,
+            myBookMarkList:[1,2]
         }
     }
 
@@ -38,41 +40,29 @@ class Bookmark extends Component {
                         </Link>
                     </div>
                     <div className={style.list}>
-                            <div className={style.listContent}>
-                                <div className={style.listLeft}>
+                        {
+                            this.state.myBookMarkList.map(()=>
+                                <div className={style.listContent}>
+                                    <div className={style.listLeft}>
                                         <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/68/h/68" alt=""/>
                                         <div className={style.listCenter}>
-                                            <div className={style.tittles}> 为工作而生的汪星人拉布...</div>
-                                                <span className={style.content}>拉布拉多寻回猎犬并不像它的名字那样…</span>
+                                            <div className={style.tittles}>什么？现在宠物的专机如...</div>
+                                            <span className={style.content}>贫穷限制了我的想象力系列之宠物豪华…</span>
                                             <div className={style.times}>
-                                                <div>收藏于:2018-1-10 16.:44</div>
+                                                <div>收藏于:2017-12-01 12:02</div>
                                             </div>
                                         </div>
-                                </div>
-                                <div className={style.listRight}>
-                                    <div>
-                                        <img src={require("../../image/star.png")} alt=""/>
+                                    </div>
+                                    <div className={style.listRight}>
+                                        <div>
+                                            <img src={require("../../image/star.png")} alt=""/>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        <div className={style.listContent}>
-                            <div className={style.listLeft}>
-                                <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/68/h/68" alt=""/>
-                                <div className={style.listCenter}>
-                                    <div className={style.tittles}>什么？现在宠物的专机如...</div>
-                                    <span className={style.content}>贫穷限制了我的想象力系列之宠物豪华…</span>
-                                    <div className={style.times}>
-                                        <div>收藏于:2017-12-01 12:02</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className={style.listRight}>
-                                <div>
-                                    <img src={require("../../image/star.png")} alt=""/>
-                                </div>
-                            </div>
-                        </div>
+                            )
+                        }
                     </div>
+
             </div>
         );
     }

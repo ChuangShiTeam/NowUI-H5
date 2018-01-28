@@ -4,18 +4,15 @@ import {connect} from 'react-redux';
 import classNames from 'classnames';
 import baseStyle from '../../css/Base.scss';
 import {Link} from 'react-router';
-
 import util from '../../common/util';
-
 import style from './Follow.scss';
-
 
 class Followme extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            isLoad: false
+            isLoad: true
         }
     }
 
@@ -120,10 +117,14 @@ class Followme extends Component {
                         }
                     </div>
                 </div>
-
+                <div className={style.content} style={{minHeight: document.documentElement.clientHeight - 46 - 12 - 8}}>
+                </div>
             </div>
+
         );
+
     }
+
 }
 export default connect(() => ({}))(Followme);
 

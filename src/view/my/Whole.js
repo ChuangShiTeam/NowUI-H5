@@ -43,9 +43,14 @@ class Whole extends Component {
                         <div className={style.listLeft}>
                             <div className={style.mengBan}>
                                 <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/68/h/68" alt=""/>
-                                <div className={style.mask}>
-                                    <div>文章</div>
-                                </div>
+                                {
+                                    true?
+                                        <div className={style.mask}>
+                                            <div>文章</div>
+                                        </div>
+                                        :""
+                                }
+
                             </div>
                             <div className={style.listCenter}>
                                 <div className={style.tittles}> 为工作而生的汪星人拉布...</div>
@@ -66,9 +71,13 @@ class Whole extends Component {
                             <div className={style.listLeftHeader}>
                                 <div className={style.mengBan}>
                                     <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/68/h/68" alt=""/>
-                                    <div className={style.mask}>
-                                        <div>动态</div>
-                                    </div>
+                                    {
+                                        true?
+                                            <div className={style.mask}>
+                                                <div>文章</div>
+                                            </div>
+                                            :""
+                                    }
                                 </div>
                                 <div className={style.contentDynamic}>
                                     <div className={style.tittlesDynamic}>这只柴柴和加菲也太可爱了吧~</div>
@@ -100,9 +109,13 @@ class Whole extends Component {
                         <div className={style.listLeft}>
                             <div className={style.mengBan}>
                                 <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/68/h/68" alt=""/>
-                                <div className={style.mask}>
-                                    <div>萌物</div>
-                                </div>
+                                {
+                                    true?
+                                        <div className={style.mask}>
+                                            <div>萌物</div>
+                                        </div>
+                                        :""
+                                }
                             </div>
                             <div className={style.listCenter}>
                                 <div className={style.tittles}>SANY日式口款精品项圈 </div>
@@ -125,9 +138,13 @@ class Whole extends Component {
                         <div className={style.listLeft}>
                             <div className={style.mengBan}>
                                 <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/68/h/68" alt=""/>
-                                <div className={style.mask}>
-                                    <div>商户</div>
-                                </div>
+                                {
+                                    true?
+                                        <div className={style.mask}>
+                                            <div>商户</div>
+                                        </div>
+                                        :""
+                                }
                             </div>
                             <div className={style.listCenter}>
                                 <div className={style.tittles}>小佩的宠物店 </div>

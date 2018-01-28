@@ -10,7 +10,8 @@ class Dynamic extends Component {
         super(props);
 
         this.state = {
-            isLoad: false
+            isLoad: false,
+            myDynamicList:[1,2]
         }
     }
 
@@ -38,8 +39,10 @@ class Dynamic extends Component {
                     </Link>
                 </div>
                 <div className={style.list}>
-                        <div className={style.listContentDynamic}>
-                            <div className={style.listLeftDynamic}>
+                    {
+                        this.state.myDynamicList.map(()=>
+                            <div className={style.listContentDynamic}>
+                                <div className={style.listLeftDynamic}>
                                     <div className={style.listLeftHeader}>
                                         <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/68/h/68" alt=""/>
                                         <div className={style.contentDynamic}>
@@ -61,43 +64,16 @@ class Dynamic extends Component {
                                             </div>
                                         </div>
                                     </div>
-                            </div>
-                            <div className={classNames(style.listRight,style.listRightDynamic)}>
-                                <div>
-                                    <img src={require("../../image/star.png")} alt=""/>
                                 </div>
-                            </div>
-                        </div>
-                    <div className={style.listContentDynamic}>
-                        <div className={style.listLeftDynamic}>
-                            <div className={style.listLeftHeader}>
-                                <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/68/h/68" alt=""/>
-                                <div className={style.contentDynamic}>
-                                    <div className={style.tittleDynamic}> 热烈庆祝我家的小胖子两周岁生日快乐感谢一直…</div>
-                                    <div className={style.times}>
-                                        <div>收藏于:2017-11-10 09:20</div>
+                                <div className={classNames(style.listRight,style.listRightDynamic)}>
+                                    <div>
+                                        <img src={require("../../image/star.png")} alt=""/>
                                     </div>
                                 </div>
                             </div>
-                            <div  className={style.listLeftBottom}>
-                                <div  className={style.names}>
-                                    <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/20/h/20" alt=""/>
-                                    <div>Nami</div>
-                                </div>
-                                <div  className={style.namesRight}>
-                                    <div className={style.fromFont}>来自</div>
-                                    <div className={style.fromWhere}>
-                                        <div>蓝猫圈</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className={classNames(style.listRight,style.listRightDynamic)}>
-                            <div>
-                                <img src={require("../../image/star.png")} alt=""/>
-                            </div>
-                        </div>
-                    </div>
+                        )
+                    }
+
                 </div>
             </div>
         )

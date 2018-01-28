@@ -11,7 +11,8 @@ class Shop extends Component {
         super(props);
 
         this.state = {
-            isLoad: false
+            isLoad: false,
+            myShopList:[1,2]
         }
     }
 
@@ -39,38 +40,26 @@ class Shop extends Component {
                     </Link>
                 </div>
                 <div className={style.list}>
-                    <div className={style.listContent}>
-                        <div className={style.listLeft}>
-                            <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/68/h/68" alt=""/>
-                            <div className={style.listCenter}>
-                                <div className={style.tittles}>小佩的宠物店 </div>
-                                <div className={style.times}>
-                                    <div>收藏于:2018-1-09 12:10</div>
+                    {
+                        this.state.myShopList.map(()=>
+                            <div className={style.listContent}>
+                                <div className={style.listLeft}>
+                                    <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/68/h/68" alt=""/>
+                                    <div className={style.listCenter}>
+                                        <div className={style.tittles}>小佩的宠物店 </div>
+                                        <div className={style.times}>
+                                            <div>收藏于:2018-1-09 12:10</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className={style.listRight}>
+                                    <div>
+                                        <img src={require("../../image/star.png")} alt=""/>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div className={style.listRight}>
-                            <div>
-                                <img src={require("../../image/star.png")} alt=""/>
-                            </div>
-                        </div>
-                    </div>
-                    <div className={style.listContent}>
-                        <div className={style.listLeft}>
-                            <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/68/h/68" alt=""/>
-                            <div className={style.listCenter}>
-                                <div className={style.tittles}>MAS-COTI宠物寄养酒店</div>
-                                <div className={style.times}>
-                                    <div>收藏于:2017-12-01 12:02</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className={style.listRight}>
-                            <div>
-                                <img src={require("../../image/star.png")} alt=""/>
-                            </div>
-                        </div>
-                    </div>
+                        )
+                    }
                 </div>
             </div>
         );
