@@ -2,7 +2,7 @@ const initialState = {
     indexBannerList: [],
     indexNavigationList: [],
     hotArticleList: [],
-    petCategoryArticleList: [],
+    petCategoryList: [],
     recommendArticleList: [],
     latestArticleList: []
 };

@@ -6,6 +6,8 @@ import Notification from 'rc-notification';
 import ForumIndex from '../../component/forum/Index';
 
 import util from '../../common/util';
+import http from '../../common/http';
+import constant from '../../common/constant';
 
 import style from './Search.scss';
 
@@ -18,6 +20,9 @@ class Search extends Component {
 
         this.state = {
             isLoad: false,
+            pageIndex: 1,
+            pageSize: 5,
+            total: 0,
             forumList: []
         }
     }
@@ -62,7 +67,25 @@ class Search extends Component {
                 return;
             }
 
-            alert(values)
+            http.request({
+                url: '/forum/mobile/v1/search/list',
+                data: {
+                    forumName: values.forumName,
+                    pageIndex: this.state.pageIndex,
+                    pageSize: this.state.pageSize
+                },
+                success: function (data) {
+                    if (data.total > 0) {
+                        this.setState({
+                            total: data.total,
+                            forumList: data.list
+                        });
+                    }
+                }.bind(this),
+                complete: function () {
+
+                }
+            });
         });
     }
 
@@ -100,7 +123,7 @@ class Search extends Component {
                 <div className={style.content} style={{minHeight: document.documentElement.clientHeight - 46 - 12 - 8}}>
                     {
                         this.state.forumList.map((forum, index) => (
-                            <ForumIndex key={index} forum={forum} style={index == 0 ? {} : {marginTop: '10px'}}/>
+                            <ForumIndex key={index} forum={forum} style={index === 0 ? {} : {marginTop: '10px'}}/>
                         ))
                     }
                 </div>
