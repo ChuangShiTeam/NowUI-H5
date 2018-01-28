@@ -8,6 +8,7 @@ import util from '../../common/util';
 
 import style from './Homepage.scss';
 import http from "../../common/http";
+import constant from "../../common/constant";
 
 
 class Homepage extends Component {
@@ -21,7 +22,9 @@ class Homepage extends Component {
             topicTotal: 0,
             topicList: [],
             isInfiniteLoading: false,
-            elementHeights: []
+            elementHeights: [],
+
+            member: {},
         }
     }
 
@@ -30,6 +33,7 @@ class Homepage extends Component {
         util.hancleComponentDidMount();
 
         this.handleLoad();
+        this.handleLoadMemberInfo();
     }
 
     componentDidUpdate() {
@@ -68,6 +72,26 @@ class Homepage extends Component {
 
     }
 
+    handleLoadMemberInfo() {
+        let userId = this.props.params.userId;
+        if (userId) {
+            http.request({
+                url: '/topic/mobile/v1/home/user/info',
+                data: {
+                    userId: userId,
+                },
+                success: function (data) {
+                    this.setState({
+                        member:data
+                    });
+                }.bind(this),
+                complete: function () {
+                }.bind(this)
+            });
+        }
+
+    }
+
     handleInfiniteLoad() {
         let {topicPageIndex, topicPageSize, topicTotal} = this.state;
         if (topicPageIndex * topicPageSize < topicTotal) {
@@ -80,7 +104,31 @@ class Homepage extends Component {
                 }.bind(this), 800)
             }.bind(this))
         }
-    };
+    }
+
+    handleFollow() {
+        console.log('关注',this.state.member.memberIsFollow )
+        let followUserId = this.props.params.userId;
+        http.request({
+            url: this.state.member.memberIsFollow ? '/member/follow/mobile/v1/delete' : '/member/follow/mobile/v1/save',
+            data: {
+                followUserId: followUserId,
+            },
+            success: function (data) {
+                if (data){
+                    this.state.member.memberIsFollow != this.state.member.memberIsFollow;
+                    this.setState({
+                        member:data
+                    });
+                }
+
+                this.handleLoadMemberInfo();
+
+            }.bind(this),
+            complete: function () {
+            }.bind(this)
+        });
+    }
 
     render() {
         return (
@@ -88,38 +136,61 @@ class Homepage extends Component {
             <div className={style.page} style={{minHeight: document.documentElement.clientHeight}}>
                 <div className={style.headerContentTopBackground}>
                     <div className={style.headerContentMemberIcon}>
-                        <img src={require('../../image/topicItem.png')} alt=''/>
+                        {
+                            this.state.member && this.state.member.userAvatar ?
+                                <img src={constant.image_host + this.state.member.userAvatar} alt=''/>
+                                :
+                                <img src={require('../../image/topicItem.png')} alt=''/>
+                        }
+
                     </div>
                 </div>
                 <div className={style.headerContentMemberClear}></div>
                 <p className={style.headerContentMemberMiddleMsg}>
-                    <span style={{fontSize:"20px",marginLeft:"18px"}}>我是詹姆斯</span>
+                    <span style={{fontSize:"20px",marginLeft:"18px"}}>
+                        {
+                            this.state.member && this.state.member.userNickName ?
+                                this.state.member.userNickName
+                                :
+                                '没有昵称'
+                        }
+                    </span>
                     <span style={{fontsize:"9px",marginLeft:"16px"}}>来自</span>
                     <span style={{fontsize:"9px",marginLeft:"9px"}}>上海</span>
                     <span style={{fontsize:"9px",marginLeft:"9px"}}>徐汇区</span>
                 </p>
                 <p style={{marginLeft:"19px",fontSize:"12px"}}>
-                    Capturing every moment of my life.
+                    {
+                        this.state.member && this.state.member.memberSignature ?
+                            this.state.member.memberSignature
+                            :
+                            '天气不错呀'
+                    }
                 </p>
                 <div className={style.headerContentMemberClear2}></div>
                 <div className={style.headerContentMemberVisit}>
                     <div style={{marginLeft:"5px"}}>
-                        <p>20</p>
+                        <p>{this.state.member.memberSendTopicCount}</p>
                         <p>动态</p>
                     </div>
                     <div>
-                        <p>4</p>
+                        <p>{this.state.member.memberFollowCount}</p>
                         <p>关注</p>
                     </div>
                     <div>
-                        <p>28</p>
+                        <p>{this.state.member.memberBeFollowCount}</p>
                         <p>粉丝</p>
                     </div>
                     <div>
                         <input className={style.headerContentMemberPrivateMessage}  type="button" value="私信"/>
                     </div>
                     <div>
-                        <input className={style.headerContentMemberVisitTa} type="button" value="关注TA"/>
+                        {
+                            this.state.member.memberIsFollow ?
+                                <input className={style.headerContentMemberVisitTa} onClick={this.handleFollow.bind(this)} type="button" value="已关注"/>
+                                :
+                                <input className={style.headerContentMemberVisitTa} onClick={this.handleFollow.bind(this)} type="button" value="关注TA"/>
+                        }
                     </div>
                 </div>
                 <h3 className={style.headerContentMemberTitle}>
