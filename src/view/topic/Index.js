@@ -19,12 +19,7 @@ class Index extends Component {
 
         this.state = {
             isLoad: false,
-            topicPageIndex: 1,
-            topicPageSize: 2,
-            topicTotal: 0,
-            topicList: [],
-            isInfiniteLoading: false,
-            elementHeights: []
+            isInfiniteLoading: false
         }
     }
 
@@ -47,18 +42,23 @@ class Index extends Component {
         http.request({
             url: '/topic/mobile/v1/home/list',
             data: {
-                pageIndex: this.state.topicPageIndex,
-                pageSize: this.state.topicPageSize
+                pageIndex: this.props.topicIndex.topicPageIndex,
+                pageSize: this.props.topicIndex.topicPageSize
             },
             success: function (data) {
-                let topicList = this.state.topicList;
-                this.props.dispatch({
-                    type: 'topicIndex',
-                    data: {
-                        topicTotal: data.total,
-                        topicList: topicList.concat(data.list)
+                if (data && data.total > 0) {
+                    let topicList = [];
+                    if (this.props.topicIndex.topicPageIndex > 1) {
+                        topicList = this.props.topicIndex.topicList
                     }
-                });
+                    this.props.dispatch({
+                        type: 'topicIndex',
+                        data: {
+                            topicTotal: data.total,
+                            topicList: topicList.concat(data.list)
+                        }
+                    });
+                }
             }.bind(this),
             complete: function () {
                 this.setState({
@@ -69,17 +69,39 @@ class Index extends Component {
     }
 
     handleInfiniteLoad() {
-        let {topicPageIndex, topicPageSize, topicTotal} = this.state;
+        let {topicPageIndex, topicPageSize, topicTotal} = this.props.topicIndex;
         if (topicPageIndex * topicPageSize < topicTotal) {
-            this.setState({
-                isInfiniteLoading: true,
-                topicPageIndex: topicPageIndex + 1
-            }, function () {
-                setTimeout(function () {
-                    this.handleLoad();
-                }.bind(this), 800)
-            }.bind(this))
+            new Promise(function (resolve) {
+                this.setState({
+                    isInfiniteLoading: true
+                });
+                this.props.dispatch({
+                    type: 'topicIndex',
+                    data: {
+                        topicPageIndex: this.props.topicIndex.topicPageIndex + 1
+                    }
+                });
+                resolve();
+            }.bind(this)).then(function () {
+                this.handleLoad();
+            }.bind(this));
         }
+    }
+
+
+    handelTopicDelete() {
+        new Promise(function (resolve) {
+            this.props.dispatch({
+                type: 'topicIndex',
+                data: {
+                    topicPageIndex: 1
+                }
+            });
+
+            resolve();
+        }.bind(this)).then(function () {
+            this.handleLoad();
+        }.bind(this));
     }
 
     render() {
@@ -123,7 +145,7 @@ class Index extends Component {
                                       this.state.isInfiniteLoading ?
                                           <div className={style.infiniteLoading}>Loading...</div>
                                           :
-                                          this.state.topicPageIndex * this.state.topicPageSize >= this.state.topicTotal ?
+                                          this.props.topicIndex.topicPageIndex * this.props.topicIndex.topicPageSize >= this.props.topicIndex.topicTotal ?
                                               <div className={style.infiniteMore}>没有更多了</div>
                                               :
                                               null
@@ -132,7 +154,7 @@ class Index extends Component {
                         >
                             {
                                 this.props.topicIndex.topicList.map((topic, index) => (
-                                    <TopicIndex topic={topic} key={index}/>
+                                    <TopicIndex topic={topic} key={index} isEdit={true} handelTopicDelete={this.handelTopicDelete.bind(this)}/>
                                 ))
                             }
                         </Infinite>
