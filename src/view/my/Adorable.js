@@ -11,7 +11,8 @@ class Adorable extends Component {
         super(props);
 
         this.state = {
-            isLoad: false
+            isLoad: false,
+            myAdorableList:[1,2]
         }
     }
 
@@ -39,46 +40,28 @@ class Adorable extends Component {
                     </Link>
                 </div>
                 <div className={style.list}>
-                    <div className={style.listContent}>
-                        <div className={style.listLeft}>
-                            <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/68/h/68" alt=""/>
-                            <div className={style.listCenter}>
-                                <div className={style.tittles}>SANY日式口款精品项圈 </div>
-                                <div className={style.contentAdorable}>
-                                    <div className={style.price}>￥299</div>
-                                    <div className={style.seller}>京东</div>
-                                </div>
-                                <div className={style.times}>
-                                    <div>收藏于:2018-1-09 12:10</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className={style.listRight}>
-                            <div>
-                                <img src={require("../../image/star.png")} alt=""/>
-                            </div>
-                        </div>
-                    </div>
-                    <div className={style.listContent}>
-                        <div className={style.listLeft}>
-                            <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/68/h/68" alt=""/>
-                            <div className={style.listCenter}>
-                                <div className={style.tittles}>雍友意大利植鞣革手工制…</div>
-                                <div className={style.contentAdorable}>
-                                    <div className={style.price}>￥699</div>
-                                    <div className={style.seller}>天猫</div>
-                                </div>
-                                <div className={style.times}>
-                                    <div>收藏于:2017-12-01 12:02</div>
+                    {
+                        this.state.myAdorableList.map(()=>  <div className={style.listContent}>
+                            <div className={style.listLeft}>
+                                <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/68/h/68" alt=""/>
+                                <div className={style.listCenter}>
+                                    <div className={style.tittles}>SANY日式口款精品项圈 </div>
+                                    <div className={style.contentAdorable}>
+                                        <div className={style.price}>￥299</div>
+                                        <div className={style.seller}>京东</div>
+                                    </div>
+                                    <div className={style.times}>
+                                        <div>收藏于:2018-1-09 12:10</div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div className={style.listRight}>
-                            <div>
-                                <img src={require("../../image/star.png")} alt=""/>
+                            <div className={style.listRight}>
+                                <div>
+                                    <img src={require("../../image/star.png")} alt=""/>
+                                </div>
                             </div>
-                        </div>
-                    </div>
+                        </div>)
+                    }
                 </div>
             </div>
         );

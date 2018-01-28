@@ -10,7 +10,8 @@ class Personalletter extends Component{
         super(props);
 
         this.state = {
-            isload:false
+            isload:false,
+            myPersonalLetter:[1,2]
         }
     }
 
@@ -58,34 +59,24 @@ class Personalletter extends Component{
                     </div>
                 </div>
                 <div className={style.content}>
-                    <div className={classNames(style.contentList)}>
-                            <div className={style.contentListLeft}>
-                                <div className={style.contentListLeftIcon}>
-                                    <div className={style.attentionPoint}>
-                                        <div>1</div>
+                        {
+                            this.state.myPersonalLetter.map(()=>
+                                <div className={classNames(style.contentList)}>
+                                    <div className={style.contentListLeft}>
+                                        <div className={style.contentListLeftIcon}>
+                                            <div className={style.attentionPoint}>
+                                                <div>2</div>
+                                            </div>
+                                            <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/41/h/41" alt=""/>
+                                        </div>
                                     </div>
-                                    <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/41/h/41" alt=""/>
+                                    <div className={style.contentListRight}>
+                                        <div className={style.contentListRightTop}>汤姆和杰瑞</div>
+                                        <span >你好！请问你养的猫是弟弟还是妹妹来的...</span>
+                                    </div>
                                 </div>
-                            </div>
-                        <div className={style.contentListRight}>
-                            <div className={style.contentListRightTop}>我是詹姆斯</div>
-                            <span >我上次去的是芭比堂,柑橘还是不错的</span>
-                        </div>
-                    </div>
-                    <div className={classNames(style.contentList)}>
-                        <div className={style.contentListLeft}>
-                            <div className={style.contentListLeftIcon}>
-                                <div className={style.attentionPoint}>
-                                    <div>2</div>
-                                </div>
-                                <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/41/h/41" alt=""/>
-                            </div>
-                        </div>
-                        <div className={style.contentListRight}>
-                            <div className={style.contentListRightTop}>汤姆和杰瑞</div>
-                            <span >你好！请问你养的猫是弟弟还是妹妹来的...</span>
-                        </div>
-                    </div>
+                            )
+                        }
                 </div>
             </div>
         );
