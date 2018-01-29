@@ -1,0 +1,216 @@
+.page {
+    padding-top: 46px;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    height: 45px;
+    z-index: 99;
+    width: 100%;
+    max-width: 640px;
+    background: #9dd7e3;
+}
+
+.headerContent {
+    -js-display: flex;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 45px;
+    font-family: PingFangSC-Regular;
+    font-size: 16px;
+    color: #4a4a4a;
+}
+
+.headerContentLeft {
+    flex-grow: 1;
+    margin: 0px 12px 0px 12px;
+}
+
+.headerContentLeftSearch {
+    background: #ffffff;
+    border-radius: 86px;
+    width: 100%;
+    height: 28px;
+    -js-display: flex;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.headerContentLeftSearchLeft {
+    width: 40px;
+    height: 28px;
+    -js-display: flex;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.headerContentLeftSearchRight {
+    flex-grow: 1;
+}
+
+.headerContentLeftSearchRightInput {
+    font-family: PingFangSC-Regular;
+    font-size: 12px;
+    color: #000000;
+    letter-spacing: 0;
+    width: 91%;
+    height: 20px;
+}
+
+.headerContentLeftSearchLeftIcon {
+    width: 18px;
+    height: 18px;
+}
+
+.headerContentRight {
+    width: 32px;
+}
+
+.headerContentRightClose {
+    width: 15px;
+    height: 15px;
+    margin-top: 7px;
+}
+
+.content {
+    margin-left: 12px;
+    margin-right: 12px;
+}
+
+.titleContent{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap-reverse;
+    justify-content: flex-start;
+}
+.titleContent div{
+    margin-top: 7px;
+}
+
+.titleLeftLine{
+    background:#b59768;
+    width:3px;
+    height:18px;
+}
+
+.titleRightText{
+    font-family:PingFangSC-Regular;
+    font-size:14px;
+    color:#b59768;
+    letter-spacing:0;
+    margin-left: 8px;
+}
+
+.titleContentItem{
+    font-family:PingFangSC-Regular;
+    font-size:12px;
+    color:#9b9b9b;
+    letter-spacing:0;
+    margin-right: 11px;
+}
+.titleContentTag {
+    margin: 8px 0px;
+}
+
+
+.listWaterFallItem{
+    border-radius:4px;
+    border:1px solid #eaeaea;
+    width:148px;
+    height:185px;
+    margin-top: 15px;
+}
+
+.listWaterFallItemImage{
+    background:#d7e3f2;
+    border-radius:4px 4px 0 0;
+    width:148px;
+    height:104px;
+}
+
+.listWaterFallItemTitle{
+    font-family:PingFangSC-Regular;
+    font-size:12px;
+    color:#6e6e6e;
+    line-height:15px;
+    text-align:left;
+
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.listWaterFallItemBottom{
+    -js-display: flex;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items:center;
+    justify-content: center;
+}
+.listWaterFallItemBottom div{
+    margin-top: 6px;
+}
+.listWaterFallItemBottomLeft{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20px;
+}
+.listWaterFallItemBottomLeftImage{
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+}
+
+.listWaterFallItemBottomCenter {
+    flex-grow: 1;
+    margin-left: 2px;
+    margin-right: 3px;
+
+    width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.listWaterFallItemBottomCenterText{
+    font-family:PingFangSC-Regular;
+    font-size:12px;
+    color:#b59768;
+    letter-spacing:0;
+    text-align: left;
+}
+.listWaterFallItemBottomRight {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.listWaterFallItemBottomRightCollectIcon{
+    width: 20px;
+    height: 20px;
+}
+
+.listWaterFallItemBottomRightCollectNum{
+    font-family:PingFangSC-Regular;
+    font-size:10px;
+    color:#b59768;
+    letter-spacing:0;
+    text-align: right;
+    margin-left: 2px;
+}
+.delete {
+    width: 11px;
+    height: 12px;
+}
+
+.searchDelete {
+    width: 9px;
+    height: 9px;
+}

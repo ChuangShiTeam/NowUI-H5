@@ -201,6 +201,7 @@ class Add extends Component {
                             </div>
                         </div>
                     </Link>
+
                     <Link to='/topic/remind'>
                         <div className={classNames(baseStyle.list, baseStyle.bottomLine)}>
                             <div className={style.listLeft}>
@@ -217,20 +218,22 @@ class Add extends Component {
                             </div>
                         </div>
                     </Link>
-                    <div className={classNames(baseStyle.list)}>
-                        <div className={style.listLeft}>
-                            <img className={style.listLeftTag} src={require('../../image/tag.png')} alt=''/>
-                        </div>
-                        <div className={style.listName}>
-                            添加标签
-                        </div>
-                        <div className={classNames(style.listCenter, baseStyle.listCenter)}>
+                    <Link to='/topic/addlable'>
+                        <div className={classNames(baseStyle.list)}>
+                            <div className={style.listLeft}>
+                                <img className={style.listLeftTag} src={require('../../image/tag.png')} alt=''/>
+                            </div>
+                            <div className={style.listName}>
+                                添加标签
+                            </div>
+                            <div className={classNames(style.listCenter, baseStyle.listCenter)}>
 
+                            </div>
+                            <div className={style.listRight}>
+                                <div className={baseStyle.rightArrow}></div>
+                            </div>
                         </div>
-                        <div className={style.listRight}>
-                            <div className={baseStyle.rightArrow}></div>
-                        </div>
-                    </div>
+                    </Link>
                 </div>
 
                 <div className={style.forumHeader}>

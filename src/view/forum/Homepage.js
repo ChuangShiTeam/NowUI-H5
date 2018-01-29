@@ -100,7 +100,6 @@ class Homepage extends Component {
                     pageSize: this.state.topicPageSize
                 },
                 success: function (data) {
-                    console.log('data=',data.list)
                     let topicList = this.state.topicList;
                     this.setState({
                         topicList: topicList.concat(data.list),

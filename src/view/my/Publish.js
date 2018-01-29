@@ -10,6 +10,7 @@ import util from '../../common/util';
 
 import style from './Publish.scss';
 import http from "../../common/http";
+import constant from "../../common/constant";
 
 
 class Publish extends Component {
@@ -23,6 +24,8 @@ class Publish extends Component {
             topicTotal: 0,
             topicList: [],
             isInfiniteLoading: false,
+
+            member: {}
         }
     }
 
@@ -31,6 +34,7 @@ class Publish extends Component {
         util.hancleComponentDidMount();
 
         this.handleLoad();
+        this.handleLoadMemberInfo();
     }
 
     componentDidUpdate() {
@@ -64,6 +68,22 @@ class Publish extends Component {
         });
     }
 
+    handleLoadMemberInfo() {
+            http.request({
+                url: '/topic/mobile/v1/home/self/info',
+                data: {
+                },
+                success: function (data) {
+                    this.setState({
+                        member:data
+                    });
+                }.bind(this),
+                complete: function () {
+                }.bind(this)
+            });
+
+    }
+
     handleInfiniteLoad() {
         let {topicPageIndex, topicPageSize, topicTotal} = this.state;
         if (topicPageIndex * topicPageSize < topicTotal) {
@@ -87,25 +107,45 @@ class Publish extends Component {
                 <div className={style.header}>
                     <img className={style.backgroundImg}  src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?listView/1/w/320/h/110" alt=""/>
                     <div className={style.photo}>
-                        <img  src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?listView/1/w/72/h/72" alt=""/>
+                        {
+                            this.state.member && this.state.member.userAvatar ?
+                                <img src={constant.image_host + this.state.member.userAvatar} alt=''/>
+                                :
+                                <img  src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?listView/1/w/72/h/72" alt=""/>
+                        }
+
                     </div>
                 </div>
              <div className={style.center}>
                  <div className={style.messages}>
-                     <span className={style.messageTop}>大木木_Lin</span>
-                     <span className={style.messagesCenter}> Capturing every moment of my life</span>
+                     <span className={style.messageTop}>
+                         {
+                             this.state.member && this.state.member.userNickName ?
+                                 this.state.member.userNickName
+                                 :
+                                 'NickName'
+                         }
+                     </span>
+                     <span className={style.messagesCenter}>
+                         {
+                             this.state.member && this.state.member.memberSignature ?
+                                 this.state.member.memberSignature
+                                 :
+                                 '天气不错呀'
+                         }
+                     </span>
                      <span className={style.messagesBottom}>来自 上海 徐汇区</span>
                      <div className={style.messagesNumber}>
                         <div>
-                            <span className={style.messagesNumberTop}>20</span>
+                            <span className={style.messagesNumberTop}>{this.state.member.memberSendTopicCount}</span>
                             <span className={style.messagesNumberBottom}>动态</span>
                         </div>
                          <div>
-                             <span className={style.messagesNumberTop}>4</span>
+                             <span className={style.messagesNumberTop}>{this.state.member.memberFollowCount}</span>
                              <span className={style.messagesNumberBottom}> 关注</span>
                          </div>
                          <div>
-                             <span className={style.messagesNumberTop}>28</span>
+                             <span className={style.messagesNumberTop}>{this.state.member.memberBeFollowCount}</span>
                              <span className={style.messagesNumberBottom}>粉丝</span>
                          </div>
                      </div>
