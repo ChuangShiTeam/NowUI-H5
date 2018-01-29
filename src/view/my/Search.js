@@ -64,18 +64,6 @@ class Search extends Component {
         const {getFieldProps} = this.props.form;
         return(
             <div className={baseStyle.page} style={{minHeight: document.documentElement.clientHeight}}>
-                <div className={style.navigation}>
-                    <div  className={style.navigationList}>
-                        <Link to="/my/whole" className={style.navigationItem}>全部</Link>
-                        <Link to="/my/bookmark" className={style.navigationItem}>文章</Link>
-                        <Link to="/my/dynamic" className={style.navigationItem}>动态</Link>
-                        <Link to="/my/adorable"  className={style.navigationItem}>萌物</Link>
-                        <div className={style.nowState}>商户</div>
-                    </div>
-                    <div className={style.search}>
-                        <img src={require("../../image/search.png")} alt=""/>
-                    </div>
-                </div>
                 <div className={style.headerContents}>
                     <div className={style.headerContentLeftSearchs}>
                         <div className={style.headerContentLeftSearchLefts}>
@@ -87,7 +75,7 @@ class Search extends Component {
                                 className={style.headerContentLeftSearchRightInputs} {...getFieldProps('forumName', {
                                 rules: [{
                                     required: true,
-                                    message: '圈子名称为空'
+                                    message: '内容不能为空'
                                 }],
                                 initialValue: ''
                             })} type="text" placeholder="查找收藏的内容" onKeyUp={this.handleKeyUp.bind(this)}/>

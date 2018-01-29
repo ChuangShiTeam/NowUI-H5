@@ -1,0 +1,40 @@
+.page {
+  position: relative;
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+  background:#defafd;
+  padding-top: 15px;
+}
+.content {
+  margin-left: 12px;
+  margin-right: 12px;
+}
+.listItemCenterDescription {
+  padding-bottom: 10px;
+  width: 100%;
+}
+.listItemCenterTextarea {
+  width: 100%;
+  font-family: PingFangSC-Light;
+  font-size: 12px;
+  color: #000000;
+}
+.review {
+  -js-display: flex;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: white;
+  box-shadow: 0 2px 4px 0 rgba(216, 216, 216, 0.50);
+  filter: progid:DXImageTransform.Microsoft.Shadow(color='#DFDFDF', Direction=180, Strength=1);
+  border-radius: 5px;
+  width: 100%;
+  height: 38px;
+  font-family: PingFangSC-Light;
+  font-size: 14px;
+  color: #c18108;
+  letter-spacing: 0.53px;
+  margin-left: 3px;
+}
+

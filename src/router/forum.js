@@ -60,6 +60,22 @@ export default {
                 cb(null, require('../view/forum/Homepage').default);
             }, 'forum.homepage');
         }
+    } ,{
+        path: '/forum/renameforum',
+        onEnter: util.handleEnter,
+        getComponent(location, cb) {
+            require.ensure([], (require) => {
+                cb(null, require('../view/forum/RenameForum').default);
+            }, 'forum.renameforum');
+        }
+    },{
+        path: '/forum/forumintroduce',
+        onEnter: util.handleEnter,
+        getComponent(location, cb) {
+            require.ensure([], (require) => {
+                cb(null, require('../view/forum/ForumIntroduce').default);
+            }, 'forum.forumintroduce');
+        }
     }, {
         path: '/forum/my',
         onEnter: util.handleEnter,
