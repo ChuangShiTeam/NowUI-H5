@@ -66,7 +66,7 @@ class Index extends Component {
                             <div className={style.headerImg}>
                                 {
                                     this.props.myIndex.userAvatar ?
-                                        <img src={constant.image_host + this.props.myIndex.userAvatar} alt=""/>
+                                        <img src={constant.image_host + this.props.myIndex.userAvatar.filePath} alt=""/>
                                         :
                                         <img className={ style.userPhoto} src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/56/h/56" alt=""/>
                                 }
@@ -101,7 +101,7 @@ class Index extends Component {
                     <div className={style.middleBottom}></div>
                     <div className={style.newsList}>
                         <Link to="/my/info" className={classNames(style.listModule, baseStyle.bottomLine)}>
-                            <div  className={style.listLeft}>
+                            <div className={style.listLeft}>
                                 <div  className={style.listLeftIcon}>
                                     <img src={require('../../image/my-user.png')}  alt=""/>
                                 </div>

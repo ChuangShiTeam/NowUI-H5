@@ -37,6 +37,7 @@ class Detail extends Component {
         util.hancleComponentDidMount();
 
         this.handleLoad();
+        this.handleLoadComment();
     }
 
     componentDidUpdate() {
@@ -58,7 +59,6 @@ class Detail extends Component {
                 success: function (data) {
                     this.setState({
                         topic: data,
-                        topicCommentList: data.topicCommentList,
                         userId: data.topicSendUserId
                     });
                 }.bind(this),
@@ -164,6 +164,35 @@ class Detail extends Component {
 
     handleCommentTopic() {
         this.customFocusInst.focus();
+    }
+
+    handleClickLikeComment() {
+        http.request({
+            url: this.state.topic.topicUserIsLike ? '/topic/comment/user/unlike/mobile/v1/save' : '/topic/comment/user/like/mubile/v1/save',
+            data: {
+                topicId: this.state.topic.topicId
+            },
+            success: function (data) {
+                if (data) {
+                    let topic = this.state.topic;
+                    topic.topicUserIsLike = !topic.topicUserIsLike;
+                    if (topic.topicUserIsLike) {
+                        topic.topicCountLike += 1;
+                    } else {
+                        topic.topicCountLike -= 1;
+                    }
+
+                    this.setState({
+                        topic: topic
+                    })
+                }
+            }.bind(this),
+            complete: function () {
+
+            }
+        });
+
+
     }
 
     handleSubmit() {
