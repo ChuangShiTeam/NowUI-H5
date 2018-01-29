@@ -1,0 +1,226 @@
+.page {
+    padding-top: 46px;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    height: 45px;
+    z-index: 99;
+    width: 100%;
+    max-width: 640px;
+    background: #9dd7e3;
+}
+
+.headerContent {
+    -js-display: flex;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 45px;
+    font-family: PingFangSC-Regular;
+    font-size: 16px;
+    color: #4a4a4a;
+}
+
+.listContentTopItem{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.listContentTopBanner{
+    width: 100%;
+    height:164px;
+}
+
+.listContentTopBannerLogoBg{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background:#ffffff;
+    width:62px;
+    height:62px;
+    border-radius:100%;
+    position: absolute;
+}
+.listContentTopBannerLogo{
+    width:58px;
+    height:58px;
+    border-radius:100%;
+}
+.listContentTopBannerName{
+    font-family:PingFangSC-Light;
+    font-size:14px;
+    color:#4a4a4a;
+    letter-spacing:0;
+    height: 20px;
+    position: absolute;
+    background-color: green;
+}
+.lineTop{
+    margin-top: 7px;
+}
+.content {
+    margin-left: 12px;
+    margin-right: 12px;
+}
+
+.list {
+    -js-display: flex;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 40px;
+    background: #ffffff;
+}
+
+
+
+.categoryItem{
+    -js-display: flex;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items:center;
+
+    box-shadow:inset 0 0 0 0 #d8d8d8;
+    height:38px;
+}
+.categoryItem div {
+    text-align: center;
+}
+.categoryItemText{
+    font-family:PingFangSC-Regular;
+    font-size:14px;
+    letter-spacing:0;
+    height: 20px;
+    background-color: yellow;
+    justify-content: center;
+    align-items:center;
+}
+.categoryItemTextNormalColor{
+    color:#4a4a4a;
+}
+.categoryItemTextSelectedColor{
+    color:#c18108;
+}
+.categoryItemLine{
+    border:0 solid #dfdfdf;
+    width:0.5px;
+    height:27.5px;
+    background-color: #d8d8d8;
+}
+.filterItem {
+    -js-display: flex;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.filterItem div{
+    background:#eef6f7;
+    border-radius:4px;
+    width:64px;
+    height:24px;
+    margin-top: 7px;
+}
+
+.filterItemBg{
+    display: flex;
+    justify-content: center;
+    align-items:center;
+}
+
+.filterItemText {
+    display: flex;
+    font-family: PingFangSC-Regular;
+    font-size: 10px;
+    color: #4a4a4a;
+    letter-spacing: 0;
+    justify-content: center;
+    align-items: center;
+}
+
+.bottomLine{
+    height: 0.5px;
+    background-color: #eaeaea;
+    margin-top: 3px;
+    position: relative;
+}
+
+.listWaterFallItem{
+    border-radius:4px;
+    border:1px solid #eaeaea;
+    width:148px;
+    height:220px;
+    margin-top: 8px;
+}
+
+.listWaterFallItemImage{
+    background:#d7e3f2;
+    border-radius:4px 4px 0 0;
+    width:148px;
+    height:143px;
+}
+
+.listWaterFallItemTitle{
+    font-family:PingFangSC-Regular;
+    font-size:12px;
+    color:#4a4a4a;
+    letter-spacing:0;
+    line-height:16px;
+
+    margin-top: 16px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+/*!*左列定宽，右列自适应*!*/
+.footContainer {
+    -js-display: flex;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    align-items:center;
+    margin-top: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.footLeft {
+
+}
+
+.footRight {
+    max-width: 6em;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+
+.listWaterFallItemPriceIcon{
+    font-family:PingFangSC-Regular;
+    font-size:8px;
+    color:#b01f24;
+    letter-spacing:0;
+}
+.listWaterFallItemPriceText{
+    font-family:PingFangSC-Regular;
+    font-size:14px;
+    color:#b01f24;
+    letter-spacing:-0.44px;
+}
+.listWaterFallItemName{
+    font-family:PingFangSC-Regular;
+    font-size:12px;
+    color:#b59768;
+    letter-spacing:0;
+    text-align: right;
+}
