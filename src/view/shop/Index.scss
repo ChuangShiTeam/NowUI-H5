@@ -1,0 +1,248 @@
+.page {
+    padding-top: 46px;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    height: 45px;
+    z-index: 99;
+    width: 100%;
+    max-width: 640px;
+    background: #9dd7e3;
+}
+
+.headerContent {
+    -js-display: flex;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 45px;
+    font-family: PingFangSC-Regular;
+    font-size: 16px;
+    color: #4a4a4a;
+}
+
+.headerContentLeft {
+    flex-grow: 1;
+    margin: 0px 12px 0px 12px;
+}
+
+.headerContentLeftSearch {
+    background: #ffffff;
+    border-radius: 86px;
+    width: 100%;
+    height: 28px;
+    -js-display: flex;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.headerContentLeftSearchLeft {
+    width: 40px;
+    height: 28px;
+    -js-display: flex;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.headerContentLeftSearchRight {
+    flex-grow: 1;
+}
+
+.headerContentLeftSearchRightInput {
+    font-family: PingFangSC-Regular;
+    font-size: 12px;
+    color: #000000;
+    letter-spacing: 0;
+    width: 91%;
+    height: 20px;
+    //text-align: center;
+}
+
+.headerContentLeftSearchLeftIcon {
+    width: 18px;
+    height: 18px;
+}
+
+.lineTop{
+    margin-top: 7px;
+}
+.content {
+    margin-left: 12px;
+    margin-right: 12px;
+}
+
+.list {
+    -js-display: flex;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 40px;
+    background: #ffffff;
+}
+
+.contentTopImage{
+    width: 100%;
+    height:150px;
+}
+
+.categoryItem{
+    -js-display: flex;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    height: 34px;
+}
+
+.categoryItemText{
+    font-family:PingFangSC-Light;
+    font-size:12px;
+    color:#b59768;
+    letter-spacing:0;
+}
+
+.filterItem {
+    -js-display: flex;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.filterItem div{
+    background:#eef6f7;
+    border-radius:4px;
+    width:64px;
+    height:24px;
+    margin-top: 7px;
+}
+
+.filterItemBg{
+    display: flex;
+    justify-content: center;
+    align-items:center;
+}
+
+.filterItemText {
+    display: flex;
+    font-family: PingFangSC-Regular;
+    font-size: 10px;
+    color: #4a4a4a;
+    letter-spacing: 0;
+    justify-content: center;
+    align-items: center;
+}
+
+.filterItemArrowIcon {
+    width: 5px;
+    height: 3px;
+    margin-left: 3px;
+}
+
+.bottomLine{
+    height: 0.5px;
+    background-color: #eaeaea;
+    margin-top: 3px;
+    position: relative;
+}
+
+.listWaterFallItem{
+    border-radius:4px;
+    border:1px solid #eaeaea;
+    width:148px;
+    height:220px;
+    margin-top: 15px;
+}
+
+.listWaterFallItemImage{
+    background:#d7e3f2;
+    border-radius:4px 4px 0 0;
+    width:148px;
+    height:143px;
+}
+
+.listWaterFallItemTitle{
+    font-family:PingFangSC-Regular;
+    font-size:12px;
+    color:#4a4a4a;
+    letter-spacing:0;
+    line-height:16px;
+
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.listWaterFallItemSubTitle{
+    font-family:PingFangSC-Regular;
+    font-size:10px;
+    color:#9b9b9b;
+    letter-spacing:-0.2px;
+    line-height:13px;
+    margin-top: 4px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.listModule{
+    display: flex;
+    -js-display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+
+/*!*左列定宽，右列自适应*!*/
+.footContainer {
+    -js-display: flex;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    align-items:center;
+    margin-top: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.footLeft {
+
+}
+
+.footRight {
+    max-width: 6em;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+
+.listWaterFallItemPriceIcon{
+    font-family:PingFangSC-Regular;
+    font-size:8px;
+    color:#b01f24;
+    letter-spacing:0;
+}
+.listWaterFallItemPriceText{
+    font-family:PingFangSC-Regular;
+    font-size:14px;
+    color:#b01f24;
+    letter-spacing:-0.44px;
+}
+.listWaterFallItemName{
+    font-family:PingFangSC-Regular;
+    font-size:12px;
+    color:#b59768;
+    letter-spacing:0;
+    text-align: right;
+}
