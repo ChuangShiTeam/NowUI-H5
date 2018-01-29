@@ -59,7 +59,7 @@ class Index extends Component {
                         resolve();
                     }.bind(this)).then(function () {
                         this.handleSwiper();
-                    });
+                    }.bind(this));
                 }.bind(this),
                 complete: function () {
 
