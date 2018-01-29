@@ -2,20 +2,23 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {createForm} from "rc-form";
 import Notification from 'rc-notification';
+import baseStyle from '../../css/Base.scss'
+import classNames from 'classnames'
 
 import util from '../../common/util';
 
-import  style from './Whole.scss';
+import  style from './AddLable.scss';
 
 let notification = null;
 Notification.newInstance({}, (n) => notification = n);
 
-class Searchtype extends Component {
+class AddLable extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            isLoad: false
+            isLoad: false,
+            AddLableList:[1,2]
         }
     }
 
@@ -70,34 +73,42 @@ class Searchtype extends Component {
                 <div className={style.header}>
                     <div className={style.headerContent}>
                         <div className={style.headerContentLeft}>
-                            <div className={style.headerContentLeftSearch}>
-                                <div className={style.headerContentLeftSearchLeft}>
-                                    <img className={style.headerContentLeftSearchLeftIcon}
-                                         src={require('../../image/forum-search.png')} alt=''/>
-                                </div>
-                                <div className={style.headerContentLeftSearchRight}>
                                     <input
-                                        className={style.headerContentLeftSearchRightInput} {...getFieldProps('forumName', {
+                                        className={style.headerContentLeftSearchInput} {...getFieldProps('forumName', {
                                         rules: [{
                                             required: true,
                                             message: '内容不能为空'
                                         }],
                                         initialValue: ''
-                                    })} type="text" placeholder="搜索宠物品种" onKeyUp={this.handleKeyUp.bind(this)}/>
-                                </div>
-                            </div>
+                                    })} type="text" placeholder="# 搜索话题,商品" onKeyUp={this.handleKeyUp.bind(this)}/>
                         </div>
                         <div className={style.headerContentRight} onClick={this.handleClose.bind(this)}>
-                            <img className={style.headerContentRightClose} src={require('../../image/forum-close.png')}
-                                 alt=''/>
+                            取消
                         </div>
                     </div>
+                    <div className={style.center}>热门话题</div>
                 </div>
+                <div className={style.content}>
+                    {
+                        this.state.AddLableList.map(()=>
+                        <div  className={classNames(style.contentList,baseStyle.bottomLine)}> 
+                            <div className={style.contentListLeft}>
+                                <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/48/h/48" alt=""/>
+                            </div>
+                            <div className={style.contentListRight}>
+                                <div className={style.contentListRightTop}>#超好用的项圈#</div>
+                                <div className={style.contentListRightBottom}>1982个动态</div>
+                            </div>
+                        </div>
+                        )
+                    }
+                </div>
+
             </div>
         );
     }
 }
 
-Searchtype = createForm({})(Searchtype);
+AddLable = createForm({})(AddLable);
 
-export default connect(() => ({}))(Searchtype);
+export default connect(() => ({}))(AddLable);

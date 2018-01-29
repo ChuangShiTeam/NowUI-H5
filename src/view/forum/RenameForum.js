@@ -3,14 +3,16 @@ import {connect} from 'react-redux';
 import {createForm} from "rc-form";
 import Notification from 'rc-notification';
 
-import util from '../../common/util';
 
-import  style from './Whole.scss';
+import util from '../../common/util';
+import http from '../../common/http';
+
+import style from './RenameForum.scss';
 
 let notification = null;
 Notification.newInstance({}, (n) => notification = n);
 
-class Searchtype extends Component {
+class RenameForum extends Component {
     constructor(props) {
         super(props);
 
@@ -31,7 +33,6 @@ class Searchtype extends Component {
     componentWillUnmount() {
 
     }
-
     handleClose() {
         this.props.form.resetFields();
     }
@@ -59,22 +60,26 @@ class Searchtype extends Component {
                 return;
             }
 
-            alert(values)
+            values.forumMediaType = 'IMAGE';
+            if (values.forumMedia.length > 0) {
+                values.forumMedia = values.forumMedia[0].fileId
+            }
+
+
         });
     }
 
+
+
     render() {
         const {getFieldProps} = this.props.form;
+
         return (
             <div className={style.page} style={{minHeight: document.documentElement.clientHeight}}>
                 <div className={style.header}>
                     <div className={style.headerContent}>
                         <div className={style.headerContentLeft}>
                             <div className={style.headerContentLeftSearch}>
-                                <div className={style.headerContentLeftSearchLeft}>
-                                    <img className={style.headerContentLeftSearchLeftIcon}
-                                         src={require('../../image/forum-search.png')} alt=''/>
-                                </div>
                                 <div className={style.headerContentLeftSearchRight}>
                                     <input
                                         className={style.headerContentLeftSearchRightInput} {...getFieldProps('forumName', {
@@ -83,12 +88,12 @@ class Searchtype extends Component {
                                             message: '内容不能为空'
                                         }],
                                         initialValue: ''
-                                    })} type="text" placeholder="搜索宠物品种" onKeyUp={this.handleKeyUp.bind(this)}/>
+                                    })} type="text" placeholder="输入不超过25个字符的圈子名称" onKeyUp={this.handleKeyUp.bind(this)}/>
                                 </div>
                             </div>
                         </div>
                         <div className={style.headerContentRight} onClick={this.handleClose.bind(this)}>
-                            <img className={style.headerContentRightClose} src={require('../../image/forum-close.png')}
+                            <img className={style.headerContentRightClose} src={require('../../image/upload-close.png')}
                                  alt=''/>
                         </div>
                     </div>
@@ -98,6 +103,6 @@ class Searchtype extends Component {
     }
 }
 
-Searchtype = createForm({})(Searchtype);
+RenameForum = createForm({})(RenameForum);
 
-export default connect(() => ({}))(Searchtype);
+export default connect(() => ({}))(RenameForum);

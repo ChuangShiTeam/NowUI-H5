@@ -21,7 +21,7 @@ export default {
                 cb(null, require('../view/topic/Add').default);
             }, 'forum.add')
         }
-    }, {
+    },{
         path: '/topic/like/:topicId',
         onEnter: util.handleEnter,
         getComponent(location, cb) {

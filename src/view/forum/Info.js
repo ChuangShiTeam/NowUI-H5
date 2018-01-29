@@ -253,6 +253,7 @@ class Info extends Component {
                                                 }
                                             </div>
                                             </Link>
+
                                         :
                                         null
                                     )
@@ -260,6 +261,10 @@ class Info extends Component {
                                 :
                                 null
                         }
+                        <div className={classNames(style.memberAvatarImage)} >
+                            <img src={require('../../image/info-allfriend.png')} alt=''/>
+                        </div>
+
                     </div>
 
                     {

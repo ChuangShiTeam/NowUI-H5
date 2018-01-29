@@ -59,7 +59,7 @@ class Detail extends Component {
                     this.setState({
                         topic: data,
                         topicCommentList: data.topicCommentList,
-                        userId: data.userId.userId
+                        userId: data.topicSendUserId
                     });
                 }.bind(this),
                 complete: function () {
@@ -213,24 +213,22 @@ class Detail extends Component {
                  style={{minHeight: document.documentElement.clientHeight}}>
                 <div className={style.header}>
                     <div className={style.headerLeft}>
-                        {
-                            this.state.topic.userId && this.state.topic.userId.userAvatar ?
-                                <Link to={'/member/homepage/' + this.state.userId} key={this.state.userId}>
-                                    <img src={constant.image_host + this.state.topic.userId.userAvatar} alt=''/>
-                                </Link>
-                                :
-                                <Link to={'/member/homepage/' + this.state.userId} key={this.state.userId}>
-                                    <img className={style.headerLeftImage}
-                                         src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/28/h/28'
-                                         alt=''/>
-                                </Link>
-                        }
+                        <Link to={this.state.topic.topicIsSelf ? '/my/publish' : '/member/homepage/' +  this.state.userId} key={this.state.userId}>
+                            {
+
+                                this.state.topic.userId && this.state.topic.userId.userAvatar ?
+                                     <img src={constant.image_host + this.state.topic.userId.userAvatar} alt=''/>
+                                    :
+                                     <img className={style.headerLeftImage} src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/28/h/28' alt=''/>
+
+                            }
+                        </Link>
 
                     </div>
                     <div className={style.headerCenter}>
 
                         <p className={style.headerCenterName}>
-                            <Link to={'/member/homepage/' + this.state.userId} key={this.state.userId}>
+                            <Link to={this.state.topic.topicIsSelf ? '/my/publish' : '/member/homepage/' +  this.state.userId} key={this.state.userId}>
                                 {this.state.topic.userId && this.state.topic.userId.userNickName ? this.state.topic.userId.userNickName : '用户昵称为null'}
                             </Link>
                         </p>
@@ -338,20 +336,17 @@ class Detail extends Component {
                                 <div key={index}
                                      className={classNames(style.comment, baseStyle.maxWidthWithPadding, index > 0 ? baseStyle.marginTop : '')}>
                                     <div className={style.commentLeft}>
+                                        <Link to={comment.topicCommentIsSelf? '/my/publish'  : '/member/homepage/' + comment.userId} key={comment.userId}>
                                         {
                                             comment.userAvatar ?
-                                                <Link to={'/member/homepage/' + comment.userId} key={comment.userId}>
                                                     <img className={style.commentLeftImage}
                                                          src={constant.image_host + comment.userAvatar} alt=''/>
-                                                </Link>
                                                 :
-                                                <Link to={'/member/homepage/' + comment.userId} key={comment.userId}>
                                                     <img className={style.commentLeftImage}
                                                          src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/38/h/38'
                                                          alt=''/>
-                                                </Link>
-
                                         }
+                                        </Link>
                                     </div>
                                     <div className={classNames(style.commentRight, baseStyle.bottomLine)}>
                                         <div className={style.commentRightLike}>
@@ -362,8 +357,8 @@ class Detail extends Component {
                                                 <span className={style.commentRightLikeText}>0</span>
                                             </div>
                                         </div>
-                                        <Link to={'/member/homepage/' + comment.userId} key={comment.userId}>
-                                            {
+                                        <Link to={comment.topicCommentIsSelf? '/my/publish'  : '/member/homepage/' + comment.userId} key={comment.userId}>
+                                        {
                                                 comment.userNickName ?
                                                     comment.userNickName
                                                     :
