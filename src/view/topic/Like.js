@@ -79,7 +79,7 @@ class Like extends Component {
                     this.state.userLikeList.map(
                         (userLike,index) =>
                             <div className={classNames(style.list, baseStyle.bottomLine)} key={userLike.userId}>
-                                <Link to={'/member/homepage/' +  userLike.userId} key={userLike.userId} >
+                                <Link to={userLike.topicUserLikeIsSelf ? '/my/publish' : '/member/homepage/' +  userLike.userId} key={userLike.userId} >
                                     <div className={style.listLeft}>
                                         {
                                             userLike && userLike.userAvatar ?
@@ -94,13 +94,13 @@ class Like extends Component {
                                     {
                                         userLike && userLike.userNickName ?
                                             <span>
-                                                <Link to={'/member/homepage/' +  userLike.userId} key={userLike.userId} >
+                                                <Link to={userLike.topicUserLikeIsSelf ? '/my/publish' : '/member/homepage/' +  userLike.userId}  key={userLike.userId} >
                                             userLike.userNickName
                                                 </Link>
                                             </span>
                                             :
                                             <span>
-                                                <Link to={'/member/homepage/' +  userLike.userId} key={userLike.userId} >
+                                                <Link to={userLike.topicUserLikeIsSelf ? '/my/publish' : '/member/homepage/' +  userLike.userId}  key={userLike.userId} >
                                             是大雄啊是大雄啊是大雄啊是大雄啊是大雄啊是大雄啊是大雄啊是大雄啊是大雄啊是大雄啊是大雄啊
                                                 </Link>
                                             </span>
