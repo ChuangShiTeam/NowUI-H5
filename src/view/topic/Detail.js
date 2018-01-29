@@ -166,24 +166,23 @@ class Detail extends Component {
         this.customFocusInst.focus();
     }
 
-    handleClickLikeComment() {
+    handleClickLikeComment(index) {
         http.request({
-            url: this.state.topic.topicUserIsLike ? '/topic/comment/user/unlike/mobile/v1/save' : '/topic/comment/user/like/mubile/v1/save',
+            url: this.state.topicCommentList[index].topicCommentIsLike ? '/topic/comment/user/unlike/mobile/v1/save' : '/topic/comment/user/like/mubile/v1/save',
             data: {
-                topicId: this.state.topic.topicId
+                commentId: this.state.topicCommentList[index].topicCommentId
             },
             success: function (data) {
                 if (data) {
-                    let topic = this.state.topic;
-                    topic.topicUserIsLike = !topic.topicUserIsLike;
-                    if (topic.topicUserIsLike) {
-                        topic.topicCountLike += 1;
+                    let comment = this.state.topicCommentList[index];
+                    comment.topicCommentIsLike = !comment.topicCommentIsLike;
+                    if (comment.topicCommentIsLike) {
+                        comment.topicCommentLikeCount += 1;
                     } else {
-                        topic.topicCountLike -= 1;
+                        comment.topicCommentLikeCount -= 1;
                     }
 
                     this.setState({
-                        topic: topic
                     })
                 }
             }.bind(this),
@@ -191,9 +190,8 @@ class Detail extends Component {
 
             }
         });
-
-
     }
+
 
     handleSubmit() {
         this.props.form.validateFields((errors, values) => {
@@ -381,9 +379,10 @@ class Detail extends Component {
                                         <div className={style.commentRightLike}>
                                             <div className={style.commentRightLikeContent}>
                                                 <img className={style.commentRightLikeIcon}
-                                                     src={true ? require('../../image/like.png') : require('../../image/like-active.png')}
+                                                     onClick={this.handleClickLikeComment.bind(this, index)}
+                                                     src={comment.topicCommentIsLike ? require('../../image/like-active.png') : require('../../image/like.png') }
                                                      alt=''/>
-                                                <span className={style.commentRightLikeText}>0</span>
+                                                <span className={style.commentRightLikeText}>{comment.topicCommentLikeCount}</span>
                                             </div>
                                         </div>
                                         <Link to={comment.topicCommentIsSelf? '/my/publish'  : '/member/homepage/' + comment.userId} key={comment.userId}>
@@ -411,7 +410,7 @@ class Detail extends Component {
                                     </div>
                                 </div>
                             )
-                        })
+                        }.bind(this))
                     }
                 </div>
                 <div className={classNames(style.feedback, baseStyle.topLine)}>
