@@ -115,7 +115,6 @@ class Index extends Component {
                     content: '关注成功'
                 });
                 let topic = this.state.topic;
-                topic.topicIsFollow = true;
                 this.setState({
                     topic: topic
                 })
@@ -219,7 +218,7 @@ class Index extends Component {
                                                 this.state.topic.topicIsSelf ?
                                                     <span className={style.headerRightDelete} onClick={this.handleDelete.bind(this)}>删除</span>
                                                     :
-                                                    this.state.topic.topicIsFollow ?
+                                                    this.state.topic.memberIsFollow ?
                                                         <div className={style.headerRightFollow}>已关注</div>
                                                         :
                                                         <div className={style.headerRightNotFollow} onClick={this.handleFollow.bind(this)}><span className={style.headerRightFollowAdd}>+</span> 关注</div>
