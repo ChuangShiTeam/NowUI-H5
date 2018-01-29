@@ -103,7 +103,7 @@ class ForumIntroduce extends Component {
                         })} rows="5" placeholder="请输入超过255个字符的圈子简介"/>
                     </div>
                 </div>
-                <div className={style.content}>
+                <div className={style.bottom}>
                     <div className={style.review} onClick={this.handleSubmit.bind(this)}>提交</div>
                 </div>
             </div>
