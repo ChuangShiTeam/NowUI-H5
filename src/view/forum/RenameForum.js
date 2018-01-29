@@ -17,13 +17,16 @@ class RenameForum extends Component {
         super(props);
 
         this.state = {
-            isLoad: false
+            isLoad: false,
+            forum: {}
         }
     }
 
     componentDidMount() {
         util.setTitle('wawipet哇咿宠');
         util.hancleComponentDidMount();
+
+        this.state.forum = this.props.location.state.forum;
     }
 
     componentDidUpdate() {
@@ -33,8 +36,15 @@ class RenameForum extends Component {
     componentWillUnmount() {
 
     }
+
+
+
+
     handleClose() {
-        this.props.form.resetFields();
+        this.props.history.push({
+            pathname: '/forum/homepage/' + this.state.forum.forumId,
+            query: {}
+        });
     }
 
     handleKeyUp(event) {
@@ -60,10 +70,30 @@ class RenameForum extends Component {
                 return;
             }
 
-            values.forumMediaType = 'IMAGE';
-            if (values.forumMedia.length > 0) {
-                values.forumMedia = values.forumMedia[0].fileId
-            }
+            values.forumId = this.state.forum.forumId;
+            http.request({
+                url: '/forum/mobile/v1/update/name',
+                data: values,
+                success: function (data) {
+                    if (data){
+                        notification.notice({
+                            content: '修改成功'
+                        });
+                    }else{
+                        notification.notice({
+                            content: '修改失败'
+                        });
+                    }
+
+                    this.props.history.push({
+                        pathname: '/forum/homepage/' + this.state.forum.forumId,
+                        query: {}
+                    });
+                }.bind(this),
+                complete: function () {
+
+                }
+            });
 
 
         });
@@ -96,6 +126,9 @@ class RenameForum extends Component {
                             <img className={style.headerContentRightClose} src={require('../../image/upload-close.png')}
                                  alt=''/>
                         </div>
+                    </div>
+                    <div className={style.content}>
+                        <div className={style.review} onClick={this.handleSubmit.bind(this)}>提交</div>
                     </div>
                 </div>
             </div>

@@ -15,13 +15,16 @@ class ForumIntroduce extends Component {
         super(props);
 
         this.state = {
-            isLoad: false
+            isLoad: false,
+            forum: {}
         }
     }
 
     componentDidMount() {
         util.setTitle('wawipet哇咿宠');
         util.hancleComponentDidMount();
+
+        this.state.forum = this.props.location.state.forum;
     }
 
     componentDidUpdate() {
@@ -30,6 +33,13 @@ class ForumIntroduce extends Component {
 
     componentWillUnmount() {
 
+    }
+
+    handleClose() {
+        this.props.history.push({
+            pathname: '/forum/homepage/' + this.state.forum.forumId,
+            query: {}
+        });
     }
 
     handleSubmit() {
@@ -48,15 +58,25 @@ class ForumIntroduce extends Component {
 
                 return;
             }
+
+
+            values.forumId = this.state.forum.forumId;
             http.request({
-                url: '/forum/mobile/v1/save',
+                url: '/forum/mobile/v1/update/description',
                 data: values,
                 success: function (data) {
-                    notification.notice({
-                        content: '创建成功'
-                    });
+                    if (data){
+                        notification.notice({
+                            content: '修改成功'
+                        });
+                    }else{
+                        notification.notice({
+                            content: '修改失败'
+                        });
+                    }
+
                     this.props.history.push({
-                        pathname: '/forum/index',
+                        pathname: '/forum/homepage/' + this.state.forum.forumId,
                         query: {}
                     });
                 }.bind(this),

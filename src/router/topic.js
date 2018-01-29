@@ -83,5 +83,13 @@ export default {
                 cb(null, require('../view/topic/Detail').default);
             }, 'forum.detail')
         }
+    }, {
+        path: '/topic/addlable',
+        onEnter: util.handleEnter,
+        getComponent(location, cb) {
+            require.ensure([], (require) => {
+                cb(null, require('../view/topic/AddLable').default);
+            }, 'forum.addlable')
+        }
     }]
 }

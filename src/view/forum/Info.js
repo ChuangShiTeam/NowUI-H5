@@ -28,7 +28,7 @@ class Info extends Component {
             forumId: '',
             forum: {},
             ModeratorId: '',
-
+            forumUserIsModerator: false
         }
     }
 
@@ -49,8 +49,6 @@ class Info extends Component {
 
     handleLoad() {
         let forumId = this.props.params.forumId;
-        console.log('开始加载数据... ');
-    //  开始查询后台数据
         http.request({
             url: '/forum/mobile/v1/find',
             data: {
@@ -63,8 +61,9 @@ class Info extends Component {
                     forum: data,
                     forumId: forumId,
                     ModeratorId: data.forumModerator.userId,
-                });
+                    forumUserIsModerator: data.forumUserIsModerator
 
+                });
             }.bind(this),
             complete: function () {
 
@@ -142,6 +141,7 @@ class Info extends Component {
 
 
     render() {
+
         return (
             <div className={style.page} style={{minHeight: document.documentElement.clientHeight}}>
                 <div className={style.header}>
@@ -172,29 +172,56 @@ class Info extends Component {
                 </div>
                 <div className={style.line}></div>
                 <div className={style.content}>
-                    <div className={classNames(baseStyle.list, baseStyle.bottomLine)}>
-                        <div className={baseStyle.listLeft}>圈子名称</div>
-                        <div className={classNames(style.listCenter, baseStyle.listCenter)}>
-                            {this.state.forum.forumName}
-                        </div>
-                        <div className={baseStyle.listRight}>
-                            <div className={baseStyle.rightArrow}></div>
-                        </div>
-                    </div>
-                    <div className={classNames(baseStyle.list, baseStyle.bottomLine)}>
-                        <div className={baseStyle.listLeft}>圈子简介</div>
-                        <div className={classNames(style.listCenter, baseStyle.listCenter)}>
-                            {this.state.forum.forumDescription}
-                        </div>
-                        <div className={baseStyle.listRight}>
-                            <div className={baseStyle.rightArrow}></div>
-                        </div>
-                    </div>
+                    {
+                        this.state.forumUserIsModerator ?
+                            <Link to={{ pathname: '/forum/renameforum', state: { forum: this.state.forum }}} >
+                                <div className={classNames(baseStyle.list, baseStyle.bottomLine)}>
+                                    <div className={baseStyle.listLeft}>圈子名称</div>
+                                    <div className={classNames(style.listCenter, baseStyle.listCenter)}>
+                                        {this.state.forum.forumName}
+                                    </div>
+                                    <div className={baseStyle.listRight}>
+                                        <div className={baseStyle.rightArrow}></div>
+                                    </div>
+                                </div>
+                            </Link>
+                            :
+                            <div className={classNames(baseStyle.list, baseStyle.bottomLine)}>
+                                <div className={baseStyle.listLeft}>圈子名称</div>
+                                <div className={classNames(style.listCenter, baseStyle.listCenter)}>
+                                    {this.state.forum.forumName}
+                                </div>
+                            </div>
+                    }
+
+                    {
+                        this.state.forumUserIsModerator ?
+                            <Link to={{ pathname: '/forum/forumintroduce', state: { forum: this.state.forum }}} >
+                                <div className={classNames(baseStyle.list, baseStyle.bottomLine)}>
+                                    <div className={baseStyle.listLeft}>圈子简介</div>
+                                    <div className={classNames(style.listCenter, baseStyle.listCenter)}>
+                                        {this.state.forum.forumDescription}
+                                    </div>
+                                    <div className={baseStyle.listRight}>
+                                        <div className={baseStyle.rightArrow}></div>
+                                    </div>
+                                </div>
+                            </Link>
+                            :
+                            <div className={classNames(baseStyle.list, baseStyle.bottomLine)}>
+                                <div className={baseStyle.listLeft}>圈子简介</div>
+                                <div className={classNames(style.listCenter, baseStyle.listCenter)}>
+                                    {this.state.forum.forumDescription}
+                                </div>
+                            </div>
+                    }
+
+
                     <div className={style.infoTitle}>
                         圈子信息
                     </div>
                     <div className={classNames(style.info, baseStyle.bottomLine)}>
-                        <Link to={'/member/homepage/' +  this.state.ModeratorId} key={this.state.ModeratorId} >
+                        <Link to={this.state.forum.forumUserIsModerator ? '/my/publish' :'/member/homepage/' +  this.state.ModeratorId} key={this.state.ModeratorId} >
                         <div className={style.infoLeft}>
 
                             <img className={style.infoLeftCrown}
@@ -209,7 +236,7 @@ class Info extends Component {
                         </Link>
                         <div className={style.infoRight}>
                             <div className={style.infoRightName}>
-                                <Link to={'/member/homepage/' +  this.state.ModeratorId} key={this.state.ModeratorId} >
+                                <Link to={this.state.forum.forumUserIsModerator ? '/my/publish' :'/member/homepage/' +  this.state.ModeratorId} key={this.state.ModeratorId} >
                                 {
                                     this.state.forum.forumModerator && this.state.forum.forumModerator.userNickName ?
                                         this.state.forum.forumModerator.userNickName
@@ -238,9 +265,8 @@ class Info extends Component {
                                 this.state.forum.forumUserFollowList.map(function (member, index) {
                                     return (
                                         member.userId ?
-                                            <Link to={'/member/homepage/' +  member.userId} key={member.userId} >
-                                            <div className={style.memberAvatar}>
-
+                                            <div >
+                                            <Link className={style.memberAvatar} to={member.userId === this.state.ModeratorId ? '/my/publish' : ('/member/homepage/' +  member.userId)} key={member.userId} >
                                                 {
                                                     member.userAvatar ?
                                                         <img className={style.memberAvatarImage}
@@ -251,13 +277,14 @@ class Info extends Component {
                                                              src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/35/h/35'
                                                              alt=''/>
                                                 }
+                                                </Link>
                                             </div>
-                                            </Link>
+
 
                                         :
                                         null
                                     )
-                                })
+                                }.bind(this))
                                 :
                                 null
                         }
