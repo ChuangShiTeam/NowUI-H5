@@ -100,7 +100,11 @@ class RenameForum extends Component {
                                  alt=''/>
                         </div>
                     </div>
+                    <div className={style.content}>
+                        <div className={style.review} onClick={this.handleSubmit.bind(this)}>提交</div>
+                    </div>
                 </div>
+
             </div>
         );
     }
