@@ -63,7 +63,7 @@ class Brand extends Component {
                         <div className={(style.categoryItemText,this.state.isSelectedIndex == 0?style.categoryItemTextNormalColor:style.categoryItemTextSelectedColor)} onClick={this.handleSelectedBrand.bind(this,0)}>
                             品牌产品
                         </div>
-                        <span className={style.categoryItemLine}></span>
+                        <div className={style.categoryItemLine}></div>
                         <div className={(style.categoryItemText,this.state.isSelectedIndex == 1?style.categoryItemTextNormalColor:style.categoryItemTextSelectedColor)} onClick={this.handleSelectedBrand.bind(this,1)}>
                             品牌故事
                         </div>
