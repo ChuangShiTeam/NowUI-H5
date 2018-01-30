@@ -84,6 +84,8 @@ class Homepage extends Component {
                     this.setState({
                         member:data
                     });
+
+                    console.log(this.state.member.userAvatar.filePath)
                 }.bind(this),
                 complete: function () {
                 }.bind(this)
@@ -137,8 +139,8 @@ class Homepage extends Component {
                 <div className={style.headerContentTopBackground}>
                     <div className={style.headerContentMemberIcon}>
                         {
-                            this.state.member && this.state.member.userAvatar ?
-                                <img src={constant.image_host + this.state.member.userAvatar} alt=''/>
+                            this.state.member.userAvatar && this.state.member.userAvatar.filePath ?
+                                <img src={constant.image_host + this.state.member.userAvatar.filePath} alt=''/>
                                 :
                                 <img src={require('../../image/topicItem.png')} alt=''/>
                         }
