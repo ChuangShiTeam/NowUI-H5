@@ -192,8 +192,8 @@ class Index extends Component {
                                 <div className={style.headerLeft}>
                                     <Link className={style.headerLeftImage} to={this.state.topic.topicIsSelf ?'/my/publish'  : '/member/homepage/' +  this.state.topic.userId} key={this.state.topic.userId} >
                                     {
-                                        this.state.topic.userAvatar ?
-                                            <img className={style.headerLeftImage} src={constant.image_host + this.state.topic.userAvatar} alt=''/>
+                                        this.state.topic.userAvatar && this.state.topic.userAvatar.filePath ?
+                                            <img className={style.headerLeftImage} src={constant.image_host + this.state.topic.userAvatar.filePath} alt=''/>
                                             :
                                             <img className={style.headerLeftImage} src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/28/h/28' alt=''/>
 

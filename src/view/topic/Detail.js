@@ -96,6 +96,7 @@ class Detail extends Component {
                         topicCommentTotal: data.total,
                         topicCommentList: data.list
                     });
+                    console.log(data.list)
                 }.bind(this),
                 complete: function () {
 
@@ -244,7 +245,7 @@ class Detail extends Component {
                             {
 
                                 this.state.topic.userId && this.state.topic.userId.userAvatar ?
-                                     <img src={constant.image_host + this.state.topic.userId.userAvatar} alt=''/>
+                                     <img src={constant.image_host + this.state.topic.userId.userAvatar.filePath} alt=''/>
                                     :
                                      <img className={style.headerLeftImage} src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/28/h/28' alt=''/>
 
@@ -367,7 +368,7 @@ class Detail extends Component {
                                         {
                                             comment.userAvatar ?
                                                     <img className={style.commentLeftImage}
-                                                         src={constant.image_host + comment.userAvatar} alt=''/>
+                                                         src={constant.image_host + comment.userAvatar.filePath} alt=''/>
                                                 :
                                                     <img className={style.commentLeftImage}
                                                          src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/38/h/38'

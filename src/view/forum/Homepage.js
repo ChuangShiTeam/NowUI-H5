@@ -189,7 +189,7 @@ class Homepage extends Component {
                                      <Link to={'/member/homepage/' +  this.state.forum.forumModerator.userId} key={this.state.forum.forumModerator.userId} >
                                          {
                                              this.state.forum.forumModerator.userAvatar ?
-                                                 <img src={constant.image_host + this.state.forum.forumModerator.userAvatar} alt=''/>
+                                                 <img src={constant.image_host + this.state.forum.forumModerator.userAvatar.filePath} alt=''/>
                                                  :
                                                  <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?listView/1/w/72/h/72" alt='' />
                                          }
