@@ -170,13 +170,18 @@ class Detail extends Component {
             },
             success: function (data) {
                 if (data) {
-                    let comment = this.state.topicCommentList[index];
+                    let topicCommentList = this.state.topicCommentList;
+                    let comment = topicCommentList[index];
                     comment.topicCommentIsLike = !comment.topicCommentIsLike;
                     if (comment.topicCommentIsLike) {
                         comment.topicCommentLikeCount += 1;
                     } else {
                         comment.topicCommentLikeCount -= 1;
                     }
+                    topicCommentList[index] = comment;
+                    this.setState({
+                        topicCommentList: topicCommentList
+                    });
                 }
             }.bind(this),
             complete: function () {
