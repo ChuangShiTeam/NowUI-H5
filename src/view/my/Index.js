@@ -59,11 +59,14 @@ class Index extends Component {
         return (
             <div className={baseStyle.page} style={{minHeight: document.documentElement.clientHeight}}>
                     <div className={style.header}>
+                        <div className={style.headerBackground}>
+                            <img className={style.headerBackgroundImg} src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/320/h/165" alt=""/>
+                        </div>
                         <div className={style.headerLeft}>
                             <div className={style.headerImg}>
                                 {
                                     this.props.myIndex.userAvatar ?
-                                        <img src={constant.image_host + this.props.myIndex.userAvatar.filePath} alt=""/>
+                                        <img className={style.userPhoto} src={constant.image_host + this.props.myIndex.userAvatar.filePath} alt=""/>
                                         :
                                         <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/56/h/56" alt=""/>
                                 }

@@ -85,7 +85,7 @@ class Notice extends Component{
                                 <div className={style.times}>2018-01-10</div>
                             </div>
                             <div className={style.contentListRightContent}>
-                                <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/110/h/75" alt=""/>
+                                <img className={style.contentListRightContentImg} src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/110/h/75" alt=""/>
                                 <div className={style.contentListRightContentRight}>
                                     <span className={style.contentListRightContentRightTop}> 今天一回家就看到这俩货把我的沙发拆得不今天一回家就看到这俩货把我的沙发拆得不…</span>
                                     <span className={style.contentListRightContentRightBottom}>2018-01-10</span>
@@ -109,7 +109,7 @@ class Notice extends Component{
                                 <div className={style.times}>2018-01-10</div>
                             </div>
                             <div className={style.contentListRightContent}>
-                                <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/110/h/75" alt=""/>
+                                <img className={style.contentListRightContentImg} src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/110/h/75" alt=""/>
                                 <div className={style.contentListRightContentRight}>
                                     <span className={style.contentListRightContentRightTop}> 今天一回家就看到这俩货把我的沙发拆得不今天一回家就看到这俩货把我的沙发拆得不</span>
                                     <span className={style.contentListRightContentRightBottom}>2018-01-10</span>
