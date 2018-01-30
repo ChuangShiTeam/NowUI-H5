@@ -154,9 +154,9 @@ class Info extends Component {
                         <div className={baseStyle.listLeft}>圈子头像</div>
                         <div className={classNames(style.listCenter, baseStyle.listCenter)}>
                             {
-                                this.state.forum.forumModerator && this.state.forum.forumModerator.userAvatar ?
+                                this.state.forum.forumMedia && this.state.forum.forumMedia.filePath ?
                                     <img className={style2.joinContentListLeftIcon}
-                                         src={constant.image_host + this.state.forum.forumModerator.userAvatar}
+                                         src={constant.image_host + this.state.forum.forumMedia.filePath}
                                          alt=''/>
                                     :
                                     <img className={style.imageCenterImage}
@@ -174,7 +174,7 @@ class Info extends Component {
                 <div className={style.content}>
                     {
                         this.state.forumUserIsModerator ?
-                            <Link to={{ pathname: '/forum/renameforum', state: { forum: this.state.forum }}} >
+                            <Link to={{ pathname: '/forum/rename', state: { forum: this.state.forum }}} >
                                 <div className={classNames(baseStyle.list, baseStyle.bottomLine)}>
                                     <div className={baseStyle.listLeft}>圈子名称</div>
                                     <div className={classNames(style.listCenter, baseStyle.listCenter)}>
@@ -196,7 +196,7 @@ class Info extends Component {
 
                     {
                         this.state.forumUserIsModerator ?
-                            <Link to={{ pathname: '/forum/forumintroduce', state: { forum: this.state.forum }}} >
+                            <Link to={{ pathname: '/forum/edit/introduce', state: { forum: this.state.forum }}} >
                                 <div className={classNames(baseStyle.list, baseStyle.bottomLine)}>
                                     <div className={baseStyle.listLeft}>圈子简介</div>
                                     <div className={classNames(style.listCenter, baseStyle.listCenter)}>
@@ -223,26 +223,30 @@ class Info extends Component {
                     <div className={classNames(style.info, baseStyle.bottomLine)}>
                         <Link to={this.state.forum.forumUserIsModerator ? '/my/publish' :'/member/homepage/' +  this.state.ModeratorId} key={this.state.ModeratorId} >
                         <div className={style.infoLeft}>
-
                             <img className={style.infoLeftCrown}
                                  src={require('../../image/crown.png')}
                                  alt=''/>
-
-                            <img className={style.infoLeftImage}
-                                 src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/35/h/35'
-                                 alt=''/>
-
+                            {
+                                this.state.forum.forumModerator && this.state.forum.forumModerator.userAvatar && this.state.forum.forumModerator.userAvatar.filePath ?
+                                    <img className={style.infoLeftImage}
+                                         src={constant.image_host + this.state.forum.forumModerator.userAvatar.filePath}
+                                         alt=''/>
+                                    :
+                                    <img className={style.infoLeftImage}
+                                         src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/35/h/35'
+                                         alt=''/>
+                            }
                         </div>
                         </Link>
                         <div className={style.infoRight}>
                             <div className={style.infoRightName}>
                                 <Link to={this.state.forum.forumUserIsModerator ? '/my/publish' :'/member/homepage/' +  this.state.ModeratorId} key={this.state.ModeratorId} >
-                                {
-                                    this.state.forum.forumModerator && this.state.forum.forumModerator.userNickName ?
-                                        this.state.forum.forumModerator.userNickName
-                                        :
-                                        'null'
-                                }
+                                    {
+                                        this.state.forum.forumModerator && this.state.forum.forumModerator.userNickName ?
+                                            this.state.forum.forumModerator.userNickName
+                                            :
+                                            'null'
+                                    }
                                 </Link>
                             </div>
                             <div
@@ -266,23 +270,21 @@ class Info extends Component {
                                     return (
                                         member.userId ?
                                             <div >
-                                            <Link className={style.memberAvatar} to={member.userId === this.state.ModeratorId ? '/my/publish' : ('/member/homepage/' +  member.userId)} key={member.userId} >
-                                                {
-                                                    member.userAvatar ?
-                                                        <img className={style.memberAvatarImage}
-                                                             src={constant.host + member.userAvatar}
-                                                             alt=''/>
-                                                        :
-                                                        <img className={style.memberAvatarImage}
-                                                             src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/35/h/35'
-                                                             alt=''/>
-                                                }
+                                                <Link className={style.memberAvatar} to={member.userId === this.state.ModeratorId ? '/my/publish' : ('/member/homepage/' +  member.userId)} key={member.userId} >
+                                                    {
+                                                        member.userAvatar && member.userAvatar.filePath?
+                                                            <img className={style.memberAvatarImage}
+                                                                 src={constant.host + member.userAvatar.filePath}
+                                                                 alt=''/>
+                                                            :
+                                                            <img className={style.memberAvatarImage}
+                                                                 src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/35/h/35'
+                                                                 alt=''/>
+                                                    }
                                                 </Link>
                                             </div>
-
-
-                                        :
-                                        null
+                                            :
+                                            null
                                     )
                                 }.bind(this))
                                 :
@@ -291,19 +293,16 @@ class Info extends Component {
                         <div className={classNames(style.memberAvatarImage)} >
                             <img src={require('../../image/info-allfriend.png')} alt=''/>
                         </div>
-
                     </div>
-
                     {
-                            this.state.forum.forumUserIsModerator ?
-                                <div className={style.delete} onClick={this.handleDelete.bind(this)}>删除圈子</div>
+                        this.state.forum.forumUserIsModerator ?
+                            <div className={style.delete} onClick={this.handleDelete.bind(this)}>删除圈子</div>
+                            :
+                            this.state.forum.forumRequestUserIsFollow ?
+                                <div className={style.delete} onClick={this.handleExit.bind(this)}>退出圈子</div>
                                 :
-                                this.state.forum.forumRequestUserIsFollow ?
-                                    <div className={style.delete} onClick={this.handleExit.bind(this)}>退出圈子</div>
-                                    :
-                                    <div className={style.delete} onClick={this.handleJoin.bind(this, this.state.forumId)}>加入圈子</div>
+                                <div className={style.delete} onClick={this.handleJoin.bind(this, this.state.forumId)}>加入圈子</div>
                     }
-
                 </div>
             </div>
         );
