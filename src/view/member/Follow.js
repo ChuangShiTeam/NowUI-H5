@@ -16,16 +16,15 @@ class Follow extends Component {
 
         this.state = {
             isLoad: false,
-            followUserList: [ 1,2],
-            followUserPageIndex: 1,
-            followUserPageSize: 10,
-            followUserTotal: 0
+            myFollowList: []
         }
     }
 
     componentDidMount() {
         util.setTitle('wawipet哇咿宠');
         util.hancleComponentDidMount();
+
+        this.handleLoad();
     }
 
     componentDidUpdate() {
@@ -35,34 +34,43 @@ class Follow extends Component {
     componentWillUnmount() {
 
     }
+
     handleLoad() {
+        http.request({
+            url: '/member/follow/mobile/v1/my/follow/list',
+            data: {
+            },
+            success: function (data) {
+                this.setState({
+                    myFollowList: data
+                });
+            }.bind(this),
+            complete: function () {
 
-        let topicId = this.props.params.topicId;
-        console.log('topic =')
-        console.log(topicId)
-        if (topicId) {
-            http.request({
-                url: '/member/follow/like/mobile/v1/list',
-                data: {
-                    topicId: topicId,
-                    pageIndex: this.state.followUserPageIndex,
-                    pageSize: this.state.followUserPageIndex
+            }
+        });
+    }
 
-                },
-                success: function (data) {
+    handleFollow(userId, index) {
+        http.request({
+            url: this.state.myFollowList[index].memberIsFollow ? '/member/follow/mobile/v1/delete' : '/member/follow/mobile/v1/save',
+            data: {
+                followUserId: userId
+            },
+            success: function (data) {
+                if (data){
+                    let myFollowList = this.state.myFollowList;
+                    let myFollow = myFollowList[index];
+                    myFollow.memberIsFollow = !myFollow.memberIsFollow;
+                    myFollowList[index] = myFollow;
                     this.setState({
-                        followUserList: data.list,
-                        followUserTotal: data.total
+                        myFollowList: myFollowList
                     });
-                    console.log('data=')
-                    console.log(data)
-
-                }.bind(this),
-                complete: function () {
-
                 }
-            });
-        }
+            }.bind(this),
+            complete: function () {
+            }.bind(this)
+        });
     }
 
     render() {
@@ -72,14 +80,14 @@ class Follow extends Component {
                     <div className={style.headerLeft}>关注的人</div>
                 </div>
                 {
-                    this.state.followUserList.map(
-                        (followUser,index) =>
-                            <div className={classNames(style.list, baseStyle.bottomLine)} key={followUser.followerId}>
-                                <Link to={'/member/homepage/' +  followUser.followerId} key={followUser.followerId} >
+                    this.state.myFollowList.map(
+                        (myFollow,index) =>
+                            <div className={classNames(style.list, baseStyle.bottomLine)} key={index}>
+                                <Link to={'/member/homepage/' +  myFollow.followUserId} key={index} >
                                     <div className={style.listLeft}>
                                         {
-                                            followUser && followUser.followerAvatar ?
-                                                <img className={style.listLeftIcon} src={constant.image_host + followUser.followerAvatar} alt='' key={index}/>
+                                            myFollow && myFollow.filePath ?
+                                                <img className={style.listLeftIcon} src={constant.image_host + myFollow.filePath} alt='' key={index}/>
                                                 :
                                                 <img className={style.listLeftIcon} src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/30/h/30" alt=''/>
                                         }
@@ -88,16 +96,16 @@ class Follow extends Component {
 
                                 <div className={style.listCenter}>
                                     {
-                                        followUser && followUser.followerNickName ?
+                                        myFollow && myFollow.userNickName ?
                                             <span>
-                                                <Link to={'/member/homepage/' +  followUser.followerId} key={followUser.followerId} >
-                                            followUser.followerNickName
+                                                <Link to={'/member/homepage/' +  myFollow.followUserId} key={index} >
+                                                    {myFollow.userNickName}
                                                 </Link>
                                             </span>
                                             :
                                             <span>
-                                                <Link to={'/member/homepage/' +  followUser.followerId} key={followUser.followerId} >
-                                            是大雄啊是大雄啊是大雄啊是大雄啊是大雄啊是大雄啊是大雄啊是大雄啊是大雄啊是大雄啊是大雄啊
+                                                <Link to={'/member/homepage/' +  myFollow.followUserId} key={index} >
+                                                    是大雄啊是大雄啊是大雄啊是大雄啊是大雄啊
                                                 </Link>
                                             </span>
                                     }
@@ -106,17 +114,14 @@ class Follow extends Component {
 
                                 <div className={style.listRight}>
                                     {
-                                        followUser.topicUserLikeIsSelf ?
-                                            null
+                                        myFollow.memberIsFollow ?
+                                            <div className={style.listRightFollowActive}>
+                                                <span onClick={this.handleFollow.bind(this, myFollow.followUserId, index)}>已关注</span>
+                                            </div>
                                             :
-                                            followUser && followUser.memberIsFollow ?
-                                                <div className={style.listRightFollow}>
-                                                    <span>+ 关注</span>
-                                                </div>
-                                                :
-                                                <div className={style.listRightFollowActive}>
-                                                    <span>已关注</span>
-                                                </div>
+                                            <div className={style.listRightFollow}>
+                                                <span onClick={this.handleFollow.bind(this, myFollow.followUserId, index)}>+ 关注</span>
+                                            </div>
                                     }
                                 </div>
                             </div>

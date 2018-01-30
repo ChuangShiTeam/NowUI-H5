@@ -16,16 +16,15 @@ class Fans extends Component {
 
         this.state = {
             isLoad: false,
-            fansList: [ 1,2],
-            fansPageIndex: 1,
-            fansPageSize: 10,
-            fansTotal: 0
+            followMeList: []
         }
     }
 
     componentDidMount() {
         util.setTitle('wawipet哇咿宠');
         util.hancleComponentDidMount();
+
+        this.handleLoad();
     }
 
     componentDidUpdate() {
@@ -35,34 +34,44 @@ class Fans extends Component {
     componentWillUnmount() {
 
     }
+
+
     handleLoad() {
+        http.request({
+            url: '/member/follow/mobile/v1/follow/me/list',
+            data: {
+            },
+            success: function (data) {
+                this.setState({
+                    followMeList: data
+                });
+            }.bind(this),
+            complete: function () {
 
-        let topicId = this.props.params.topicId;
-        console.log('topic =')
-        console.log(topicId)
-        if (topicId) {
-            http.request({
-                url: '/member/fans/like/mobile/v1/list',
-                data: {
-                    topicId: topicId,
-                    pageIndex: this.state.fansPageIndex,
-                    pageSize: this.state.fansPageIndex
+            }
+        });
+    }
 
-                },
-                success: function (data) {
+    handleFollow(userId, index) {
+        http.request({
+            url: this.state.followMeList[index].memberIsFollow ? '/member/follow/mobile/v1/delete' : '/member/follow/mobile/v1/save',
+            data: {
+                followUserId: userId
+            },
+            success: function (data) {
+                if (data){
+                    let followMeList = this.state.followMeList;
+                    let followMe = followMeList[index];
+                    followMe.memberIsFollow = !followMe.memberIsFollow;
+                    followMeList[index] = followMe;
                     this.setState({
-                        fansList: data.list,
-                        fansTotal: data.total
+                        userLikeList: followMeList
                     });
-                    console.log('data=')
-                    console.log(data)
-
-                }.bind(this),
-                complete: function () {
-
                 }
-            });
-        }
+            }.bind(this),
+            complete: function () {
+            }.bind(this)
+        });
     }
 
     render() {
@@ -72,14 +81,14 @@ class Fans extends Component {
                     <div className={style.headerLeft}>粉丝</div>
                 </div>
                 {
-                    this.state.fansList.map(
-                        (fans,index) =>
-                            <div className={classNames(style.list, baseStyle.bottomLine)} key={fans.fansId}>
-                                <Link to={'/member/homepage/' +  fans.fansId} key={fans.fansId} >
+                    this.state.followMeList.map(
+                        (followMe,index) =>
+                            <div className={classNames(style.list, baseStyle.bottomLine)} >
+                                <Link to={'/member/homepage/' +  followMe.userId} key={followMe.memberId} >
                                     <div className={style.listLeft}>
                                         {
-                                            fans && fans.fansAvatar ?
-                                                <img className={style.listLeftIcon} src={constant.image_host + fans.fansAvatar} alt='' key={index}/>
+                                            followMe && followMe.filePath ?
+                                                <img className={style.listLeftIcon} src={constant.image_host + followMe.filePath} alt='' key={index}/>
                                                 :
                                                 <img className={style.listLeftIcon} src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/30/h/30" alt=''/>
                                         }
@@ -88,16 +97,16 @@ class Fans extends Component {
 
                                 <div className={style.listCenter}>
                                     {
-                                        fans && fans.fansNickName ?
+                                        followMe && followMe.userNickName ?
                                             <span>
-                                                <Link to={'/member/homepage/' +  fans.fansId} key={fans.fansId} >
-                                            fans.fansNickName
+                                                <Link to={'/member/homepage/' +  followMe.userId} key={followMe.memberId} >
+                                                    {followMe.userNickName}
                                                 </Link>
                                             </span>
                                             :
                                             <span>
-                                                <Link to={'/member/homepage/' +  fans.fansId} key={fans.fansId} >
-                                            是大雄啊是大雄啊是大雄啊是大雄啊是大雄啊是大雄啊是大雄啊是大雄啊是大雄啊是大雄啊是大雄啊
+                                                <Link to={'/member/homepage/' +  followMe.userId} key={followMe.memberId} >
+                                                 是大雄啊是大雄啊是大雄啊是大雄啊是大雄啊是大雄啊是大雄啊是大雄啊是大雄啊是大雄啊
                                                 </Link>
                                             </span>
                                     }
@@ -106,17 +115,14 @@ class Fans extends Component {
 
                                 <div className={style.listRight}>
                                     {
-                                        fans.topicUserLikeIsSelf ?
-                                            null
-                                            :
-                                            fans && fans.memberIsFollow ?
-                                                <div className={style.listRightFollow}>
-                                                    <span>+ 关注</span>
+                                            followMe && followMe.memberIsFollow ?
+                                                <div className={style.listRightFollowActive}>
+                                                    <span onClick={this.handleFollow.bind(this, followMe.userId, index)}>已关注</span>
                                                 </div>
                                                 :
-                                                <div className={style.listRightFollowActive}>
-                                                    <span>已关注</span>
-                                                </div>
+                                                <div className={style.listRightFollow}>
+                                                    <span onClick={this.handleFollow.bind(this, followMe.userId, index)}>+ 关注</span>
+                                                </div >
                                     }
                                 </div>
                             </div>

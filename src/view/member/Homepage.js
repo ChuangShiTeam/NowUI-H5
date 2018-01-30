@@ -134,6 +134,7 @@ class Homepage extends Component {
     }
 
     render() {
+
         return (
 
             <div className={style.page} style={{minHeight: document.documentElement.clientHeight}}>
@@ -178,7 +179,7 @@ class Homepage extends Component {
                     </div>
                     <div>
                         <p>
-                            <Link to={'/member/otherfans/' +  this.state.member.userId} key={this.state.member.userId} >
+                            <Link to={'/member/otherfollow/' +  this.state.member.userId} key={this.state.member.userId} >
                             {this.state.member.memberFollowCount}
                             </Link>
                         </p>

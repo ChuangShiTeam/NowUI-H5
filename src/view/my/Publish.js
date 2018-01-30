@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Infinite from 'react-infinite';
+import {Link} from 'react-router';
+
 
 import TopicIndex from '../../component/topic/Index';
 import baseStyle from '../../css/Base.scss';
@@ -141,11 +143,19 @@ class Publish extends Component {
                             <span className={style.messagesNumberBottom}>动态</span>
                         </div>
                          <div>
-                             <span className={style.messagesNumberTop}>{this.state.member.memberFollowCount}</span>
+                             <span className={style.messagesNumberTop} >
+                                 <Link to={'/member/follow' } key={1} >
+                                    {this.state.member.memberFollowCount}
+                                 </Link>
+                             </span>
                              <span className={style.messagesNumberBottom}> 关注</span>
                          </div>
                          <div>
-                             <span className={style.messagesNumberTop}>{this.state.member.memberBeFollowCount}</span>
+                             <span className={style.messagesNumberTop}>
+                                 <Link to={'/member/fans' } key={2} >
+                                    {this.state.member.memberBeFollowCount}
+                                 </Link>
+                             </span>
                              <span className={style.messagesNumberBottom}>粉丝</span>
                          </div>
                      </div>
