@@ -28,7 +28,9 @@ class Detail extends Component {
             pageSize: 3,
             topicCommentTotal: 0,
             topicCommentList: [],
-            userId: ''
+            topicReplayUserId: '',
+            placeholder: '我也要说点什么…',
+            topicReplyCommentId: ''
         }
     }
 
@@ -58,8 +60,7 @@ class Detail extends Component {
                 },
                 success: function (data) {
                     this.setState({
-                        topic: data,
-                        userId: data.topicSendUserId
+                        topic: data
                     });
                 }.bind(this),
                 complete: function () {
@@ -96,7 +97,6 @@ class Detail extends Component {
                         topicCommentTotal: data.total,
                         topicCommentList: data.list
                     });
-                    console.log(data.list)
                 }.bind(this),
                 complete: function () {
 
@@ -130,8 +130,6 @@ class Detail extends Component {
 
             }
         });
-
-
     }
 
     handleBookmarkTopic() {
@@ -149,7 +147,6 @@ class Detail extends Component {
                     } else {
                         topic.topicCountBookmark -= 1;
                     }
-
                     this.setState({
                         topic: topic
                     })
@@ -158,9 +155,7 @@ class Detail extends Component {
             complete: function () {
 
             }
-
         })
-
     }
 
     handleCommentTopic() {
@@ -182,9 +177,6 @@ class Detail extends Component {
                     } else {
                         comment.topicCommentLikeCount -= 1;
                     }
-
-                    this.setState({
-                    })
                 }
             }.bind(this),
             complete: function () {
@@ -192,7 +184,6 @@ class Detail extends Component {
             }
         });
     }
-
 
     handleSubmit() {
         this.props.form.validateFields((errors, values) => {
@@ -216,14 +207,20 @@ class Detail extends Component {
                 return;
             }
             values.topicId = topicId;
-            values.topicReplayUserId = '';
-            values.topicReplyCommentId = '';
+            values.topicReplayUserId = this.state.topicReplayUserId;
+            values.topicReplyCommentId = this.state.topicReplyCommentId;
             http.request({
                 url: '/topic/comment/mobile/v1/save',
                 data: values,
                 success: function (data) {
                     if (data) {
                         this.handleLoadComment();
+                        this.setState({
+                            topicReplayUserId: '',
+                            placeholder: '我也要说点什么…',
+                            topicReplyCommentId: ''
+                        });
+                        this.props.form.resetFields();
                     }
                 }.bind(this),
                 complete: function () {
@@ -234,33 +231,65 @@ class Detail extends Component {
         });
     }
 
+    handleChooseReply(topicReplayUserId, topicReplayUserNickName, topicReplyCommentId) {
+        if (topicReplayUserId === this.state.topic.requestUser.userId) {
+            this.setState({
+                topicReplayUserId: '',
+                placeholder: '我也要说点什么…',
+                topicReplyCommentId: ''
+            })
+        } else {
+            this.setState({
+                topicReplayUserId: topicReplayUserId,
+                placeholder: '回复' + topicReplayUserNickName + '：',
+                topicReplyCommentId: topicReplyCommentId
+            })
+        }
+
+    }
+
+    handleCancelReply() {
+        this.setState({
+            topicReplayUserId: '',
+            placeholder: '我也要说点什么…',
+            topicReplyCommentId: ''
+        })
+    }
+
     render() {
         const {getFieldProps} = this.props.form;
+        console.log('this.state.topic.topicUserLikeList', this.state.topic.topicUserLikeList);
         return (
             <div className={classNames(style.page, baseStyle.page)}
                  style={{minHeight: document.documentElement.clientHeight}}>
                 <div className={style.header}>
                     <div className={style.headerLeft}>
-                        <Link to={this.state.topic.topicIsSelf ? '/my/publish' : '/member/homepage/' +  this.state.userId} key={this.state.userId}>
-                            {
-
-                                this.state.topic.userId && this.state.topic.userId.userAvatar ?
-                                     <img src={constant.image_host + this.state.topic.userId.userAvatar.filePath} alt=''/>
-                                    :
-                                     <img className={style.headerLeftImage} src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/28/h/28' alt=''/>
-
-                            }
-                        </Link>
-
+                        {
+                            this.state.topic.topicUser && this.state.topic.topicUser.userId ?
+                                <Link to={this.state.topic.topicIsSelf ? '/my/publish' : '/member/homepage/' +  this.state.topic.topicUser.userId}>
+                                    {
+                                        this.state.topic.topicUser && this.state.topic.topicUser.userAvatar ?
+                                            <img className={style.headerLeftImage} src={constant.image_host + this.state.topic.topicUser.userAvatar.filePath} alt=''/>
+                                            :
+                                            <img className={style.headerLeftImage} src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/28/h/28' alt=''/>
+                                    }
+                                </Link>
+                                :
+                                null
+                        }
                     </div>
                     <div className={style.headerCenter}>
 
                         <p className={style.headerCenterName}>
-                            <Link to={this.state.topic.topicIsSelf ? '/my/publish' : '/member/homepage/' +  this.state.userId} key={this.state.userId}>
-                                {this.state.topic.userId && this.state.topic.userId.userNickName ? this.state.topic.userId.userNickName : '用户昵称为null'}
-                            </Link>
+                            {
+                                this.state.topic.topicUser && this.state.topic.topicUser.userId ?
+                                    <Link to={this.state.topic.topicIsSelf ? '/my/publish' : '/member/homepage/' +  this.state.topic.topicUser.userId}>
+                                        {this.state.topic.topicUser && this.state.topic.topicUser.userNickName ? this.state.topic.topicUser.userNickName : '用户昵称为null'}
+                                    </Link>
+                                    :
+                                    null
+                            }
                         </p>
-
                         <p className={style.headerCenterTime}> {moment(this.state.topic.systemCreateTime).fromNow()}</p>
                     </div>
                     <div className={style.headerRight}></div>
@@ -277,22 +306,17 @@ class Detail extends Component {
                             :
                             null
                     }
-
                 </div>
-                <div className={style.footer}>
+                <div className={style.footer} onClick={this.handleCancelReply.bind(this)}>
                     <div className={classNames(style.footerText, baseStyle.bottomLine)}>
-                        {
-                            this.state.topic.topicSummary
-                        }
+                        {this.state.topic.topicSummary}
                     </div>
                     <div className={style.footerInfo}>
                         <div className={style.footerInfoLeft}>
                             <img className={style.footerInfoLeftLocationIcon} src={require('../../image/location.png')}
                                  alt=''/>
                             <span className={style.footerInfoLeftLocationText}>
-                            {
-                                this.state.topic.topicLocation
-                            }
+                                {this.state.topic.topicLocation}
                             </span>
                         </div>
                         <div className={style.footerInfoRight}>
@@ -356,17 +380,18 @@ class Detail extends Component {
                         </div>
                     </div>
                 </div>
-                <div className={style.line2}></div>
+                <div className={style.line2} onClick={this.handleCancelReply.bind(this)}></div>
                 <div className={style.content}>
                     {
                         this.state.topicCommentList.map(function (comment, index) {
                             return (
                                 <div key={index}
+                                     onClick={this.handleChooseReply.bind(this, comment.userId, comment.userNickName, comment.topicCommentId)}
                                      className={classNames(style.comment, baseStyle.maxWidthWithPadding, index > 0 ? baseStyle.marginTop : '')}>
                                     <div className={style.commentLeft}>
-                                        <Link to={comment.topicCommentIsSelf? '/my/publish'  : '/member/homepage/' + comment.userId} key={comment.userId}>
+                                        <Link to={comment.topicCommentIsSelf? '/my/publish'  : '/member/homepage/' + comment.userId}>
                                         {
-                                            comment.userAvatar ?
+                                            comment.userAvatar && comment.userAvatar.filePath?
                                                     <img className={style.commentLeftImage}
                                                          src={constant.image_host + comment.userAvatar.filePath} alt=''/>
                                                 :
@@ -387,21 +412,15 @@ class Detail extends Component {
                                             </div>
                                         </div>
                                         <Link to={comment.topicCommentIsSelf? '/my/publish'  : '/member/homepage/' + comment.userId} key={comment.userId}>
-                                        {
-                                                comment.userNickName ?
-                                                    comment.userNickName
-                                                    :
-                                                    'null'
-                                            }
+                                            <div className={style.commentRightName}>{comment.userNickName}</div>
                                         </Link>
-                                        <div className={style.commentRightName}>{comment.userNickName}</div>
                                         <div
                                             className={style.commentRightName}>{moment(comment.systemCreateTime).fromNow()}</div>
                                         {
                                             comment.topicReplayUserId ?
                                                 <div className={style.commentRightContent}>
-                                                    回复<span
-                                                    className={style.commentRightContentWho}>{comment.topicReplayUserNickName}</span>: {comment.topicCommentContent}
+                                                    回复
+                                                    <span className={style.commentRightContentWho}>{" " + comment.topicReplayUserNickName}</span>: {comment.topicCommentContent}
                                                 </div>
                                                 :
                                                 <div className={style.commentRightContent}>
@@ -417,21 +436,24 @@ class Detail extends Component {
                 <div className={classNames(style.feedback, baseStyle.topLine)}>
                     <div className={style.feedbackContent}>
                         <div className={style.feedbackContentLeft}>
-                            <img className={style.feedbackContentLeftImage}
-                                 src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/28/h/28'
-                                 alt=''/>
+                            {
+                                this.state.topic.requestUser && this.state.topic.requestUser.userAvatar && this.state.topic.requestUser.userAvatar.filePath ?
+                                    <img className={style.feedbackContentLeftImage} src={constant.image_host + this.state.topic.requestUser.userAvatar.filePath} alt=''/>
+                                    :
+                                    <img className={style.feedbackContentLeftImage} src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/28/h/28' alt=''/>
+                            }
                         </div>
                         <div className={style.feedbackContentCenter}>
                             <input
                                 className={style.feedbackContentCenterInput} {...getFieldProps('topicCommentContent', {
-                                rules: [{
-                                    required: true,
-                                    message: '您也要说点什么？'
-                                }],
-                                initialValue: ''
-                            })} type="text"
-                                ref={el => this.customFocusInst = el}
-                                placeholder="我也要说点什么…"
+                                    rules: [{
+                                        required: true,
+                                        message: '发送内容不能为空'
+                                    }],
+                                    initialValue: ''
+                                })} type="text"
+                                    ref={el => this.customFocusInst = el}
+                                    placeholder={this.state.placeholder}
                             >
 
                             </input>
