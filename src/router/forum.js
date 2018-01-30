@@ -61,20 +61,20 @@ export default {
             }, 'forum.homepage');
         }
     } ,{
-        path: '/forum/renameforum',
+        path: '/forum/rename',
         onEnter: util.handleEnter,
         getComponent(location, cb) {
             require.ensure([], (require) => {
-                cb(null, require('../view/forum/RenameForum').default);
-            }, 'forum.renameforum');
+                cb(null, require('../view/forum/Rename').default);
+            }, 'forum.rename');
         }
     },{
-        path: '/forum/forumintroduce',
+        path: '/forum/edit/introduce',
         onEnter: util.handleEnter,
         getComponent(location, cb) {
             require.ensure([], (require) => {
-                cb(null, require('../view/forum/ForumIntroduce').default);
-            }, 'forum.forumintroduce');
+                cb(null, require('../view/forum/EditIntroduce').default);
+            }, 'forum.editIntroduce');
         }
     }, {
         path: '/forum/my',
@@ -82,7 +82,7 @@ export default {
         getComponent(location, cb){
             require.ensure([], (require) => {
                 cb(null, require('../view/forum/My').default);
-            }, 'forum.list');
+            }, 'forum.my');
         }
     }]
 }

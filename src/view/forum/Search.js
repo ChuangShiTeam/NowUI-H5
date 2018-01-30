@@ -7,7 +7,6 @@ import ForumIndex from '../../component/forum/Index';
 
 import util from '../../common/util';
 import http from '../../common/http';
-import constant from '../../common/constant';
 
 import style from './Search.scss';
 

@@ -2,17 +2,15 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {createForm} from "rc-form";
 import Notification from 'rc-notification';
-
-
 import util from '../../common/util';
 import http from '../../common/http';
+import style from './EditIntroduce.scss';
 
-import style from './RenameForum.scss';
 
 let notification = null;
 Notification.newInstance({}, (n) => notification = n);
 
-class RenameForum extends Component {
+class EditIntroduce extends Component {
     constructor(props) {
         super(props);
 
@@ -37,20 +35,11 @@ class RenameForum extends Component {
 
     }
 
-
-
-
     handleClose() {
         this.props.history.push({
-            pathname: '/forum/homepage/' + this.state.forum.forumId,
+            pathname: '/forum/info/' + this.state.forum.forumId,
             query: {}
         });
-    }
-
-    handleKeyUp(event) {
-        if (event.keyCode === 13) {
-            this.handleSubmit();
-        }
     }
 
     handleSubmit() {
@@ -70,9 +59,10 @@ class RenameForum extends Component {
                 return;
             }
 
+
             values.forumId = this.state.forum.forumId;
             http.request({
-                url: '/forum/mobile/v1/update/name',
+                url: '/forum/mobile/v1/update/description',
                 data: values,
                 success: function (data) {
                     if (data){
@@ -86,7 +76,7 @@ class RenameForum extends Component {
                     }
 
                     this.props.history.push({
-                        pathname: '/forum/homepage/' + this.state.forum.forumId,
+                        pathname: '/forum/info/' + this.state.forum.forumId,
                         query: {}
                     });
                 }.bind(this),
@@ -95,47 +85,30 @@ class RenameForum extends Component {
                 }
             });
 
-
         });
     }
-
-
-
     render() {
         const {getFieldProps} = this.props.form;
 
         return (
             <div className={style.page} style={{minHeight: document.documentElement.clientHeight}}>
-                <div className={style.header}>
-                    <div className={style.headerContent}>
-                        <div className={style.headerContentLeft}>
-                            <div className={style.headerContentLeftSearch}>
-                                <div className={style.headerContentLeftSearchRight}>
-                                    <input
-                                        className={style.headerContentLeftSearchRightInput} {...getFieldProps('forumName', {
-                                        rules: [{
-                                            required: true,
-                                            message: '内容不能为空'
-                                        }],
-                                        initialValue: ''
-                                    })} type="text" placeholder="输入不超过25个字符的圈子名称" onKeyUp={this.handleKeyUp.bind(this)}/>
-                                </div>
-                            </div>
-                        </div>
-                        <div className={style.headerContentRight} onClick={this.handleClose.bind(this)}>
-                            <img className={style.headerContentRightClose} src={require('../../image/upload-close.png')}
-                                 alt=''/>
-                        </div>
+                <div className={style.content}>
+                    <div className={style.listItemCenterDescription}>
+                        <textarea className={style.listItemCenterTextarea} {...getFieldProps('forumDescription', {
+                            rules: [{
+                                required: true,
+                                message: '圈子简介不能为空'
+                            }],
+                            initialValue: ''
+                        })} rows="5" placeholder="请输入超过255个字符的圈子简介"/>
                     </div>
-                    <div className={style.content}>
-                        <div className={style.review} onClick={this.handleSubmit.bind(this)}>提交</div>
-                    </div>
+                </div>
+                <div className={style.content}>
+                    <div className={style.review} onClick={this.handleSubmit.bind(this)}>提交</div>
                 </div>
             </div>
         );
     }
 }
-
-RenameForum = createForm({})(RenameForum);
-
-export default connect(() => ({}))(RenameForum);
+EditIntroduce = createForm({})(EditIntroduce);
+export default connect(() => ({}))(EditIntroduce);

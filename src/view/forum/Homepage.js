@@ -165,8 +165,13 @@ class Homepage extends Component {
                          已有{this.state.forum.forumUserFollowCount?this.state.forum.forumUserFollowCount:0}人加入圈子
                      </span>
                      <Link to={'/forum/info/' +  this.state.forum.forumId} key={this.state.forum.forumId} >
+                         {
+                             this.state.forum.forumMedia && this.state.forum.forumMedia.filePath ?
+                                 <img className={style.homePageHeaderTopBackgroundImg} src={constant.image_host + this.state.forum.forumMedia.filePath} alt=""/>
+                                 :
+                                 <img className={style.homePageHeaderTopBackgroundImg} src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?listView/1/w/72/h/72" alt=""/>
 
-                     <img className={style.homePageHeaderTopBackgroundImg} src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?listView/1/w/72/h/72" alt=""/>
+                         }
                      </Link>
                  </div>
                  <div className={classNames(style.homePageHeaderMiddleMessage,baseStyle.bottomLine)}>
@@ -188,7 +193,7 @@ class Homepage extends Component {
                                  this.state.forum && this.state.forum.forumModerator && this.state.forum.forumModerator.userId ?
                                      <Link to={'/member/homepage/' +  this.state.forum.forumModerator.userId} key={this.state.forum.forumModerator.userId} >
                                          {
-                                             this.state.forum.forumModerator.userAvatar ?
+                                             this.state.forum.forumModerator && this.state.forum.forumModerator.userAvatar && this.state.forum.forumModerator.userAvatar.filePath?
                                                  <img src={constant.image_host + this.state.forum.forumModerator.userAvatar.filePath} alt=''/>
                                                  :
                                                  <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?listView/1/w/72/h/72" alt='' />
@@ -210,8 +215,8 @@ class Homepage extends Component {
                              </p>
                              <p className={style.homePageHeaderMessageRightBottom}>
                                  {
-                                     this.state.forum && this.state.forum.forumDescription ?
-                                         this.state.forum.forumDescription
+                                     this.state.forum.forumModerator && this.state.forum.forumModerator.memberSignature ?
+                                         this.state.forum.forumModerator.memberSignature
                                          :
                                          '用户没有个性签名哦'
                                  }

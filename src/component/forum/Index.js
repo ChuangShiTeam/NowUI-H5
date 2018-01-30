@@ -59,9 +59,9 @@ class Index extends Component {
                                  src={require('../../image/crown.png')}
                                  alt=''/>
                             {
-                                this.props.forum.forumModerator.userAvatar ?
+                                this.props.forum.forumModerator && this.props.forum.forumModerator.userAvatar && this.props.forum.forumModerator.userAvatar.filePath?
                                     <img className={style.ListCenterFooterLeftAvatar}
-                                         src={constant.image_host + this.props.forum.forumModerator.userAvatar}
+                                         src={constant.image_host + this.props.forum.forumModerator.userAvatar.filePath}
                                          alt=''/>
                                     :
                                     <img className={style.ListCenterFooterLeftAvatar}
