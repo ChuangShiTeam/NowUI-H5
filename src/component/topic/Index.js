@@ -796,7 +796,7 @@ class Index extends Component {
                                         </div>
                                         <div className={style.footerInfoBottomList}>
                                             <span className={style.footerInfoBottomName}>Iris</span>
-                                            <span className={style.footerInfoBottomContent}>回复</span>
+                                            <span className={classNames(style.footerInfoBottomContent,style.footerInfoBottomContentReply)} >  回复  </span>
                                             <span className={style.footerInfoBottomName}>我是来找茬的</span>
                                             <span className={style.footerInfoBottomContent}>：不行不行，他是我的～</span>
                                         </div>
