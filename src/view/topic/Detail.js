@@ -325,11 +325,9 @@ class Detail extends Component {
                         <Link to={'/topic/like/' + this.state.topic.topicId} className={style.footerCountCenter}>
                             {
                                 this.state.topic && this.state.topic.topicUserLikeList ?
-                                    this.state.topic.topicUserLikeList.map(function (userLikeList, index) {
+                                    this.state.topic.topicUserLikeList.map(function (userLike, index) {
                                         return (
-                                            <img className={style.footerCountLeftAvatarIcon}
-                                                 src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/320/h/255'
-                                                 alt=''/>
+                                            <img key={index} className={style.footerCountLeftAvatarIcon} src={constant.image_host + userLike.userAvatar.filePath} alt=''/>
                                         )
                                     })
                                     :
@@ -338,9 +336,6 @@ class Detail extends Component {
                                          alt=''/>
 
                             }
-                            <img className={style.footerCountLeftAvatarIcon}
-                                 src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/320/h/255'
-                                 alt=''/>
                         </Link>
                         <div className={style.footerCountRight}>
                             <img className={style.footerCountRightBookmarkIcon}

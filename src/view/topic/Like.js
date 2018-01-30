@@ -16,7 +16,7 @@ class Like extends Component {
 
         this.state = {
             isLoad: false,
-            userLikeList: [1,2],
+            userLikeList: [],
             userLikePageIndex: 1,
             userLikePageSize: 10,
             userLikeTotal: 0
@@ -42,23 +42,19 @@ class Like extends Component {
     handleLoad() {
 
         let topicId = this.props.params.topicId;
-        console.log('topic =')
-        console.log(topicId)
         if (topicId) {
             http.request({
                 url: '/topic/user/like/mobile/v1/list',
                 data: {
                     topicId: topicId,
                     pageIndex: this.state.userLikePageIndex,
-                    pageSize: this.state.userLikePageIndex
-
+                    pageSize: this.state.userLikePageSize
                 },
                 success: function (data) {
                     this.setState({
                         userLikeList: data.list,
                         userLikeTotal: data.total
                     });
-                    console.log('data=')
                     console.log(data)
 
                 }.bind(this),
@@ -67,6 +63,30 @@ class Like extends Component {
                 }
             });
         }
+    }
+
+
+    handleFollow(userId, index) {
+        let followUserId = userId;
+        alert(this.state.userLikeList[index].memberIsFollow)
+        http.request({
+            url: this.state.userLikeList[index].memberIsFollow ? '/member/follow/mobile/v1/delete' : '/member/follow/mobile/v1/save',
+            data: {
+                followUserId: followUserId,
+            },
+            success: function (data) {
+                if (data){
+                    this.state.userLikeList[index].memberIsFollow != this.state.userLikeList[index].memberIsFollow;
+                    this.setState({
+                    });
+                }
+
+                this.handleLoadMemberInfo();
+
+            }.bind(this),
+            complete: function () {
+            }.bind(this)
+        });
     }
 
     render() {
@@ -83,7 +103,7 @@ class Like extends Component {
                                     <div className={style.listLeft}>
                                         {
                                             userLike && userLike.userAvatar ?
-                                                <img className={style.listLeftIcon} src={constant.image_host + userLike.userAvatar} alt='' key={index}/>
+                                                <img className={style.listLeftIcon} src={constant.image_host + userLike.userAvatar.filePath} alt='' key={index}/>
                                                 :
                                                 <img className={style.listLeftIcon} src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/30/h/30" alt=''/>
                                         }
@@ -95,13 +115,13 @@ class Like extends Component {
                                         userLike && userLike.userNickName ?
                                             <span>
                                                 <Link to={userLike.topicUserLikeIsSelf ? '/my/publish' : '/member/homepage/' +  userLike.userId}  key={userLike.userId} >
-                                            userLike.userNickName
+                                                    {userLike.userNickName}
                                                 </Link>
                                             </span>
                                             :
                                             <span>
                                                 <Link to={userLike.topicUserLikeIsSelf ? '/my/publish' : '/member/homepage/' +  userLike.userId}  key={userLike.userId} >
-                                            是大雄啊是大雄啊是大雄啊是大雄啊是大雄啊是大雄啊是大雄啊是大雄啊是大雄啊是大雄啊是大雄啊
+                                                    '默认昵称'
                                                 </Link>
                                             </span>
                                     }
@@ -113,14 +133,15 @@ class Like extends Component {
                                         userLike.topicUserLikeIsSelf ?
                                             null
                                             :
-                                            userLike && userLike.memberIsFollow ?
-                                                <div className={style.listRightFollow}>
-                                                    <span>+ 关注</span>
+                                            userLike.memberIsFollow ?
+                                                <div className={style.listRightFollowActive}>
+                                                    <span onClick={this.handleFollow.bind(this, userLike.userId, index)}>已关注</span>
                                                 </div>
                                                 :
-                                                <div className={style.listRightFollowActive}>
-                                                    <span>已关注</span>
+                                                <div className={style.listRightFollow}>
+                                                    <span onClick={this.handleFollow.bind(this, userLike.userId, index)}>+ 关注</span>
                                                 </div>
+
                                     }
                                 </div>
                             </div>
