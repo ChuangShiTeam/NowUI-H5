@@ -67,22 +67,21 @@ class Like extends Component {
 
 
     handleFollow(userId, index) {
-        let followUserId = userId;
-        alert(this.state.userLikeList[index].memberIsFollow)
         http.request({
             url: this.state.userLikeList[index].memberIsFollow ? '/member/follow/mobile/v1/delete' : '/member/follow/mobile/v1/save',
             data: {
-                followUserId: followUserId,
+                followUserId: userId
             },
             success: function (data) {
                 if (data){
-                    this.state.userLikeList[index].memberIsFollow != this.state.userLikeList[index].memberIsFollow;
+                    let userLikeList = this.state.userLikeList;
+                    let userLike = userLikeList[index];
+                    userLike.memberIsFollow = !userLike.memberIsFollow;
+                    userLikeList[index] = userLike;
                     this.setState({
+                        userLikeList: userLikeList
                     });
                 }
-
-                this.handleLoadMemberInfo();
-
             }.bind(this),
             complete: function () {
             }.bind(this)
