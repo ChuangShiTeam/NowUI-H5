@@ -746,7 +746,11 @@ class Index extends Component {
                             <div className={style.footer}>
                                 <Link to={"/topic/detail/" + this.state.topic.topicId} className={style.content}>
                                 <div className={classNames(style.footerText, baseStyle.bottomLine)}>
-                                    {this.state.topic.topicSummary}
+                                        <div className={style.footerTextLeft}>{this.state.topic.topicSummary}</div>
+                                        <div className={style.footerTextRight}>
+                                            <span className={style.footerTextRightText}>@Lin</span>
+                                            <span className={style.footerTextRightText}>@Nami</span>
+                                        </div>
                                 </div>
                                 </Link>
                                 <div className={style.footerInfo}>
@@ -780,6 +784,22 @@ class Index extends Component {
                                             :
                                             null
                                     }
+                                </div>
+                                <div className={style.footerInfoBottom}>
+                                        <div className={style.footerInfoBottomList}>
+                                            <span className={style.footerInfoBottomName}>天使艾米丽</span>
+                                            <span className={style.footerInfoBottomContent}>：超喜欢！</span>
+                                        </div>
+                                         <div className={style.footerInfoBottomList}>
+                                            <span className={style.footerInfoBottomName}>我是来找茬的</span>
+                                            <span className={style.footerInfoBottomContent}>：太好玩了，我也好想养一只啊…s</span>
+                                        </div>
+                                        <div className={style.footerInfoBottomList}>
+                                            <span className={style.footerInfoBottomName}>Iris</span>
+                                            <span className={style.footerInfoBottomContent}>回复</span>
+                                            <span className={style.footerInfoBottomName}>我是来找茬的</span>
+                                            <span className={style.footerInfoBottomContent}>：不行不行，他是我的～</span>
+                                        </div>
                                 </div>
                             </div>
                             <div className={style.line}></div>
