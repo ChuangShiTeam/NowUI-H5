@@ -59,7 +59,7 @@ class Comment extends Component{
                 <div className={style.content}>
                     <div  className={classNames(style.contentList,baseStyle.bottomLine)}>
                         <div className={style.contentListLeft}>
-                            <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/30/h/30" alt=""/>
+                            <img  src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/30/h/30" alt=""/>
                         </div>
                         <div className={style.contentListRight}>
                             <div className={style.contentListRightTop}>
@@ -80,7 +80,7 @@ class Comment extends Component{
                                 <div></div>
                             }
                             <div className={style.contentListRightContent}>
-                                <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/110/h/75" alt=""/>
+                                <img className={style.contentListRightContentImg} src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/110/h/75" alt=""/>
                                 <div className={style.contentListRightContentRight}>
                                     <span className={style.contentListRightContentRightTop}> 今天一回家就看到这俩货把我的沙发拆得不今天一回家就看到这俩货把我的沙发拆得不…</span>
                                     <span className={style.contentListRightContentRightBottom}>2018-01-10</span>
@@ -124,7 +124,7 @@ class Comment extends Component{
                             }
 
                             <div className={style.contentListRightContent}>
-                                <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/110/h/75" alt=""/>
+                                <img className={style.contentListRightContentImg} src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/110/h/75" alt=""/>
                                 <div className={style.contentListRightContentRight}>
                                     <span className={style.contentListRightContentRightTop}> 今天一回家就看到这俩货把我的沙发拆得不今天一回家就看到这俩货把我的沙发拆得不…</span>
                                     <span className={style.contentListRightContentRightBottom}>2018-01-10</span>
@@ -167,7 +167,7 @@ class Comment extends Component{
                                 <div></div>
                             }
                             <div className={style.contentListRightContent}>
-                                <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/110/h/75" alt=""/>
+                                <img className={style.contentListRightContentImg} src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/110/h/75" alt=""/>
                                 <div className={style.contentListRightContentRight}>
                                     <span className={style.contentListRightContentRightTop}> 今天一回家就看到这俩货把我的沙发拆得不今天一回家就看到这俩货把我的沙发拆得不…</span>
                                     <span className={style.contentListRightContentRightBottom}>2018-01-10</span>
