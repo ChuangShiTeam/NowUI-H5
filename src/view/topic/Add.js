@@ -34,6 +34,15 @@ class Add extends Component {
 
         this.hanldeLoadForum();
 
+        notificationEvent.on('notification_remind_submit', this, function (data) {
+            console.log(data);
+            this.props.dispatch({
+                type: 'topicAdd',
+                data: {
+                    topicTipUserList: data
+                }
+            });
+        });
         notificationEvent.on('notification_location_submit', this, function (data) {
             this.props.dispatch({
                 type: 'topicAdd',
@@ -50,6 +59,7 @@ class Add extends Component {
 
     componentWillUnmount() {
         notificationEvent.remove('nnotification_location_submit', this);
+        notificationEvent.remove('nnotification_remind_submit', this);
     }
 
     hanldeLoadForum() {
@@ -103,7 +113,7 @@ class Add extends Component {
             }
 
             values.topicForumList = this.state.forumList.filter(forum => forum.selected).map(forum => forum.forumId);
-            values.topicTipUserList = this.props.topicAdd.topicTipUserList;
+            values.topicTipUserList = this.props.topicAdd.topicTipUserList.map(topicTipUser => topicTipUser.value);
 
             values.topicMediaList = values.topicMedia.map((topicMedia, index) => {
                 return {
@@ -120,6 +130,14 @@ class Add extends Component {
                 success: function (data) {
                     notification.notice({
                         content: '发布成功'
+                    });
+                    this.props.dispatch({
+                        type: 'topicAdd',
+                        data: {
+                            topicTipUserList: [],
+                            location: {},
+                            forumList: []
+                        }
                     });
                     this.props.history.push({
                         pathname: '/topic/index',
@@ -193,7 +211,13 @@ class Add extends Component {
                             </div>
                             <div className={classNames(style.listCenter, baseStyle.listCenter)}>
                                 {
-                                    this.props.topicAdd.location.poiaddress
+                                    this.props.topicAdd.location.poiaddress ?
+                                        this.props.topicAdd.location.poiaddress.length > 14 ?
+                                            this.props.topicAdd.location.poiaddress.substring(0, 14) + "..."
+                                            :
+                                            this.props.topicAdd.location.poiaddress
+                                        :
+                                        null
                                 }
                             </div>
                             <div className={style.listRight}>

@@ -1,6 +1,4 @@
 const initialState = {
-    topicMediaList: [],
-    topicContent: '',
     topicTipUserList: [],
     location: {},
     forumList: []

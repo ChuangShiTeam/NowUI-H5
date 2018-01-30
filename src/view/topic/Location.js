@@ -14,7 +14,7 @@ class Location extends Component {
 
         this.state = {
             isLoad: false
-        }
+        };
 
         this.handleMessage = this.handleMessage.bind(this);
     }
