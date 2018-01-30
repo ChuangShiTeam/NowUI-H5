@@ -27,5 +27,21 @@ export default {
                 cb(null, require('../view/member/Fans').default);
             }, 'forum.fans')
         }
+    }, {
+        path: '/member/otherfollow/:userId',
+        onEnter: util.handleEnter,
+        getComponent(location, cb) {
+            require.ensure([], (require) => {
+                cb(null, require('../view/member/OtherFollow').default);
+            }, 'forum.otherfollow')
+        }
+    }, {
+        path: '/member/otherfans/:userId',
+        onEnter: util.handleEnter,
+        getComponent(location, cb) {
+            require.ensure([], (require) => {
+                cb(null, require('../view/member/OtherFans').default);
+            }, 'forum.otherfans')
+        }
     }]
 }

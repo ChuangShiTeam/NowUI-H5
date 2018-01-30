@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {Link} from 'react-router';
 
 import Infinite from 'react-infinite';
 
@@ -176,11 +177,19 @@ class Homepage extends Component {
                         <p>动态</p>
                     </div>
                     <div>
-                        <p>{this.state.member.memberFollowCount}</p>
+                        <p>
+                            <Link to={'/member/otherfans/' +  this.state.member.userId} key={this.state.member.userId} >
+                            {this.state.member.memberFollowCount}
+                            </Link>
+                        </p>
                         <p>关注</p>
                     </div>
                     <div>
-                        <p>{this.state.member.memberBeFollowCount}</p>
+                        <p>
+                            <Link to={'/member/otherfans/' +  this.state.member.userId} key={this.state.member.userId} >
+                            {this.state.member.memberBeFollowCount}
+                            </Link>
+                        </p>
                         <p>粉丝</p>
                     </div>
                     <div>

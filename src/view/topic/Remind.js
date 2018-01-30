@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import MSelectList from 'rmc-select-list';
 import pinyin from 'pinyin';
 
+import notification from '../../common/notification';
 import util from '../../common/util';
 import http from '../../common/http';
 
@@ -115,6 +116,13 @@ class Remind extends Component {
         });
     }
 
+    handleSubmit() {
+        if (this.state.selectList && this.state.selectList.length > 0) {
+            notification.emit('notification_remind_submit', this.state.selectList);
+        }
+        this.props.history.goBack();
+    }
+
     render() {
         return (
             <div className={style.page} style={{height: document.documentElement.clientHeight}}>
@@ -134,7 +142,7 @@ class Remind extends Component {
                     </div>
                     {
                         this.state.selectList.length > 0 ?
-                            <div className={style.submit}>我选好了</div>
+                            <div className={style.submit} onClick={this.handleSubmit.bind(this)}>我选好了</div>
                             :
                             ''
                     }

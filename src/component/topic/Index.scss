@@ -153,7 +153,7 @@
 	text-overflow: ellipsis;
 }
 .footerInfo {
-	margin: 10px 0px 4px 0;
+	margin: 10px 0px;
 }
 
 .footerInfoCount {
@@ -248,7 +248,6 @@
 }
 .footerInfoBottom{
 	width: 100%;
-	margin-bottom: 12px;
 }
 .footerInfoBottomList{
 	width: 100%;
@@ -272,7 +271,4 @@
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
-}
-.footerInfoBottomContentReply{
-	margin: 0px 3px;
 }
