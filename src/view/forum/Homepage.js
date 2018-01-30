@@ -191,10 +191,10 @@ class Homepage extends Component {
                          <dt className={style.homePageHeaderMessageLeft}>
                              {
                                  this.state.forum && this.state.forum.forumModerator && this.state.forum.forumModerator.userId ?
-                                     <Link to={'/member/homepage/' +  this.state.forum.forumModerator.userId} key={this.state.forum.forumModerator.userId} >
+                                     <Link to={this.state.forum.forumModerator.forumUserIsModerator ? '/my/publish' : '/member/homepage/' +  this.state.forum.forumModerator.userId} key={this.state.forum.forumModerator.userId} >
                                          {
                                              this.state.forum.forumModerator && this.state.forum.forumModerator.userAvatar && this.state.forum.forumModerator.userAvatar.filePath?
-                                                 <img src={constant.image_host + this.state.forum.forumModerator.userAvatar.filePath} alt=''/>
+                                                 <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?listView/1/w/72/h/72" alt='' />
                                                  :
                                                  <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?listView/1/w/72/h/72" alt='' />
                                          }
@@ -207,11 +207,19 @@ class Homepage extends Component {
                          <dd className={style.homePageHeaderMessageRight}>
                              <p className={style.homePageHeaderMessageRightTop}>
                                  {
-                                     this.state.forum.forumModerator && this.state.forum.forumModerator.userNickName ?
-                                         this.state.forum.forumModerator.userNickName
+                                     this.state.forum.forumModerator ?
+                                         <Link to={this.state.forum.forumModerator.forumUserIsModerator ? '/my/publish' : '/member/homepage/' +  this.state.forum.forumModerator.userId} key={this.state.forum.forumModerator.userId} >
+                                             {
+                                                 this.state.forum.forumModerator && this.state.forum.forumModerator.userNickName ?
+                                                     this.state.forum.forumModerator.userNickName
+                                                     :
+                                                     '默认用户昵称'
+                                             }
+                                         </Link>
                                          :
-                                         '默认用户昵称'
+                                         '默认昵称'
                                  }
+
                              </p>
                              <p className={style.homePageHeaderMessageRightBottom}>
                                  {

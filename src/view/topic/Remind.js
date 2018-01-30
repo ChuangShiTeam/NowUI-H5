@@ -142,7 +142,9 @@ class Remind extends Component {
                 <div className={style.line}></div>
                 <MSelectList
                     data={this.state.memberList}
+                    showQuickSearchBar={true}
                     showCurrentSelected={true}
+                    showInput={true}
                     onChange={this.handleChange.bind(this)}
                 />
             </div>
