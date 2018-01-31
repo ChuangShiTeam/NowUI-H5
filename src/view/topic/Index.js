@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router';
 import classNames from 'classnames';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import moment from 'moment';
 
 import TopicIndex from '../../component/topic/Index';
 
@@ -19,13 +20,13 @@ class Index extends Component {
 
         this.state = {
             isLoad: false,
+            hasMore: false
         }
     }
 
     componentDidMount() {
         util.setTitle('wawipet哇咿宠');
         util.hancleComponentDidMount();
-
         this.handleLoad();
     }
 
@@ -41,17 +42,23 @@ class Index extends Component {
         http.request({
             url: '/topic/mobile/v1/home/list',
             data: {
-                pageIndex: 1,
-                pageSize: this.props.topicIndex.topicPageSize
+                pageIndex: this.props.topicIndex.topicPageIndex,
+                pageSize: this.props.topicIndex.topicPageSize,
+                systemCreateTime: moment().format('YYYY-MM-DD HH:mm:ss'),
+                excludeTopicIdList: []
             },
             success: function (data) {
-                if (data && data.total > 0) {
+                if (data && data.list && data.list.length > 0) {
+                    let topicList = data.list;
+                    let topicTotal = data.total;
+                    this.setState({
+                        hasMore: topicList.length < topicTotal
+                    });
                     this.props.dispatch({
                         type: 'topicIndex',
                         data: {
-                            topicPageIndex: 1,
-                            topicTotal: data.total,
-                            topicList: data.list
+                            topicTotal: topicTotal,
+                            topicList: topicList
                         }
                     });
                 }
@@ -63,30 +70,39 @@ class Index extends Component {
     }
 
     handleNextLoad() {
-        let {topicPageIndex, topicPageSize} = this.props.topicIndex;
-        http.request({
-            url: '/topic/mobile/v1/home/list',
-            data: {
-                pageIndex: topicPageIndex + 1,
-                pageSize: topicPageSize
-            },
-            success: function (data) {
-                if (data && data.total > 0) {
-                    let topicList = this.props.topicIndex.topicList;
-                    this.props.dispatch({
-                        type: 'topicIndex',
-                        data: {
-                            topicPageIndex: topicPageIndex + 1,
-                            topicTotal: data.total,
-                            topicList: topicList.concat(data.list)
-                        }
-                    });
-                }
-            }.bind(this),
-            complete: function () {
+        if (this.state.hasMore) {
+            let {topicPageIndex, topicPageSize, topicList} = this.props.topicIndex;
+            let excludeTopicIdList = util.lastWithSame(topicList, 'topicId', 'systemCreateTime');
+            let lastTopic = topicList[topicList.length - 1];
+            let systemCreateTime = moment(lastTopic.systemCreateTime).format('YYYY-MM-DD HH:mm:ss');
+            http.request({
+                url: '/topic/mobile/v1/home/list',
+                data: {
+                    pageIndex: topicPageIndex,
+                    pageSize: topicPageSize,
+                    systemCreateTime: systemCreateTime,
+                    excludeTopicIdList: excludeTopicIdList
+                },
+                success: function (data) {
+                    if (data && data.list && data.list.length > 0) {
+                        this.props.dispatch({
+                            type: 'topicIndex',
+                            data: {
+                                topicTotal: data.total,
+                                topicList: topicList.concat(data.list)
+                            }
+                        });
+                    } else {
+                        this.setState({
+                            hasMore: false
+                        });
+                    }
+                }.bind(this),
+                complete: function () {
 
-            }.bind(this)
-        });
+                }.bind(this)
+            });
+        }
     }
 
     handelTopicDelete() {
@@ -98,9 +114,7 @@ class Index extends Component {
             <div className={classNames(style.page, baseStyle.tabbarPage)}>
                 <InfiniteScroll
                     next={this.handleNextLoad.bind(this)}
-                    hasMore={
-                        (this.props.topicIndex.topicPageIndex * this.props.topicIndex.topicPageSize) < this.props.topicIndex.topicTotal
-                    }
+                    hasMore={this.state.hasMore}
                     loader={
                         <p style={{textAlign: 'center'}}>
                           <b>Loading...</b>
