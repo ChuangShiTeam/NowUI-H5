@@ -128,7 +128,7 @@ class Publish extends Component {
                             this.state.member && this.state.member.userAvatar ?
                                 <img src={constant.image_host + this.state.member.userAvatar.filePath} alt=''/>
                                 :
-                                <img  src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?listView/1/w/72/h/72" alt=""/>
+                                null
                         }
 
                     </div>

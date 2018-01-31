@@ -144,7 +144,7 @@ class Homepage extends Component {
                             this.state.member.userAvatar && this.state.member.userAvatar.filePath ?
                                 <img src={constant.image_host + this.state.member.userAvatar.filePath} alt=''/>
                                 :
-                                <img src={require('../../image/topicItem.png')} alt=''/>
+                                null
                         }
 
                     </div>
