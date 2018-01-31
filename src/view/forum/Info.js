@@ -230,9 +230,7 @@ class Info extends Component {
                                          src={constant.image_host + this.state.forum.forumModerator.userAvatar.filePath}
                                          alt=''/>
                                     :
-                                    <img className={style.infoLeftImage}
-                                         src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/35/h/35'
-                                         alt=''/>
+                                    null
                             }
                         </div>
                         </Link>
@@ -243,7 +241,7 @@ class Info extends Component {
                                         this.state.forum.forumModerator && this.state.forum.forumModerator.userNickName ?
                                             this.state.forum.forumModerator.userNickName
                                             :
-                                            'null'
+                                            null
                                     }
                                 </Link>
                             </div>
@@ -253,7 +251,7 @@ class Info extends Component {
                                     this.state.forum.forumModerator && this.state.forum.forumModerator.memberSignature ?
                                         this.state.forum.forumModerator.memberSignature
                                         :
-                                        'null'
+                                        null
                                 }
                             </div>
                         </div>
@@ -268,16 +266,14 @@ class Info extends Component {
                                     return (
                                         member.userId ?
                                             <div >
-                                                <Link className={style.memberAvatar} to={member.userId === this.state.ModeratorId ? '/my/publish' : ('/member/homepage/' +  member.userId)} key={member.userId} >
+                                                <Link className={style.memberAvatar} to={member.memberIsSelf ? '/my/publish' : ('/member/homepage/' +  member.userId)} key={member.userId} >
                                                     {
                                                         member.userAvatar && member.userAvatar.filePath?
                                                             <img className={style.memberAvatarImage}
                                                                  src={constant.host + member.userAvatar.filePath}
                                                                  alt=''/>
                                                             :
-                                                            <img className={style.memberAvatarImage}
-                                                                 src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/35/h/35'
-                                                                 alt=''/>
+                                                            null
                                                     }
                                                 </Link>
                                             </div>
