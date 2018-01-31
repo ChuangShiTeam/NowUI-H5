@@ -14,7 +14,7 @@
     "rc-upload": "^2.4.4",
     "react": "^0.14.8",
     "react-dom": "^0.14.8",
-    "react-infinite": "^0.12.1",
+    "react-infinite-scroll-component": "^3.0.2",
     "react-redux": "^4.4.1",
     "react-router": "^1.0.3",
     "react-router-redux": "^2.1.0",
