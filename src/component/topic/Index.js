@@ -29,7 +29,7 @@ class Index extends Component {
         });
 
         setTimeout(() => {
-            let topicImage = document.querySelector('#' + this.props.topic.topicId);
+            let topicImage = document.querySelector('#image' + this.props.topic.topicId);
 
             topicImage.addEventListener('click', function () {
                 window.ImageView.show({
@@ -228,7 +228,7 @@ class Index extends Component {
                                         null
                                 }
                             </div>
-                            <div id={this.props.topic.topicId} className={classNames(style.image)} style={{height: divHeight}}>
+                            <div id={'image' + this.props.topic.topicId} className={classNames(style.image)} style={{height: divHeight}}>
                                 {
                                     this.state.topic.topicMediaList ?
                                         this.state.topic.topicMediaList.map((image, index) => {
@@ -785,6 +785,7 @@ class Index extends Component {
                                             null
                                     }
                                 </div>
+                                <Link to={"/topic/detail/" + this.state.topic.topicId} className={style.content}>
                                 <div className={style.footerInfoBottom}>
                                         <div className={style.footerInfoBottomList}>
                                             <span className={style.footerInfoBottomName}>天使艾米丽</span>
@@ -801,6 +802,7 @@ class Index extends Component {
                                             <span className={style.footerInfoBottomContent}>：不行不行，他是我的～</span>
                                         </div>
                                 </div>
+                                </Link>
                             </div>
                             <div className={style.line}></div>
                         </div>

@@ -108,7 +108,7 @@ class Index extends Component {
         return (
             <Infinite elementHeight={document.documentElement.clientHeight * 0.8}
                       containerHeight={document.documentElement.clientHeight}
-                      infiniteLoadBeginEdgeOffset={300}
+                      infiniteLoadBeginEdgeOffset={200}
                       onInfiniteLoad={this.handleInfiniteLoad.bind(this)}
                       loadingSpinnerDelegate={
                                       this.state.isInfiniteLoading ?
