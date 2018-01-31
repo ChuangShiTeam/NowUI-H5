@@ -35,8 +35,9 @@ class Homepage extends Component {
         util.setTitle('wawipet哇咿宠');
         util.hancleComponentDidMount();
 
-        this.handleLoad(this.props.params.forumId);
         this.handleTopicList(this.props.params.forumId);
+        this.handleLoad(this.props.params.forumId);
+
     }
 
     componentWillReceiveProps(nextProps) {
@@ -169,8 +170,7 @@ class Homepage extends Component {
                              this.state.forum.forumMedia && this.state.forum.forumMedia.filePath ?
                                  <img className={style.homePageHeaderTopBackgroundImg} src={constant.image_host + this.state.forum.forumMedia.filePath} alt=""/>
                                  :
-                                 <img className={style.homePageHeaderTopBackgroundImg} src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?listView/1/w/72/h/72" alt=""/>
-
+                                 null
                          }
                      </Link>
                  </div>
@@ -191,12 +191,12 @@ class Homepage extends Component {
                          <dt className={style.homePageHeaderMessageLeft}>
                              {
                                  this.state.forum && this.state.forum.forumModerator && this.state.forum.forumModerator.userId ?
-                                     <Link to={'/member/homepage/' +  this.state.forum.forumModerator.userId} key={this.state.forum.forumModerator.userId} >
+                                     <Link to={this.state.forum.memberIsFollowForum? '/my/publish' :'/member/homepage/' +  this.state.forum.forumModerator.userId} key={this.state.forum.forumModerator.userId} >
                                          {
                                              this.state.forum.forumModerator.userAvatar && this.state.forum.forumModerator.userAvatar.filePath?
                                                  <img src={constant.image_host + this.state.forum.forumModerator.userAvatar.filePath} alt=''/>
                                                  :
-                                                 <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?listView/1/w/72/h/72" alt='' />
+                                                 null
                                          }
                                      </Link>
                                      :

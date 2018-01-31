@@ -138,13 +138,16 @@ class Homepage extends Component {
         return (
 
             <div className={style.page} style={{minHeight: document.documentElement.clientHeight}}>
+                <div className={style.header}>
+                    <img className={style.headerImg} src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?listView/1/w/320/h/110" alt=""/>
+                </div>
                 <div className={style.headerContentTopBackground}>
                     <div className={style.headerContentMemberIcon}>
                         {
                             this.state.member.userAvatar && this.state.member.userAvatar.filePath ?
                                 <img src={constant.image_host + this.state.member.userAvatar.filePath} alt=''/>
                                 :
-                                <img src={require('../../image/topicItem.png')} alt=''/>
+                                null
                         }
 
                     </div>

@@ -45,5 +45,13 @@ export default {
                 cb(null, require('../view/shop/BrandStory').default);
             }, 'shop.brandstory');
         }
+    },{
+        path: '/shop/details',
+        onEnter:util.handleEnter,
+        getComponent(location, cb) {
+            require.ensure([], (require) => {
+                cb(null, require('../view/shop/Details').default);
+            }, 'shop.details');
+        }
     }]
 }

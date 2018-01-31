@@ -123,16 +123,16 @@ class Publish extends Component {
                 <div className={baseStyle.page} style={{minHeight: document.documentElement.clientHeight}}>
                 <div className={style.header}>
                     <img className={style.backgroundImg}  src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?listView/1/w/320/h/110" alt=""/>
+                </div>
                     <div className={style.photo}>
                         {
                             this.state.member && this.state.member.userAvatar ?
                                 <img src={constant.image_host + this.state.member.userAvatar.filePath} alt=''/>
                                 :
-                                <img  src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?listView/1/w/72/h/72" alt=""/>
+                                null
                         }
 
                     </div>
-                </div>
              <div className={style.center}>
                  <div className={style.messages}>
                      <span className={style.messageTop}>
@@ -140,7 +140,7 @@ class Publish extends Component {
                              this.state.member && this.state.member.userNickName ?
                                  this.state.member.userNickName
                                  :
-                                 'NickName'
+                                 null
                          }
                      </span>
                      <span className={style.messagesCenter}>
@@ -148,10 +148,10 @@ class Publish extends Component {
                              this.state.member && this.state.member.memberSignature ?
                                  this.state.member.memberSignature
                                  :
-                                 '天气不错呀'
+                                 null
                          }
                      </span>
-                     <span className={style.messagesBottom}>来自 上海 徐汇区</span>
+                     <span className={style.messagesBottom}>来自 上海 徐汇区(假数据)</span>
                      <div className={style.messagesNumber}>
                         <div>
                             <span className={style.messagesNumberTop}>{this.state.member.memberSendTopicCount}</span>
@@ -180,14 +180,15 @@ class Publish extends Component {
                  <span className={style.myPetLeft}>我的宠物</span>
                  <span className={style.myPetRight}>中华田园猫</span>
              </div>
-                {
-                    this.state.topicList.length > 0 ?
-
-                        this.state.topicList.map((topic, index) => <TopicIndex topic={topic} key={index}/>)
-                        :
-                        null
-                }
-           
+                <div className={style.contentsList}>
+                    {
+                        this.state.topicList.length > 0 ?
+            
+                            this.state.topicList.map((topic, index) => <TopicIndex topic={topic} key={index}  />)
+                            :
+                            null
+                    }
+                </div>
             </div>
             </Infinite>
         );

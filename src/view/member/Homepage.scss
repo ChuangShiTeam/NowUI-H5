@@ -6,15 +6,13 @@
 }
 
 .header {
-	position: fixed;
-	top: 0;
-	height: 45px;
-	z-index: 99;
 	width: 100%;
-	max-width: 640px;
-	background: #defafd;
+	height: 110px;
+	overflow: hidden;
 }
-
+.headerImg{
+	width: 100%;
+}
 .headerContent {
 	-js-display: flex;
 	display: flex;
@@ -79,13 +77,6 @@
 	width: 15px;
 	height: 15px;
 	margin-top: 7px;
-}
-.headerContentTopBackground{
-	top:0px;
-	background: #9dd7e3;
-	height:110px;
-	background: url("../../image/banner.png") no-repeat;
-	background-size:100% 100%;
 }
 .headerContentMemberIcon {
 	width: 70px;
