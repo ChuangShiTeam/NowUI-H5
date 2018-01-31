@@ -2,6 +2,7 @@
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
+  padding-bottom: 0px;
 }
 .header{
   width: 100%;
@@ -20,6 +21,7 @@
   top:-64px;
   left:calc(50% - 36px);
   position: relative;
+  z-index: 8;
 }
 .photo>img{
   width:72px ;
