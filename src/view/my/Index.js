@@ -58,14 +58,19 @@ class Index extends Component {
     render() {
         return (
             <div className={classNames(style.page,baseStyle.page)} style={{minHeight: document.documentElement.clientHeight}}>
-                    <div  className={style.headerBackground}>
-                        <img  src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/320/h/320" alt=""/>
+                    <div className={style.headerBackground}>
+                        {
+                            this.props.myIndex.userBackground && this.props.myIndex.userBackground.filePath?
+                                <img src={constant.image_host + this.props.myIndex.userBackground.filePath} alt=""/>
+                                :
+                                <img src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/320/h/320" alt=""/>
+                        }
                     </div>
                     <div className={style.header}>
                         <div className={style.headerLeft}>
                             <div className={style.headerImg}>
                                 {
-                                    this.props.myIndex.userAvatar ?
+                                    this.props.myIndex.userAvatar && this.props.myIndex.userAvatar.filePath?
                                         <img className={style.userPhoto} src={constant.image_host + this.props.myIndex.userAvatar.filePath} alt=""/>
                                         :
                                         <img className={style.userPhoto} src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/56/h/56" alt=""/>
