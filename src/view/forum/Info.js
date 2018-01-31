@@ -159,9 +159,7 @@ class Info extends Component {
                                          src={constant.image_host + this.state.forum.forumMedia.filePath}
                                          alt=''/>
                                     :
-                                    <img className={style.imageCenterImage}
-                                         src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/58/h/58'
-                                         alt=''/>
+                                    null
                             }
 
                         </div>
