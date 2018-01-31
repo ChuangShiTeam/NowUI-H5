@@ -140,7 +140,7 @@ class Publish extends Component {
                              this.state.member && this.state.member.userNickName ?
                                  this.state.member.userNickName
                                  :
-                                 'NickName'
+                                 null
                          }
                      </span>
                      <span className={style.messagesCenter}>
@@ -148,10 +148,10 @@ class Publish extends Component {
                              this.state.member && this.state.member.memberSignature ?
                                  this.state.member.memberSignature
                                  :
-                                 '天气不错呀'
+                                 null
                          }
                      </span>
-                     <span className={style.messagesBottom}>来自 上海 徐汇区</span>
+                     <span className={style.messagesBottom}>来自 上海 徐汇区(假数据)</span>
                      <div className={style.messagesNumber}>
                         <div>
                             <span className={style.messagesNumberTop}>{this.state.member.memberSendTopicCount}</span>
