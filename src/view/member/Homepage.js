@@ -138,6 +138,9 @@ class Homepage extends Component {
         return (
 
             <div className={style.page} style={{minHeight: document.documentElement.clientHeight}}>
+                <div className={style.header}>
+                    <img className={style.headerImg} src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?listView/1/w/320/h/110" alt=""/>
+                </div>
                 <div className={style.headerContentTopBackground}>
                     <div className={style.headerContentMemberIcon}>
                         {
