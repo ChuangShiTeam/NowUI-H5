@@ -166,23 +166,17 @@
 
 .interestContent {
 	padding: 0px 0px 12px 12px;
-	height: 185px;
+	height: 230px;
 }
-
-.interestContentwrapper {
-
-}
-
 .interestContentwrapperItem {
 	width: 244px;
 }
-
 .interestContentwrapperCard {
 	background: #ffffff;
 	box-shadow: 0 -2px 4px 0 rgba(220, 220, 220, 0.50);
 	border-radius: 2px;
 	width: 232px;
-	height: 185px;
+	height: 230px;
 }
 
 .interestContentwrapperCardAvatar {
@@ -193,7 +187,11 @@
 	justify-content: center;
 	align-items: center;
 	margin-top: 8px;
-	border-radius: 100%;
+	width: 44px;
+	height: 44px;
+	border-radius: 50%;
+	position: relative;
+	left: 47px;
 }
 
 .interestContentwrapperCardAvatarImage {
