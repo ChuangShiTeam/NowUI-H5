@@ -155,7 +155,7 @@ class Info extends Component {
                         <div className={classNames(style.listCenter, baseStyle.listCenter)}>
                             {
                                 this.state.forum.forumMedia && this.state.forum.forumMedia.filePath ?
-                                    <img className={style2.joinContentListLeftIcon}
+                                    <img className={style.imageCenterImage}
                                          src={constant.image_host + this.state.forum.forumMedia.filePath}
                                          alt=''/>
                                     :

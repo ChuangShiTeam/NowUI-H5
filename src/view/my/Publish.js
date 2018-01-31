@@ -105,7 +105,22 @@ class Publish extends Component {
 
     render() {
         return (
-            <div className={baseStyle.page} style={{minHeight: document.documentElement.clientHeight}}>
+            <Infinite elementHeight={document.documentElement.clientHeight * 0.8}
+                      containerHeight={document.documentElement.clientHeight}
+                      infiniteLoadBeginEdgeOffset={200}
+                      onInfiniteLoad={this.handleInfiniteLoad.bind(this)}
+                      loadingSpinnerDelegate={
+                                      this.state.isInfiniteLoading ?
+                                          <div className={style.infiniteLoading}>Loading...</div>
+                                          :
+                                          this.state.topicPageIndex * this.state.topicPageSize >= this.state.topicTotal  ?
+                                              <div className={style.infiniteMore}>没有更多了</div>
+                                              :
+                                              null
+                                  }
+                      isInfiniteLoading={this.state.isInfiniteLoading}
+            >
+                <div className={baseStyle.page} style={{minHeight: document.documentElement.clientHeight}}>
                 <div className={style.header}>
                     <img className={style.backgroundImg}  src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?listView/1/w/320/h/110" alt=""/>
                     <div className={style.photo}>
@@ -167,30 +182,14 @@ class Publish extends Component {
              </div>
                 {
                     this.state.topicList.length > 0 ?
-                        <Infinite elementHeight={document.documentElement.clientHeight * 0.8}
-                                  containerHeight={document.documentElement.clientHeight}
-                                  infiniteLoadBeginEdgeOffset={200}
-                                  onInfiniteLoad={this.handleInfiniteLoad.bind(this)}
-                                  loadingSpinnerDelegate={
-                                      this.state.isInfiniteLoading ?
-                                          <div className="infinite-list-item">Loading...</div>
-                                          :
-                                          this.state.topicPageIndex * this.state.topicPageSize >= this.state.topicTotal  ?
-                                              <div className="infinite-list-item">没有更多了</div>
-                                              :
-                                              null
-                                  }
-                                  isInfiniteLoading={this.state.isInfiniteLoading}
-                        >
-                            {
-                                this.state.topicList.map((topic, index) => <TopicIndex topic={topic} key={index}/>)
-                            }
-                        </Infinite>
+
+                        this.state.topicList.map((topic, index) => <TopicIndex topic={topic} key={index}/>)
                         :
                         null
                 }
            
             </div>
+            </Infinite>
         );
     }
 }

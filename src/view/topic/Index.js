@@ -106,6 +106,21 @@ class Index extends Component {
 
     render() {
         return (
+            <Infinite elementHeight={document.documentElement.clientHeight * 0.8}
+                      containerHeight={document.documentElement.clientHeight}
+                      infiniteLoadBeginEdgeOffset={300}
+                      onInfiniteLoad={this.handleInfiniteLoad.bind(this)}
+                      loadingSpinnerDelegate={
+                                      this.state.isInfiniteLoading ?
+                                          <div className={style.infiniteLoading}>Loading...</div>
+                                          :
+                                          this.props.topicIndex.topicPageIndex * this.props.topicIndex.topicPageSize >= this.props.topicIndex.topicTotal ?
+                                              <div className={style.infiniteMore}>没有更多了</div>
+                                              :
+                                              null
+                                  }
+                      isInfiniteLoading={this.state.isInfiniteLoading}
+            >
             <div className={classNames(style.page, baseStyle.tabbarPage)} style={{minHeight: document.documentElement.clientHeight}}>
                 <div className={style.header}>
                     <div className={style.headerContent}>
@@ -137,32 +152,14 @@ class Index extends Component {
                 </Link>
                 {
                     this.props.topicIndex.topicList.length > 0 ?
-                        <Infinite elementHeight={document.documentElement.clientHeight * 0.8}
-                                  containerHeight={document.documentElement.clientHeight}
-                                  infiniteLoadBeginEdgeOffset={300}
-                                  onInfiniteLoad={this.handleInfiniteLoad.bind(this)}
-                                  loadingSpinnerDelegate={
-                                      this.state.isInfiniteLoading ?
-                                          <div className={style.infiniteLoading}>Loading...</div>
-                                          :
-                                          this.props.topicIndex.topicPageIndex * this.props.topicIndex.topicPageSize >= this.props.topicIndex.topicTotal ?
-                                              <div className={style.infiniteMore}>没有更多了</div>
-                                              :
-                                              null
-                                  }
-                                  isInfiniteLoading={this.state.isInfiniteLoading}
-                        >
-                            {
-                                this.props.topicIndex.topicList.map((topic, index) => (
-                                    <TopicIndex topic={topic} key={index} isEdit={true} handelTopicDelete={this.handelTopicDelete.bind(this)}/>
-                                ))
-                            }
-                        </Infinite>
+                        this.props.topicIndex.topicList.map((topic, index) => (
+                            <TopicIndex topic={topic} key={index} isEdit={true} handelTopicDelete={this.handelTopicDelete.bind(this)}/>
+                        ))
                         :
                         null
                 }
-
             </div>
+            </Infinite>
         )
     }
 }
