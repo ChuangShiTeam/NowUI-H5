@@ -72,10 +72,12 @@ class Index extends Component {
                                 }
                                 <div className={style.userName}>{this.props.myIndex.userNickName}</div>
                             </div>
-                            <div className={style.headerRight}>
-                                <div className={style.rightLeft}>个人主页</div>
-                                <div className={style.rightRight}></div>
-                            </div>
+                            <Link to="/my/publish">
+                                <div className={style.headerRight}>
+                                    <div className={style.rightLeft}>个人主页</div>
+                                    <div className={style.rightRight}></div>
+                                </div>
+                            </Link>
                         </div>
                     </div>
                     <div className={style.middle}>
