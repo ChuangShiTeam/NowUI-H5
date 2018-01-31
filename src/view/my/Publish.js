@@ -123,6 +123,7 @@ class Publish extends Component {
                 <div className={baseStyle.page} style={{minHeight: document.documentElement.clientHeight}}>
                 <div className={style.header}>
                     <img className={style.backgroundImg}  src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?listView/1/w/320/h/110" alt=""/>
+                </div>
                     <div className={style.photo}>
                         {
                             this.state.member && this.state.member.userAvatar ?
@@ -132,7 +133,6 @@ class Publish extends Component {
                         }
 
                     </div>
-                </div>
              <div className={style.center}>
                  <div className={style.messages}>
                      <span className={style.messageTop}>
@@ -180,14 +180,15 @@ class Publish extends Component {
                  <span className={style.myPetLeft}>我的宠物</span>
                  <span className={style.myPetRight}>中华田园猫</span>
              </div>
-                {
-                    this.state.topicList.length > 0 ?
-
-                        this.state.topicList.map((topic, index) => <TopicIndex topic={topic} key={index}/>)
-                        :
-                        null
-                }
-           
+                <div className={style.contentsList}>
+                    {
+                        this.state.topicList.length > 0 ?
+            
+                            this.state.topicList.map((topic, index) => <TopicIndex topic={topic} key={index}  />)
+                            :
+                            null
+                    }
+                </div>
             </div>
             </Infinite>
         );
