@@ -47,7 +47,15 @@ class Info extends Component {
         this.setState({
             isEdit: !this.state.isEdit
         }, function () {
-            this.props.form.setFieldsValue(this.state.member);
+            if (this.state.isEdit) {
+                let member = this.state.member;
+                let userAvatar = [];
+                if (member.userAvatar) {
+                    userAvatar.push(member.userAvatar);
+                }
+                member.userAvatar = userAvatar;
+                this.props.form.setFieldsValue(member);
+            }
         }.bind(this));
 
     }

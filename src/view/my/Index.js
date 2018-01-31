@@ -27,14 +27,16 @@ class Index extends Component {
                 url: '/wawi/mobile/v1/my/index',
                 data: {},
                 success: function (data) {
-                    this.props.dispatch({
-                        type: 'myIndex',
-                        data: {
-                            userAvatar: data.userAvatar,
-                            userNickName: data.userNickName,
-                            memberBackground: data.memberBackground
-                        }
-                    });
+                    if (data) {
+                        this.props.dispatch({
+                            type: 'myIndex',
+                            data: {
+                                userAvatar: data.userAvatar,
+                                userNickName: data.userNickName,
+                                memberBackground: data.memberBackground
+                            }
+                        });
+                    }
                 }.bind(this),
                 complete: function () {
 
