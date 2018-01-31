@@ -1,4 +1,9 @@
-
+.page{
+    max-width: 640px;
+    margin-left: auto;
+    margin-right: auto;
+    background: white;
+}
 .header{
     width: 100%;
     -js-display: flex;
@@ -32,7 +37,7 @@
 
 }
 .headerBackground>img{
-    max-width: 100%;
+    max-width: 640px;
 }
 .headerBackgroundImg{
     max-width: 640px;

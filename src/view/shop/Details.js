@@ -1,13 +1,34 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import classNames from 'classnames';
-
+import  ReactSwipes from 'react-swipes';
 
 import util from '../../common/util';
 
 
 import style from './Details.scss';
 import baseStyle from '../../css/Base.scss';
+let opt = {
+    distance: 230,
+    currentPoint: 0,
+    autoPlay: false,
+    loop: true,
+    swTouchstart: (ev) => {
+
+    },
+    swTouchmove: (ev) => {
+
+    },
+    swTouchend: (ev) => {
+        let data = {
+            moved: ev.moved,
+            originalPoint: ev.originalPoint,
+            newPoint: ev.newPoint,
+            cancelled: ev.cancelled,
+        }
+        console.log(data);
+    }
+}
 
 class Details extends Component {
     constructor(props) {
@@ -28,13 +49,7 @@ class Details extends Component {
     }
 
     componentWillUnmount() {
-
-    }
-
-    handleSelectedBrand(index){
-        this.setState({
-            isSelectedIndex:index,
-        })
+        this.handleDestroySwiper();
     }
     render() {
         return (
@@ -81,15 +96,24 @@ class Details extends Component {
                         材质面料结实，耐抓耐咬，不易起球。
                     </div>
                 </div>
-                <div  className={classNames(style.otherThink, baseStyle.bottomLine)}>
-                    <div className={style.otherThinkTop}>
-                        <div className={style.otherThinkTopLeft}>   看看别人怎么说（109）</div>
-                        <div className={style.otherThinkTopRight}> </div>
+                    <div  className={classNames(style.otherThink)}>
+                        <div className={style.otherThinkTop}>
+                            <div className={style.otherThinkTopLeft}>   看看别人怎么说（109）</div>
+                            <div className={style.otherThinkTopRight}> </div>
+                        </div>
+                        <ReactSwipes  options={opt} className={classNames(style.otherThinkBottom,"card-slide" )}>
+                            {
+                                [1,2,3].map((val, index) => <div className={style.otherThinkBottomList} key={index}>
+                                    <img className={style.otherThinkBottomListTop} src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/640/h/250" alt=""/>
+                                    <div className={style.otherThinkBottomListCenter}>我家的猫咪超喜欢在里面和我躲猫猫的，超级可…</div>
+                                    <div className={style.otherThinkBottomListBottom}>
+                                        <img className={style.otherThinkBottomListBottomImg} src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/640/h/250" alt=""/>
+                                        <span className={style.otherThinkBottomListBottomFont}>大木木_Lin</span>
+                                    </div>
+                                </div>)
+                            }
+                        </ReactSwipes>
                     </div>
-                    <div className={style.introduceBottom}>
-
-                    </div>
-                </div>
                 <div  className={classNames(style.details, baseStyle.bottomLine)}>
                     <div className={style.introduceTop}>
                         商品详情
@@ -115,9 +139,38 @@ class Details extends Component {
                             <span className={style.detailsListTopContent}> FZ/T 620011.3-2008</span>
                         </div>
                     </div>
-                    <div className={style.detailsTop}>
-                        <img className={style.detailsTopImg} src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/640/h/250" alt=""/>
+                    <div className={style.detailsBottom}>
+                        <img className={style.detailsBottomImg} src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/640/h/250" alt=""/>
                     </div>
+                </div>
+                <div  className={classNames(style.others, baseStyle.bottomLine)}>
+                    <div className={style.introduceTop}>
+                        相似风格萌物推荐
+                    </div>
+                    <div className={style.OthersContent}>
+
+                    </div>
+                    <ReactSwipes  options={opt} className={classNames(style.otherThinkBottom,"card-slide" )}>
+                        {
+                            [1,2,3].map((val, index) =>
+                                <div className={style.otherThinkBottomList} key={index}>
+                                    <img className={style.othersContentImg} src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/640/h/250" alt=""/>
+                                    <div className={style.othersContentName}>封闭式猫窝别墅</div>
+                                    <div className={style.othersContentName}>¥268</div>
+                                </div>)
+                        }
+                    </ReactSwipes>
+                </div>
+                <div className={style.footer}>
+                    <div className={style.footerLeft}>
+                        <img className={style.footerLeftImg} src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/640/h/250" alt=""/>
+                        <span  className={style.footerLeftBottom}>商家</span>
+                    </div>
+                    <div  className={style.footerLeft}>
+                        <img className={style.footerLeftImgStar} src={require("../../image/star.png")} alt=""/>
+                        <span className={style.footerLeftBottom}>收藏</span>
+                    </div>
+                    <div  className={style.footerRight}>立即购买</div>
                 </div>
             </div>
         );

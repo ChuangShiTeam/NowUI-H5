@@ -132,6 +132,7 @@ class Publish extends Component {
 
     render() {
         return (
+
             <div className={classNames(style.page, baseStyle.tabbarPage)}>
                 <InfiniteScroll
                     next={this.handleNextLoad.bind(this)}
@@ -161,7 +162,6 @@ class Publish extends Component {
                                     :
                                     <img  src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?listView/1/w/72/h/72" alt=""/>
                             }
-
                         </div>
                         <div className={style.center}>
                             <div className={style.messages}>
@@ -224,7 +224,6 @@ class Publish extends Component {
                     </div>
 
                 </InfiniteScroll>
-            </div>
 
 
         );
