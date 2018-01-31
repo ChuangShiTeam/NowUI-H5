@@ -53,5 +53,13 @@ export default {
                 cb(null, require('../view/shop/Details').default);
             }, 'shop.details');
         }
+    }, {
+        path: '/commodity/details',
+        onEnter: util.handleEnter,
+        getComponent(location, cb) {
+            require.ensure([], (require) => {
+                cb(null, require('../view/shop/CommodityDetails').default);
+            }, 'forum.add')
+        }
     }]
 }
