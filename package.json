@@ -19,6 +19,7 @@
     "react-router": "^1.0.3",
     "react-router-redux": "^2.1.0",
     "react-scripts-ie8": "^0.9.7",
+    "react-swipes": "^1.0.9",
     "redux": "3.3.1",
     "reqwest": "^2.0.5",
     "rmc-select-list": "^0.4.2"

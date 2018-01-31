@@ -81,18 +81,18 @@ class Publish extends Component {
     }
 
     handleLoadMemberInfo() {
-            http.request({
-                url: '/topic/mobile/v1/home/self/info',
-                data: {
-                },
-                success: function (data) {
-                    this.setState({
-                        member:data
-                    });
-                }.bind(this),
-                complete: function () {
-                }.bind(this)
-            });
+        http.request({
+            url: '/topic/mobile/v1/home/self/info',
+            data: {
+            },
+            success: function (data) {
+                this.setState({
+                    member:data
+                });
+            }.bind(this),
+            complete: function () {
+            }.bind(this)
+        });
 
     }
 
@@ -132,7 +132,6 @@ class Publish extends Component {
 
     render() {
         return (
-
             <div className={classNames(style.page, baseStyle.tabbarPage)}>
                 <InfiniteScroll
                     next={this.handleNextLoad.bind(this)}
@@ -145,7 +144,7 @@ class Publish extends Component {
                         </p>
                     }
                     endMessage={
-                        <p style={{textAlign: 'center',position:"relative"}}>
+                        <p style={{textAlign: 'center',position:"relative",top:"-32px"}}>
                             <b>没有更多了</b>
                         </p>
                     }
@@ -162,6 +161,7 @@ class Publish extends Component {
                                     :
                                     <img  src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?listView/1/w/72/h/72" alt=""/>
                             }
+
                         </div>
                         <div className={style.center}>
                             <div className={style.messages}>
@@ -201,7 +201,7 @@ class Publish extends Component {
                                                 {this.state.member.memberBeFollowCount}
                                              </Link>
                                          </span>
-                                         <span className={style.messagesNumberBottom}>粉丝</span>
+                                        <span className={style.messagesNumberBottom}>粉丝</span>
                                     </div>
                                 </div>
                             </div>
@@ -211,19 +211,20 @@ class Publish extends Component {
                             <span className={style.myPetRight}>中华田园猫</span>
                         </div>
                         <div className={style.contentsList}>
-                        {
-                            this.state.topicList.length > 0 ?
-                                this.state.topicList.map((topic, index) => (
-                                    <TopicIndex topic={topic} key={index}  isEdit={true} handelTopicDelete={this.handelTopicDelete.bind(this)}/>
-                                ))
-                                :
-                                null
-                        }
+                            {
+                                this.state.topicList.length > 0 ?
+                                    this.state.topicList.map((topic, index) => (
+                                        <TopicIndex topic={topic} key={index}  isEdit={true} handelTopicDelete={this.handelTopicDelete.bind(this)}/>
+                                    ))
+                                    :
+                                    null
+                            }
 
                         </div>
                     </div>
 
                 </InfiniteScroll>
+            </div>
 
 
         );

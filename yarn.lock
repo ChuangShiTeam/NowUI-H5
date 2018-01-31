@@ -4760,6 +4760,10 @@ react-scripts-ie8@^0.9.7:
   optionalDependencies:
     fsevents "1.0.17"
 
+react-swipes@^1.0.9:
+  version "1.0.9"
+  resolved "http://registry.npm.taobao.org/react-swipes/download/react-swipes-1.0.9.tgz#6785e9e642cf09c83f9541f9ffd5cbf5a4be260a"
+
 react@^0.14.8:
   version "0.14.9"
   resolved "https://registry.yarnpkg.com/react/-/react-0.14.9.tgz#9110a6497c49d44ba1c0edd317aec29c2e0d91d1"
