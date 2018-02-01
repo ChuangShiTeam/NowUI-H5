@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "antd-mobile": "^2.1.5",
     "blueimp-md5": "^2.10.0",
     "classnames": "^2.2.5",
     "css-loader": "^0.28.9",
