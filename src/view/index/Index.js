@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router';
 import classNames from 'classnames';
-import Modal from 'antd-mobile/lib/modal';
+
 
 import util from '../../common/util';
 import http from '../../common/http';
@@ -11,7 +11,7 @@ import constant from '../../common/constant';
 import style from './Index.scss';
 import baseStyle from '../../css/Base.scss';
 
-const alert = Modal.alert;
+
 
 let bannerSwiper;
 let categorySwiper;
@@ -35,10 +35,7 @@ class Index extends Component {
         util.setTitle('wawipet哇咿宠');
         util.hancleComponentDidMount();
 
-        alert('Delete', 'Are you sure???', [
-            { text: 'Cancel', onPress: () => console.log('cancel'), style: 'default' },
-            { text: 'OK', onPress: () => console.log('ok') },
-        ]);
+       
 
         if (window.addEventListener) {
             window.addEventListener('scroll', this.handleScroll);

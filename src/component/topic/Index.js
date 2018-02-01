@@ -4,12 +4,13 @@ import {Link} from 'react-router';
 import classNames from 'classnames';
 import moment from 'moment';
 import Notification from 'rc-notification';
-
+import Modal from 'antd-mobile/lib/modal';
 import constant from '../../common/constant';
 import style from './Index.scss';
 import baseStyle from '../../css/Base.scss';
 import http from "../../common/http";
 
+const alert = Modal.alert;
 let notification = null;
 Notification.newInstance({}, (n) => notification = n);
 class Index extends Component {
@@ -20,7 +21,13 @@ class Index extends Component {
             topic: {}
         }
     }
+    handleClose(){
+        alert(null, '确定删除么', [
+            { text: '删除', onPress: () => console.log('cancel'), style: 'default' },
+            { text: '取消', onPress: () => console.log('ok') },
+        ]);
 
+    }
     componentDidMount() {
         this.setState({
             topic: this.props.topic
@@ -142,7 +149,6 @@ class Index extends Component {
             }
         })
     }
-
     render() {
         let clientWidth = document.documentElement.clientWidth > 640 ? 640 : document.documentElement.clientWidth;
         let width;
@@ -227,6 +233,8 @@ class Index extends Component {
                                         :
                                         null
                                 }
+                                <div className={style.closes} onClick={this.handleClose.bind()}>
+                                    <img className={style.closesImg} src={require("../../image/close.png")} alt=""/></div>
                             </div>
                             <div id={'image' + this.props.topic.topicId} className={classNames(style.image)} style={{height: divHeight}}>
                                 {
@@ -816,7 +824,7 @@ class Index extends Component {
                         :
                         null
                 }
-
+                
             </div>
         );
     }

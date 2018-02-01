@@ -2,12 +2,15 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import classNames from 'classnames';
 import  ReactSwipes from 'react-swipes';
-import Delete from'../../component/topic/Delete'
+
 import util from '../../common/util';
+
+import Modal from 'antd-mobile/lib/modal';
 
 
 import style from './Details.scss';
 import baseStyle from '../../css/Base.scss';
+const alert = Modal.alert;
 let opt = {
     distance: 230,
     currentPoint: 0,
@@ -53,13 +56,15 @@ class Details extends Component {
 
     }
     handleClose(){
-
+        alert(null, '确定删除么', [
+            { text: '删除', onPress: () => console.log('cancel'), style: 'default' },
+            { text: '取消', onPress: () => console.log('ok') },
+        ]);
 
     }
     render() {
         return (
             <div className={classNames(style.page, baseStyle.page)} style={{minHeight: document.documentElement.clientHeight}}>
-
                 <div className={style.header}>
                     <img className={style.headerImg} src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/640/h/250" alt=""/>
                 </div>
