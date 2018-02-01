@@ -320,9 +320,13 @@ class Detail extends Component {
                         <div className={style.footerInfoLeft}>
                             <img className={style.footerInfoLeftLocationIcon} src={require('../../image/location.png')}
                                  alt=''/>
-                            <span className={style.footerInfoLeftLocationText}>
-                                {this.state.topic.topicLocation}
-                            </span>
+                            <div>
+                                    <div className={style.footerInfoLeftLocationTextLeft}></div>    
+                                    <span className={style.footerInfoLeftLocationText}>
+                                        {this.state.topic.topicLocation}
+                                     </span>
+                            </div>
+                            
                         </div>
                         <div className={style.footerInfoRight}>
                             <span className={style.footerInfoRightFrom}>来自</span>

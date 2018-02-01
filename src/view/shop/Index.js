@@ -8,7 +8,6 @@ import util from '../../common/util';
 
 import style from './Index.scss';
 import baseStyle from '../../css/Base.scss';
-
 class Index extends Component {
     constructor(props) {
         super(props);
@@ -30,7 +29,10 @@ class Index extends Component {
     componentWillUnmount() {
 
     }
+    list=()=>{
+        console.log(1);
 
+    }
     render() {
         const {getFieldProps} = this.props.form;
 
@@ -84,7 +86,7 @@ class Index extends Component {
                             </div>
                         </Link>
                         <div className={style.filterItemBg}>
-                            <span className={style.filterItemText}>商户</span>
+                            <span className={style.filterItemText} onClick={this.list.bind()}>商户</span>
                             <img className={style.filterItemArrowIcon}
                                  src={require('../../image/shop-arrow.png')} alt=''/>
 
@@ -121,6 +123,7 @@ class Index extends Component {
                         </div>
                     </div>
                 </div>
+
             </div>
         );
     }

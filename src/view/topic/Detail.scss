@@ -98,19 +98,29 @@
 	width: 13px;
 	height: 17px;
 }
+.footerInfoLeftLocationTextLeft{
+	display: inline-block;
+	width: 0;
+	height: 0;
+	border-bottom:9px solid  transparent;
+	border-left:9px solid transparent ;
+	border-top: 9px solid transparent;
+	border-right:9px solid black ;
+	vertical-align: top;
+	position: relative;
 
+}
 .footerInfoLeftLocationText {
+	display: inline-block;
 	font-family: PingFangSC-Light;
 	font-size: 10px;
-	color: #9b9b9b;
 	letter-spacing: 0;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
 	background: #000000;
-	width: 65px;
+	width: 59px;
 	height: 18px;
-	margin-left: 10px;
+	overflow: hidden;
+white-space: nowrap;
+	text-overflow: ellipsis;
 	-js-display: flex;
 	justify-content: center;
 	align-items: center;
