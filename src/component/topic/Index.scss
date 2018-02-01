@@ -153,7 +153,7 @@
 	text-overflow: ellipsis;
 }
 .footerInfo {
-	margin: 10px 0px;
+	margin: 10px 0px 0px 0px;
 }
 
 .footerInfoCount {
@@ -258,7 +258,7 @@
 	align-items: center;
 }
 .footerInfoBottomListMargin{
-	margin-bottom: 5px;
+	margin-bottom: 15px;
 }
 .footerInfoBottomName{
 	font-family:PingFangSC-Regular;
@@ -274,4 +274,7 @@
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
+}
+.footerInfoBottomContentReply {
+	margin-left: 5px;
 }
