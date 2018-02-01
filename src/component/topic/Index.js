@@ -785,24 +785,31 @@ class Index extends Component {
                                             null
                                     }
                                 </div>
-                                <Link to={"/topic/detail/" + this.state.topic.topicId} className={style.content}>
-                                <div className={style.footerInfoBottom}>
-                                        <div className={style.footerInfoBottomList}>
-                                            <span className={style.footerInfoBottomName}>天使艾米丽</span>
-                                            <span className={style.footerInfoBottomContent}>：超喜欢！</span>
+                                {
+                                    this.props.topic.topicCommentList && this.props.topic.topicCommentList.length > 0 ?
+                                        <div className={style.footerInfoBottom}>
+                                            {
+                                                this.props.topic.topicCommentList.map((topicComment, index) => {
+                                                    return (
+                                                        <div className={(index === (this.props.topic.topicCommentList.length - 1)) ? classNames(style.footerInfoBottomList, style.footerInfoBottomListMargin) : style.footerInfoBottomList} key={index}>
+                                                            <span className={style.footerInfoBottomName}>{topicComment.userNickName}</span>
+                                                            {
+                                                                topicComment.topicReplayUserId ?
+                                                                    <span>
+                                                                        <span className={classNames(style.footerInfoBottomContent,style.footerInfoBottomContentReply)}>  回复  </span>
+                                                                        <span className={style.footerInfoBottomName}>{topicComment.topicReplayUserNickName}</span>
+                                                                    </span>
+                                                                    : null
+                                                            }
+                                                            <span className={style.footerInfoBottomContent}>：{topicComment.topicCommentContent}</span>
+                                                        </div>
+                                                    )
+                                                })
+                                            }
                                         </div>
-                                         <div className={style.footerInfoBottomList}>
-                                            <span className={style.footerInfoBottomName}>我是来找茬的</span>
-                                            <span className={style.footerInfoBottomContent}>：太好玩了，我也好想养一只啊…s</span>
-                                        </div>
-                                        <div  className={classNames(style.footerInfoBottomList,style.footerInfoBottomListMargin)}>
-                                            <span className={style.footerInfoBottomName}>Iris</span>
-                                            <span className={classNames(style.footerInfoBottomContent,style.footerInfoBottomContentReply)} >  回复  </span>
-                                            <span className={style.footerInfoBottomName}>我是来找茬的</span>
-                                            <span className={style.footerInfoBottomContent}>：不行不行，他是我的～</span>
-                                        </div>
-                                </div>
-                                </Link>
+                                        :
+                                        null
+                                }
                             </div>
                             <div className={style.line}></div>
                         </div>
