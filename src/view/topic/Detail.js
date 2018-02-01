@@ -51,27 +51,28 @@ class Detail extends Component {
 
     }
 
-    handleFollow(userId, index) {
+
+    handleFollow(userId) {
         http.request({
-            url: this.state.userLikeList[index].memberIsFollow ? '/member/follow/mobile/v1/delete' : '/member/follow/mobile/v1/save',
+            url: this.state.topic.topicUser.memberIsFollow ? '/member/follow/mobile/v1/delete' : '/member/follow/mobile/v1/save',
             data: {
-                followUserId: userId
+                followUserId: userId,
             },
             success: function (data) {
                 if (data){
-                    let userLikeList = this.state.userLikeList;
-                    let userLike = userLikeList[index];
-                    userLike.memberIsFollow = !userLike.memberIsFollow;
-                    userLikeList[index] = userLike;
+                    this.state.topic.topicUser.memberIsFollow != this.state.topic.topicUser.memberIsFollow;
                     this.setState({
-                        userLikeList: userLikeList
+                        topic:this.state.topic
                     });
                 }
+                this.handleLoad()
             }.bind(this),
             complete: function () {
             }.bind(this)
         });
     }
+
+
     handleLoad() {
         let topicId = this.props.params.topicId;
         if (topicId) {
@@ -322,26 +323,23 @@ class Detail extends Component {
                     </div>
                     <div className={style.headerRight}>
                         <div className={style.listRight}>
+
                             {
-                                // userLike.topicUserLikeIsSelf ?
-                                // null
-                                // :
-                                // userLike.memberIsFollow ?
-                                //         <div  onClick={this.handleFollow.bind(this, userLike.userId, index)} className={style.listRightFollowActive}>
-                                //             <span >已关注</span>
-                                //         </div>
-                                //         :
-                                //         <div  onClick={this.handleFollow.bind(this, userLike.userId, index)} className={style.listRightFollow}>
-                                //             <span >+ 关注</span>
-                                //         </div>
-                                true?
-                                <div   className={style.listRightFollowActive}>
-                                    <span >已关注</span>
-                                </div>
+                                this.state.topic.topicIsSelf ?
+                                    null
                                 :
-                                <div  className={style.listRightFollow}>
-                                <span >+ 关注</span>
-                                </div>
+                                    this.state.topic.topicUser ?
+                                        this.state.topic.topicUser.memberIsFollow ?
+                                            <div  className={style.listRightFollowActive} onClick={this.handleFollow.bind(this, this.state.topic.topicUser.userId)}>
+                                                <span >已关注</span>
+                                            </div>
+                                            :
+                                            <div   className={style.listRightFollow} onClick={this.handleFollow.bind(this, this.state.topic.topicUser.userId)}>
+                                                <span >+ 关注</span>
+                                            </div>
+                                        :
+                                        null
+
                             }
                         </div>
                     </div>
