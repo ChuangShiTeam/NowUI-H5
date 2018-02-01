@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router';
-import Infinite from 'react-infinite';
 import Notification from 'rc-notification';
 
 import TopicIndex from '../../component/topic/Index';
+import InfiniteScroll from 'react-infinite-scroll-component';
+
 
 import util from '../../common/util';
 import http from "../../common/http";
@@ -90,9 +91,45 @@ class Homepage extends Component {
     }
 
 
+    handleNextLoad() {
+        let {topicPageIndex, topicPageSize} = this.state;
+        http.request({
+            url: '/forum/mobile/v1/home/topic/list',
+            data: {
+                pageIndex: topicPageIndex + 1,
+                pageSize: topicPageSize,
+                forumId: this.state.forumId
+            },
+            success: function (data) {
+                if (data && data.total > 0) {
+                    let topicList = this.state.topicList;
+                    this.props.dispatch({
+                        type: 'topicIndex',
+                        data: {
+                            topicPageIndex: topicPageIndex + 1,
+                            topicTotal: data.total,
+                            topicList: topicList.concat(data.list)
+                        }
+                    });
+                }
+            }.bind(this),
+            complete: function () {
+
+            }.bind(this)
+        });
+    }
+
+
+    handelTopicDelete() {
+        this.handleLoad();
+    }
+
+
+
+
     handleTopicList(forumId) {
-        console.log('test',forumId)
         if (forumId) {
+            this.state.forumId = forumId;
             http.request({
                 url: '/forum/mobile/v1/home/topic/list',
                 data: {
@@ -108,9 +145,6 @@ class Homepage extends Component {
                     });
                 }.bind(this),
                 complete: function (){
-                    this.setState({
-                        isInfiniteLoading: false
-                    })
                 }.bind(this)
             });
         }
@@ -144,114 +178,108 @@ class Homepage extends Component {
     }
 
 
-    handleInfiniteLoad() {
-        let {topicPageIndex, topicPageSize, topicTotal} = this.state;
-        if (topicPageIndex * topicPageSize < topicTotal) {
-            this.setState({
-                isInfiniteLoading: true,
-                topicPageIndex: topicPageIndex + 1
-            }, function () {
-                setTimeout(function() {
-                    this.handleLoad();
-                }.bind(this), 800)
-            }.bind(this))
-        }
-    };
 
     render() {
         return (
-            <div className={style.page} style={{minHeight: document.documentElement.clientHeight}}>
-                 <div className={style.homePageHeaderTopBackground} >
+
+            <div className={classNames(style.page, baseStyle.tabbarPage)}>
+                <InfiniteScroll
+                    next={this.handleNextLoad.bind(this)}
+                    hasMore={
+                        ( this.state.topicPageIndex *  this.state.topicPageSize) <  this.state.topicTotal
+                    }
+                    loader={
+                        <p style={{textAlign: 'center'}}>
+                            <b>Loading...</b>
+                        </p>
+                    }
+                    endMessage={
+                        <p style={{textAlign: 'center'}}>
+                            <b>没有更多了</b>
+                        </p>
+                    }
+                >
+
+
+
+                    <div className={style.page} style={{minHeight: document.documentElement.clientHeight}}>
+                        <div className={style.homePageHeaderTopBackground} >
                      <span>
                          已有{this.state.forum.forumUserFollowCount?this.state.forum.forumUserFollowCount:0}人加入圈子
                      </span>
-                     <Link to={'/forum/info/' +  this.state.forum.forumId} key={this.state.forum.forumId} >
-                         {
-                             this.state.forum.forumMedia && this.state.forum.forumMedia.filePath ?
-                                 <img className={style.homePageHeaderTopBackgroundImg} src={constant.image_host + this.state.forum.forumMedia.filePath} alt=""/>
-                                 :
-                                 null
-                         }
-                     </Link>
-                 </div>
-                 <div className={classNames(style.homePageHeaderMiddleMessage,baseStyle.bottomLine)}>
-                     <p style={{fontSize:"16px",textAlign:"center",marginTop:"33px",color:"#323232"}}>{this.state.forum.forumName}</p>
-                     <p style={{fontSize:"12px",textAlign:"center",color:"#9d9d9d"}}>{this.state.forum.forumDescription}</p>
-                     <p style={{textAlign:"center",marginTop:"10px"}}>
-                         {
-                             this.state.forum.memberIsFollowForum ?
-                                 '已加入圈子'
-                                 :
-                                 <input style={{borderRadius:"34px",backgroundColor:"#DEFAFD",width:"86px",height:"27px",boxShadow:" 0px 0px 6px #888888",color:"#c18108"}} onClick={this.handleJoin.bind(this, this.state.forumId)} type="button" value="加入圈子"/>
-                         }
-                     </p>
-                 </div>
-                 <div className={style.messages}>
-                     <dl className={style.homePageHeaderMessages}>
-                         <dt className={style.homePageHeaderMessageLeft}>
-                             {
-                                 this.state.forum && this.state.forum.forumModerator && this.state.forum.forumModerator.userId ?
-                                     <Link to={this.state.forum.memberIsFollowForum? '/my/publish' :'/member/homepage/' +  this.state.forum.forumModerator.userId} key={this.state.forum.forumModerator.userId} >
-                                         {
-                                             this.state.forum.forumModerator.userAvatar && this.state.forum.forumModerator.userAvatar.filePath?
-                                                 <img src={constant.image_host + this.state.forum.forumModerator.userAvatar.filePath} alt=''/>
-                                                 :
-                                                 null
-                                         }
-                                     </Link>
-                                     :
-                                     null
-                             }
-
-                         </dt>
-                         <dd className={style.homePageHeaderMessageRight}>
-                             <p className={style.homePageHeaderMessageRightTop}>
-                                 {
-                                     this.state.forum.forumModerator && this.state.forum.forumModerator.userNickName ?
-                                         this.state.forum.forumModerator.userNickName
-                                         :
-                                         '默认用户昵称'
-                                 }
-                             </p>
-                             <p className={style.homePageHeaderMessageRightBottom}>
-                                 {
-                                     this.state.forum.forumModerator && this.state.forum.forumModerator.memberSignature ?
-                                         this.state.forum.forumModerator.memberSignature
-                                         :
-                                         '用户没有个性签名哦'
-                                 }
-                             </p>
-                         </dd>
-                     </dl>
-                 </div>
-                <div className={style.nullDiv}></div>
-                <div>
-                    {
-                        this.state.topicList.length > 0 ?
-                            <Infinite elementHeight={document.documentElement.clientHeight * 0.8}
-                                      containerHeight={document.documentElement.clientHeight}
-                                      infiniteLoadBeginEdgeOffset={200}
-                                      onInfiniteLoad={this.handleInfiniteLoad.bind(this)}
-                                      loadingSpinnerDelegate={
-                                          this.state.isInfiniteLoading ?
-                                              <div className="infinite-list-item">Loading...</div>
-                                              :
-                                              this.state.topicPageIndex * this.state.topicPageSize >= this.state.topicTotal  ?
-                                                  <div className="infinite-list-item">没有更多了</div>
-                                                  :
-                                                  null
-                                      }
-                                      isInfiniteLoading={this.state.isInfiniteLoading}
-                            >
+                            <Link to={'/forum/info/' +  this.state.forum.forumId} key={this.state.forum.forumId} >
                                 {
-                                    this.state.topicList.map((topic, index) => <TopicIndex topic={topic} key={index}/>)
+                                    this.state.forum.forumMedia && this.state.forum.forumMedia.filePath ?
+                                        <img className={style.homePageHeaderTopBackgroundImg} src={constant.image_host + this.state.forum.forumMedia.filePath} alt=""/>
+                                        :
+                                        null
                                 }
-                            </Infinite>
-                            :
-                            null
-                    }
-                </div>
+                            </Link>
+                        </div>
+                        <div className={classNames(style.homePageHeaderMiddleMessage,baseStyle.bottomLine)}>
+                            <p style={{fontSize:"16px",textAlign:"center",marginTop:"33px",color:"#323232"}}>{this.state.forum.forumName}</p>
+                            <p style={{fontSize:"12px",textAlign:"center",color:"#9d9d9d"}}>{this.state.forum.forumDescription}</p>
+                            <p style={{textAlign:"center",marginTop:"10px"}}>
+                                {
+                                    this.state.forum.memberIsFollowForum ?
+                                        '已加入圈子'
+                                        :
+                                        <input style={{borderRadius:"34px",backgroundColor:"#DEFAFD",width:"86px",height:"27px",boxShadow:" 0px 0px 6px #888888",color:"#c18108"}} onClick={this.handleJoin.bind(this, this.state.forumId)} type="button" value="加入圈子"/>
+                                }
+                            </p>
+                        </div>
+                        <div className={style.messages}>
+                            <dl className={style.homePageHeaderMessages}>
+                                <dt className={style.homePageHeaderMessageLeft}>
+                                    {
+                                        this.state.forum && this.state.forum.forumModerator && this.state.forum.forumModerator.userId ?
+                                            <Link to={this.state.forum.memberIsFollowForum? '/my/publish' :'/member/homepage/' +  this.state.forum.forumModerator.userId} key={this.state.forum.forumModerator.userId} >
+                                                {
+                                                    this.state.forum.forumModerator.userAvatar && this.state.forum.forumModerator.userAvatar.filePath?
+                                                        <img src={constant.image_host + this.state.forum.forumModerator.userAvatar.filePath} alt=''/>
+                                                        :
+                                                        null
+                                                }
+                                            </Link>
+                                            :
+                                            null
+                                    }
 
+                                </dt>
+                                <dd className={style.homePageHeaderMessageRight}>
+                                    <p className={style.homePageHeaderMessageRightTop}>
+                                        {
+                                            this.state.forum.forumModerator && this.state.forum.forumModerator.userNickName ?
+                                                this.state.forum.forumModerator.userNickName
+                                                :
+                                                '默认用户昵称'
+                                        }
+                                    </p>
+                                    <p className={style.homePageHeaderMessageRightBottom}>
+                                        {
+                                            this.state.forum.forumModerator && this.state.forum.forumModerator.memberSignature ?
+                                                this.state.forum.forumModerator.memberSignature
+                                                :
+                                                '用户没有个性签名哦'
+                                        }
+                                    </p>
+                                </dd>
+                            </dl>
+                        </div>
+                        <div className={style.nullDiv}></div>
+
+
+                        {
+                            this.state.topicList.length > 0 ?
+                                this.state.topicList.map((topic, index) => (
+                                    <TopicIndex topic={topic} key={index} isEdit={true} handelTopicDelete={this.handelTopicDelete.bind(this)}/>
+                                ))
+                                :
+                                null
+                        }
+
+                    </div>
+                </InfiniteScroll>
             </div>
 
 

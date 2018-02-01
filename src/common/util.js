@@ -70,6 +70,20 @@ function isEmail(str) {
     }
 }
 
+function lastWithSame(list, field, sameField) {
+    if (list && list.length > 0) {
+        let lastItem = list[list.length - 1];
+        let newList = list.filter(function(item) {
+            return item[sameField] === lastItem[sameField];
+        });
+        return newList.map(function(item) {
+            return item[field];
+        });
+    } else {
+        return [];
+    }
+}
+
 export default {
     scrollToTop: scrollToTop,
     scrollToFixed: scrollToFixed,
@@ -79,5 +93,6 @@ export default {
     hancleComponentDidMount: hancleComponentDidMount,
     hancleComponentDidUpdate: hancleComponentDidUpdate,
     isMobile: isMobile,
-    isEmail: isEmail
+    isEmail: isEmail,
+    lastWithSame: lastWithSame
 };

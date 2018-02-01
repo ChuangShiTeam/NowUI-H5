@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router';
 
-import Infinite from 'react-infinite';
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 import TopicIndex from '../../component/topic/Index';
 import util from '../../common/util';
@@ -10,6 +10,8 @@ import util from '../../common/util';
 import style from './Homepage.scss';
 import http from "../../common/http";
 import constant from "../../common/constant";
+import classNames from "classnames";
+import baseStyle from '../../css/Base.scss';
 
 
 class Homepage extends Component {
@@ -64,9 +66,6 @@ class Homepage extends Component {
 
                 }.bind(this),
                 complete: function () {
-                    this.setState({
-                        isInfiniteLoading: false
-                    })
                 }.bind(this)
             });
         }
@@ -95,22 +94,8 @@ class Homepage extends Component {
 
     }
 
-    handleInfiniteLoad() {
-        let {topicPageIndex, topicPageSize, topicTotal} = this.state;
-        if (topicPageIndex * topicPageSize < topicTotal) {
-            this.setState({
-                isInfiniteLoading: true,
-                topicPageIndex: topicPageIndex + 1
-            }, function () {
-                setTimeout(function() {
-                    this.handleLoad();
-                }.bind(this), 800)
-            }.bind(this))
-        }
-    }
 
     handleFollow() {
-        console.log('关注',this.state.member.memberIsFollow )
         let followUserId = this.props.params.userId;
         http.request({
             url: this.state.member.memberIsFollow ? '/member/follow/mobile/v1/delete' : '/member/follow/mobile/v1/save',
@@ -133,112 +118,146 @@ class Homepage extends Component {
         });
     }
 
+    handleNextLoad() {
+        let {topicPageIndex, topicPageSize} = this.state;
+        http.request({
+            url: '/topic/mobile/v1/home/topic',
+            data: {
+                pageIndex: topicPageIndex + 1,
+                pageSize: topicPageSize,
+                userId: this.props.params.userId
+            },
+            success: function (data) {
+                if (data && data.total > 0) {
+                    let topicList = this.state.topicList;
+                    this.setState({
+                        topicPageIndex: topicPageIndex + 1,
+                        topicTotal: data.total,
+                        topicList: topicList.concat(data.list)
+                    });
+                }
+            }.bind(this),
+            complete: function () {
+
+            }.bind(this)
+        });
+    }
+
+
+    handelTopicDelete() {
+        this.handleLoad();
+    }
+
+
+
     render() {
 
         return (
+            <div className={classNames(style.page, baseStyle.tabbarPage)}>
+                <InfiniteScroll
+                    next={this.handleNextLoad.bind(this)}
+                    hasMore={
+                        (this.state.topicPageIndex * this.state.topicPageSize) < this.state.topicTotal
+                    }
+                    loader={
+                        <p style={{textAlign: 'center'}}>
+                            <b>Loading...</b>
+                        </p>
+                    }
+                    endMessage={
+                        <p style={{textAlign: 'center'}}>
+                            <b>没有更多了</b>
+                        </p>
+                    }
+                >
+                    <div className={style.page} style={{minHeight: document.documentElement.clientHeight}}>
+                        <div className={style.header}>
+                            <img className={style.headerImg} src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?listView/1/w/320/h/110" alt=""/>
+                        </div>
+                        <div className={style.headerContentTopBackground}>
+                            <div className={style.headerContentMemberIcon}>
+                                {
+                                    this.state.member.userAvatar && this.state.member.userAvatar.filePath ?
+                                        <img src={constant.image_host + this.state.member.userAvatar.filePath} alt=''/>
+                                        :
+                                        null
+                                }
 
-            <div className={style.page} style={{minHeight: document.documentElement.clientHeight}}>
-                <div className={style.header}>
-                    <img className={style.headerImg} src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?listView/1/w/320/h/110" alt=""/>
-                </div>
-                <div className={style.headerContentTopBackground}>
-                    <div className={style.headerContentMemberIcon}>
+                            </div>
+                        </div>
+                        <div className={style.headerContentMemberClear}></div>
+                            <p className={style.headerContentMemberMiddleMsg}>
+                                <span style={{fontSize:"20px",marginLeft:"18px"}}>
+                                    {
+                                        this.state.member && this.state.member.userNickName ?
+                                            this.state.member.userNickName
+                                            :
+                                            null
+                                    }
+                                </span>
+                                <span style={{fontsize:"9px",marginLeft:"16px"}}>来自</span>
+                                <span style={{fontsize:"9px",marginLeft:"9px"}}>上海</span>
+                                <span style={{fontsize:"9px",marginLeft:"9px"}}>徐汇区(假数据)</span>
+                            </p>
+                            <p style={{marginLeft:"19px",fontSize:"12px"}}>
+                                {
+                                    this.state.member && this.state.member.memberSignature ?
+                                        this.state.member.memberSignature
+                                        :
+                                        null
+                                }
+                            </p>
+                        <div className={style.headerContentMemberClear2}></div>
+                        <div className={style.headerContentMemberVisit}>
+                            <div style={{marginLeft:"5px"}}>
+                                <p>{this.state.member.memberSendTopicCount}</p>
+                                <p>动态</p>
+                            </div>
+                            <div>
+                                <p>
+                                    <Link to={'/member/otherfollow/' +  this.state.member.userId} key={this.state.member.userId} >
+                                        {this.state.member.memberFollowCount}
+                                    </Link>
+                                </p>
+                                <p>关注</p>
+                            </div>
+                            <div>
+                                <p>
+                                    <Link to={'/member/otherfans/' +  this.state.member.userId} key={this.state.member.userId} >
+                                        {this.state.member.memberBeFollowCount}
+                                    </Link>
+                                </p>
+                                <p>粉丝</p>
+                            </div>
+                            <div>
+                                <input className={style.headerContentMemberPrivateMessage}  type="button" value="私信"/>
+                            </div>
+                            <div>
+                                {
+                                    this.state.member.memberIsFollow ?
+                                        <input className={style.headerContentMemberVisitTa} onClick={this.handleFollow.bind(this)} type="button" value="已关注"/>
+                                        :
+                                        <input className={style.headerContentMemberVisitTa} onClick={this.handleFollow.bind(this)} type="button" value="关注TA"/>
+                                }
+                            </div>
+                        </div>
+                        <h3 className={style.headerContentMemberTitle}>
+                            TA的宠物
+                            <span style={{fontSize:"5px",marginLeft:"11px"}}>
+                             牛头梗(假数据)
+                            </span>
+                        </h3>
+
                         {
-                            this.state.member.userAvatar && this.state.member.userAvatar.filePath ?
-                                <img src={constant.image_host + this.state.member.userAvatar.filePath} alt=''/>
+                            this.state.topicList.length > 0 ?
+                                this.state.topicList.map((topic, index) => (
+                                    <TopicIndex topic={topic} key={index} isEdit={true} handelTopicDelete={this.handelTopicDelete.bind(this)}/>
+                                ))
                                 :
                                 null
                         }
-
                     </div>
-                </div>
-                <div className={style.headerContentMemberClear}></div>
-                <p className={style.headerContentMemberMiddleMsg}>
-                    <span style={{fontSize:"20px",marginLeft:"18px"}}>
-                        {
-                            this.state.member && this.state.member.userNickName ?
-                                this.state.member.userNickName
-                                :
-                                '没有昵称'
-                        }
-                    </span>
-                    <span style={{fontsize:"9px",marginLeft:"16px"}}>来自</span>
-                    <span style={{fontsize:"9px",marginLeft:"9px"}}>上海</span>
-                    <span style={{fontsize:"9px",marginLeft:"9px"}}>徐汇区</span>
-                </p>
-                <p style={{marginLeft:"19px",fontSize:"12px"}}>
-                    {
-                        this.state.member && this.state.member.memberSignature ?
-                            this.state.member.memberSignature
-                            :
-                            '天气不错呀'
-                    }
-                </p>
-                <div className={style.headerContentMemberClear2}></div>
-                <div className={style.headerContentMemberVisit}>
-                    <div style={{marginLeft:"5px"}}>
-                        <p>{this.state.member.memberSendTopicCount}</p>
-                        <p>动态</p>
-                    </div>
-                    <div>
-                        <p>
-                            <Link to={'/member/otherfollow/' +  this.state.member.userId} key={this.state.member.userId} >
-                            {this.state.member.memberFollowCount}
-                            </Link>
-                        </p>
-                        <p>关注</p>
-                    </div>
-                    <div>
-                        <p>
-                            <Link to={'/member/otherfans/' +  this.state.member.userId} key={this.state.member.userId} >
-                            {this.state.member.memberBeFollowCount}
-                            </Link>
-                        </p>
-                        <p>粉丝</p>
-                    </div>
-                    <div>
-                        <input className={style.headerContentMemberPrivateMessage}  type="button" value="私信"/>
-                    </div>
-                    <div>
-                        {
-                            this.state.member.memberIsFollow ?
-                                <input className={style.headerContentMemberVisitTa} onClick={this.handleFollow.bind(this)} type="button" value="已关注"/>
-                                :
-                                <input className={style.headerContentMemberVisitTa} onClick={this.handleFollow.bind(this)} type="button" value="关注TA"/>
-                        }
-                    </div>
-                </div>
-                <h3 className={style.headerContentMemberTitle}>
-                    TA的宠物
-                    <span style={{fontSize:"5px",marginLeft:"11px"}}>
-                        牛头梗
-                    </span>
-                </h3>
-
-                {
-                    this.state.topicList.length > 0 ?
-                        <Infinite elementHeight={document.documentElement.clientHeight * 0.5}
-                                  containerHeight={document.documentElement.clientHeight}
-                                  infiniteLoadBeginEdgeOffset={200}
-                                  onInfiniteLoad={this.handleInfiniteLoad.bind(this)}
-                                  loadingSpinnerDelegate={
-                                      this.state.isInfiniteLoading ?
-                                          <div className="infinite-list-item">Loading...</div>
-                                          :
-                                          this.state.topicPageIndex * this.state.topicPageSize >= this.state.topicTotal  ?
-                                              <div className="infinite-list-item">没有更多了</div>
-                                              :
-                                              null
-                                  }
-                                  isInfiniteLoading={this.state.isInfiniteLoading}
-                        >
-                            {
-                                this.state.topicList.map((topic, index) => <TopicIndex topic={topic} key={index}/>)
-                            }
-                        </Infinite>
-                        :
-                        null
-                }
+                </InfiniteScroll>
             </div>
 
 
