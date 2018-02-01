@@ -9,8 +9,16 @@ import constant from '../../common/constant';
 import style from './Index.scss';
 import baseStyle from '../../css/Base.scss';
 import http from "../../common/http";
-
+import ActionSheet from 'antd-mobile/lib/action-sheet'
 const alert = Modal.alert;
+const isIPhone = new RegExp('\\biPhone\\b|\\biPod\\b', 'i').test(window.navigator.userAgent);
+let wrapProps;
+if (isIPhone) {
+    wrapProps = {
+        onTouchStart: e => e.preventDefault(),
+    };
+}
+
 let notification = null;
 Notification.newInstance({}, (n) => notification = n);
 class Index extends Component {
@@ -22,12 +30,22 @@ class Index extends Component {
         }
     }
     handleClose(){
-        alert(null, '确定删除么', [
-            { text: '删除', onPress: () => console.log('cancel'), style: 'default' },
-            { text: '取消', onPress: () => console.log('ok') },
-        ]);
+        const BUTTONS = ['我对这条不感兴趣', '举报这条动态', '举报该用户', '取消'];
+        ActionSheet.showActionSheetWithOptions({
+                options: BUTTONS,
+                cancelButtonIndex: BUTTONS.length - 1,
+                destructiveButtonIndex: BUTTONS.length - 2,
+                // title: 'title',
+                maskClosable: true,
+                'data-seed': 'logId',
+                wrapProps,
+            },
+            (buttonIndex) => {
+                this.setState({ clicked: BUTTONS[buttonIndex] });
+            });
 
     }
+    
     componentDidMount() {
         this.setState({
             topic: this.props.topic
@@ -133,6 +151,10 @@ class Index extends Component {
     }
 
     handleDelete() {
+        alert(null, '确定删除么', [
+            { text: '删除', onPress: () => console.log('cancel'), style: 'default' },
+            { text: '取消', onPress: () => console.log('ok') },
+        ]);
         http.request({
             url: '/topic/mobile/v1/delete',
             data: {
@@ -148,6 +170,7 @@ class Index extends Component {
 
             }
         })
+
     }
     render() {
         let clientWidth = document.documentElement.clientWidth > 640 ? 640 : document.documentElement.clientWidth;
