@@ -15,6 +15,7 @@ import style from './Publish.scss';
 import http from "../../common/http";
 import constant from "../../common/constant";
 import classNames from "classnames";
+import moment from "moment/moment";
 
 
 class Publish extends Component {
@@ -27,8 +28,7 @@ class Publish extends Component {
             topicPageSize: 2,
             topicTotal: 0,
             topicList: [],
-            isInfiniteLoading: false,
-
+            hasMore: false,
             member: {}
         }
     }
@@ -53,24 +53,19 @@ class Publish extends Component {
         http.request({
             url: '/topic/mobile/v1/self/home/topic',
             data: {
-                pageIndex: 1,
-                pageSize: this.state.topicPageSize
+                pageIndex: this.state.topicPageIndex,
+                pageSize: this.state.topicPageSize,
+                systemCreateTime: moment().format('YYYY-MM-DD HH:mm:ss'),
+                excludeTopicIdList: []
             },
             success: function (data) {
-                let topicList = this.state.topicList;
-                this.setState({
-                    topicTotal: data.total,
-                    topicList: topicList.concat(data.list)
-                });
-
-                if (data && data.total > 0) {
-                    this.props.dispatch({
-                        type: 'topicIndex',
-                        data: {
-                            topicPageIndex: 1,
-                            topicTotal: data.total,
-                            topicList: data.list
-                        }
+                if (data && data.list && data.list.length > 0) {
+                    let topicList = data.list;
+                    let topicTotal = data.total;
+                    this.setState({
+                        topicTotal: topicTotal,
+                        topicList: topicList,
+                        hasMore: topicList.length < topicTotal
                     });
                 }
 
@@ -98,28 +93,36 @@ class Publish extends Component {
 
 
     handleNextLoad() {
-        let {topicPageIndex, topicPageSize} = this.state;
-        http.request({
-            url: '/topic/mobile/v1/self/home/topic',
-            data: {
-                pageIndex: topicPageIndex + 1,
-                pageSize: topicPageSize
-            },
-            success: function (data) {
-                if (data && data.total > 0) {
-                    let topicList = this.state.topicList;
-                    this.setState({
-                        topicPageIndex: topicPageIndex + 1,
-                        topicTotal: data.total,
-                        topicList: topicList.concat(data.list)
-                    });
+        if (this.state.hasMore) {
+            let {topicPageIndex, topicPageSize, topicList} = this.state;
+            let excludeTopicIdList = util.lastWithSame(topicList, 'topicId', 'systemCreateTime');
+            let lastTopic = topicList[topicList.length - 1];
+            let systemCreateTime = moment(lastTopic.systemCreateTime).format('YYYY-MM-DD HH:mm:ss');
+            http.request({
+                url: '/topic/mobile/v1/self/home/topic',
+                data: {
+                    pageIndex: topicPageIndex,
+                    pageSize: topicPageSize,
+                    systemCreateTime: systemCreateTime,
+                    excludeTopicIdList: excludeTopicIdList
+                },
+                success: function (data) {
+                    if (data && data.list && data.list.length > 0) {
+                        this.setState({
+                            topicTotal: data.total,
+                            topicList: topicList.concat(data.list)
+                        });
+                    }else {
+                        this.setState({
+                            hasMore: false
+                        });
+                    }
+                }.bind(this),
+                complete: function () {
 
-                }
-            }.bind(this),
-            complete: function () {
-
-            }.bind(this)
-        });
+                }.bind(this)
+            });
+        }
     }
 
 
@@ -136,7 +139,7 @@ class Publish extends Component {
                 <InfiniteScroll
                     next={this.handleNextLoad.bind(this)}
                     hasMore={
-                        (this.state.topicPageIndex * this.state.topicPageSize) < this.state.topicTotal
+                        this.state.hasMore
                     }
                     loader={
                         <p style={{textAlign: 'center'}}>
@@ -151,15 +154,19 @@ class Publish extends Component {
                 >
                     <div className={baseStyle.page} style={{minHeight: document.documentElement.clientHeight}}>
                         <div className={style.header}>
-                            <img className={style.backgroundImg}  src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?listView/1/w/320/h/110" alt=""/>
-
+                            {
+                                this.state.member && this.state.member.userAvatar ?
+                                    <img src={constant.image_host + this.state.member.userAvatar.filePath} alt=''/>
+                                    :
+                                    null
+                            }
                         </div>
                         <div className={style.photo}>
                             {
                                 this.state.member && this.state.member.userAvatar ?
                                     <img src={constant.image_host + this.state.member.userAvatar.filePath} alt=''/>
                                     :
-                                    <img  src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?listView/1/w/72/h/72" alt=""/>
+                                    null
                             }
 
                         </div>
@@ -170,7 +177,7 @@ class Publish extends Component {
                                          this.state.member && this.state.member.userNickName ?
                                              this.state.member.userNickName
                                              :
-                                             'NickName'
+                                             null
                                      }
                                 </span>
                                 <span className={style.messagesCenter}>
@@ -178,7 +185,7 @@ class Publish extends Component {
                                          this.state.member && this.state.member.memberSignature ?
                                              this.state.member.memberSignature
                                              :
-                                             '天气不错呀'
+                                             null
                                      }
                                 </span>
                                 <span className={style.messagesBottom}>来自 上海 徐汇区</span>

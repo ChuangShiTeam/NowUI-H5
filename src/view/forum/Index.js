@@ -14,6 +14,7 @@ import constant from '../../common/constant';
 
 import style from './Index.scss';
 import baseStyle from '../../css/Base.scss';
+import moment from "moment/moment";
 
 let interestSwiper;
 let notification = null;
@@ -73,7 +74,9 @@ class Index extends Component {
             url: '/topic/mobile/v1/home/list',
             data: {
                 pageIndex: this.props.forumIndex.hotTopicPageIndex,
-                pageSize: this.props.forumIndex.hotTopicPageSize
+                pageSize: this.props.forumIndex.hotTopicPageSize,
+                systemCreateTime: moment().format('YYYY-MM-DD HH:mm:ss'),
+                excludeTopicIdList: []
             },
             success: function (data) {
                 if (data.total > 0) {
