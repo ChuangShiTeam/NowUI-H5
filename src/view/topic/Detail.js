@@ -4,6 +4,9 @@ import {createForm} from "rc-form";
 import {Link} from 'react-router';
 import Notification from "rc-notification";
 import moment from 'moment';
+import InfiniteScroll from 'react-infinite-scroll-component';
+
+
 
 import util from '../../common/util';
 
@@ -25,13 +28,14 @@ class Detail extends Component {
             isLoad: false,
             topic: {},
             pageIndex: 1,
-            pageSize: 3,
+            pageSize: 8,
             topicCommentTotal: 0,
             topicCommentList: [],
             topicReplayUserId: '',
             placeholder: '我也要说点什么…',
             topicReplyCommentId: '',
             userLikeList: [],
+            hasMore: false
         }
     }
 
@@ -113,13 +117,20 @@ class Detail extends Component {
                 data: {
                     topicId: topicId,
                     pageIndex: this.state.pageIndex,
-                    pageSize: this.state.pageSize
+                    pageSize: this.state.pageSize,
+                    systemCreateTime: moment().format('YYYY-MM-DD HH:mm:ss'),
+                    excludeCommentIdList: []
                 },
                 success: function (data) {
-                    this.setState({
-                        topicCommentTotal: data.total,
-                        topicCommentList: data.list
-                    });
+                    if (data && data.list && data.list.length > 0) {
+                        let commentList = data.list;
+                        let commentTotal = data.total;
+                        this.setState({
+                            topicCommentTotal: commentTotal,
+                            topicCommentList: commentList,
+                            hasMore: commentList.length < commentTotal
+                        });
+                    }
                 }.bind(this),
                 complete: function () {
 
@@ -127,6 +138,42 @@ class Detail extends Component {
             });
         }
     }
+
+
+    handleNextLoad() {
+        if (this.state.hasMore) {
+            let {pageIndex, pageSize, topicCommentList} = this.state;
+            let excludeCommentIdList = util.lastWithSame(topicCommentList, 'topicCommentId', 'systemCreateTime');
+            let lastComment = topicCommentList[topicCommentList.length - 1];
+            let systemCreateTime = moment(lastComment.systemCreateTime).format('YYYY-MM-DD HH:mm:ss');
+            http.request({
+                url: '/topic/comment/mobile/v1/list',
+                data: {
+                    pageIndex: pageIndex,
+                    pageSize: pageSize,
+                    topicId: this.props.params.topicId,
+                    systemCreateTime: systemCreateTime,
+                    excludeCommentIdList: excludeCommentIdList
+                },
+                success: function (data) {
+                    if (data && data.list && data.list.length > 0) {
+                        this.setState({
+                            topicCommentTotal: data.total,
+                            topicCommentList: topicCommentList.concat(data.list)
+                        });
+                    }else {
+                        this.setState({
+                            hasMore: false
+                        });
+                    }
+                }.bind(this),
+                complete: function () {
+
+                }.bind(this)
+            });
+        }
+    }
+
 
     handleClickLikeTopic() {
         http.request({
@@ -287,230 +334,249 @@ class Detail extends Component {
 
     render() {
         const {getFieldProps} = this.props.form;
-        console.log('this.state.topic.topicUserLikeList', this.state.topic.topicUserLikeList);
         return (
-            <div className={classNames(style.page, baseStyle.page)}
-                 style={{minHeight: document.documentElement.clientHeight}}>
-                <div className={style.header}>
-                    <div className={style.headerLeft}>
-                        {
-                            this.state.topic.topicUser && this.state.topic.topicUser.userId ?
-                                <Link to={this.state.topic.topicIsSelf ? '/my/publish' : '/member/homepage/' +  this.state.topic.topicUser.userId}>
-                                    {
-                                        this.state.topic.topicUser && this.state.topic.topicUser.userAvatar ?
-                                            <img className={style.headerLeftImage} src={constant.image_host + this.state.topic.topicUser.userAvatar.filePath} alt=''/>
-                                            :
-                                            <img className={style.headerLeftImage} src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/28/h/28' alt=''/>
-                                    }
-                                </Link>
-                                :
-                                null
-                        }
-                    </div>
-                    <div className={style.headerCenter}>
-
-                        <p className={style.headerCenterName}>
-                            {
-                                this.state.topic.topicUser && this.state.topic.topicUser.userId ?
-                                    <Link to={this.state.topic.topicIsSelf ? '/my/publish' : '/member/homepage/' +  this.state.topic.topicUser.userId}>
-                                        {this.state.topic.topicUser && this.state.topic.topicUser.userNickName ? this.state.topic.topicUser.userNickName : '用户昵称为null'}
-                                    </Link>
-                                    :
-                                    null
-                            }
+            <div className={classNames(style.page, baseStyle.tabbarPage)}>
+                <InfiniteScroll
+                    next={this.handleNextLoad.bind(this)}
+                    hasMore={this.state.hasMore}
+                    loader={
+                        <p style={{textAlign: 'center'}}>
+                            <b>Loading...</b>
                         </p>
-                        <p className={style.headerCenterTime}> {moment(this.state.topic.systemCreateTime).fromNow()}</p>
-                    </div>
-                    <div className={style.headerRight}>
-                        <div className={style.listRight}>
+                    }
+                    endMessage={
+                        <p style={{textAlign: 'center'}}>
+                            <b></b>
+                        </p>
+                    }
+                >
 
-                            {
-                                this.state.topic.topicIsSelf ?
-                                    null
-                                :
-                                    this.state.topic.topicUser ?
-                                        this.state.topic.topicUser.memberIsFollow ?
-                                            <div  className={style.listRightFollowActive} onClick={this.handleFollow.bind(this, this.state.topic.topicUser.userId)}>
-                                                <span >已关注</span>
-                                            </div>
-                                            :
-                                            <div   className={style.listRightFollow} onClick={this.handleFollow.bind(this, this.state.topic.topicUser.userId)}>
-                                                <span >+ 关注</span>
-                                            </div>
+
+
+
+                    <div className={classNames(style.page, baseStyle.page)}
+                         style={{minHeight: document.documentElement.clientHeight, paddingBottom: 0}} >
+                        <div className={style.header}>
+                            <div className={style.headerLeft}>
+                                {
+                                    this.state.topic.topicUser && this.state.topic.topicUser.userId ?
+                                        <Link to={this.state.topic.topicIsSelf ? '/my/publish' : '/member/homepage/' +  this.state.topic.topicUser.userId}>
+                                            {
+                                                this.state.topic.topicUser && this.state.topic.topicUser.userAvatar ?
+                                                    <img className={style.headerLeftImage} src={constant.image_host + this.state.topic.topicUser.userAvatar.filePath} alt=''/>
+                                                    :
+                                                    <img className={style.headerLeftImage} src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/28/h/28' alt=''/>
+                                            }
+                                        </Link>
                                         :
                                         null
-
-                            }
-                        </div>
-                    </div>
-                </div>
-                <div className={style.line}></div>
-                <div id="topicImage" className={style.content}>
-                    {
-                        this.state.topic && this.state.topic.topicMediaList ?
-                            this.state.topic.topicMediaList.map(function (mediaList, index) {
-                                return (
-                                    <img key={index} className='imageItem' src={constant.image_host + mediaList.topicMedia.filePath} alt=''/>
-                                )
-                            })
-                            :
-                            null
-                    }
-                </div>
-                <div className={style.footer} onClick={this.handleCancelReply.bind(this)}>
-                    <div className={classNames(style.footerText, baseStyle.bottomLine)}>
-                        {this.state.topic.topicSummary}
-                    </div>
-                    <div className={style.footerInfo}>
-                        <div className={style.footerInfoLeft}>
-                            <img className={style.footerInfoLeftLocationIcon} src={require('../../image/location.png')}
-                                 alt=''/>
-                            <div>
-                                    <div className={style.footerInfoLeftLocationTextLeft}></div>    
-                                    <span className={style.footerInfoLeftLocationText}>
-                                        {this.state.topic.topicLocation}
-                                     </span>
+                                }
                             </div>
-                            
+                            <div className={style.headerCenter}>
+
+                                <p className={style.headerCenterName}>
+                                    {
+                                        this.state.topic.topicUser && this.state.topic.topicUser.userId ?
+                                            <Link to={this.state.topic.topicIsSelf ? '/my/publish' : '/member/homepage/' +  this.state.topic.topicUser.userId}>
+                                                {this.state.topic.topicUser && this.state.topic.topicUser.userNickName ? this.state.topic.topicUser.userNickName : '用户昵称为null'}
+                                            </Link>
+                                            :
+                                            null
+                                    }
+                                </p>
+                                <p className={style.headerCenterTime}> {moment(this.state.topic.systemCreateTime).fromNow()}</p>
+                            </div>
+                            <div className={style.headerRight}>
+                                <div className={style.listRight}>
+
+                                    {
+                                        this.state.topic.topicIsSelf ?
+                                            null
+                                        :
+                                            this.state.topic.topicUser ?
+                                                this.state.topic.topicUser.memberIsFollow ?
+                                                    <div  className={style.listRightFollowActive} onClick={this.handleFollow.bind(this, this.state.topic.topicUser.userId)}>
+                                                        <span >已关注</span>
+                                                    </div>
+                                                    :
+                                                    <div   className={style.listRightFollow} onClick={this.handleFollow.bind(this, this.state.topic.topicUser.userId)}>
+                                                        <span >+ 关注</span>
+                                                    </div>
+                                                :
+                                                null
+
+                                    }
+                                </div>
+                            </div>
                         </div>
-                        <div className={style.footerInfoRight}>
-                            <span className={style.footerInfoRightFrom}>来自</span>
+                        <div className={style.line}></div>
+                        <div id="topicImage" className={style.content}>
                             {
                                 this.state.topic && this.state.topic.topicMediaList ?
-                                    this.state.topic.topicForumList.map(function (forumList, index) {
+                                    this.state.topic.topicMediaList.map(function (mediaList, index) {
                                         return (
-                                            <span key={index} className={style.footerInfoRightTag}>
-                                                <Link to={'/forum/homepage/' +  forumList.forumId} key={forumList.forumId} >
-                                                {forumList.forumName}
-                                                </Link>
-                                            </span>
+                                            <img key={index} className='imageItem' src={constant.image_host + mediaList.topicMedia.filePath} alt=''/>
                                         )
                                     })
                                     :
                                     null
                             }
-
                         </div>
-                    </div>
-                    <div className={style.footerCount}>
-                        <div className={style.footerCountLeft}>
-                            <img className={style.footerCountLeftLikeIcon}
-                                 onClick={this.handleClickLikeTopic.bind(this)}
-                                 src={this.state.topic.topicUserIsLike ? require('../../image/like-active.png') : require('../../image/like.png')}
-                                 alt=''/>
-                            <div className={style.footerCountLeftLikeIconNumber}>{this.state.topic.topicCountLike}</div>
-                        </div>
-                        <Link to={'/topic/like/' + this.state.topic.topicId} className={style.footerCountCenter}>
-                            {
-                                this.state.topic && this.state.topic.topicUserLikeList ?
-                                    this.state.topic.topicUserLikeList.map(function (userLike, index) {
-                                        return (
-                                            <img key={index} className={style.footerCountLeftAvatarIcon} src={constant.image_host + userLike.userAvatar.filePath} alt=''/>
-                                        )
-                                    })
-                                    :
-                                    null
-
-                            }
-                        </Link>
-                        <div className={style.footerCountRight}>
-                            <img className={style.footerCountRightBookmarkIcon}
-                                 onClick={this.handleBookmarkTopic.bind(this)}
-                                 src={this.state.topic.topicUserIsBookmark ? require('../../image/bookmark-acitve.png') : require('../../image/bookmark.png')}
-                                 alt=''/>
-                            <span className={style.footerCountRightBookmarkNumber}>{this.state.topic.topicCountBookmark}</span>
-                            <img className={style.footerCountRightCommentIcon}
-                                 src={require('../../image/comment.png')}
-                                 onClick={this.handleCommentTopic.bind(this)}
-                                 alt=''/>
-                            <span className={style.footerCountRightCommentNumber}>{this.state.topic.topicCountComment} </span>
-                        </div>
-                    </div>
-                </div>
-                <div className={style.line2} onClick={this.handleCancelReply.bind(this)}></div>
-                <div className={style.content}>
-                    {
-                        this.state.topicCommentList.map(function (comment, index) {
-                            return (
-                                <div key={index}
-                                     onClick={this.handleChooseReply.bind(this, comment.userId, comment.userNickName, comment.topicCommentId)}
-                                     className={classNames(style.comment, baseStyle.maxWidthWithPadding, index > 0 ? baseStyle.marginTop : '')}>
-                                    <div className={style.commentLeft}>
-                                        <Link to={comment.topicCommentIsSelf? '/my/publish'  : '/member/homepage/' + comment.userId}>
-                                        {
-                                            comment.userAvatar && comment.userAvatar.filePath?
-                                                    <img className={style.commentLeftImage}
-                                                         src={constant.image_host + comment.userAvatar.filePath} alt=''/>
-                                                :
-                                                    <img className={style.commentLeftImage}
-                                                         src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/38/h/38'
-                                                         alt=''/>
-                                        }
-                                        </Link>
+                        <div className={style.footer} onClick={this.handleCancelReply.bind(this)}>
+                            <div className={classNames(style.footerText, baseStyle.bottomLine)}>
+                                {this.state.topic.topicSummary}
+                            </div>
+                            <div className={style.footerInfo}>
+                                <div className={style.footerInfoLeft}>
+                                    <img className={style.footerInfoLeftLocationIcon} src={require('../../image/location.png')}
+                                         alt=''/>
+                                    <div>
+                                            <div className={style.footerInfoLeftLocationTextLeft}></div>
+                                            <span className={style.footerInfoLeftLocationText}>
+                                                {this.state.topic.topicLocation}
+                                             </span>
                                     </div>
-                                    <div className={classNames(style.commentRight, baseStyle.bottomLine)}>
-                                        <div className={style.commentRightLike}>
-                                            <div className={style.commentRightLikeContent}>
-                                                <img className={style.commentRightLikeIcon}
-                                                     onClick={this.handleClickLikeComment.bind(this, index)}
-                                                     src={comment.topicCommentIsLike ? require('../../image/like-active.png') : require('../../image/like.png') }
-                                                     alt=''/>
-                                                <span className={style.commentRightLikeText}>{comment.topicCommentLikeCount}</span>
+
+                                </div>
+                                <div className={style.footerInfoRight}>
+                                    <span className={style.footerInfoRightFrom}>来自</span>
+                                    {
+                                        this.state.topic && this.state.topic.topicMediaList ?
+                                            this.state.topic.topicForumList.map(function (forumList, index) {
+                                                return (
+                                                    <span key={index} className={style.footerInfoRightTag}>
+                                                        <Link to={'/forum/homepage/' +  forumList.forumId} key={forumList.forumId} >
+                                                        {forumList.forumName}
+                                                        </Link>
+                                                    </span>
+                                                )
+                                            })
+                                            :
+                                            null
+                                    }
+
+                                </div>
+                            </div>
+                            <div className={style.footerCount}>
+                                <div className={style.footerCountLeft}>
+                                    <img className={style.footerCountLeftLikeIcon}
+                                         onClick={this.handleClickLikeTopic.bind(this)}
+                                         src={this.state.topic.topicUserIsLike ? require('../../image/like-active.png') : require('../../image/like.png')}
+                                         alt=''/>
+                                    <div className={style.footerCountLeftLikeIconNumber}>{this.state.topic.topicCountLike}</div>
+                                </div>
+                                <Link to={'/topic/like/' + this.state.topic.topicId} className={style.footerCountCenter}>
+                                    {
+                                        this.state.topic && this.state.topic.topicUserLikeList ?
+                                            this.state.topic.topicUserLikeList.map(function (userLike, index) {
+                                                return (
+                                                    <img key={index} className={style.footerCountLeftAvatarIcon} src={constant.image_host + userLike.userAvatar.filePath} alt=''/>
+                                                )
+                                            })
+                                            :
+                                            null
+                                    }
+                                </Link>
+                                <div className={style.footerCountRight}>
+                                    <img className={style.footerCountRightBookmarkIcon}
+                                         onClick={this.handleBookmarkTopic.bind(this)}
+                                         src={this.state.topic.topicUserIsBookmark ? require('../../image/bookmark-acitve.png') : require('../../image/bookmark.png')}
+                                         alt=''/>
+                                    <span className={style.footerCountRightBookmarkNumber}>{this.state.topic.topicCountBookmark}</span>
+                                    <img className={style.footerCountRightCommentIcon}
+                                         src={require('../../image/comment.png')}
+                                         onClick={this.handleCommentTopic.bind(this)}
+                                         alt=''/>
+                                    <span className={style.footerCountRightCommentNumber}>{this.state.topic.topicCountComment} </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div className={style.line2} onClick={this.handleCancelReply.bind(this)}></div>
+                        <div className={style.content}>
+                            {
+                                this.state.topicCommentList.map(function (comment, index) {
+                                    return (
+                                        <div key={index}
+                                             onClick={this.handleChooseReply.bind(this, comment.userId, comment.userNickName, comment.topicCommentId)}
+                                             className={classNames(style.comment, baseStyle.maxWidthWithPadding, index > 0 ? baseStyle.marginTop : '')}>
+                                            <div className={style.commentLeft}>
+                                                <Link to={comment.topicCommentIsSelf? '/my/publish'  : '/member/homepage/' + comment.userId}>
+                                                {
+                                                    comment.userAvatar && comment.userAvatar.filePath?
+                                                            <img className={style.commentLeftImage}
+                                                                 src={constant.image_host + comment.userAvatar.filePath} alt=''/>
+                                                        :
+                                                            <img className={style.commentLeftImage}
+                                                                 src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/38/h/38'
+                                                                 alt=''/>
+                                                }
+                                                </Link>
+                                            </div>
+                                            <div className={classNames(style.commentRight, baseStyle.bottomLine)}>
+                                                <div className={style.commentRightLike}>
+                                                    <div className={style.commentRightLikeContent}>
+                                                        <img className={style.commentRightLikeIcon}
+                                                             onClick={this.handleClickLikeComment.bind(this, index)}
+                                                             src={comment.topicCommentIsLike ? require('../../image/like-active.png') : require('../../image/like.png') }
+                                                             alt=''/>
+                                                        <span className={style.commentRightLikeText}>{comment.topicCommentLikeCount}</span>
+                                                    </div>
+                                                </div>
+                                                <Link to={comment.topicCommentIsSelf? '/my/publish'  : '/member/homepage/' + comment.userId} key={comment.userId}>
+                                                    <div className={style.commentRightName}>{comment.userNickName}</div>
+                                                </Link>
+                                                <div
+                                                    className={style.commentRightName}>{moment(comment.systemCreateTime).fromNow()}</div>
+                                                {
+                                                    comment.topicReplayUserId ?
+                                                        <div className={style.commentRightContent}>
+                                                            回复
+                                                            <span className={style.commentRightContentWho}>{" " + comment.topicReplayUserNickName}</span>: {comment.topicCommentContent}
+                                                        </div>
+                                                        :
+                                                        <div className={style.commentRightContent}>
+                                                            {comment.topicCommentContent}
+                                                        </div>
+                                                }
                                             </div>
                                         </div>
-                                        <Link to={comment.topicCommentIsSelf? '/my/publish'  : '/member/homepage/' + comment.userId} key={comment.userId}>
-                                            <div className={style.commentRightName}>{comment.userNickName}</div>
-                                        </Link>
-                                        <div
-                                            className={style.commentRightName}>{moment(comment.systemCreateTime).fromNow()}</div>
-                                        {
-                                            comment.topicReplayUserId ?
-                                                <div className={style.commentRightContent}>
-                                                    回复
-                                                    <span className={style.commentRightContentWho}>{" " + comment.topicReplayUserNickName}</span>: {comment.topicCommentContent}
-                                                </div>
-                                                :
-                                                <div className={style.commentRightContent}>
-                                                    {comment.topicCommentContent}
-                                                </div>
-                                        }
-                                    </div>
-                                </div>
-                            )
-                        }.bind(this))
-                    }
-                </div>
-                <div className={classNames(style.feedback, baseStyle.topLine)}>
-                    <div className={style.feedbackContent}>
-                        <div className={style.feedbackContentLeft}>
-                            {
-                                this.state.topic.requestUser && this.state.topic.requestUser.userAvatar && this.state.topic.requestUser.userAvatar.filePath ?
-                                    <img className={style.feedbackContentLeftImage} src={constant.image_host + this.state.topic.requestUser.userAvatar.filePath} alt=''/>
-                                    :
-                                    <img className={style.feedbackContentLeftImage} src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/28/h/28' alt=''/>
+                                    )
+                                }.bind(this))
                             }
                         </div>
-                        <div className={style.feedbackContentCenter}>
-                            <input
-                                className={style.feedbackContentCenterInput} {...getFieldProps('topicCommentContent', {
-                                    rules: [{
-                                        required: true,
-                                        message: '发送内容不能为空'
-                                    }],
-                                    initialValue: ''
-                                })} type="text"
-                                    ref={el => this.customFocusInst = el}
-                                    placeholder={this.state.placeholder}
-                            >
+                        <div className={classNames(style.feedback, baseStyle.topLine)}>
+                            <div className={style.feedbackContent}>
+                                <div className={style.feedbackContentLeft}>
+                                    {
+                                        this.state.topic.requestUser && this.state.topic.requestUser.userAvatar && this.state.topic.requestUser.userAvatar.filePath ?
+                                            <img className={style.feedbackContentLeftImage} src={constant.image_host + this.state.topic.requestUser.userAvatar.filePath} alt=''/>
+                                            :
+                                            <img className={style.feedbackContentLeftImage} src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/28/h/28' alt=''/>
+                                    }
+                                </div>
+                                <div className={style.feedbackContentCenter}>
+                                    <input
+                                        className={style.feedbackContentCenterInput} {...getFieldProps('topicCommentContent', {
+                                            rules: [{
+                                                required: true,
+                                                message: '发送内容不能为空'
+                                            }],
+                                            initialValue: ''
+                                        })} type="text"
+                                            ref={el => this.customFocusInst = el}
+                                            placeholder={this.state.placeholder}
+                                    >
 
-                            </input>
-                        </div>
-                        <div className={style.feedbackContentRight}>
-                            <div className={style.feedbackContentRightSend} onClick={this.handleSubmit.bind(this)}>提交
+                                    </input>
+                                </div>
+                                <div className={style.feedbackContentRight}>
+                                    <div className={style.feedbackContentRightSend} onClick={this.handleSubmit.bind(this)}>提交
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </InfiniteScroll>
             </div>
         );
     }
