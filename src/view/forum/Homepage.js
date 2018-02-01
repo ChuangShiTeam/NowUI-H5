@@ -13,6 +13,7 @@ import style from './Homepage.scss';
 import constant from "../../common/constant";
 import baseStyle from "../../css/Base.scss";
 import classNames from 'classnames';
+import moment from "moment/moment";
 
 let notification = null;
 Notification.newInstance({}, (n) => notification = n);
@@ -28,7 +29,6 @@ class Homepage extends Component {
             topicPageSize: 3,
             topicList: [],
             topicTotal: 0,
-            isInfiniteLoading: false
         }
     }
 
@@ -49,10 +49,9 @@ class Homepage extends Component {
                     forum: {},
                     forumId: '',
                     topicPageIndex: 1,
-                    topicPageSize: 3,
+                    topicPageSize: 2,
                     topicList: [],
                     topicTotal: 0,
-                    isInfiniteLoading: false
                 });
                 this.handleLoad(nextProps.params.forumId);
                 this.handleTopicList(nextProps.params.forumId);
@@ -92,31 +91,37 @@ class Homepage extends Component {
 
 
     handleNextLoad() {
-        let {topicPageIndex, topicPageSize} = this.state;
-        http.request({
-            url: '/forum/mobile/v1/home/topic/list',
-            data: {
-                pageIndex: topicPageIndex + 1,
-                pageSize: topicPageSize,
-                forumId: this.state.forumId
-            },
-            success: function (data) {
-                if (data && data.total > 0) {
-                    let topicList = this.state.topicList;
-                    this.props.dispatch({
-                        type: 'topicIndex',
-                        data: {
-                            topicPageIndex: topicPageIndex + 1,
+        if (this.state.hasMore) {
+            let {topicPageIndex, topicPageSize, topicList, forumId} = this.state;
+            let excludeTopicIdList = util.lastWithSame(topicList, 'topicId', 'systemCreateTime');
+            let lastTopic = topicList[topicList.length - 1];
+            let systemCreateTime = moment(lastTopic.systemCreateTime).format('YYYY-MM-DD HH:mm:ss');
+            http.request({
+                url: '/forum/mobile/v1/home/topic/list',
+                data: {
+                    pageIndex: topicPageIndex,
+                    pageSize: topicPageSize,
+                    forumId: forumId,
+                    systemCreateTime: systemCreateTime,
+                    excludeTopicIdList: excludeTopicIdList
+                },
+                success: function (data) {
+                    if (data && data.list && data.list.length > 0) {
+                        this.setState({
                             topicTotal: data.total,
                             topicList: topicList.concat(data.list)
-                        }
-                    });
-                }
-            }.bind(this),
-            complete: function () {
+                        });
+                    }else {
+                        this.setState({
+                            hasMore: false
+                        });
+                    }
+                }.bind(this),
+                complete: function () {
 
-            }.bind(this)
-        });
+                }.bind(this)
+            });
+        }
     }
 
 
@@ -129,20 +134,25 @@ class Homepage extends Component {
 
     handleTopicList(forumId) {
         if (forumId) {
-            this.state.forumId = forumId;
             http.request({
                 url: '/forum/mobile/v1/home/topic/list',
                 data: {
                     forumId: forumId,
                     pageIndex: this.state.topicPageIndex,
-                    pageSize: this.state.topicPageSize
+                    pageSize: this.state.topicPageSize,
+                    systemCreateTime: moment().format('YYYY-MM-DD HH:mm:ss'),
+                    excludeTopicIdList: []
                 },
                 success: function (data) {
-                    let topicList = this.state.topicList;
-                    this.setState({
-                        topicList: topicList.concat(data.list),
-                        topicTotal: data.total
-                    });
+                    if (data && data.list && data.list.length > 0) {
+                        let topicList = data.list;
+                        let topicTotal = data.total;
+                        this.setState({
+                            topicTotal: topicTotal,
+                            topicList: topicList,
+                            hasMore: topicList.length < topicTotal
+                        });
+                    }
                 }.bind(this),
                 complete: function (){
                 }.bind(this)
@@ -186,7 +196,7 @@ class Homepage extends Component {
                 <InfiniteScroll
                     next={this.handleNextLoad.bind(this)}
                     hasMore={
-                        ( this.state.topicPageIndex *  this.state.topicPageSize) <  this.state.topicTotal
+                        this.state.hasMore
                     }
                     loader={
                         <p style={{textAlign: 'center'}}>

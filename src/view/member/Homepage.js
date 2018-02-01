@@ -12,6 +12,7 @@ import http from "../../common/http";
 import constant from "../../common/constant";
 import classNames from "classnames";
 import baseStyle from '../../css/Base.scss';
+import moment from "moment/moment";
 
 
 class Homepage extends Component {
@@ -24,9 +25,7 @@ class Homepage extends Component {
             topicPageSize: 2,
             topicTotal: 0,
             topicList: [],
-            isInfiniteLoading: false,
-            elementHeights: [],
-
+            hasMore: false,
             member: {},
         }
     }
@@ -55,15 +54,20 @@ class Homepage extends Component {
                 data: {
                     userId: userId,
                     pageIndex: this.state.topicPageIndex,
-                    pageSize: this.state.topicPageSize
+                    pageSize: this.state.topicPageSize,
+                    systemCreateTime: moment().format('YYYY-MM-DD HH:mm:ss'),
+                    excludeTopicIdList: []
                 },
                 success: function (data) {
-                    let topicList = this.state.topicList;
-                    this.setState({
-                        topicTotal: data.total,
-                        topicList: topicList.concat(data.list)
-                    });
-
+                    if (data && data.list && data.list.length > 0) {
+                        let topicList = data.list;
+                        let topicTotal = data.total;
+                        this.setState({
+                            topicTotal: topicTotal,
+                            topicList: topicList,
+                            hasMore: topicList.length < topicTotal
+                        });
+                    }
                 }.bind(this),
                 complete: function () {
                 }.bind(this)
@@ -119,28 +123,37 @@ class Homepage extends Component {
     }
 
     handleNextLoad() {
-        let {topicPageIndex, topicPageSize} = this.state;
-        http.request({
-            url: '/topic/mobile/v1/home/topic',
-            data: {
-                pageIndex: topicPageIndex + 1,
-                pageSize: topicPageSize,
-                userId: this.props.params.userId
-            },
-            success: function (data) {
-                if (data && data.total > 0) {
-                    let topicList = this.state.topicList;
-                    this.setState({
-                        topicPageIndex: topicPageIndex + 1,
-                        topicTotal: data.total,
-                        topicList: topicList.concat(data.list)
-                    });
-                }
-            }.bind(this),
-            complete: function () {
+        if (this.state.hasMore) {
+            let {topicPageIndex, topicPageSize, topicList} = this.state;
+            let excludeTopicIdList = util.lastWithSame(topicList, 'topicId', 'systemCreateTime');
+            let lastTopic = topicList[topicList.length - 1];
+            let systemCreateTime = moment(lastTopic.systemCreateTime).format('YYYY-MM-DD HH:mm:ss');
+            http.request({
+                url: '/topic/mobile/v1/home/topic',
+                data: {
+                    pageIndex: topicPageIndex,
+                    pageSize: topicPageSize,
+                    userId: this.props.params.userId,
+                    systemCreateTime: systemCreateTime,
+                    excludeTopicIdList: excludeTopicIdList
+                },
+                success: function (data) {
+                    if (data && data.list && data.list.length > 0) {
+                        this.setState({
+                            topicTotal: data.total,
+                            topicList: topicList.concat(data.list)
+                        });
+                    }else {
+                        this.setState({
+                            hasMore: false
+                        });
+                    }
+                }.bind(this),
+                complete: function () {
 
-            }.bind(this)
-        });
+                }.bind(this)
+            });
+        }
     }
 
 
@@ -157,7 +170,7 @@ class Homepage extends Component {
                 <InfiniteScroll
                     next={this.handleNextLoad.bind(this)}
                     hasMore={
-                        (this.state.topicPageIndex * this.state.topicPageSize) < this.state.topicTotal
+                        this.state.hasMore
                     }
                     loader={
                         <p style={{textAlign: 'center'}}>
