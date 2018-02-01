@@ -32,6 +32,8 @@ class Index extends Component {
     list=()=>{
         console.log(1);
 
+
+
     }
     render() {
         const {getFieldProps} = this.props.form;
