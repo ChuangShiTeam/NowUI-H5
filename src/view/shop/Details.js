@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import classNames from 'classnames';
 import  ReactSwipes from 'react-swipes';
-
+import Delete from'../../component/topic/Delete'
 import util from '../../common/util';
 
 
@@ -36,6 +36,7 @@ class Details extends Component {
 
         this.state = {
             isSelectedIndex:0,
+
         };
     }
 
@@ -49,17 +50,22 @@ class Details extends Component {
     }
 
     componentWillUnmount() {
-        this.handleDestroySwiper();
+
+    }
+    handleClose(){
+
+
     }
     render() {
         return (
             <div className={classNames(style.page, baseStyle.page)} style={{minHeight: document.documentElement.clientHeight}}>
+
                 <div className={style.header}>
                     <img className={style.headerImg} src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/640/h/250" alt=""/>
                 </div>
                 <div className={classNames(style.headerBottom, baseStyle.bottomLine)}>
                     <div className={style.headerBottomLeft}>
-                        <div  className={style.headerBottomLeftFont}>自营</div>
+                        <div  className={style.headerBottomLeftFont}  onClick={this.handleClose.bind()}>自营</div>
                         <div className={style.headerBottomCenter} >
                             <div className={style.headerBottomCenterTop} >六边形南瓜式宠物窝</div>
                             <div className={style.headerBottomCenterBottom} >给萌宠柔软包裹的归家感</div>
@@ -105,7 +111,7 @@ class Details extends Component {
                         {
                             [1,2,3].map((val, index) => <div className={style.otherThinkBottomList} key={index}>
                                 <img className={style.otherThinkBottomListTop} src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/640/h/250" alt=""/>
-                                <div className={style.otherThinkBottomListCenter}>我家的猫咪超喜欢在里面和我躲猫猫的，超级可…</div>
+                                <div className={style.otherThinkBottomListCenter}>我家的猫咪超喜欢在里面和我躲猫猫的超级可…</div>
                                 <div className={style.otherThinkBottomListBottom}>
                                     <img className={style.otherThinkBottomListBottomImg} src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/640/h/250" alt=""/>
                                     <span className={style.otherThinkBottomListBottomFont}>大木木_Lin</span>
