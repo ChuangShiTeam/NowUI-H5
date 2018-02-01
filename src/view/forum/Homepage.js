@@ -214,7 +214,14 @@ class Homepage extends Component {
 
                     <div className={style.page} style={{minHeight: document.documentElement.clientHeight}}>
                         <div className={style.top}>
-                            <img className={style.topImg} src={require("../../image/banner.png")} alt=""/>
+                            {
+                                this.state.forum.forumBackgroundMedia && this.state.forum.forumBackgroundMedia.filePath ?
+                                    <img className={style.topImg} src={constant.image_host + this.state.forum.forumBackgroundMedia.filePath} alt=""/>
+                                    :
+                                    null
+
+                            }
+
                         </div>
                         <div className={style.homePageHeaderTopBackground} >
                      <span>
