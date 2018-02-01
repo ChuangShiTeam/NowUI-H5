@@ -154,15 +154,19 @@ class Publish extends Component {
                 >
                     <div className={baseStyle.page} style={{minHeight: document.documentElement.clientHeight}}>
                         <div className={style.header}>
-                            <img className={style.backgroundImg}  src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?listView/1/w/320/h/110" alt=""/>
-
+                            {
+                                this.state.member && this.state.member.userAvatar ?
+                                    <img src={constant.image_host + this.state.member.userAvatar.filePath} alt=''/>
+                                    :
+                                    null
+                            }
                         </div>
                         <div className={style.photo}>
                             {
                                 this.state.member && this.state.member.userAvatar ?
                                     <img src={constant.image_host + this.state.member.userAvatar.filePath} alt=''/>
                                     :
-                                    <img  src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?listView/1/w/72/h/72" alt=""/>
+                                    null
                             }
 
                         </div>
@@ -173,7 +177,7 @@ class Publish extends Component {
                                          this.state.member && this.state.member.userNickName ?
                                              this.state.member.userNickName
                                              :
-                                             'NickName'
+                                             null
                                      }
                                 </span>
                                 <span className={style.messagesCenter}>
@@ -181,7 +185,7 @@ class Publish extends Component {
                                          this.state.member && this.state.member.memberSignature ?
                                              this.state.member.memberSignature
                                              :
-                                             '天气不错呀'
+                                             null
                                      }
                                 </span>
                                 <span className={style.messagesBottom}>来自 上海 徐汇区</span>

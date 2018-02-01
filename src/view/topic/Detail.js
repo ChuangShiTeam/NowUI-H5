@@ -360,9 +360,7 @@ class Detail extends Component {
                                         )
                                     })
                                     :
-                                    <img className={style.footerCountLeftAvatarIcon}
-                                         src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/320/h/255'
-                                         alt=''/>
+                                    null
 
                             }
                         </Link>
