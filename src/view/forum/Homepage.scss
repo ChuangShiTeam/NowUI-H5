@@ -125,14 +125,11 @@ margin-top: 8px;
 	margin-top: 7px;
 }
 .homePageHeaderTopBackground{
-	top:0px;
-	background: #9dd7e3;
-	height:117px;
-	background: url("../../image/banner.png") no-repeat;
-	background-size:100% 100%;
+	position: relative;
+	top:-120px;
 }
 .homePageHeaderMiddleMessage{
-	height:130px ;
+	height:95px ;
 	width: 100%;
 }
 .homePageHeaderIcon{

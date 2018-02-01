@@ -203,6 +203,9 @@ class Homepage extends Component {
 
 
                     <div className={style.page} style={{minHeight: document.documentElement.clientHeight}}>
+                        <div className={style.top}>
+                            <img className={style.topImg} src={require("../../image/banner.png")} alt=""/>
+                        </div>
                         <div className={style.homePageHeaderTopBackground} >
                      <span>
                          已有{this.state.forum.forumUserFollowCount?this.state.forum.forumUserFollowCount:0}人加入圈子
