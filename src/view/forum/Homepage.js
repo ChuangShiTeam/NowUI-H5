@@ -219,7 +219,6 @@ class Homepage extends Component {
                                     <img className={style.topImg} src={constant.image_host + this.state.forum.forumBackgroundMedia.filePath} alt=""/>
                                     :
                                     null
-
                             }
 
                         </div>
