@@ -30,7 +30,8 @@ class Detail extends Component {
             topicCommentList: [],
             topicReplayUserId: '',
             placeholder: '我也要说点什么…',
-            topicReplyCommentId: ''
+            topicReplyCommentId: '',
+            userLikeList: [],
         }
     }
 
@@ -50,6 +51,27 @@ class Detail extends Component {
 
     }
 
+    handleFollow(userId, index) {
+        http.request({
+            url: this.state.userLikeList[index].memberIsFollow ? '/member/follow/mobile/v1/delete' : '/member/follow/mobile/v1/save',
+            data: {
+                followUserId: userId
+            },
+            success: function (data) {
+                if (data){
+                    let userLikeList = this.state.userLikeList;
+                    let userLike = userLikeList[index];
+                    userLike.memberIsFollow = !userLike.memberIsFollow;
+                    userLikeList[index] = userLike;
+                    this.setState({
+                        userLikeList: userLikeList
+                    });
+                }
+            }.bind(this),
+            complete: function () {
+            }.bind(this)
+        });
+    }
     handleLoad() {
         let topicId = this.props.params.topicId;
         if (topicId) {
@@ -261,6 +283,7 @@ class Detail extends Component {
         })
     }
 
+
     render() {
         const {getFieldProps} = this.props.form;
         console.log('this.state.topic.topicUserLikeList', this.state.topic.topicUserLikeList);
@@ -297,7 +320,31 @@ class Detail extends Component {
                         </p>
                         <p className={style.headerCenterTime}> {moment(this.state.topic.systemCreateTime).fromNow()}</p>
                     </div>
-                    <div className={style.headerRight}></div>
+                    <div className={style.headerRight}>
+                        <div className={style.listRight}>
+                            {
+                                // userLike.topicUserLikeIsSelf ?
+                                // null
+                                // :
+                                // userLike.memberIsFollow ?
+                                //         <div  onClick={this.handleFollow.bind(this, userLike.userId, index)} className={style.listRightFollowActive}>
+                                //             <span >已关注</span>
+                                //         </div>
+                                //         :
+                                //         <div  onClick={this.handleFollow.bind(this, userLike.userId, index)} className={style.listRightFollow}>
+                                //             <span >+ 关注</span>
+                                //         </div>
+                                true?
+                                <div   className={style.listRightFollowActive}>
+                                    <span >已关注</span>
+                                </div>
+                                :
+                                <div  className={style.listRightFollow}>
+                                <span >+ 关注</span>
+                                </div>
+                            }
+                        </div>
+                    </div>
                 </div>
                 <div className={style.line}></div>
                 <div id="topicImage" className={style.content}>
