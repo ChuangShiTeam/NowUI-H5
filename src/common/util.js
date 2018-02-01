@@ -71,7 +71,7 @@ function isEmail(str) {
 }
 
 function lastWithSame(list, field, sameField) {
-    if (list && list.length > 0 && typeof list === "array") {
+    if (list && list.length > 0) {
         let lastItem = list[list.length - 1];
         let newList = list.filter(function(item) {
             return item[sameField] === lastItem[sameField];
