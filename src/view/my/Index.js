@@ -125,7 +125,7 @@ class Index extends Component {
                             <div  className={style.listLeftIcon}>
                                 <img src={require('../../image/my-pet.png')}  alt=""/>
                             </div>
-                            <div className={style.listCenter}>我的爱宠</div>
+                            <Link to={"/my/pet"} className={style.listCenter}>我的爱宠</Link>
                         </div>
                         <div className={style.listRight}>
                             <div className={style.listRightIcon}></div>
