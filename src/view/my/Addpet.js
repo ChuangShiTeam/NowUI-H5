@@ -6,7 +6,12 @@ import baseStyle from '../../css/Base.scss';
 import {createForm} from "rc-form";
 import classNames from 'classnames';
 import Notification from 'rc-notification';
+import Modal from 'antd-mobile/lib/modal';
+import DatePicker from 'antd-mobile/lib/date-picker';
+const alert = Modal.alert;
 
+const nowTimeStamp = Date.now();
+const now = new Date(nowTimeStamp);
 
 let notification = null;
 Notification.newInstance({}, (n) => notification = n);
@@ -16,7 +21,8 @@ class Addpet extends Component {
 
         this.state = {
             isload: false,
-            forum: {}
+            forum: {},
+            date: now,
         }
     }
 
@@ -43,21 +49,24 @@ class Addpet extends Component {
 
                 return;
             }
-
-
-
-
         });
+    }
+    handleDelete(){
+        alert(null, '确定删除么', [
+            { text: '删除', onPress: () => console.log('cancel'), style: 'default' },
+            { text: '取消', onPress: () => console.log('ok') },
+        ]);
     }
     componentWillUnmount() {
 
     }
+
     render(){
         const {getFieldProps} = this.props.form;
         return(
             <div   className={classNames(baseStyle.page,style.page)} style={{minHeight: document.documentElement.clientHeight}}>
                 <div className={classNames(baseStyle.bottomLine,style.header)}>我的爱宠
-                    <span className={style.headerRight}>删除</span>
+                    <span className={style.headerRight} onClick={this.handleDelete.bind(this)}>删除</span>
                 </div>
                 <div className={style.headerBottom}>
                     <span className={style.headerBottomLeft}>头像</span>
@@ -95,7 +104,14 @@ class Addpet extends Component {
                             宠物生日
                         </span>
                         <span  className={style.listRight}>
-                            请选择爱宠生日
+                                    <DatePicker
+                                        mode="date"
+                                        extra="Optional"
+                                        value={this.state.date}
+                                        onChange={date => this.setState({ date })}
+                                    >
+                                        <p arrow="horizontal"> 请选择爱宠生日</p>
+                                    </DatePicker>
                             <div className={style.imgRights}></div>
                         </span>
                     </div>

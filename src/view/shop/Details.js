@@ -7,9 +7,28 @@ import util from '../../common/util';
 
 import Modal from 'antd-mobile/lib/modal';
 import ActionSheet from 'antd-mobile/lib/action-sheet'
-
+import DatePicker from 'antd-mobile/lib/date-picker';
 import style from './Details.scss';
 import baseStyle from '../../css/Base.scss';
+
+const nowTimeStamp = Date.now();
+const now = new Date(nowTimeStamp);
+const utcNow = new Date(now.getTime() + (now.getTimezoneOffset() * 60000));
+
+
+
+// const CustomChildren = ({ extra, onClick, children }) => (
+//     <div
+//         onClick={onClick}
+//         style={{ backgroundColor: '#fff', height: '45px', lineHeight: '45px', padding: '0 15px' }}
+//     >
+//         {children}
+//         <span style={{ float: 'right', color: '#888' }}>没看到老顾客蛮好看</span>
+//     </div>
+// );
+
+
+
 const alert = Modal.alert;
 const isIPhone = new RegExp('\\biPhone\\b|\\biPod\\b', 'i').test(window.navigator.userAgent);
 let wrapProps;
@@ -49,6 +68,12 @@ class Details extends Component {
             clicked: 'none',
             clicked1: 'none',
             clicked2: 'none',
+            date: now,
+            time: now,
+            utcDate: utcNow,
+            dpValue: null,
+            customChild: null,
+            visible: false,
 
         };
     }
@@ -89,7 +114,19 @@ class Details extends Component {
 }
     render() {
         return (
+
             <div className={classNames(style.page, baseStyle.page)} style={{minHeight: document.documentElement.clientHeight}}>
+                <div className="date-picker-list" style={{ backgroundColor: 'white' }}>
+                    <DatePicker
+                        mode="date"
+                        title="Select Date"
+                        extra="Optional"
+                        value={this.state.date}
+                        onChange={date => this.setState({ date })}
+                    >
+                        <p>1</p>
+                    </DatePicker>
+                </div>
                 <div className={style.header}>
                     <img className={style.headerImg} src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/640/h/250" alt=""/>
                 </div>

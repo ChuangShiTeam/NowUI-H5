@@ -1,0 +1,44 @@
+.page{
+  max-width: 640px;
+  width: 100%;
+}
+.header{
+  width: 100%;
+  height: 44px;
+  font-family:PingFangSC-Regular;
+  font-size:16px;
+  color:#4a4a4a;
+  text-align:center;
+  line-height: 44px;
+  background: white;
+}
+.content{
+  padding: 0px 12px;
+}
+.contentList{
+  height: 40px;
+  -js-display: flex;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.contentListLeft{
+  font-family:PingFangSC-Regular;
+  font-size:14px;
+  color:#262626;
+}
+.contentListLeftIcon{
+  width: 21px;
+  height: 21px;
+  vertical-align: middle;
+  margin-right: 12px;
+}
+.contentListRight{
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-bottom: 1px solid  #DFDFDF ;
+  border-right: 1px solid  #DFDFDF ;
+  transform: rotate(-45deg);
+
+}
