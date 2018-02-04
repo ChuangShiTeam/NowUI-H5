@@ -275,7 +275,17 @@ class Index extends Component {
                                                             width: document.documentElement.clientWidth,
                                                             height: document.documentElement.clientWidth / 320 * 255,
                                                             backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
-                                                        }}></div>
+                                                        }}>
+                                                            <div className={style.footerInfoLeft}>
+                                                                <img className={style.footerInfoLeftLocationIcon} src={require('../../image/location.png')}
+                                                                     alt=''/>
+                                                                <div>
+                                                                    <div className={style.footerInfoLeftLocationTextLeft}></div>
+                                                                    <span className={style.footerInfoLeftLocationText}>上海</span>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
                                                     );
                                                 case 2:
                                                     width = (clientWidth - 2) / 2;

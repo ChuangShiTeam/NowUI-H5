@@ -13,5 +13,21 @@ export default {
                 }, 'service.index');
             }
         }]
+    },{
+        path: '/service/servicelist',
+        onEnter: util.handleEnter,
+        getComponent(location, cb) {
+            require.ensure([], (require) => {
+                cb(null, require('../view/service/ServiceList').default);
+            }, 'service.servicelist');
+        }
+    },{
+        path: '/service/details',
+        onEnter: util.handleEnter,
+        getComponent(location, cb) {
+            require.ensure([], (require) => {
+                cb(null, require('../view/service/Details').default);
+            }, 'service.details');
+        }
     }]
 }

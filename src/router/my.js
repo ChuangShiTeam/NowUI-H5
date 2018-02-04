@@ -190,6 +190,14 @@ export default {
             }, 'my.petkind');
         }
     },{
+        path: '/my/rename',
+        onEnter: util.handleEnter,
+        getComponent(location, cb) {
+            require.ensure([], (require) => {
+                cb(null, require('../view/my/Rename').default);
+            }, 'my.rename');
+        }
+    },{
         path: '/my/message',
         onEnter: util.handleEnter,
         getComponent(location, cb) {
