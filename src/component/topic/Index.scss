@@ -48,7 +48,16 @@
 	justify-content:flex-end;
 	align-items:center;
 }
-
+.closes{
+	width: 10px;
+	height: 10px;
+	margin-right: 9px;
+	position: relative;
+	top:-11px;
+}
+.closesImg{
+	width: 100%;
+}
 .headerRightFollowAdd {
 	font-family: PingFangSC-Regular;
 	font-size: 16px;

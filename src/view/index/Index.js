@@ -3,12 +3,15 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router';
 import classNames from 'classnames';
 
+
 import util from '../../common/util';
 import http from '../../common/http';
 import constant from '../../common/constant';
 
 import style from './Index.scss';
 import baseStyle from '../../css/Base.scss';
+
+
 
 let bannerSwiper;
 let categorySwiper;
@@ -31,6 +34,8 @@ class Index extends Component {
     componentDidMount() {
         util.setTitle('wawipet哇咿宠');
         util.hancleComponentDidMount();
+
+       
 
         if (window.addEventListener) {
             window.addEventListener('scroll', this.handleScroll);

@@ -166,6 +166,30 @@ export default {
             }, 'my.follow');
         }
     },{
+        path: '/my/pet',
+        onEnter: util.handleEnter,
+        getComponent(location, cb) {
+            require.ensure([], (require) => {
+                cb(null, require('../view/my/Pet').default);
+            }, 'my.pet');
+        }
+    },{
+        path: '/my/addpet',
+        onEnter: util.handleEnter,
+        getComponent(location, cb) {
+            require.ensure([], (require) => {
+                cb(null, require('../view/my/Addpet').default);
+            }, 'my.addpet');
+        }
+    },{
+        path: '/my/petkind',
+        onEnter: util.handleEnter,
+        getComponent(location, cb) {
+            require.ensure([], (require) => {
+                cb(null, require('../view/my/PetKind').default);
+            }, 'my.petkind');
+        }
+    },{
         path: '/my/message',
         onEnter: util.handleEnter,
         getComponent(location, cb) {
