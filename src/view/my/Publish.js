@@ -29,7 +29,9 @@ class Publish extends Component {
             topicTotal: 0,
             topicList: [],
             hasMore: false,
-            member: {}
+            member: {},
+            commentPageIndex: 1,
+            commentPageSize: 3
         }
     }
 
@@ -56,7 +58,9 @@ class Publish extends Component {
                 pageIndex: this.state.topicPageIndex,
                 pageSize: this.state.topicPageSize,
                 systemCreateTime: moment().format('YYYY-MM-DD HH:mm:ss'),
-                excludeTopicIdList: []
+                excludeTopicIdList: [],
+                commentPageIndex: this.state.commentPageIndex,
+                commentPageSize: this.state.commentPageSize
             },
             success: function (data) {
                 if (data && data.list && data.list.length > 0) {
@@ -104,7 +108,9 @@ class Publish extends Component {
                     pageIndex: topicPageIndex,
                     pageSize: topicPageSize,
                     systemCreateTime: systemCreateTime,
-                    excludeTopicIdList: excludeTopicIdList
+                    excludeTopicIdList: excludeTopicIdList,
+                    commentPageIndex: this.state.commentPageIndex,
+                    commentPageSize: this.state.commentPageSize
                 },
                 success: function (data) {
                     if (data && data.list && data.list.length > 0) {
@@ -148,7 +154,7 @@ class Publish extends Component {
                     }
                     endMessage={
                         <p style={{textAlign: 'center',position:"relative",top:"-32px"}}>
-                            <b>没有更多了</b>
+                            <b>我们是有底线的!</b>
                         </p>
                     }
                 >

@@ -27,6 +27,8 @@ class Homepage extends Component {
             topicList: [],
             hasMore: false,
             member: {},
+            commentPageIndex: 1,
+            commentPageSize: 3
         }
     }
 
@@ -56,7 +58,9 @@ class Homepage extends Component {
                     pageIndex: this.state.topicPageIndex,
                     pageSize: this.state.topicPageSize,
                     systemCreateTime: moment().format('YYYY-MM-DD HH:mm:ss'),
-                    excludeTopicIdList: []
+                    excludeTopicIdList: [],
+                    commentPageIndex: this.state.commentPageIndex,
+                    commentPageSize: this.state.commentPageSize
                 },
                 success: function (data) {
                     if (data && data.list && data.list.length > 0) {
@@ -135,7 +139,9 @@ class Homepage extends Component {
                     pageSize: topicPageSize,
                     userId: this.props.params.userId,
                     systemCreateTime: systemCreateTime,
-                    excludeTopicIdList: excludeTopicIdList
+                    excludeTopicIdList: excludeTopicIdList,
+                    commentPageIndex: this.state.commentPageIndex,
+                    commentPageSize: this.state.commentPageSize
                 },
                 success: function (data) {
                     if (data && data.list && data.list.length > 0) {

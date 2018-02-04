@@ -111,7 +111,7 @@ class Index extends Component {
 
     render() {
         return (
-            <div className={classNames(style.page, baseStyle.tabbarPage)}>
+            <div className={classNames(style.page, baseStyle.tabbarPage)} >
                 <InfiniteScroll
                     next={this.handleNextLoad.bind(this)}
                     hasMore={this.state.hasMore}

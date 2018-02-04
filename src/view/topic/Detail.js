@@ -166,6 +166,8 @@ class Detail extends Component {
                             hasMore: false
                         });
                     }
+
+                    console.log('bug',data)
                 }.bind(this),
                 complete: function () {
 
@@ -182,6 +184,7 @@ class Detail extends Component {
                 topicId: this.state.topic.topicId
             },
             success: function (data) {
+
                 if (data) {
                     let topic = this.state.topic;
                     topic.topicUserIsLike = !topic.topicUserIsLike;
@@ -195,6 +198,7 @@ class Detail extends Component {
                         topic: topic
                     })
                 }
+
             }.bind(this),
             complete: function () {
 
@@ -346,7 +350,7 @@ class Detail extends Component {
                     }
                     endMessage={
                         <p style={{textAlign: 'center'}}>
-                            <b></b>
+                            <b>底线</b>
                         </p>
                     }
                 >
