@@ -113,9 +113,50 @@
 	background-position: center;
 }
 
-.content {
+.footerInfoLeft {
+  flex-grow: 1;
+  -js-display: flex;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 81px;
+  z-index: 99;
+}
+
+.footerInfoLeftLocationIcon {
+  width: 13px;
+  height: 17px;
+}
+.footerInfoLeftLocationTextLeft{
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-bottom:9px solid  transparent;
+  border-left:9px solid transparent ;
+  border-top: 9px solid transparent;
+  border-right:9px solid black ;
+  vertical-align: top;
+  position: relative;
 
 }
+.footerInfoLeftLocationText {
+  display: inline-block;
+  font-family: PingFangSC-Light;
+  font-size: 10px;
+  letter-spacing: 0;
+  background: #000000;
+  width: 59px;
+  height: 18px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  -js-display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 18px;
+  color: #ffffff;
+}
+
 
 .contentImage {
 	width: 100%;

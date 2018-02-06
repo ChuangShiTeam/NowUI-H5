@@ -62,7 +62,7 @@ class Addpet extends Component {
     }
 
     render(){
-        const {getFieldProps} = this.props.form;
+
         return(
             <div   className={classNames(baseStyle.page,style.page)} style={{minHeight: document.documentElement.clientHeight}}>
                 <div className={classNames(baseStyle.bottomLine,style.header)}>我的爱宠
@@ -76,20 +76,14 @@ class Addpet extends Component {
                     </div>
                 </div>
                 <div className={style.content}>
-                    <div  className={classNames(baseStyle.bottomLine,style.contentList)}>
+                    <Link to={"/my/Rename"}  className={classNames(baseStyle.bottomLine,style.contentList)}>
                         <span  className={style.listLeft}>
                             宠物名字
                         </span>
-                        <span  className={style.listRight}>
-                               <input type="text" className={style.inputName} placeholder="请输入爱宠名称" {...getFieldProps('forumName', {
-                                   rules: [{
-                                       required: true,
-                                       message: '爱宠名字不能为空'
-                                   }],
-                                   initialValue: ''
-                               })}/>
+                        <span  className={classNames(style.listRight,style.petName)}>
+                               请输入宠物名称
                         </span>
-                    </div>
+                    </Link>
                     <div  className={classNames(baseStyle.bottomLine,style.contentList)}>
                         <span  className={style.listLeft}>
                             宠物性别
@@ -110,7 +104,7 @@ class Addpet extends Component {
                                         value={this.state.date}
                                         onChange={date => this.setState({ date })}
                                     >
-                                        <p arrow="horizontal"> 请选择爱宠生日</p>
+                                        <p  onClick={this.click.bind(this)}>请输入宠物生日</p>
                                     </DatePicker>
                             <div className={style.imgRights}></div>
                         </span>
