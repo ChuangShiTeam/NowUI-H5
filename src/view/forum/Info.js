@@ -154,9 +154,9 @@ class Info extends Component {
                         <div className={baseStyle.listLeft}>圈子头像</div>
                         <div className={classNames(style.listCenter, baseStyle.listCenter)}>
                             {
-                                this.state.forum.forumMedia && this.state.forum.forumMedia.filePath ?
+                                this.state.forum && this.state.forum.forumMedia ?
                                     <img className={style.imageCenterImage}
-                                         src={constant.image_host + this.state.forum.forumMedia.filePath}
+                                         src={constant.image_host + this.state.forum.forumMedia}
                                          alt=''/>
                                     :
                                     null
@@ -216,18 +216,18 @@ class Info extends Component {
 
 
                     <div className={style.infoTitle}>
-                        圈子信息
+                        圈主信息
                     </div>
                     <div className={classNames(style.info, baseStyle.bottomLine)}>
-                        <Link to={this.state.forum.forumUserIsModerator ? '/my/publish' :'/member/homepage/' +  this.state.ModeratorId} key={this.state.ModeratorId} >
+                        <Link to={this.state.forum.forumUserIsModerator ? '/my/publish' :'/member/homepage/' +  this.state.forumModerator} key={this.state.forumModerator} >
                         <div className={style.infoLeft}>
                             <img className={style.infoLeftCrown}
                                  src={require('../../image/crown.png')}
                                  alt=''/>
                             {
-                                this.state.forum.forumModerator && this.state.forum.forumModerator.userAvatar && this.state.forum.forumModerator.userAvatar.filePath ?
+                                this.state.forum.forumModeratorInfo && this.state.forum.forumModeratorInfo.userAvatar ?
                                     <img className={style.infoLeftImage}
-                                         src={constant.image_host + this.state.forum.forumModerator.userAvatar.filePath}
+                                         src={constant.image_host + this.state.forum.forumModeratorInfo.userAvatar}
                                          alt=''/>
                                     :
                                     null
@@ -238,8 +238,8 @@ class Info extends Component {
                             <div className={style.infoRightName}>
                                 <Link to={this.state.forum.forumUserIsModerator ? '/my/publish' :'/member/homepage/' +  this.state.ModeratorId} key={this.state.ModeratorId} >
                                     {
-                                        this.state.forum.forumModerator && this.state.forum.forumModerator.userNickName ?
-                                            this.state.forum.forumModerator.userNickName
+                                        this.state.forum.forumModeratorInfo && this.state.forum.forumModeratorInfo.userNickName ?
+                                            this.state.forum.forumModeratorInfo.userNickName
                                             :
                                             null
                                     }
@@ -248,8 +248,8 @@ class Info extends Component {
                             <div
                                 className={style.infoRightDescription}>
                                 {
-                                    this.state.forum.forumModerator && this.state.forum.forumModerator.memberSignature ?
-                                        this.state.forum.forumModerator.memberSignature
+                                    this.state.forum.forumModeratorInfo && this.state.forum.forumModeratorInfo.memberSignature ?
+                                        this.state.forum.forumModeratorInfo.memberSignature
                                         :
                                         null
                                 }

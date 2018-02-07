@@ -112,16 +112,26 @@ class Add extends Component {
                 values.topicIsLocation = true;
             }
 
-            values.topicForumList = this.state.forumList.filter(forum => forum.selected).map(forum => forum.forumId);
+            values.topicForumList = this.state.forumList.filter(forum => forum.selected).map(forum => {
+                    return {
+                        forumId: forum.forumId,
+                        forumName: forum.forumName
+                    }
+            });
             values.topicTipUserList = this.props.topicAdd.topicTipUserList.map(topicTipUser => topicTipUser.value);
 
             values.topicMediaList = values.topicMedia.map((topicMedia, index) => {
                 return {
-                    topicMedia: topicMedia.fileId,
+                    topicMedia: topicMedia.filePath,
                     topicMediaType: 'IMAGE',
                     topicMediaSort: index + 1
                 }
             });
+
+            values.theSendInfo = {
+                userNickName: '谁用了我的头像(测试)',
+                userAvatar: '/upload/df2078d6c9eb46babb0df957127273ab/3bdfcbb00f90415989fb53e6677c25df/ae74752bc95c4ed6a9ebbd020d3b4105.jpg',
+            }
 
             delete values.topicMedia;
             http.request({

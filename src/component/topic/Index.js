@@ -221,8 +221,8 @@ class Index extends Component {
                                 <div className={style.headerLeft}>
                                     <Link className={style.headerLeftImage} to={this.state.topic.topicIsSelf ?'/my/publish'  : '/member/homepage/' +  this.state.topic.userId} key={this.state.topic.userId} >
                                     {
-                                        this.state.topic.userAvatar && this.state.topic.userAvatar.filePath ?
-                                            <img className={style.headerLeftImage} src={constant.image_host + this.state.topic.userAvatar.filePath} alt=''/>
+                                        this.state.topic.theSendInfo && this.state.topic.theSendInfo.userAvatar ?
+                                            <img className={style.headerLeftImage} src={constant.image_host + this.state.topic.theSendInfo.userAvatar} alt=''/>
                                             :
                                             <img className={style.headerLeftImage} src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/28/h/28' alt=''/>
 
@@ -232,8 +232,8 @@ class Index extends Component {
                                 <div className={style.headerCenter}>
                                     <Link className={style.headerLeftImage} to={this.state.topic.topicIsSelf ?'/my/publish'  : '/member/homepage/' +  this.state.topic.userId} key={this.state.topic.userId} >
                                     {
-                                        this.state.topic.userNickName ?
-                                            <p className={style.headerCenterName}>{this.state.topic.userNickName}</p>
+                                        this.state.topic.theSendInfo && this.state.topic.theSendInfo.userNickName ?
+                                            <p className={style.headerCenterName}>{this.state.topic.theSendInfo.userNickName}</p>
                                             :
                                             <p className={style.headerCenterName}>null</p>
                                     }
@@ -274,7 +274,7 @@ class Index extends Component {
                                                             left: 0 + 'px',
                                                             width: document.documentElement.clientWidth,
                                                             height: document.documentElement.clientWidth / 320 * 255,
-                                                            backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                            backgroundImage: 'url(' + constant.image_host + image.topicMedia + ')'
                                                         }}>
                                                             <div className={style.footerInfoLeft}>
                                                                 <img className={style.footerInfoLeftLocationIcon} src={require('../../image/location.png')}
@@ -299,7 +299,7 @@ class Index extends Component {
                                                                     left: 0 + 'px',
                                                                     width: width,
                                                                     height: height,
-                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia + ')'
                                                                 }}></div>
                                                             );
                                                         case 1:
@@ -309,7 +309,7 @@ class Index extends Component {
                                                                     right: 0 + 'px',
                                                                     width: width,
                                                                     height: height,
-                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia + ')'
                                                                 }}></div>
                                                             );
                                                         default:
@@ -327,7 +327,7 @@ class Index extends Component {
                                                                     left: 0 + 'px',
                                                                     width: width * 2,
                                                                     height: height * 2 + 2,
-                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia + ')'
                                                                 }}></div>
                                                             );
                                                         case 1:
@@ -337,7 +337,7 @@ class Index extends Component {
                                                                     right: 0 + 'px',
                                                                     width: width,
                                                                     height: height,
-                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia + ')'
                                                                 }}></div>
                                                             );
                                                         case 2:
@@ -347,7 +347,7 @@ class Index extends Component {
                                                                     right: 0 + 'px',
                                                                     width: width,
                                                                     height: height,
-                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia + ')'
                                                                 }}></div>
                                                             );
                                                         default:
@@ -365,7 +365,7 @@ class Index extends Component {
                                                                     left: 0 + 'px',
                                                                     width: width,
                                                                     height: height,
-                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia + ')'
                                                                 }}></div>
                                                             );
                                                         case 1:
@@ -375,7 +375,7 @@ class Index extends Component {
                                                                     right: 0 + 'px',
                                                                     width: width,
                                                                     height: height,
-                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia + ')'
                                                                 }}></div>
                                                             );
                                                         case 2:
@@ -385,7 +385,7 @@ class Index extends Component {
                                                                     left: 0 + 'px',
                                                                     width: width,
                                                                     height: height,
-                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia + ')'
                                                                 }}></div>
                                                             );
                                                         case 3:
@@ -395,7 +395,7 @@ class Index extends Component {
                                                                     right: 0 + 'px',
                                                                     width: width,
                                                                     height: height,
-                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia + ')'
                                                                 }}></div>
                                                             );
                                                         default:

@@ -27,7 +27,7 @@ class Index extends Component {
                 <div className={style.ListLeft}>
                     <Link to={'/forum/homepage/' + this.props.forum.forumId}>
                         <img className={style.ListLeftIcon}
-                             src={constant.image_host + this.props.forum.forumMedia.filePath}
+                             src={constant.image_host + this.props.forum.forumMedia}
                              alt=''/>
                     </Link>
                 </div>
@@ -59,20 +59,25 @@ class Index extends Component {
                                  src={require('../../image/crown.png')}
                                  alt=''/>
                             {
-                                this.props.forum.forumModerator && this.props.forum.forumModerator.userAvatar && this.props.forum.forumModerator.userAvatar.filePath?
+                                 this.props.forum.forumModeratorInfo && this.props.forum.forumModeratorInfo.userAvatar ?
                                     <img className={style.ListCenterFooterLeftAvatar}
-                                         src={constant.image_host + this.props.forum.forumModerator.userAvatar.filePath}
+                                         src={constant.image_host + this.props.forum.forumModeratorInfo.userAvatar}
                                          alt=''/>
                                     :
                                     <img className={style.ListCenterFooterLeftAvatar}
                                          src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/15/h/15"
                                          alt=''/>
-
                             }
                         </div>
                         </Link>
                             <div className={style.ListCenterFooterCenter}>
-                                {this.props.forum.forumModerator.userNickName}
+
+                                {
+                                    this.props.forum.forumModeratorInfo && this.props.forum.forumModeratorInfo.userAvatar ?
+                                        this.props.forum.forumModeratorInfo.userNickName
+                                        :
+                                        null
+                                }
                             </div>
                         <Link to={'/forum/homepage/' + this.props.forum.forumId}>
                             <div className={style.ListCenterFooterRight}>

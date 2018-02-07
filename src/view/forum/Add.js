@@ -54,10 +54,18 @@ class Add extends Component {
                 return;
             }
 
+            values.forumModeratorInfo = {
+                userNickName: '谁用了我的头像(测试)',
+                userAvatar: '/upload/df2078d6c9eb46babb0df957127273ab/3bdfcbb00f90415989fb53e6677c25df/ae74752bc95c4ed6a9ebbd020d3b4105.jpg',
+                memberSignature: '喵咪太可爱了!(签名)'
+            }
+
             values.forumMediaType = 'IMAGE';
             if (values.forumMedia.length > 0) {
-                values.forumMedia = values.forumMedia[0].fileId
+                values.forumMedia = values.forumMedia[0].filePath
             }
+
+
             http.request({
                 url: '/forum/mobile/v1/save',
                 data: values,

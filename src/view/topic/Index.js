@@ -42,8 +42,10 @@ class Index extends Component {
         http.request({
             url: '/topic/mobile/v1/home/list',
             data: {
-                pageIndex: this.props.topicIndex.topicPageIndex,
-                pageSize: this.props.topicIndex.topicPageSize,
+                // pageIndex: this.props.topicIndex.topicPageIndex,
+                // pageSize: this.props.topicIndex.topicPageSize,
+                pageIndex: 1,
+                pageSize: 50,
                 systemCreateTime: moment().format('YYYY-MM-DD HH:mm:ss'),
                 excludeTopicIdList: []
             },

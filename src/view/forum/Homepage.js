@@ -215,8 +215,8 @@ class Homepage extends Component {
                     <div className={style.page} style={{minHeight: document.documentElement.clientHeight}}>
                         <div className={style.top}>
                             {
-                                this.state.forum.forumBackgroundMedia && this.state.forum.forumBackgroundMedia.filePath ?
-                                    <img className={style.topImg} src={constant.image_host + this.state.forum.forumBackgroundMedia.filePath} alt=""/>
+                                this.state.forum && this.state.forum.forumBackgroundMedia ?
+                                    <img className={style.topImg} src={constant.image_host + this.state.forum.forumBackgroundMedia} alt=""/>
                                     :
                                     null
                             }
@@ -228,8 +228,8 @@ class Homepage extends Component {
                      </span>
                             <Link to={'/forum/info/' +  this.state.forum.forumId} key={this.state.forum.forumId} >
                                 {
-                                    this.state.forum.forumMedia && this.state.forum.forumMedia.filePath ?
-                                        <img className={style.homePageHeaderTopBackgroundImg} src={constant.image_host + this.state.forum.forumMedia.filePath} alt=""/>
+                                    this.state.forum && this.state.forum.forumMedia ?
+                                        <img className={style.homePageHeaderTopBackgroundImg} src={constant.image_host + this.state.forum.forumMedia} alt=""/>
                                         :
                                         null
                                 }
@@ -251,11 +251,11 @@ class Homepage extends Component {
                             <dl className={style.homePageHeaderMessages}>
                                 <dt className={style.homePageHeaderMessageLeft}>
                                     {
-                                        this.state.forum && this.state.forum.forumModerator && this.state.forum.forumModerator.userId ?
+                                        this.state.forum && this.state.forum.forumModerator ?
                                             <Link to={this.state.forum.memberIsFollowForum? '/my/publish' :'/member/homepage/' +  this.state.forum.forumModerator.userId} key={this.state.forum.forumModerator.userId} >
                                                 {
-                                                    this.state.forum.forumModerator.userAvatar && this.state.forum.forumModerator.userAvatar.filePath?
-                                                        <img src={constant.image_host + this.state.forum.forumModerator.userAvatar.filePath} alt=''/>
+                                                    this.state.forum.forumModeratorInfo && this.state.forum.forumModeratorInfo.userAvatar?
+                                                        <img src={constant.image_host + this.state.forum.forumModeratorInfo.userAvatar} alt=''/>
                                                         :
                                                         null
                                                 }
@@ -268,16 +268,16 @@ class Homepage extends Component {
                                 <dd className={style.homePageHeaderMessageRight}>
                                     <p className={style.homePageHeaderMessageRightTop}>
                                         {
-                                            this.state.forum.forumModerator && this.state.forum.forumModerator.userNickName ?
-                                                this.state.forum.forumModerator.userNickName
+                                            this.state.forum.forumModeratorInfo && this.state.forum.forumModeratorInfo.userNickName ?
+                                                this.state.forum.forumModeratorInfo.userNickName
                                                 :
                                                 '默认用户昵称'
                                         }
                                     </p>
                                     <p className={style.homePageHeaderMessageRightBottom}>
                                         {
-                                            this.state.forum.forumModerator && this.state.forum.forumModerator.memberSignature ?
-                                                this.state.forum.forumModerator.memberSignature
+                                            this.state.forum.forumModeratorInfo && this.state.forum.forumModeratorInfo.memberSignature ?
+                                                this.state.forum.forumModeratorInfo.memberSignature
                                                 :
                                                 '用户没有个性签名哦'
                                         }
