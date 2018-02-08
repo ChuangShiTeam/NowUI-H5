@@ -76,7 +76,9 @@ class Index extends Component {
         http.request({
             url: this.state.topic.topicUserIsLike ? '/topic/user/unlike/mobile/v1/save' : '/topic/user/like/mobile/v1/save',
             data: {
-                topicId: this.state.topic.topicId
+                topicId: this.state.topic.topicId,
+                userNickName: '谁用了我的头像(测试)',
+                userAvatar: '/upload/df2078d6c9eb46babb0df957127273ab/3bdfcbb00f90415989fb53e6677c25df/ae74752bc95c4ed6a9ebbd020d3b4105.jpg'
             },
             success: function (data) {
                 if (data) {
@@ -410,7 +412,7 @@ class Index extends Component {
                                                                     left: 0 + 'px',
                                                                     width: (clientWidth - 2) / 2,
                                                                     height: (clientWidth - 2) / 2,
-                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia + ')'
                                                                 }}></div>
                                                             );
                                                         case 1:
@@ -420,7 +422,7 @@ class Index extends Component {
                                                                     right: 0 + 'px',
                                                                     width: (clientWidth - 2) / 2,
                                                                     height: (clientWidth - 2) / 2,
-                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia + ')'
                                                                 }}></div>
                                                             );
                                                         case 2:
@@ -430,7 +432,7 @@ class Index extends Component {
                                                                     left: 0 + 'px',
                                                                     width: (clientWidth - 4) / 3,
                                                                     height: (clientWidth - 4) / 3,
-                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia + ')'
                                                                 }}></div>
                                                             );
                                                         case 3:
@@ -440,7 +442,7 @@ class Index extends Component {
                                                                     left: (clientWidth - 4) / 3 + 2 + 'px',
                                                                     width: (clientWidth - 4) / 3,
                                                                     height: (clientWidth - 4) / 3,
-                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia + ')'
                                                                 }}></div>
                                                             );
                                                         case 4:
@@ -450,7 +452,7 @@ class Index extends Component {
                                                                     right: 0 + 'px',
                                                                     width: (clientWidth - 4) / 3,
                                                                     height: (clientWidth - 4) / 3,
-                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia + ')'
                                                                 }}></div>
                                                             );
                                                         default:
@@ -465,7 +467,7 @@ class Index extends Component {
                                                                     left: 0 + 'px',
                                                                     width: (clientWidth - 4) / 3 * 2 + 2,
                                                                     height: (clientWidth - 4) / 3 * 2 + 2,
-                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia + ')'
                                                                 }}></div>
                                                             );
                                                         case 1:
@@ -475,7 +477,7 @@ class Index extends Component {
                                                                     right: 0 + 'px',
                                                                     width: (clientWidth - 2) / 3,
                                                                     height: (clientWidth - 2) / 3 - 1,
-                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia + ')'
                                                                 }}></div>
                                                             );
                                                         case 2:
@@ -485,7 +487,7 @@ class Index extends Component {
                                                                     right: 0 + 'px',
                                                                     width: (clientWidth - 2) / 3,
                                                                     height: (clientWidth - 2) / 3 - 1,
-                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia + ')'
                                                                 }}></div>
                                                             );
                                                         case 3:
@@ -495,7 +497,7 @@ class Index extends Component {
                                                                     left: 0 + 'px',
                                                                     width: (clientWidth - 4) / 3,
                                                                     height: (clientWidth - 4) / 3,
-                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia + ')'
                                                                 }}></div>
                                                             );
                                                         case 4:
@@ -505,7 +507,7 @@ class Index extends Component {
                                                                     left: (clientWidth - 4) / 3 + 2 + 'px',
                                                                     width: (clientWidth - 4) / 3,
                                                                     height: (clientWidth - 4) / 3,
-                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia + ')'
                                                                 }}></div>
                                                             );
                                                         case 5:
@@ -515,7 +517,7 @@ class Index extends Component {
                                                                     right: 0 + 'px',
                                                                     width: (clientWidth - 4) / 3,
                                                                     height: (clientWidth - 4) / 3,
-                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia + ')'
                                                                 }}></div>
                                                             );
                                                         default:
@@ -530,7 +532,7 @@ class Index extends Component {
                                                                     left: 0 + 'px',
                                                                     width: (clientWidth - 4) / 3,
                                                                     height: (clientWidth - 4) / 3 * 2 + 2,
-                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia + ')'
                                                                 }}></div>
                                                             );
                                                         case 1:
@@ -540,7 +542,7 @@ class Index extends Component {
                                                                     left: (clientWidth - 4) / 3 + 2 + 'px',
                                                                     width: (clientWidth - 4) / 3,
                                                                     height: (clientWidth - 4) / 3 * 2 + 2,
-                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia + ')'
                                                                 }}></div>
                                                             );
                                                         case 2:
@@ -550,7 +552,7 @@ class Index extends Component {
                                                                     right: 0 + 'px',
                                                                     width: (clientWidth - 4) / 3,
                                                                     height: (clientWidth - 4) / 3,
-                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia + ')'
                                                                 }}></div>
                                                             );
                                                         case 3:
@@ -560,7 +562,7 @@ class Index extends Component {
                                                                     right: 0 + 'px',
                                                                     width: (clientWidth - 4) / 3,
                                                                     height: (clientWidth - 4) / 3,
-                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia + ')'
                                                                 }}></div>
                                                             );
                                                         case 4:
@@ -570,7 +572,7 @@ class Index extends Component {
                                                                     left: 0 + 'px',
                                                                     width: (clientWidth - 4) / 3,
                                                                     height: (clientWidth - 4) / 3,
-                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia + ')'
                                                                 }}></div>
                                                             );
                                                         case 5:
@@ -580,7 +582,7 @@ class Index extends Component {
                                                                     left: (clientWidth - 4) / 3 + 2 + 'px',
                                                                     width: (clientWidth - 4) / 3,
                                                                     height: (clientWidth - 4) / 3,
-                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia + ')'
                                                                 }}></div>
                                                             );
                                                         case 6:
@@ -590,7 +592,7 @@ class Index extends Component {
                                                                     right: 0 + 'px',
                                                                     width: (clientWidth - 4) / 3,
                                                                     height: (clientWidth - 4) / 3,
-                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia + ')'
                                                                 }}></div>
                                                             );
                                                         default:
@@ -605,7 +607,7 @@ class Index extends Component {
                                                                     left: 0 + 'px',
                                                                     width: (clientWidth - 4) / 3 * 2 + 2,
                                                                     height: (clientWidth - 4) / 3,
-                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia + ')'
                                                                 }}></div>
                                                             );
                                                         case 1:
@@ -615,7 +617,7 @@ class Index extends Component {
                                                                     right: 0 + 'px',
                                                                     width: (clientWidth - 4) / 3,
                                                                     height: (clientWidth - 4) / 3,
-                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia + ')'
                                                                 }}></div>
                                                             );
                                                         case 2:
@@ -625,7 +627,7 @@ class Index extends Component {
                                                                     left: 0 + 'px',
                                                                     width: (clientWidth - 4) / 3,
                                                                     height: (clientWidth - 4) / 3,
-                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia + ')'
                                                                 }}></div>
                                                             );
                                                         case 3:
@@ -635,7 +637,7 @@ class Index extends Component {
                                                                     left: (clientWidth - 4) / 3 + 2 + 'px',
                                                                     width: (clientWidth - 4) / 3,
                                                                     height: (clientWidth - 4) / 3,
-                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia + ')'
                                                                 }}></div>
                                                             );
                                                         case 4:
@@ -645,7 +647,7 @@ class Index extends Component {
                                                                     right: 0 + 'px',
                                                                     width: (clientWidth - 4) / 3,
                                                                     height: (clientWidth - 4) / 3,
-                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia + ')'
                                                                 }}></div>
                                                             );
                                                         case 5:
@@ -655,7 +657,7 @@ class Index extends Component {
                                                                     left: 0 + 'px',
                                                                     width: (clientWidth - 4) / 3,
                                                                     height: (clientWidth - 4) / 3,
-                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia + ')'
                                                                 }}></div>
                                                             );
                                                         case 6:
@@ -665,7 +667,7 @@ class Index extends Component {
                                                                     left: (clientWidth - 4) / 3 + 2 + 'px',
                                                                     width: (clientWidth - 4) / 3,
                                                                     height: (clientWidth - 4) / 3,
-                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia + ')'
                                                                 }}></div>
                                                             );
                                                         case 7:
@@ -675,7 +677,7 @@ class Index extends Component {
                                                                     right: 0 + 'px',
                                                                     width: (clientWidth - 4) / 3,
                                                                     height: (clientWidth - 4) / 3,
-                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia + ')'
                                                                 }}></div>
                                                             );
                                                         default:
@@ -690,7 +692,7 @@ class Index extends Component {
                                                                     left: 0 + 'px',
                                                                     width: (clientWidth - 4) / 3,
                                                                     height: (clientWidth - 4) / 3,
-                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia + ')'
                                                                 }}></div>
                                                             );
                                                         case 1:
@@ -700,7 +702,7 @@ class Index extends Component {
                                                                     left: (clientWidth - 4) / 3 + 2 + 'px',
                                                                     width: (clientWidth - 4) / 3,
                                                                     height: (clientWidth - 4) / 3,
-                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia + ')'
                                                                 }}></div>
                                                             );
                                                         case 2:
@@ -710,7 +712,7 @@ class Index extends Component {
                                                                     right: 0 + 'px',
                                                                     width: (clientWidth - 4) / 3,
                                                                     height: (clientWidth - 4) / 3,
-                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia + ')'
                                                                 }}></div>
                                                             );
                                                         case 3:
@@ -720,7 +722,7 @@ class Index extends Component {
                                                                     left: 0 + 'px',
                                                                     width: (clientWidth - 4) / 3,
                                                                     height: (clientWidth - 4) / 3,
-                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia + ')'
                                                                 }}></div>
                                                             );
                                                         case 4:
@@ -730,7 +732,7 @@ class Index extends Component {
                                                                     left: (clientWidth - 4) / 3 + 2 + 'px',
                                                                     width: (clientWidth - 4) / 3,
                                                                     height: (clientWidth - 4) / 3,
-                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia + ')'
                                                                 }}></div>
                                                             );
                                                         case 5:
@@ -740,7 +742,7 @@ class Index extends Component {
                                                                     right: 0 + 'px',
                                                                     width: (clientWidth - 4) / 3,
                                                                     height: (clientWidth - 4) / 3,
-                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia + ')'
                                                                 }}></div>
                                                             );
                                                         case 6:
@@ -750,7 +752,7 @@ class Index extends Component {
                                                                     left: 0 + 'px',
                                                                     width: (clientWidth - 4) / 3,
                                                                     height: (clientWidth - 4) / 3,
-                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia + ')'
                                                                 }}></div>
                                                             );
                                                         case 7:
@@ -760,7 +762,7 @@ class Index extends Component {
                                                                     left: (clientWidth - 4) / 3 + 2 + 'px',
                                                                     width: (clientWidth - 4) / 3,
                                                                     height: (clientWidth - 4) / 3,
-                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia + ')'
                                                                 }}></div>
                                                             );
                                                         case 8:
@@ -770,7 +772,7 @@ class Index extends Component {
                                                                     right: 0 + 'px',
                                                                     width: (clientWidth - 4) / 3,
                                                                     height: (clientWidth - 4) / 3,
-                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia.filePath + ')'
+                                                                    backgroundImage: 'url(' + constant.image_host + image.topicMedia + ')'
                                                                 }}></div>
                                                             );
                                                         default:

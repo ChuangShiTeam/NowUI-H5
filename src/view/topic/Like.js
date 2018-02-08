@@ -102,7 +102,7 @@ class Like extends Component {
                                     <div className={style.listLeft}>
                                         {
                                             userLike && userLike.userAvatar ?
-                                                <img className={style.listLeftIcon} src={constant.image_host + userLike.userAvatar.filePath} alt='' key={index}/>
+                                                <img className={style.listLeftIcon} src={constant.image_host + userLike.userAvatar} alt='' key={index}/>
                                                 :
                                                 <img className={style.listLeftIcon} src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/30/h/30" alt=''/>
                                         }

@@ -25,7 +25,7 @@ class Publish extends Component {
         this.state = {
             isLoad: false,
             topicPageIndex: 1,
-            topicPageSize: 2,
+            topicPageSize: 5,
             topicTotal: 0,
             topicList: [],
             hasMore: false,
@@ -197,13 +197,15 @@ class Publish extends Component {
                                 <span className={style.messagesBottom}>来自 上海 徐汇区</span>
                                 <div className={style.messagesNumber}>
                                     <div>
-                                        <span className={style.messagesNumberTop}>{this.state.member.memberSendTopicCount}</span>
+                                        <span className={style.messagesNumberTop}>
+                                            {/*{this.state.member.memberSendTopicCount}*/}
+                                            </span>
                                         <span className={style.messagesNumberBottom}>动态</span>
                                     </div>
                                     <div>
                                         <span className={style.messagesNumberTop} >
                                              <Link to={'/member/follow' } key={1} >
-                                                {this.state.member.memberFollowCount}
+                                                {/*{this.state.member.memberFollowCount}*/}
                                              </Link>
                                         </span>
                                         <span className={style.messagesNumberBottom}> 关注</span>
@@ -211,7 +213,7 @@ class Publish extends Component {
                                     <div>
                                          <span className={style.messagesNumberTop}>
                                              <Link to={'/member/fans' } key={2} >
-                                                {this.state.member.memberBeFollowCount}
+                                                {/*{this.state.member.memberBeFollowCount}*/}
                                              </Link>
                                          </span>
                                         <span className={style.messagesNumberBottom}>粉丝</span>

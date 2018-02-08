@@ -363,11 +363,11 @@ class Detail extends Component {
                         <div className={style.header}>
                             <div className={style.headerLeft}>
                                 {
-                                    this.state.topic.topicUser && this.state.topic.topicUser.userId ?
-                                        <Link to={this.state.topic.topicIsSelf ? '/my/publish' : '/member/homepage/' +  this.state.topic.topicUser.userId}>
+                                    this.state.topic && this.state.topic.userId ?
+                                        <Link to={this.state.topic.topicIsSelf ? '/my/publish' : '/member/homepage/' +  this.state.topic.userId}>
                                             {
-                                                this.state.topic.topicUser && this.state.topic.topicUser.userAvatar ?
-                                                    <img className={style.headerLeftImage} src={constant.image_host + this.state.topic.topicUser.userAvatar.filePath} alt=''/>
+                                                this.state.topic.theSendInfo && this.state.topic.theSendInfo.userAvatar ?
+                                                    <img className={style.headerLeftImage} src={constant.image_host + this.state.topic.theSendInfo.userAvatar} alt=''/>
                                                     :
                                                     <img className={style.headerLeftImage} src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/28/h/28' alt=''/>
                                             }
@@ -380,9 +380,9 @@ class Detail extends Component {
 
                                 <p className={style.headerCenterName}>
                                     {
-                                        this.state.topic.topicUser && this.state.topic.topicUser.userId ?
-                                            <Link to={this.state.topic.topicIsSelf ? '/my/publish' : '/member/homepage/' +  this.state.topic.topicUser.userId}>
-                                                {this.state.topic.topicUser && this.state.topic.topicUser.userNickName ? this.state.topic.topicUser.userNickName : '用户昵称为null'}
+                                        this.state.topic && this.state.topic.userId ?
+                                            <Link to={this.state.topic.topicIsSelf ? '/my/publish' : '/member/homepage/' +  this.state.topic.userId}>
+                                                {this.state.topic.theSendInfo && this.state.topic.theSendInfo.userNickName ? this.state.topic.theSendInfo.userNickName : '用户昵称为null'}
                                             </Link>
                                             :
                                             null
@@ -419,7 +419,7 @@ class Detail extends Component {
                                 this.state.topic && this.state.topic.topicMediaList ?
                                     this.state.topic.topicMediaList.map(function (mediaList, index) {
                                         return (
-                                            <img key={index} className='imageItem' src={constant.image_host + mediaList.topicMedia.filePath} alt=''/>
+                                            <img key={index} className='imageItem' src={constant.image_host + mediaList.topicMedia} alt=''/>
                                         )
                                     })
                                     :
@@ -471,10 +471,10 @@ class Detail extends Component {
                                 </div>
                                 <Link to={'/topic/like/' + this.state.topic.topicId} className={style.footerCountCenter}>
                                     {
-                                        this.state.topic && this.state.topic.topicUserLikeList ?
+                                        this.state.topic && this.state.topic.topicUserLikeList &&  this.state.topic.topicUserLikeList.length > 0?
                                             this.state.topic.topicUserLikeList.map(function (userLike, index) {
                                                 return (
-                                                    <img key={index} className={style.footerCountLeftAvatarIcon} src={constant.image_host + userLike.userAvatar.filePath} alt=''/>
+                                                    <img key={index} className={style.footerCountLeftAvatarIcon} src={constant.image_host + userLike.userAvatar} alt=''/>
                                                 )
                                             })
                                             :
