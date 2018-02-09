@@ -181,7 +181,9 @@ class Detail extends Component {
         http.request({
             url: this.state.topic.topicUserIsLike ? '/topic/user/unlike/mobile/v1/save' : '/topic/user/like/mobile/v1/save',
             data: {
-                topicId: this.state.topic.topicId
+                topicId: this.state.topic.topicId,
+                userNickName: '谁用了我的头像(测试)',
+                userAvatar: '/upload/df2078d6c9eb46babb0df957127273ab/3bdfcbb00f90415989fb53e6677c25df/ae74752bc95c4ed6a9ebbd020d3b4105.jpg'
             },
             success: function (data) {
 
@@ -288,6 +290,8 @@ class Detail extends Component {
             values.topicId = topicId;
             values.topicReplayUserId = this.state.topicReplayUserId;
             values.topicReplyCommentId = this.state.topicReplyCommentId;
+            values.userNickName = '谁用了我的头像(测试)';
+            values.userAvatar = '/upload/df2078d6c9eb46babb0df957127273ab/3bdfcbb00f90415989fb53e6677c25df/ae74752bc95c4ed6a9ebbd020d3b4105.jpg'
             http.request({
                 url: '/topic/comment/mobile/v1/save',
                 data: values,
@@ -506,9 +510,9 @@ class Detail extends Component {
                                             <div className={style.commentLeft}>
                                                 <Link to={comment.topicCommentIsSelf? '/my/publish'  : '/member/homepage/' + comment.userId}>
                                                 {
-                                                    comment.userAvatar && comment.userAvatar.filePath?
+                                                    comment.userAvatar && comment.userAvatar?
                                                             <img className={style.commentLeftImage}
-                                                                 src={constant.image_host + comment.userAvatar.filePath} alt=''/>
+                                                                 src={constant.image_host + comment.userAvatar} alt=''/>
                                                         :
                                                             <img className={style.commentLeftImage}
                                                                  src='http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/38/h/38'
@@ -563,7 +567,7 @@ class Detail extends Component {
                                         className={style.feedbackContentCenterInput} {...getFieldProps('topicCommentContent', {
                                             rules: [{
                                                 required: true,
-                                                message: '发送内容不能为空'
+                                                message: '评论内容不能为空'
                                             }],
                                             initialValue: ''
                                         })} type="text"

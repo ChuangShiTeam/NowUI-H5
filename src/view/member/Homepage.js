@@ -22,7 +22,7 @@ class Homepage extends Component {
         this.state = {
             isLoad: false,
             topicPageIndex: 1,
-            topicPageSize: 2,
+            topicPageSize: 5,
             topicTotal: 0,
             topicList: [],
             hasMore: false,
@@ -64,6 +64,7 @@ class Homepage extends Component {
                 },
                 success: function (data) {
                     if (data && data.list && data.list.length > 0) {
+
                         let topicList = data.list;
                         let topicTotal = data.total;
                         this.setState({
@@ -92,8 +93,6 @@ class Homepage extends Component {
                     this.setState({
                         member:data
                     });
-
-                    console.log(this.state.member.userAvatar.filePath)
                 }.bind(this),
                 complete: function () {
                 }.bind(this)
@@ -192,8 +191,8 @@ class Homepage extends Component {
                     <div className={style.page} style={{minHeight: document.documentElement.clientHeight}}>
                         <div className={style.header}>
                             {
-                                this.state.member.userAvatar && this.state.member.userAvatar.filePath ?
-                                    <img className={style.headerImg} src={constant.image_host + this.state.member.userAvatar.filePath} alt=""/>
+                                this.state.member && this.state.member.userAvatar ?
+                                    <img className={style.headerImg} src={constant.image_host + this.state.member.userAvatar} alt=""/>
                                     :
                                     null
                             }
@@ -201,8 +200,8 @@ class Homepage extends Component {
                         <div className={style.headerContentTopBackground}>
                             <div className={style.headerContentMemberIcon}>
                                 {
-                                    this.state.member.userAvatar && this.state.member.userAvatar.filePath ?
-                                        <img src={constant.image_host + this.state.member.userAvatar.filePath} alt=''/>
+                                    this.state.member && this.state.member.userAvatar ?
+                                        <img src={constant.image_host + this.state.member.userAvatar} alt=''/>
                                         :
                                         null
                                 }
@@ -234,22 +233,22 @@ class Homepage extends Component {
                         <div className={style.headerContentMemberClear2}></div>
                         <div className={style.headerContentMemberVisit}>
                             <div style={{marginLeft:"5px"}}>
-                                <p>{this.state.member.memberSendTopicCount}</p>
+                                {/*<p>{this.state.member.memberSendTopicCount}</p>*/}
                                 <p>动态</p>
                             </div>
                             <div>
                                 <p>
-                                    <Link to={'/member/otherfollow/' +  this.state.member.userId} key={this.state.member.userId} >
-                                        {this.state.member.memberFollowCount}
-                                    </Link>
+                                    {/*<Link to={'/member/otherfollow/' +  this.state.member.userId} key={this.state.member.userId} >*/}
+                                        {/*{this.state.member.memberFollowCount}*/}
+                                    {/*</Link>*/}
                                 </p>
                                 <p>关注</p>
                             </div>
                             <div>
                                 <p>
-                                    <Link to={'/member/otherfans/' +  this.state.member.userId} key={this.state.member.userId} >
-                                        {this.state.member.memberBeFollowCount}
-                                    </Link>
+                                    {/*<Link to={'/member/otherfans/' +  this.state.member.userId} key={this.state.member.userId} >*/}
+                                        {/*{this.state.member.memberBeFollowCount}*/}
+                                    {/*</Link>*/}
                                 </p>
                                 <p>粉丝</p>
                             </div>
@@ -258,10 +257,10 @@ class Homepage extends Component {
                             </div>
                             <div>
                                 {
-                                    this.state.member.memberIsFollow ?
-                                        <input className={style.headerContentMemberVisitTa} onClick={this.handleFollow.bind(this)} type="button" value="已关注"/>
+                                    this.state.member && this.state.member.memberIsFollow ?
+                                        <input className={style.headerContentMemberVisitTa} onClick={this.handleFollow.bind(this)} type="button" value={this.state.member.memberIsFollow ? "已关注": "关注TA"}/>
                                         :
-                                        <input className={style.headerContentMemberVisitTa} onClick={this.handleFollow.bind(this)} type="button" value="关注TA"/>
+                                        null
                                 }
                             </div>
                         </div>
