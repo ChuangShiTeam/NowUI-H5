@@ -198,14 +198,14 @@ class Publish extends Component {
                                 <div className={style.messagesNumber}>
                                     <div>
                                         <span className={style.messagesNumberTop}>
-                                            {/*{this.state.member.memberSendTopicCount}*/}
+                                            {this.state.member.memberSendTopicCount}
                                             </span>
                                         <span className={style.messagesNumberBottom}>动态</span>
                                     </div>
                                     <div>
                                         <span className={style.messagesNumberTop} >
                                              <Link to={'/member/follow' } key={1} >
-                                                {/*{this.state.member.memberFollowCount}*/}
+                                                {this.state.member.memberFollowCount}
                                              </Link>
                                         </span>
                                         <span className={style.messagesNumberBottom}> 关注</span>
@@ -213,7 +213,7 @@ class Publish extends Component {
                                     <div>
                                          <span className={style.messagesNumberTop}>
                                              <Link to={'/member/fans' } key={2} >
-                                                {/*{this.state.member.memberBeFollowCount}*/}
+                                                {this.state.member.memberBeFollowCount}
                                              </Link>
                                          </span>
                                         <span className={style.messagesNumberBottom}>粉丝</span>

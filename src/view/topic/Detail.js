@@ -367,7 +367,7 @@ class Detail extends Component {
                         <div className={style.header}>
                             <div className={style.headerLeft}>
                                 {
-                                    this.state.topic && this.state.topic.userId ?
+                                    this.state.topic  ?
                                         <Link to={this.state.topic.topicIsSelf ? '/my/publish' : '/member/homepage/' +  this.state.topic.userId}>
                                             {
                                                 this.state.topic.theSendInfo && this.state.topic.theSendInfo.userAvatar ?
@@ -384,7 +384,7 @@ class Detail extends Component {
 
                                 <p className={style.headerCenterName}>
                                     {
-                                        this.state.topic && this.state.topic.userId ?
+                                        this.state.topic  ?
                                             <Link to={this.state.topic.topicIsSelf ? '/my/publish' : '/member/homepage/' +  this.state.topic.userId}>
                                                 {this.state.topic.theSendInfo && this.state.topic.theSendInfo.userNickName ? this.state.topic.theSendInfo.userNickName : '用户昵称为null'}
                                             </Link>

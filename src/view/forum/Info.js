@@ -118,6 +118,7 @@ class Info extends Component {
         http.request({
             url: '/forum/user/follow/mobile/v1/save',
             data: {
+
                 forumId: forumId
             },
             success: function (data) {
@@ -264,21 +265,21 @@ class Info extends Component {
                             this.state.forum.forumUserFollowList &&  this.state.forum.forumUserFollowList.length > 0?
                                 this.state.forum.forumUserFollowList.map(function (member, index) {
                                     return (
-                                        member.userId ?
+                                        // member.userId ?
                                             <div >
-                                                <Link className={style.memberAvatar} to={member.memberIsSelf ? '/my/publish' : ('/member/homepage/' +  member.userId)} key={member.userId} >
+                                                {/*<Link className={style.memberAvatar} to={member.memberIsSelf ? '/my/publish' : ('/member/homepage/' +  member.userId)} key={member.userId} >*/}
                                                     {
-                                                        member.userAvatar && member.userAvatar.filePath?
+                                                        member.userInfo && member.userInfo.userAvatar?
                                                             <img className={style.memberAvatarImage}
-                                                                 src={constant.host + member.userAvatar.filePath}
+                                                                 src={constant.host + member.userInfo.userAvatar}
                                                                  alt=''/>
                                                             :
                                                             null
                                                     }
-                                                </Link>
+                                                {/*</Link>*/}
                                             </div>
-                                            :
-                                            null
+                                            // :
+                                            // null
                                     )
                                 }.bind(this))
                                 :
